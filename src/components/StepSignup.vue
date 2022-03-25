@@ -1,12 +1,10 @@
 <template>
 <Steps :model="items" />
 <router-view />
-  
+
 </template>
 
 <script>
-import Steps from 'primevue/steps';
-
 export default {
     name: "StepSignup",
 	data() {

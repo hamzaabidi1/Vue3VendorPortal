@@ -66,7 +66,7 @@ export default {
     Form,
     Field,
     ErrorMessage,
-    StepSignup,
+    StepSignup
   },
   data() {
     const schema = yup.object().shape({
