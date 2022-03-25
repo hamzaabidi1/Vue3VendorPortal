@@ -1,0 +1,38 @@
+<template>
+<Steps :model="items" />
+<router-view />
+  
+</template>
+
+<script>
+import Steps from 'primevue/steps';
+
+export default {
+    name: "StepSignup",
+	data() {
+		return {
+			items: [{
+                label: 'Personal',
+                to: '/steps'
+            },
+            {
+                label: 'Seat',
+                to: '/steps/seat'
+            },
+            {
+                label: 'Payment',
+                to: '/steps/payment'
+            },
+            {
+                label: 'Confirmation',
+                to: '/steps/confirmation'
+            }]
+		}
+	}
+}
+</script>
+
+
+<style >
+
+</style>

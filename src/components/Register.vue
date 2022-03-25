@@ -1,4 +1,8 @@
 <template>
+
+<StepSignup />
+
+
   <div class="col-md-12">
     <div class="card card-container">
       <img
@@ -45,11 +49,16 @@
       </div>
     </div>
   </div>
+ 
+  
 </template>
+
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+import StepSignup from './StepSignup.vue';
+
 
 export default {
   name: "Register",
@@ -57,6 +66,7 @@ export default {
     Form,
     Field,
     ErrorMessage,
+    StepSignup,
   },
   data() {
     const schema = yup.object().shape({
@@ -122,7 +132,8 @@ export default {
 };
 </script>
 
-<style scoped>
+
+<style >
 label {
   display: block;
   margin-top: 10px;
