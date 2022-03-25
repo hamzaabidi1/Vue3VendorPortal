@@ -11,21 +11,26 @@ export default {
 	data() {
 		return {
 			items: [{
-                label: 'Personal',
+                label: 'Genneral Information',
                 to: '/steps'
             },
             {
-                label: 'Seat',
-                to: '/steps/seat'
+                label: 'Adress Information',
+                to: '/steps/Adress'
             },
             {
-                label: 'Payment',
-                to: '/steps/payment'
+                label: 'Fiscal Information',
+                to: '/steps/fiscal'
+            },
+            {
+                label: 'Legacy Information',
+                to: '/steps/legacy'
             },
             {
                 label: 'Confirmation',
                 to: '/steps/confirmation'
-            }]
+            }
+            ]
 		}
 	}
   
