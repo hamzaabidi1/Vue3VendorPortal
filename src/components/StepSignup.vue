@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 export default {
     name: "StepSignup",
 	data() {
@@ -27,7 +28,9 @@ export default {
             }]
 		}
 	}
-}
+  
+  };
+
 </script>
 
 
