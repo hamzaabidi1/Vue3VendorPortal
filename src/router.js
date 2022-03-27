@@ -2,8 +2,9 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "./components/Home.vue";
 import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
-import ForgotPassword from "./components/ForgotPassword";
-import PasswordsConfirmation from "./components/PasswordsConfirmation"
+import ForgotPassword from "./components/ForgotPassword.vue";
+import PasswordsConfirmation from "./components/PasswordsConfirmation.vue"
+import AdressInformation from "./components/AdressInformation.vue"
 // lazy-loaded
 const Profile = () => import("./components/Profile.vue")
 const BoardAdmin = () => import("./components/BoardAdmin.vue")
@@ -24,10 +25,10 @@ const routes = [
     path: "/login",
     component: Login,
   },
-  {
+  /*{
     path: "/register",
     component: Register,
-  },
+  }*/,
   {
     path: "/profile",
     name: "profile",
@@ -60,6 +61,35 @@ const routes = [
     path: '/passwordsConfirmation',
     component: PasswordsConfirmation
   },
+ /* {
+    path: '/register/adressInformation',
+    component: AdressInformation
+  }*/,
+  {
+    path: '/register',
+    component: () => import('./components/StepSignup.vue'),
+    children: [{
+        path: '',
+        component: () => import('./components/Register.vue')
+    },
+    {
+        path: '/register/adressInformation',
+        component: () => import('./components/AdressInformation.vue')
+    },
+    {
+        path: '/register/fiscal',
+        component: () => import('./components/FiscalInformation.vue')
+    },
+    {
+        path: '/register/legacy',
+        component: () => import('./components/LegacyInformation.vue')
+    },
+    {
+      path: '/register/confirmation',
+      component: () => import('./components/ConfirmInformation.vue')
+    }
+  ]
+},
 ];
 
 const router = createRouter({
