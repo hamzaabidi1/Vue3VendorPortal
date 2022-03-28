@@ -63,7 +63,6 @@ export default {
     Form,
     Field,
     ErrorMessage,
-    //StepSignup,
     Button,
     Card,
     InputText,

@@ -38,7 +38,6 @@
                         <h6>Pick a password</h6>
                     </template>
                     <template #footer>
-                        <Divider />
                         <p class="mt-2">Suggestions</p>
                         <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
                             <li>At least one lowercase</li>
@@ -58,7 +57,6 @@
                         <h6>Confirm password</h6>
                     </template>
                     <template #footer>
-                        <Divider />
                         <p class="mt-2">Suggestions</p>
                         <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
                             <li>At least one lowercase</li>
@@ -149,7 +147,7 @@ export default {
                 this.validationErrors['confirmpassword'] = true;
             else
                 delete this.validationErrors['confirmpassword'];
-                  if (!this.phone.trim())
+                  if (this.phone === null)
                 this.validationErrors['phone'] = true;
             else
                 delete this.validationErrors['phone'];
