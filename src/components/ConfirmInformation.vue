@@ -10,36 +10,44 @@
                     <b>{{formData.firstname ? formData.firstname : '-'}} {{formData.lastname ? formData.lastname : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="Age">Age</label>
-                    <b>{{formData.age ? formData.age : '-'}}</b>
+                    <label for="class">User Name</label>
+                    <b>{{formData.username ? formData.username : '-'}} </b>
                 </div>
                 <div class="field col-12">
-                    <label for="Age">Seat Class</label>
-                    <b>{{formData.class ? formData.class : '-'}}</b>
+                    <label for="phone">Phone Number</label>
+                    <b>{{formData.phone ? formData.phone : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="Age">Wagon Number</label>
-                    <b>{{formData.vagon ? formData.vagon : '-'}}</b>
+                    <label for="class">Address</label>
+                    <b>{{formData.country ? formData.country : '-'}} {{formData.city ? formData.city : '-'}} {{formData.region ? formData.region : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="Age">Seat</label>
-                    <b>{{formData.seat ? formData.seat : '-'}}</b>
+                    <label for="address">Address</label>
+                    <b>{{formData.address ? formData.address : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="Age">Cardholder Name</label>
-                    <b>{{formData.cardholderName ? formData.cardholderName : '-'}}</b>
+                    <label for="codepostal">Code Postal</label>
+                    <b>{{formData.postalcode ? formData.postalcode : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="Age">Card Number</label>
-                    <b>{{formData.cardholderNumber ? formData.cardholderNumber : '-'}}</b>
+                    <label for="taxregistraionnumber">Tax Registraion Number</label>
+                    <b>{{formData.taxregistraionnumber ? formData.taxregistraionnumber : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="Age">Date</label>
-                    <b>{{formData.date ? formData.date : '-'}}</b>
+                    <label for="taxclassificationcode">taxclassificationcode</label>
+                    <b>{{formData.taxclassificationcode ? formData.taxclassificationcode : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="Age">CVV</label>
-                    <b>{{formData.cvv && formData.cvv.length === 3  ? '**' + formData.cvv[2] : '-'}}</b>
+                    <label for="Revenuelastyear">Revenue For Last Year</label>
+                    <b>{{formData.Revenuelastyear ? formData.Revenuelastyear : '-'}}</b>
+                </div>
+                <div class="field col-12">
+                    <label for="date">Date Established</label>
+                    <b>{{formData.dateestablished ? formData.dateestablished : '-'}}</b>
+                </div>
+                <div class="field col-12">
+                    <label for="companywebsite">Company Web Site</label>
+                    <b>{{formData.companywebsite ? formData.companywebsite : '-'}}</b>
                 </div>
             </template>
             <template v-slot:footer>

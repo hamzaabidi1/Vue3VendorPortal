@@ -28,13 +28,13 @@
                     </div>
                         <div class="field">
                         <label for="address">Address</label>
-                        <InputText id="address" v-model="address" :class="{'p-invalid': validationErrors.firstname && submitted}" />
+                        <InputText id="address" v-model="address" :class="{'p-invalid': validationErrors.address && submitted}" />
                         <small v-show="validationErrors.address && submitted" class="p-error">address is required.</small>
                     </div>
                         <div class="field">
-                        <label for="potalcode">Postal Code</label>
-                        <InputText id="potalcode" v-model="potalcode" :class="{'p-invalid': validationErrors.potalcode && submitted}" />
-                        <small v-show="validationErrors.potalcode && submitted" class="p-error">Postal Code is required.</small>
+                        <label for="postalcode">Postal Code</label>
+                        <InputText id="postalcode" v-model="postalcode" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
+                        <small v-show="validationErrors.postalcode && submitted" class="p-error">Postal Code is required.</small>
                     </div>
                 </div>
             </template>

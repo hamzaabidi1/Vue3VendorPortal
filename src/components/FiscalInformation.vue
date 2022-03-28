@@ -10,17 +10,33 @@
             </template>
             <template v-slot:content>
                 <div class="p-fluid formgrid grid">
-                    <div class="field col-12 md:col-6">
-                        <label for="class">Class</label>
-                        <Dropdown inputId="class" v-model="selectedClass" :options="classes" @change="setWagons($event)" optionLabel="name" placeholder="Select a Class" />
+
+                     <div class="field">
+                        <label for="taxregistrationnumber">Tax Registration Number</label>
+                        <InputText id="taxregistrationnumber" v-model="taxregistrationnumber" :class="{'p-invalid': validationErrors.taxregistrationnumber && submitted}" />
+                        <small v-show="validationErrors.taxregistrationnumber && submitted" class="p-error">tax registration number is required.</small>
                     </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="lastname">Wagon</label>
-                        <Dropdown inputId="wagon" v-model="selectedWagon" :options="wagons" @change="setSeats($event)" optionLabel="wagon" placeholder="Select a Wagon" />
+                     <div class="field">
+                        <label for="taxclassificationcode">Tax Classification Code</label>
+                        <InputText id="taxclassificationcode" v-model="taxclassificationcode" :class="{'p-invalid': validationErrors.taxclassificationcode && submitted}" />
+                        <small v-show="validationErrors.taxclassificationcode && submitted" class="p-error">tax classification code is required.</small>
                     </div>
-                    <div class="field col-12">
-                        <label for="seat">Seat</label>
-                        <Dropdown inputId="seat" v-model="selectedSeat" :options="seats" optionLabel="seat" placeholder="Select a Seat" />
+
+                    <div class="field">
+                        <label for="fileupload">Revenue For Last Fiscal Year</label>
+                    <FileUpload  name="demo[]" url="./upload.php" @upload="onUpload" :multiple="true" accept="image/*" :maxFileSize="1000000" id="fileupload" v-model="fileupload" :class="{'p-invalid': validationErrors.fileupload && submitted}">
+                    <template #empty>
+                        <p>Drag and drop files to here to upload.</p>
+                    </template>
+                </FileUpload>
+                <small v-show="validationErrors.fileupload && submitted" class="p-error">revenue for last fiscal year is required.</small>
+                </div>
+                   
+                    <div class="field">
+                        <label for="dateestablished">Date Established</label>
+                        <Calendar id="dateestablished" v-model="dateestablished" :showIcon="true" />
+                        <small v-show="validationErrors.dateestablished && submitted" class="p-error">dateestablished is required.</small>
+
                     </div>
                 </div>
             </template>
@@ -36,60 +52,41 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
-//import * as yup from "yup";
-import StepSignup from './StepSignup.vue';
+import InputText from "primevue/inputtext"
 import Button from 'primevue/button';
 import Card from 'primevue/card';
-import InputText from "primevue/inputtext"
 import InputNumber from "primevue/inputnumber"
 import Dropdown from "primevue/dropdown"
+import Calendar from 'primevue/calendar';
+import FileUpload from 'primevue/fileupload';
 export default {
   name: "Register",
   components: {
     Form,
     Field,
     ErrorMessage,
-    //StepSignup,
     Button,
     Card,
     InputText,
     InputNumber,
-    Dropdown
+    Dropdown,
+    Calendar,
+    FileUpload,
   },
     data () {
         return {
-            selectedClass: '',
-            classes: [
-                {name: 'First Class', code: 'A', factor: 1},
-                {name: 'Second Class', code: 'B', factor: 2},
-                {name: 'Third Class', code: 'C', factor: 3}
-            ],
-            wagons: [],
-            selectedWagon: '',
-            seats: [],
-            selectedSeat: ''
+            taxclassificationcode: '',
+            taxregistrationnumber: '',
+            dateestablished: '',
+            fileupload: '',
+            submitted: false,
+            validationErrors: {}
+        
         }
     },
     methods: {
-        setWagons(event) {
-            if (this.selectedClass && event.value) {
-                this.wagons = [];
-                this.seats = [];
-                for (let i = 1; i < 3 * event.value.factor; i++) {
-                    this.wagons.push({wagon: i + event.value.code, type: event.value.name, factor: event.value.factor});
-                }
-            }
-        },
-        setSeats(event) {
-            if (this.selectedWagon && event.value) {
-                this.seats = [];
-                for (let i = 1; i < 10 * event.value.factor; i++) {
-                    this.seats.push({seat: i, type: event.value.type});
-                }
-            }
-        },
         nextPage() {
-            this.$emit('next-page', {formData: {class: this.selectedClass.name, wagon: this.selectedWagon.wagon, seat: this.selectedSeat.seat}, pageIndex: 2});
+            this.$emit('next-page', {formData: {taxclassificationcode: this.taxclassificationcode,taxregistrationnumber: this.taxregistrationnumber,dateestablished: this.dateestablished,fileupload: this.fileupload}, pageIndex: 2});
         },
         prevPage() {
             this.$emit('prev-page', {pageIndex: 2});
