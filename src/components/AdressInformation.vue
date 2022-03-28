@@ -10,17 +10,31 @@
             </template>
             <template v-slot:content>
                 <div class="p-fluid formgrid grid">
-                    <div class="field col-12 md:col-6">
-                        <label for="class">Class</label>
-                        <Dropdown inputId="class" v-model="selectedClass" :options="classes" @change="setWagons($event)" optionLabel="name" placeholder="Select a Class" />
+                    
+                      <div class="field">
+                        <label for="country">Country</label>
+                        <InputText id="country" v-model="country" :class="{'p-invalid': validationErrors.country && submitted}" />
+                        <small v-show="validationErrors.country && submitted" class="p-error">Country is required.</small>
                     </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="lastname">Wagon</label>
-                        <Dropdown inputId="wagon" v-model="selectedWagon" :options="wagons" @change="setSeats($event)" optionLabel="wagon" placeholder="Select a Wagon" />
+                        <div class="field">
+                        <label for="region">State / Region</label>
+                        <InputText id="region" v-model="region" :class="{'p-invalid': validationErrors.region && submitted}" />
+                        <small v-show="validationErrors.region && submitted" class="p-error">region is required.</small>
                     </div>
-                    <div class="field col-12">
-                        <label for="seat">Seat</label>
-                        <Dropdown inputId="seat" v-model="selectedSeat" :options="seats" optionLabel="seat" placeholder="Select a Seat" />
+                        <div class="field">
+                        <label for="city">City</label>
+                        <InputText id="city" v-model="city" :class="{'p-invalid': validationErrors.city && submitted}" />
+                        <small v-show="validationErrors.city && submitted" class="p-error">City is required.</small>
+                    </div>
+                        <div class="field">
+                        <label for="address">Address</label>
+                        <InputText id="address" v-model="address" :class="{'p-invalid': validationErrors.firstname && submitted}" />
+                        <small v-show="validationErrors.address && submitted" class="p-error">address is required.</small>
+                    </div>
+                        <div class="field">
+                        <label for="potalcode">Postal Code</label>
+                        <InputText id="potalcode" v-model="potalcode" :class="{'p-invalid': validationErrors.potalcode && submitted}" />
+                        <small v-show="validationErrors.potalcode && submitted" class="p-error">Postal Code is required.</small>
                     </div>
                 </div>
             </template>
@@ -58,35 +72,40 @@ export default {
   },
     data () {
         return {
-            selectedClass: '',
-            classes: [
-                {name: 'First Class', code: 'A', factor: 1},
-                {name: 'Second Class', code: 'B', factor: 2},
-                {name: 'Third Class', code: 'C', factor: 3}
-            ],
-            wagons: [],
-            selectedWagon: '',
-            seats: [],
-            selectedSeat: ''
+            country: '',
+            region: '',
+            city: '',
+            address: '',
+            postalcode: '',
+            submitted: false,
+            validationErrors: {}
         }
     },
     methods: {
-        setWagons(event) {
-            if (this.selectedClass && event.value) {
-                this.wagons = [];
-                this.seats = [];
-                for (let i = 1; i < 3 * event.value.factor; i++) {
-                    this.wagons.push({wagon: i + event.value.code, type: event.value.name, factor: event.value.factor});
-                }
-            }
-        },
-        setSeats(event) {
-            if (this.selectedWagon && event.value) {
-                this.seats = [];
-                for (let i = 1; i < 10 * event.value.factor; i++) {
-                    this.seats.push({seat: i, type: event.value.type});
-                }
-            }
+        
+        validateForm() {
+            if (!this.country.trim())
+                this.validationErrors['country'] = true;
+            else
+                delete this.validationErrors['country'];
+            if (!this.region.trim())
+                this.validationErrors['region'] = true;
+            else
+                delete this.validationErrors['region'];
+                        if (!this.city.trim())
+                this.validationErrors['city'] = true;
+            else
+                delete this.validationErrors['city'];
+                        if (!this.address.trim())
+                this.validationErrors['address'] = true;
+            else
+                delete this.validationErrors['address'];
+                        if (!this.postalcode.trim())
+                this.validationErrors['postalcode'] = true;
+            else
+                delete this.validationErrors['postalcode'];
+
+            return !Object.keys(this.validationErrors).length;
         },
         nextPage() {
             this.$emit('next-page', {formData: {class: this.selectedClass.name, wagon: this.selectedWagon.wagon, seat: this.selectedSeat.seat}, pageIndex: 1});
