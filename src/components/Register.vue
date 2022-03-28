@@ -124,7 +124,7 @@ export default {
           
             this.submitted = true;
             if (this.validateForm() ) {
-                this.$emit('next-page', {formData: {firstname: this.firstname, lastname: this.lastname, age: this.age}, pageIndex: 0});
+                this.$emit('next-page', {formData: {firstname: this.firstname, lastname: this.lastname, username: this.username,phone: this.phone,password: this.password}, pageIndex: 0});
              console.log("nextPage")
             }
         },

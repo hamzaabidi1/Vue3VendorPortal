@@ -108,7 +108,7 @@ export default {
             return !Object.keys(this.validationErrors).length;
         },
         nextPage() {
-            this.$emit('next-page', {formData: {class: this.selectedClass.name, wagon: this.selectedWagon.wagon, seat: this.selectedSeat.seat}, pageIndex: 1});
+            this.$emit('next-page', {formData: {country: this.country,region: this.region, city: this.city, address: this.address ,postalcode: this.postalcode}, pageIndex: 1});
         },
         prevPage() {
             this.$emit('prev-page', {pageIndex: 1});
