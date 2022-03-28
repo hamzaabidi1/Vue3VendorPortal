@@ -55,28 +55,22 @@ export default {
         }
     },
     methods: {
-        setWagons(event) {
-            if (this.selectedClass && event.value) {
-                this.wagons = [];
-                this.seats = [];
-                for (let i = 1; i < 3 * event.value.factor; i++) {
-                    this.wagons.push({wagon: i + event.value.code, type: event.value.name, factor: event.value.factor});
-                }
-            }
-        },
-        setSeats(event) {
-            if (this.selectedWagon && event.value) {
-                this.seats = [];
-                for (let i = 1; i < 10 * event.value.factor; i++) {
-                    this.seats.push({seat: i, type: event.value.type});
-                }
-            }
-        },
         nextPage() {
+            this.submitted = true;
+            if (this.validateForm() ) {
             this.$emit('next-page', {formData: {companywebsite: this.companywebsite}, pageIndex: 3 });
+            }
         },
         prevPage() {
             this.$emit('prev-page', {pageIndex: 3});
+        },
+        validateForm() {
+            if (!this.companywebsite.trim())
+                this.validationErrors['companywebsite'] = true;
+            else
+                delete this.validationErrors['companywebsite'];
+           
+            return !Object.keys(this.validationErrors).length;
         }
     }
 }

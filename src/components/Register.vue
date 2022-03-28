@@ -66,7 +66,7 @@
                         </ul>
                     </template>
                 </Password>
-                <small v-show="validationErrors.confirmpassword && submitted" class="p-error">Confirm password is required.</small>
+                <small v-show="validationErrors.confirmpassword && submitted" class="p-error">Confirm password is required or is wrong.</small>
                 </div>
 
                 </div>
@@ -119,11 +119,9 @@ export default {
     },
     methods: {
         nextPage() {
-          
             this.submitted = true;
             if (this.validateForm() ) {
                 this.$emit('next-page', {formData: {firstname: this.firstname, lastname: this.lastname, username: this.username,phone: this.phone,password: this.password}, pageIndex: 0});
-             console.log("nextPage")
             }
         },
         validateForm() {
@@ -143,15 +141,15 @@ export default {
                 this.validationErrors['password'] = true;
             else
                 delete this.validationErrors['password'];
-                        if (!this.confirmpassword.trim())
-                this.validationErrors['confirmpassword'] = true;
+                        if (!this.confirmpassword.trim() && this.password.toString == this.confirmpassword.toString )
+                this.validationErrors['confirmpassword'] = true;            
             else
-                delete this.validationErrors['confirmpassword'];
+                 delete this.validationErrors['confirmpassword'];
+            
                   if (this.phone === null)
                 this.validationErrors['phone'] = true;
             else
                 delete this.validationErrors['phone'];
-
             return !Object.keys(this.validationErrors).length;
         }
     }

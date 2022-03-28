@@ -20,5 +20,4 @@ createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
   .component("Steps", Steps)
   .component("Toast",Toast )
-  
   .mount("#app");

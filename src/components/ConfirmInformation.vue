@@ -6,47 +6,47 @@
             </template>
             <template v-slot:content>
                 <div class="field col-12">
-                    <label for="class">Name</label>
+                    <label for="class">Name </label>
                     <b>{{formData.firstname ? formData.firstname : '-'}} {{formData.lastname ? formData.lastname : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="class">User Name</label>
+                    <label for="class">User Name </label>
                     <b>{{formData.username ? formData.username : '-'}} </b>
                 </div>
                 <div class="field col-12">
-                    <label for="phone">Phone Number</label>
+                    <label for="phone">Phone Number </label>
                     <b>{{formData.phone ? formData.phone : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="class">Address</label>
+                    <label for="class">Address </label>
                     <b>{{formData.country ? formData.country : '-'}} {{formData.city ? formData.city : '-'}} {{formData.region ? formData.region : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="address">Address</label>
+                    <label for="address">Address </label>
                     <b>{{formData.address ? formData.address : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="codepostal">Code Postal</label>
+                    <label for="codepostal">Code Postal </label>
                     <b>{{formData.postalcode ? formData.postalcode : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="taxregistraionnumber">Tax Registraion Number</label>
+                    <label for="taxregistraionnumber">Tax Registraion Number </label>
                     <b>{{formData.taxregistraionnumber ? formData.taxregistraionnumber : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="taxclassificationcode">taxclassificationcode</label>
+                    <label for="taxclassificationcode">taxclassificationcode </label>
                     <b>{{formData.taxclassificationcode ? formData.taxclassificationcode : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="Revenuelastyear">Revenue For Last Year</label>
+                    <label for="Revenuelastyear">Revenue For Last Year </label>
                     <b>{{formData.Revenuelastyear ? formData.Revenuelastyear : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="date">Date Established</label>
+                    <label for="date">Date Established </label>
                     <b>{{formData.dateestablished ? formData.dateestablished : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="companywebsite">Company Web Site</label>
+                    <label for="companywebsite">Company Web Site </label>
                     <b>{{formData.companywebsite ? formData.companywebsite : '-'}}</b>
                 </div>
             </template>

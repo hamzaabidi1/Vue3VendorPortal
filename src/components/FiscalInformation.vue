@@ -86,10 +86,31 @@ export default {
     },
     methods: {
         nextPage() {
+             this.submitted = true;
+            if (this.validateForm() ) {
             this.$emit('next-page', {formData: {taxclassificationcode: this.taxclassificationcode,taxregistrationnumber: this.taxregistrationnumber,dateestablished: this.dateestablished,fileupload: this.fileupload}, pageIndex: 2});
-        },
+            }
+       },
         prevPage() {
             this.$emit('prev-page', {pageIndex: 2});
+        },
+         onUpload() {
+            this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
+        },
+         validateForm() {
+            if (!this.taxregistrationnumber.trim())
+                this.validationErrors['taxregistrationnumber'] = true;
+            else
+                delete this.validationErrors['taxregistrationnumber'];
+            if (!this.taxclassificationcode.trim())
+                this.validationErrors['taxclassificationcode'] = true;
+            else
+                delete this.validationErrors['taxclassificationcode'];
+                        if (this.dateestablished === null)
+                this.validationErrors['dateestablished'] = true;
+            else
+                delete this.validationErrors['dateestablished'];
+            return !Object.keys(this.validationErrors).length;
         }
     }
 }

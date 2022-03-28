@@ -53,7 +53,6 @@ export default {
     },
     methods: {
         nextPage(event) {
-            console.log("nextPage Steps")
             for (let field in event.formData) {
                 this.formObject[field] = event.formData[field];
             }
@@ -69,5 +68,14 @@ export default {
     }
 }
 </script>
+
+<style scoped lang="scss">
+::v-deep(b) {
+    display: block;
+}
+::v-deep(.p-card-body) {
+    padding: 2rem;
+}
+</style>
 
 

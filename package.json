@@ -19,6 +19,7 @@
     "popper.js": "^1.16.1",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.2",
+    "sass-loader": "^12.6.0",
     "v-stepper": "^0.1.6",
     "vee-validate": "^4.5.10",
     "vue": "^3.0.0",

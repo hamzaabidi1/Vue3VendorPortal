@@ -107,7 +107,10 @@ export default {
             return !Object.keys(this.validationErrors).length;
         },
         nextPage() {
+            this.submitted = true;
+            if (this.validateForm() ) {
             this.$emit('next-page', {formData: {country: this.country,region: this.region, city: this.city, address: this.address ,postalcode: this.postalcode}, pageIndex: 1});
+            }
         },
         prevPage() {
             this.$emit('prev-page', {pageIndex: 1});
