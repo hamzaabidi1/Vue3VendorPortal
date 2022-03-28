@@ -6,7 +6,7 @@
                 Legacy Information
             </template>
             <template v-slot:subtitle>
-                Choose your seat
+                Enter your general information
             </template>
             <template v-slot:content>
                 <div class="p-fluid formgrid grid">

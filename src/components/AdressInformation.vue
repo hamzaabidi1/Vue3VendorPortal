@@ -3,10 +3,10 @@
     <div class="stepsdemo-content">
         <Card>
             <template v-slot:title>
-                Seat Information
+                Address Information
             </template>
             <template v-slot:subtitle>
-                Choose your seat
+                Enter your Address information
             </template>
             <template v-slot:content>
                 <div class="p-fluid formgrid grid">

@@ -1,33 +1,51 @@
 <template>
-
     <div class="stepsdemo-content">
         <Card>
             <template v-slot:title>
                 Confirmation
             </template>
-            <template v-slot:subtitle>
-                Choose your seat
-            </template>
             <template v-slot:content>
-                <div class="p-fluid formgrid grid">
-                    <div class="field col-12 md:col-6">
-                        <label for="class">Class</label>
-                        <Dropdown inputId="class" v-model="selectedClass" :options="classes" @change="setWagons($event)" optionLabel="name" placeholder="Select a Class" />
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="lastname">Wagon</label>
-                        <Dropdown inputId="wagon" v-model="selectedWagon" :options="wagons" @change="setSeats($event)" optionLabel="wagon" placeholder="Select a Wagon" />
-                    </div>
-                    <div class="field col-12">
-                        <label for="seat">Seat</label>
-                        <Dropdown inputId="seat" v-model="selectedSeat" :options="seats" optionLabel="seat" placeholder="Select a Seat" />
-                    </div>
+                <div class="field col-12">
+                    <label for="class">Name</label>
+                    <b>{{formData.firstname ? formData.firstname : '-'}} {{formData.lastname ? formData.lastname : '-'}}</b>
+                </div>
+                <div class="field col-12">
+                    <label for="Age">Age</label>
+                    <b>{{formData.age ? formData.age : '-'}}</b>
+                </div>
+                <div class="field col-12">
+                    <label for="Age">Seat Class</label>
+                    <b>{{formData.class ? formData.class : '-'}}</b>
+                </div>
+                <div class="field col-12">
+                    <label for="Age">Wagon Number</label>
+                    <b>{{formData.vagon ? formData.vagon : '-'}}</b>
+                </div>
+                <div class="field col-12">
+                    <label for="Age">Seat</label>
+                    <b>{{formData.seat ? formData.seat : '-'}}</b>
+                </div>
+                <div class="field col-12">
+                    <label for="Age">Cardholder Name</label>
+                    <b>{{formData.cardholderName ? formData.cardholderName : '-'}}</b>
+                </div>
+                <div class="field col-12">
+                    <label for="Age">Card Number</label>
+                    <b>{{formData.cardholderNumber ? formData.cardholderNumber : '-'}}</b>
+                </div>
+                <div class="field col-12">
+                    <label for="Age">Date</label>
+                    <b>{{formData.date ? formData.date : '-'}}</b>
+                </div>
+                <div class="field col-12">
+                    <label for="Age">CVV</label>
+                    <b>{{formData.cvv && formData.cvv.length === 3  ? '**' + formData.cvv[2] : '-'}}</b>
                 </div>
             </template>
             <template v-slot:footer>
                 <div class="grid grid-nogutter justify-content-between">
                     <Button label="Back" @click="prevPage()" icon="pi pi-angle-left" />
-                    <Button label="Next" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" />
+                    <Button label="Complete" @click="complete()" icon="pi pi-check" iconPos="right" class="p-button-success"/>
                 </div>
             </template>
         </Card>
@@ -37,7 +55,6 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 //import * as yup from "yup";
-import StepSignup from './StepSignup.vue';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
 import InputText from "primevue/inputtext"
@@ -49,50 +66,21 @@ export default {
     Form,
     Field,
     ErrorMessage,
-    //StepSignup,
     Button,
     Card,
     InputText,
     InputNumber,
     Dropdown
   },
-    data () {
-        return {
-            selectedClass: '',
-            classes: [
-                {name: 'First Class', code: 'A', factor: 1},
-                {name: 'Second Class', code: 'B', factor: 2},
-                {name: 'Third Class', code: 'C', factor: 3}
-            ],
-            wagons: [],
-            selectedWagon: '',
-            seats: [],
-            selectedSeat: ''
-        }
+    props: {
+        formData: Object
     },
     methods: {
-        setWagons(event) {
-            if (this.selectedClass && event.value) {
-                this.wagons = [];
-                this.seats = [];
-                for (let i = 1; i < 3 * event.value.factor; i++) {
-                    this.wagons.push({wagon: i + event.value.code, type: event.value.name, factor: event.value.factor});
-                }
-            }
-        },
-        setSeats(event) {
-            if (this.selectedWagon && event.value) {
-                this.seats = [];
-                for (let i = 1; i < 10 * event.value.factor; i++) {
-                    this.seats.push({seat: i, type: event.value.type});
-                }
-            }
-        },
-        nextPage() {
-            this.$emit('next-page', {formData: {class: this.selectedClass.name, wagon: this.selectedWagon.wagon, seat: this.selectedSeat.seat}, pageIndex: 4});
-        },
         prevPage() {
             this.$emit('prev-page', {pageIndex: 4});
+        },
+        complete() {
+            this.$emit('complete');
         }
     }
 }

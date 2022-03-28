@@ -2,8 +2,7 @@
     <div>
         <div class="content-section introduction">
             <div class="feature-intro">
-                <h1>Steps</h1>
-                <p>Steps components is an indicator for the steps in a wizard workflow. Example below uses nested routes with Steps.</p>
+                <h1>Resgister</h1>
             </div>
         </div>
 
@@ -70,4 +69,5 @@ export default {
     }
 }
 </script>
+
 

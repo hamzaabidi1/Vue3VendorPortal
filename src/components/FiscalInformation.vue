@@ -6,7 +6,7 @@
                 Fiscal Information
             </template>
             <template v-slot:subtitle>
-                Choose your seat
+                Enter your fiscal information
             </template>
             <template v-slot:content>
                 <div class="p-fluid formgrid grid">

@@ -3,10 +3,10 @@
     <div class="stepsdemo-content">
         <Card>
             <template v-slot:title>
-                Personal Information
+                General Information
             </template>
             <template v-slot:subtitle>
-                Enter your personal information
+                Enter your general information
             </template>
             <template v-slot:content>
                 <div class="p-fluid">
