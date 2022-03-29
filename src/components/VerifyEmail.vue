@@ -36,7 +36,6 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-import axios from "axios"
 
 export default {
   name: "VerifyEmail",
@@ -52,8 +51,8 @@ export default {
     });
 
     return {
+      successful: false,
       loading: false,
-      email: '',
       message: "",
       schema,
     };
@@ -63,17 +62,34 @@ export default {
       return this.$store.state.auth.status.loggedIn;
     },
   },
-  created() {
+  mounted() {
     if (this.loggedIn) {
       this.$router.push("/profile");
     }
   },
   methods: {
     handleVerifyEmail(user) {
-
+      this.message = "";
+      this.successful = false;
       this.loading = true;
-
-      this.$store.dispatch("auth/verifymail", user.email);
+      this.$store.dispatch("auth/verifymail", user).then(
+        (data) => {
+          this.message = data.message;
+          this.successful = true;
+          this.loading = false;
+        },
+        (error) => {
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+          this.successful = false;
+          this.loading = false;
+        }
+      );
+    
     },
   },
 };
