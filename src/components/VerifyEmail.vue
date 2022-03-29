@@ -7,9 +7,10 @@
         class="profile-img-card"
       />
       <Form @submit="handleVerifyEmail" :validation-schema="schema">
+          <div v-if="!successful">
         <div class="form-group">
           <label for="email">Email</label>
-          <Field id="email" name="email" type="text" class="form-control" v-model="email" />
+          <Field id="email" name="email" type="text" class="form-control"/>
           <ErrorMessage name="email" class="error-feedback" />
         </div>
         
@@ -28,6 +29,7 @@
             {{ message }}
           </div>
         </div>
+         </div>
       </Form>
     </div>
   </div>
