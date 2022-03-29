@@ -6,7 +6,7 @@
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         class="profile-img-card"
       />
-      <Form @submit="handleLogin" :validation-schema="schema">
+      <Form @submit="handlePasswordsConfirmation" :validation-schema="schema">
        <div class="form-group">
           <label for="password1">Password</label>
           <Field name="password1" type="password" class="form-control" />
@@ -17,7 +17,6 @@
           <Field name="password2" type="password" class="form-control" />
           <ErrorMessage name="password2" class="error-feedback" />
         </div>
-
         <div class="form-group">
           <button class="btn btn-primary btn-block" :disabled="loading">
             <span
@@ -41,6 +40,7 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+import Password from 'primevue/password';
 
 export default {
   name: "PasswordsConfirmation",
@@ -48,6 +48,8 @@ export default {
     Form,
     Field,
     ErrorMessage,
+    Password
+    
   },
   data() {
     const schema = yup.object().shape({

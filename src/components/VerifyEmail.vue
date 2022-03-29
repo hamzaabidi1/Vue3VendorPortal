@@ -6,10 +6,10 @@
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         class="profile-img-card"
       />
-      <Form @submit="handleLogin" :validation-schema="schema">
+      <Form @submit="handleVerifyEmail" :validation-schema="schema">
         <div class="form-group">
           <label for="email">Email</label>
-          <Field name="email" type="text" class="form-control" />
+          <Field id="email" name="email" type="text" class="form-control" v-model="email" />
           <ErrorMessage name="email" class="error-feedback" />
         </div>
         
@@ -36,6 +36,7 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+import axios from "axios"
 
 export default {
   name: "VerifyEmail",
@@ -46,12 +47,13 @@ export default {
   },
   data() {
     const schema = yup.object().shape({
-      username: yup.string().required("EMAIL is required!"),
+      email: yup.string().required("EMAIL is required!"),
 
     });
 
     return {
       loading: false,
+      email: '',
       message: "",
       schema,
     };
@@ -67,23 +69,11 @@ export default {
     }
   },
   methods: {
-    handleLogin(user) {
+    handleVerifyEmail(user) {
+
       this.loading = true;
 
-      this.$store.dispatch("auth/login", user).then(
-        () => {
-          this.$router.push("/profile");
-        },
-        (error) => {
-          this.loading = false;
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-        }
-      );
+      this.$store.dispatch("auth/verifymail", user.email);
     },
   },
 };

@@ -36,6 +36,18 @@ export const auth = {
           return Promise.reject(error);
         }
       );
+    }, 
+    verifymail({ commit }, user) {
+      return AuthService.verifymail(user).then(
+        response => {
+          commit('email valid');
+          return Promise.resolve(response.data);
+        },
+        error => {
+          commit('wrong email');
+          return Promise.reject(error);
+        }
+      );
     }
   },
   mutations: {

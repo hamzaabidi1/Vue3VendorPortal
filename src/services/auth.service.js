@@ -29,6 +29,12 @@ class AuthService {
       password: user.password
     });
   }
+
+
+  verifymail(user) {
+    return axios
+      .post(API_URL + 'verify/',{"email" : user.email}) ;
+  }
 }
 
 export default new AuthService();
