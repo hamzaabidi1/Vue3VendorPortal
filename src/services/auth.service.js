@@ -1,8 +1,10 @@
 import axios from 'axios';
+import authHeader from './auth-header';
 
 const API_URL = 'http://localhost:8080/api/auth/';
 
 class AuthService {
+  
   login(user) {
     return axios
       .post(API_URL + 'signin', {
@@ -32,8 +34,16 @@ class AuthService {
 
 
   verifyemail(user) {
+    var optionAxios = {
+      headers: {
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+      }
+  }
     return axios
-      .post(API_URL + 'verify/',{"email" : user.email}) ;
+      .post(API_URL + 'verify/'+user.email,{ headers: authHeader(),optionAxios }) ;
   }
 }
 
