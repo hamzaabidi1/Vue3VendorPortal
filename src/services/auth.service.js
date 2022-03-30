@@ -31,7 +31,7 @@ class AuthService {
   }
 
 
-  verifymail(user) {
+  verifyemail(user) {
     return axios
       .post(API_URL + 'verify/',{"email" : user.email}) ;
   }

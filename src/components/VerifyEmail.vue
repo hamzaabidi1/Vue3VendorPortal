@@ -23,14 +23,11 @@
             <span>Verify Email</span>
           </button>
         </div>
-
-        <div class="form-group">
+        </div>
+      </Form>
           <div v-if="message" class="alert alert-danger" role="alert">
             {{ message }}
-          </div>
-        </div>
-         </div>
-      </Form>
+          </div> 
     </div>
   </div>
 </template>
@@ -48,7 +45,9 @@ export default {
   },
   data() {
     const schema = yup.object().shape({
-      email: yup.string().required("EMAIL is required!"),
+      email: yup.string().required("EMAIL is required!")
+        .email("Email is invalid!")
+        .max(50, "Must be maximum 50 characters!"),
 
     });
 
@@ -74,7 +73,7 @@ export default {
       this.message = "";
       this.successful = false;
       this.loading = true;
-      this.$store.dispatch("auth/verifymail", user).then(
+      this.$store.dispatch("auth/verifyemail", user).then(
         (data) => {
           this.message = data.message;
           this.successful = true;

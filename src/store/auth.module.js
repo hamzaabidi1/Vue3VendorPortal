@@ -37,14 +37,14 @@ export const auth = {
         }
       );
     }, 
-    verifymail({ commit }, user) {
-      return AuthService.verifymail(user).then(
+    verifyemail({ commit }, user) {
+      return AuthService.verifyemail(user).then(
         response => {
-          commit('email valid');
+          commit('emailvalid');
           return Promise.resolve(response.data);
         },
         error => {
-          commit('wrong email');
+          commit('wrongemail');
           return Promise.reject(error);
         }
       );
@@ -67,6 +67,12 @@ export const auth = {
       state.status.loggedIn = false;
     },
     registerFailure(state) {
+      state.status.loggedIn = false;
+    },
+    emailvalid(state) {
+      state.status.loggedIn = false;
+    },
+    wrongemail(state) {
       state.status.loggedIn = false;
     }
   }

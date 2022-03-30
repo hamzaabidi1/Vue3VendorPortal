@@ -24,10 +24,6 @@ const routes = [
     path: "/login",
     component: Login,
   },
-  /*{
-    path: "/register",
-    component: Register,
-  }*/,
   {
     path: "/profile",
     name: "profile",
@@ -64,10 +60,6 @@ const routes = [
     path: '/passwordsConfirmation',
     component: PasswordsConfirmation
   },
- /* {
-    path: '/register/adressInformation',
-    component: AdressInformation
-  }*/,
   {
     path: '/register',
     component: () => import('./components/StepSignup.vue'),
