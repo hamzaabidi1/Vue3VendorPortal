@@ -111,6 +111,7 @@ export default {
             lastname: '',
             username: '',
             password: '',
+            token: '',
             confirmpassword: '',
             phone: null,
             submitted: false,
@@ -121,7 +122,7 @@ export default {
         nextPage() {
             this.submitted = true;
             if (this.validateForm() ) {
-                this.$emit('next-page', {formData: {firstname: this.firstname, lastname: this.lastname, username: this.username,phone: this.phone,password: this.password}, pageIndex: 0});
+                this.$emit('next-page', {formData: {firstname: this.firstname, lastname: this.lastname, username: this.username,phone: this.phone,password: this.password,token: this.$route.query}, pageIndex: 0});
             }
         },
         validateForm() {

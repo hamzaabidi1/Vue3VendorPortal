@@ -42,7 +42,7 @@ class AuthService {
       companywebsite: user.companywebsite,
       email: user.email,
       password: user.password
-    });
+    },);
   }
 
 

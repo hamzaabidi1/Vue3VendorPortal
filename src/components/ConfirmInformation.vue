@@ -80,6 +80,14 @@ export default {
     InputNumber,
     Dropdown
   },
+    data() {
+    return {
+      successful: false,
+      loading: false,
+      message: "",
+      schema: "",
+     
+        }},
     props: {
         formData: Object
     },
@@ -101,7 +109,8 @@ export default {
               this.message = "";
       this.successful = false;
       this.loading = true;
-      this.$store.dispatch("auth/register",this.$route.query,formData).then(
+      console.log(this.formData);
+      this.$store.dispatch("auth/register",{formData}).then(
         (data) => {
           this.message = data.message;
           this.successful = true;
