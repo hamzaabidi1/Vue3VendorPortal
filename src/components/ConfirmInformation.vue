@@ -34,7 +34,7 @@
                     <b>{{formData.taxregistraionnumber ? formData.taxregistraionnumber : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="taxclassificationcode">taxclassificationcode </label>
+                    <label for="taxclassificationcode">Tax Classification Code </label>
                     <b>{{formData.taxclassificationcode ? formData.taxclassificationcode : '-'}}</b>
                 </div>
                 <div class="field col-12">
@@ -83,12 +83,41 @@ export default {
     props: {
         formData: Object
     },
+     computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+  },
+  mounted() {
+    if (this.loggedIn) {
+      this.$router.push("/profile");
+    }
+  },
     methods: {
         prevPage() {
             this.$emit('prev-page', {pageIndex: 4});
         },
         complete() {
-            this.$emit('complete');
+              this.message = "";
+      this.successful = false;
+      this.loading = true;
+      this.$store.dispatch("auth/register",this.$route.query,formData).then(
+        (data) => {
+          this.message = data.message;
+          this.successful = true;
+          this.loading = false;
+        },
+        (error) => {
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+          this.successful = false;
+          this.loading = false;
+        }
+      );
         }
     }
 }

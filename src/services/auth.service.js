@@ -25,8 +25,21 @@ class AuthService {
   }
 
   register(user) {
-    return axios.post(API_URL + 'signup', {
+    return axios.post(API_URL + 'signup/'+this.$route.query, {
+      firstname: user.firstname,
+      lastname: user.lastname,
       username: user.username,
+      phone: user.phone,
+      country: user.country,
+      city: user.city,
+      region: user.region,
+      address: user.address,
+      postalcode: user.postalcode,
+      taxregistraionnumber: user.taxregistraionnumber,
+      taxclassificationcode: user.taxclassificationcode,
+      Revenuelastyear: user.Revenuelastyear,
+      dateestablished: user.dateestablished,
+      companywebsite: user.companywebsite,
       email: user.email,
       password: user.password
     });
