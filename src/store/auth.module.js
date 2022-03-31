@@ -48,8 +48,21 @@ export const auth = {
           return Promise.reject(error);
         }
       );
-    }
-  },
+    },
+
+    forgotpassword({ commit }, user) {
+    return AuthService.forgotpassword(user).then(
+      response => {
+        commit('emailvalid');
+        return Promise.resolve(response.data);
+      },
+      error => {
+        commit('wrongemail');
+        return Promise.reject(error);
+      }
+    );
+  }
+},
   mutations: {
     loginSuccess(state, user) {
       state.status.loggedIn = true;

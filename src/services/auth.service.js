@@ -24,7 +24,7 @@ class AuthService {
     localStorage.removeItem('user');
   }
 
-  register(user) {
+  register() {
     return axios.post(API_URL + 'signup/'+this.$route.query, {
       firstname: user.firstname,
       lastname: user.lastname,
@@ -57,6 +57,19 @@ class AuthService {
   }
     return axios
       .post(API_URL + 'verify/'+user.email,{ headers: authHeader(),optionAxios }) ;
+  }
+
+  forgotpassword(user) {
+    var optionAxios = {
+      headers: {
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+      }
+  }
+    return axios
+      .post(API_URL + 'forgetpassword/'+user.email,{ headers: authHeader(),optionAxios }) ;
   }
 }
 

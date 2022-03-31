@@ -6,7 +6,7 @@
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         class="profile-img-card"
       />
-      <Form @submit="handleLogin" :validation-schema="schema">
+      <Form @submit="handleForgotPassword" :validation-schema="schema">
       <div class="form-group">
             <label for="email">Email</label>
             <Field name="email" type="email" class="form-control" />
@@ -57,20 +57,24 @@ export default {
   },
   methods: {
     handleForgotPassword(user) {
+       this.message = "";
+      this.successful = false;
       this.loading = true;
-
-      this.$store.dispatch("auth/login", user).then(
-        () => {
-          this.$router.push("/passwordsConfirmation");
+      this.$store.dispatch("auth/forgotpassword", user).then(
+        (data) => {
+          this.message = data.message;
+          this.successful = true;
+          this.loading = false;
         },
         (error) => {
-          this.loading = false;
           this.message =
             (error.response &&
               error.response.data &&
               error.response.data.message) ||
             error.message ||
             error.toString();
+          this.successful = false;
+          this.loading = false;
         }
       );
     },

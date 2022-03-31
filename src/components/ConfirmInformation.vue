@@ -62,7 +62,6 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
-//import * as yup from "yup";
 import Button from 'primevue/button';
 import Card from 'primevue/card';
 import InputText from "primevue/inputtext"
@@ -105,8 +104,9 @@ export default {
         prevPage() {
             this.$emit('prev-page', {pageIndex: 4});
         },
-        complete() {
-              this.message = "";
+      
+      complete(formData) {
+      this.message = "";
       this.successful = false;
       this.loading = true;
       console.log(this.formData);
