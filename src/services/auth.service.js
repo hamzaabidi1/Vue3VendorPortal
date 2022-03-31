@@ -24,7 +24,7 @@ class AuthService {
     localStorage.removeItem('user');
   }
 
-  register() {
+  register(formData) {
     return axios.post(API_URL + 'signup/'+this.$route.query, {
       firstname: user.firstname,
       lastname: user.lastname,

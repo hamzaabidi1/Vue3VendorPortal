@@ -30,8 +30,8 @@
                     <b>{{formData.postalcode ? formData.postalcode : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="taxregistraionnumber">Tax Registraion Number </label>
-                    <b>{{formData.taxregistraionnumber ? formData.taxregistraionnumber : '-'}}</b>
+                    <label for="taxregistrationnumber">Tax Registraion Number </label>
+                    <b>{{formData.taxregistrationnumber ? formData.taxregistrationnumber : '-'}}</b>
                 </div>
                 <div class="field col-12">
                     <label for="taxclassificationcode">Tax Classification Code </label>
@@ -53,7 +53,7 @@
             <template v-slot:footer>
                 <div class="grid grid-nogutter justify-content-between">
                     <Button label="Back" @click="prevPage()" icon="pi pi-angle-left" />
-                    <Button label="Complete" @click="complete()" icon="pi pi-check" iconPos="right" class="p-button-success"/>
+                    <Button label="Complete" @click="complete(formData)" icon="pi pi-check" iconPos="right" class="p-button-success"/>
                 </div>
             </template>
         </Card>
@@ -62,6 +62,8 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
+import axios from 'axios';
+import authHeader from '../services/auth-header';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
 import InputText from "primevue/inputtext"
@@ -106,7 +108,19 @@ export default {
         },
       
       complete(formData) {
-      this.message = "";
+          console.log(formData);
+          console.log(formData.token.token);
+           var optionAxios = {
+      headers: {
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+      }
+  }
+        return  axios.post('http://localhost:8080/api/auth/'+'signup/'+formData.token.token,formData,{headers: authHeader(),optionAxios }
+         
+   /*   this.message = "";
       this.successful = false;
       this.loading = true;
       console.log(this.formData);
@@ -125,7 +139,7 @@ export default {
             error.toString();
           this.successful = false;
           this.loading = false;
-        }
+        }*/
       );
         }
     }
