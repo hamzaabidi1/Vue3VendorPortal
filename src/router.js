@@ -37,8 +37,8 @@ const routes = [
     component: BoardAdmin,
   },
   {
-    path: "/mod",
-    name: "moderator",
+    path: "/fournisseur",
+    name: "fournisseur",
     // lazy-loaded
     component: BoardModerator,
   },
