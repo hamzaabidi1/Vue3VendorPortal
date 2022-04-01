@@ -110,6 +110,7 @@ export default {
       complete(formData) {
           console.log(formData);
           console.log(formData.token.token);
+          this.$router.push('/login');
            var optionAxios = {
       headers: {
           'Content-Type': 'application/json',
@@ -120,7 +121,8 @@ export default {
   }
         return  axios.post('http://localhost:8080/api/auth/'+'signup/'+formData.token.token,formData,{headers: authHeader(),optionAxios }
          
-   /*   this.message = "";
+  
+  /*   this.message = "";
       this.successful = false;
       this.loading = true;
       console.log(this.formData);
@@ -141,6 +143,7 @@ export default {
           this.loading = false;
         }*/
       );
+      
         }
     }
 }

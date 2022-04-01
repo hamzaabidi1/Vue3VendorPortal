@@ -121,9 +121,13 @@ export default {
     methods: {
         nextPage() {
             this.submitted = true;
+            console.log(this.confirmpassword);
+            console.log(this.password);
             if (this.validateForm() ) {
+                
                 this.$emit('next-page', {formData: {firstname: this.firstname, lastname: this.lastname, username: this.username,phone: this.phone,password: this.password,token: this.$route.query}, pageIndex: 0});
-            }
+           
+           }
         },
         validateForm() {
             if (!this.firstname.trim())
@@ -142,7 +146,7 @@ export default {
                 this.validationErrors['password'] = true;
             else
                 delete this.validationErrors['password'];
-                        if (!this.confirmpassword.trim() && this.password.toString == this.confirmpassword.toString )
+                        if (!this.confirmpassword.trim() && this.password.toString != this.confirmpassword.toString )
                 this.validationErrors['confirmpassword'] = true;            
             else
                  delete this.validationErrors['confirmpassword'];

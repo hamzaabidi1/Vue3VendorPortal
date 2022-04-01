@@ -6,15 +6,15 @@
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         class="profile-img-card"
       />
-      <Form @submit="handlePasswordsConfirmation" :validation-schema="schema">
+      <Form @submit="handleConfirmPassword" :validation-schema="schema">
        <div class="form-group">
           <label for="password1">Password</label>
-          <Field name="password1" type="password" class="form-control" />
+          <Field name="password1" type="password" class="form-control" v-model="password1" />
           <ErrorMessage name="password1" class="error-feedback" />
         </div>
         <div class="form-group">
           <label for="password2">Confirm Password</label>
-          <Field name="password2" type="password" class="form-control" />
+          <Field name="password2" type="password" class="form-control" v-model="password1"/>
           <ErrorMessage name="password2" class="error-feedback" />
         </div>
         <div class="form-group">
@@ -41,6 +41,7 @@
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import Password from 'primevue/password';
+import axios from 'axios';
 
 export default {
   name: "PasswordsConfirmation",
@@ -65,23 +66,42 @@ export default {
   },
 
   methods: {
-    handlePasswordsConfirmation(user) {
+    handleConfirmPassword(){
+      console.log(this.$route.query.token);
+     console.log( this.password1);
+          this.$router.push('/login');
+           var optionAxios = {
+      headers: {
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+      }
+  }
+        return  axios.post('http://localhost:8080/api/auth/'+'newpassword/'+this.$route.query.token+'/'+this.password1);
+         
+  
+  /*   this.message = "";
+      this.successful = false;
       this.loading = true;
-
-      this.$store.dispatch("auth/login", user).then(
-        () => {
-          this.$router.push("/");
+      console.log(this.formData);
+      this.$store.dispatch("auth/register",{formData}).then(
+        (data) => {
+          this.message = data.message;
+          this.successful = true;
+          this.loading = false;
         },
         (error) => {
-          this.loading = false;
           this.message =
             (error.response &&
               error.response.data &&
               error.response.data.message) ||
             error.message ||
             error.toString();
-        }
-      );
+          this.successful = false;
+          this.loading = false;
+        }*/
+     
     },
   },
 };
