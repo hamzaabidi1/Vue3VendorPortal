@@ -79,6 +79,7 @@
             </template>
         </Card>
     </div>
+    <Toast />
 </template>
 
 <script>
@@ -91,6 +92,7 @@ import InputText from "primevue/inputtext"
 import InputNumber from "primevue/inputnumber"
 import Calendar from 'primevue/calendar';
 import Password from 'primevue/password';
+import axios from 'axios'
 
 export default {
   name: "Register",
@@ -119,14 +121,17 @@ export default {
         }
     },
     methods: {
+        existename(){
+        return  axios.get('http://localhost:8080/api/auth/'+'existbuusername/'+this.username)
+        },
         nextPage() {
             this.submitted = true;
-            console.log(this.confirmpassword);
-            console.log(this.password);
-            if (this.validateForm() ) {
-                
-                this.$emit('next-page', {formData: {firstname: this.firstname, lastname: this.lastname, username: this.username,phone: this.phone,password: this.password,token: this.$route.query}, pageIndex: 0});
-           
+            if (this.validateForm()) {  
+                if(! this.existename())
+                    this.$emit('next-page', {formData: {firstname: this.firstname, lastname: this.lastname, username: this.username,phone: this.phone,password: this.password,token: this.$route.query}, pageIndex: 0});
+                else
+                   { console.log("user existe")
+                   this.$toast.add({severity:'error', summary: 'Error Message', detail:'UserName already taken', life: 3000});}
            }
         },
         validateForm() {

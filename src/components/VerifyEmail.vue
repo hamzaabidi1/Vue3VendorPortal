@@ -25,9 +25,12 @@
         </div>
         </div>
       </Form>
-          <div v-if="message" class="alert alert-danger" role="alert">
+          <div v-if="message === 'check your mail to verify account!'" class="alert alert-success" role="alert">
             {{ message }}
-          </div> 
+          </div>
+           <div v-if="message != 'check your mail to verify account!' && message!=''" class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>  
     </div>
   </div>
 </template>
