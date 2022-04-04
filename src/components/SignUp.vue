@@ -4,8 +4,7 @@
       <img
         id="profile-img"
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
+        class="profile-img-card"/>
      
            <div class="form-group">
                         <label for="username">Vendor Name</label>
@@ -31,6 +30,7 @@
 
     </div>
   </div>
+  <Toast />
 </template>
 
 <script>
@@ -45,7 +45,7 @@ import axios from 'axios'
 
 
 export default {
-  name: "Signup",
+  name: "SignUp",
    components: {
     InputNumber,
     Button,
@@ -76,6 +76,7 @@ export default {
         this.submitted = true;
          if (this.validateForm()) { 
         if(! this.existename()){
+            console.log("***************");
          return  axios.post('http://localhost:8080/api/auth/'+'signupdraft/'+this.$route.query.token,{formData: {username: this.username,password: this.password}})
       //this.$router.push('/login');
         }
