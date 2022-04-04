@@ -4,6 +4,7 @@ import Login from "./components/Login.vue";
 import ForgotPassword from "./components/ForgotPassword.vue";
 import VerifyEmail from "./components/VerifyEmail.vue";
 import PasswordsConfirmation from "./components/PasswordsConfirmation.vue"
+import SignUp from "./components/SignUp.vue"
 // lazy-loaded
 const Profile = () => import("./components/Profile.vue")
 const BoardAdmin = () => import("./components/BoardAdmin.vue")
@@ -47,6 +48,10 @@ const routes = [
     name: "user",
     // lazy-loaded
     component: BoardUser,
+  },
+  {
+    path: '/signup',
+    component: SignUp
   },
   {
     path: '/forgotPassword',

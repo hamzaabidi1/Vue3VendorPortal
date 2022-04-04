@@ -84,8 +84,6 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
-//import * as yup from "yup";
-import StepSignup from './StepSignup.vue';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
 import InputText from "primevue/inputtext"
@@ -122,7 +120,7 @@ export default {
     },
     methods: {
         existename(){
-        return  axios.get('http://localhost:8080/api/auth/'+'existbuusername/'+this.username)
+        return  axios.get('http://localhost:8080/api/auth/'+'existbyusername/'+this.username)
         },
         nextPage() {
             this.submitted = true;
