@@ -2,12 +2,14 @@
   <div class="container">
     <header class="jumbotron">
       <h3>{{ content }}</h3>
+      <Table />
     </header>
   </div>
 </template>
 
 <script>
 import UserService from "../services/user.service";
+import Table from "./datatable.vue"
 
 export default {
   name: "Admin",

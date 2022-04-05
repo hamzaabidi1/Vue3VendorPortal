@@ -35,6 +35,7 @@
       </Form>
     </div>
   </div>
+  <Toast />
 </template>
 
 <script>
@@ -67,8 +68,7 @@ export default {
 
   methods: {
     handleConfirmPassword(){
-      console.log(this.$route.query.token);
-     console.log( this.password1);
+          this.$toast.add({severity:'success', summary: 'Success Message', detail:'Password changed succefully please connect with your new password', life: 6000})
           this.$router.push('/login');
            var optionAxios = {
       headers: {

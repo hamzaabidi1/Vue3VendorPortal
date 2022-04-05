@@ -17,11 +17,9 @@
                     <Field name="password" type="password" class="form-control" v-model="password" id="password" :class="{'p-invalid': validationErrors.password && submitted}" />
                  <small v-show="validationErrors.password && submitted" class="p-error">password is required.</small>
                 </div>
-
         <div class="form-group">
-          <Button class="btn btn-primary btn-block" label="SignUp" @click="Signup()"  />
+          <Button class="btn btn-primary btn-block" label="SignUp" @click="signup()"  />
         </div>
-
         <div class="form-group">
           <div v-if="message" class="alert alert-success" role="alert">
             {{ message }}
@@ -68,23 +66,21 @@ export default {
        existename(){
         return  axios.get('http://localhost:8080/api/auth/'+'existbyusername/'+this.username)
         },
-    Signup() {
+    signup() {
         console.log(this.username);
         console.log(this.password);
         console.log(this.$route.query.token);
         console.log(this.existename());
         this.submitted = true;
-         if (this.validateForm()) { 
-        if(! this.existename()){
-            console.log("***************");
-         return  axios.post('http://localhost:8080/api/auth/'+'signupdraft/'+this.$route.query.token,{formData: {username: this.username,password: this.password}})
-      //this.$router.push('/login');
+        if (this.validateForm()) { 
+        if(! this.existename()) {
+        axios.post('http://localhost:8080/api/auth/'+'signupdraft/'+this.$route.query.token,{formData: {username: this.username,password: this.password}})
+        this.$router.push('/login'); 
         }
-      else
-        this.$toast.add({severity:'error', summary: 'Error Message', detail:'UserName already taken', life: 3000});
-            console.log("user exist");
-        }
-    },
+      else 
+        this.$toast.add({severity:'error', summary: 'Error Message', detail:'UserName already taken', life: 3000})
+      }
+      },
         validateForm() {
                         if (!this.username.trim())
                 this.validationErrors['username'] = true;
@@ -94,9 +90,11 @@ export default {
                 this.validationErrors['password'] = true;
             else
                 delete this.validationErrors['password'];
+            return !Object.keys(this.validationErrors).length;
+
         }
-  },
-};
+  }
+}
 </script>
 
 <style scoped>

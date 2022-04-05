@@ -16,7 +16,7 @@
                         <small v-show="validationErrors.firstname && submitted" class="p-error">Firstname is required.</small>
                     </div>
                     <div class="field">
-                        <label for="lastname">Vendor Subname</label>
+                        <label for="lastname">VendorSubname</label>
                         <InputText id="lastname" v-model="lastname" :class="{'p-invalid': validationErrors.lastname && submitted}" />
                         <small v-show="validationErrors.lastname && submitted" class="p-error">Lastname is required.</small>
                     </div>
@@ -72,18 +72,10 @@ export default {
         }
     },
     methods: {
-        existename(){
-        return  axios.get('http://localhost:8080/api/auth/'+'existbyusername/'+this.username)
-        },
         nextPage() {
             this.submitted = true;
-            if (this.validateForm()) {  
-                if(! this.existename())
-                    this.$emit('next-page', {formData: {firstname: this.firstname, lastname: this.lastname,phone: this.phone,token: this.$route.query}, pageIndex: 0});
-                else
-                   { console.log("user existe")
-                   this.$toast.add({severity:'error', summary: 'Error Message', detail:'UserName already taken', life: 3000});}
-           }
+            if (this.validateForm())
+            this.$emit('next-page', {formData: {firstname: this.firstname, lastname: this.lastname,phone: this.phone,token: this.$route.query}, pageIndex: 0});
         },
         validateForm() {
             if (!this.firstname.trim())
