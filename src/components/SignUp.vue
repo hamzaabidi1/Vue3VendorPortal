@@ -64,21 +64,23 @@ export default {
   },
   methods: {
        existename(){
-        return  axios.get('http://localhost:8080/api/auth/'+'existbyusername/'+this.username)
+        return  axios.get('http://localhost:8080/api/auth/existbyusername/'+this.username);
         },
     signup() {
-        console.log(this.username);
-        console.log(this.password);
-        console.log(this.$route.query.token);
+        console.log("username " +this.username);
+        console.log("password "+this.password);
+        console.log("token "+this.$route.query.token);
         console.log(this.existename());
+        console.log(! this.existename());
         this.submitted = true;
         if (this.validateForm()) { 
         if(! this.existename()) {
-        axios.post('http://localhost:8080/api/auth/'+'signupdraft/'+this.$route.query.token,{formData: {username: this.username,password: this.password}})
+        axios.post('http://localhost:8080/api/auth/'+'signupdraft/'+this.$route.query.token,{formData: {username: this.username,password: this.password}});
         this.$router.push('/login'); 
         }
-      else 
-        this.$toast.add({severity:'error', summary: 'Error Message', detail:'UserName already taken', life: 3000})
+      else {
+        this.$toast.add({severity:'error', summary: 'Error Message', detail:'UserName already taken', life: 3000});
+      }
       }
       },
         validateForm() {

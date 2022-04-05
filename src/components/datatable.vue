@@ -154,8 +154,49 @@
 <script>
 import { FilterMatchMode } from 'primevue/api';
 import ProductService from '../services/ProductService';
+import { Form, Field, ErrorMessage } from "vee-validate";
+import Button from 'primevue/button';
+import Card from 'primevue/card';
+import InputText from "primevue/inputtext"
+import InputNumber from "primevue/inputnumber"
+import Calendar from 'primevue/calendar';
+import Password from 'primevue/password';
+import Toolbar from 'primevue/toolbar';
+import FileUpload from 'primevue/fileupload';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
+import Row from 'primevue/row';
+import Rating from 'primevue/rating';
+import Textarea from 'primevue/textarea';
+import Dropdown from 'primevue/dropdown';
+import RadioButton from 'primevue/radiobutton';
+import Dialog from 'primevue/dialog';
+
+import axios from 'axios'
+
 
 export default {
+     components: {
+    InputNumber,
+    Button,
+    Card,
+    InputText,
+    Calendar,
+    Password,
+    Field,
+    Toolbar,
+    FileUpload,
+    DataTable,
+    Column,
+    ColumnGroup,
+    Row,
+    Rating,
+    Textarea,
+    Dropdown,
+    RadioButton,
+    Dialog
+  },
     data() {
         return {
             products: null,

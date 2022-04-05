@@ -13,6 +13,9 @@ import Table from "./datatable.vue"
 
 export default {
   name: "Admin",
+  components: {
+    Table
+  },
   data() {
     return {
       content: "",
