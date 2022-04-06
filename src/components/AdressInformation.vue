@@ -59,6 +59,7 @@ import InputNumber from "primevue/inputnumber"
 import Dropdown from "primevue/dropdown"
 export default {
   name: "Register",
+   emits: ['nextPage', 'prevPage','complete'],
   components: {
     Form,
     Field,

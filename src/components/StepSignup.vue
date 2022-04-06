@@ -2,7 +2,7 @@
     <div>
         <div class="content-section introduction">
             <div class="feature-intro">
-                <h1>Resgister</h1>
+                <h1>Register</h1>
             </div>
         </div>
 
@@ -26,6 +26,7 @@
 
 
 export default {
+    emits: ['nextPage', 'prevPage','complete'],
     data() {
         return {
             items: [{

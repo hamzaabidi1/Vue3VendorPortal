@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="!showFournisseurBoard"  class="container">
     <header class="jumbotron">
       <h3>
         <strong>{{currentUser.username}}</strong> Profile
@@ -22,15 +22,25 @@
       <li v-for="role in currentUser.roles" :key="role">{{role}}</li>
     </ul>
   </div>
+  <register/>
 </template>
 
 <script>
+import register from "./Register.vue"
 export default {
   name: 'Profile',
+   components: {
+   register
+  },
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
-    }
+    },
+     showFournisseurBoard() {
+      if (this.currentUser && this.currentUser['roles']) {
+        return this.currentUser['roles'].includes('ROLE_FOURNISSEUR');
+      }
+  }
   },
   mounted() {
     console.log(this.currentUser);
@@ -38,5 +48,6 @@ export default {
       this.$router.push('/login');
     }
   }
+  
 };
 </script>

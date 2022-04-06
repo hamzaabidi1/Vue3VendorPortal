@@ -61,6 +61,7 @@ import Calendar from 'primevue/calendar';
 import FileUpload from 'primevue/fileupload';
 export default {
   name: "Register",
+   emits: ['nextPage', 'prevPage','complete'],
   components: {
     Form,
     Field,

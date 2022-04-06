@@ -36,7 +36,7 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/profile" class="nav-link">
+          <router-link to="/register" class="nav-link">
             <font-awesome-icon icon="user" />
             {{ currentUser.username }}
           </router-link>

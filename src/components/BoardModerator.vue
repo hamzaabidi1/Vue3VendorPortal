@@ -1,16 +1,16 @@
 <template>
-  <div class="container">
-    <header class="jumbotron">
-      <h3>{{ content }}</h3>
-    </header>
-  </div>
+  <register/>
 </template>
 
 <script>
 import UserService from "../services/user.service";
+import register from "./Register.vue"
 
 export default {
   name: "Moderator",
+   components: {
+   register
+  },
   data() {
     return {
       content: "",

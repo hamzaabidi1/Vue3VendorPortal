@@ -10,10 +10,6 @@
                     <b>{{formData.firstname ? formData.firstname : '-'}} {{formData.lastname ? formData.lastname : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="class">User Name </label>
-                    <b>{{formData.username ? formData.username : '-'}} </b>
-                </div>
-                <div class="field col-12">
                     <label for="phone">Phone Number </label>
                     <b>{{formData.phone ? formData.phone : '-'}}</b>
                 </div>
@@ -58,6 +54,7 @@
             </template>
         </Card>
     </div>
+    <Toast/>
 </template>
 
 <script>
@@ -71,6 +68,7 @@ import InputNumber from "primevue/inputnumber"
 import Dropdown from "primevue/dropdown"
 export default {
   name: "Register",
+   emits: ['nextPage', 'prevPage','complete'],
   components: {
     Form,
     Field,
@@ -96,22 +94,23 @@ export default {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
+     currentUser() {
+      return this.$store.state.auth.user;}
   },
   mounted() {
-    if (this.loggedIn) {
-      this.$router.push("/profile");
+    console.log(this.currentUser);
     }
-  },
+  ,
     methods: {
-        prevPage() {
+            prevPage() {
             this.$emit('prev-page', {pageIndex: 4});
         },
       
       complete(formData) {
-          console.log(formData);
-          console.log(formData.token.token);
-          this.$router.push('/login');
-           var optionAxios = {
+        console.log(formData);
+          console.log("current "+this.currentUser.username);
+          this.$toast.add({severity:'success', summary: 'Success Message', detail:'User Informations registred', life: 3000});
+          var optionAxios = {
       headers: {
           'Content-Type': 'application/json',
           "Access-Control-Allow-Origin": "*",
@@ -119,31 +118,7 @@ export default {
           'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
       }
   }
-        return  axios.post('http://localhost:8080/api/auth/'+'signup/'+formData.token.token,formData,{headers: authHeader(),optionAxios }
-         
-  
-  /*   this.message = "";
-      this.successful = false;
-      this.loading = true;
-      console.log(this.formData);
-      this.$store.dispatch("auth/register",{formData}).then(
-        (data) => {
-          this.message = data.message;
-          this.successful = true;
-          this.loading = false;
-        },
-        (error) => {
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          this.successful = false;
-          this.loading = false;
-        }*/
-      );
-      
+     return  axios.post('http://localhost:8080/api/auth/'+'signup/'+this.currentUser.username,formData,{headers: authHeader(),optionAxios }  );
         }
     }
 }

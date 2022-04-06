@@ -16,7 +16,7 @@
                         <small v-show="validationErrors.firstname && submitted" class="p-error">Firstname is required.</small>
                     </div>
                     <div class="field">
-                        <label for="lastname">VendorSubname</label>
+                        <label for="lastname">Vendor Subname</label>
                         <InputText id="lastname" v-model="lastname" :class="{'p-invalid': validationErrors.lastname && submitted}" />
                         <small v-show="validationErrors.lastname && submitted" class="p-error">Lastname is required.</small>
                     </div>
@@ -46,10 +46,11 @@ import InputText from "primevue/inputtext"
 import InputNumber from "primevue/inputnumber"
 import Calendar from 'primevue/calendar';
 import Password from 'primevue/password';
-import axios from 'axios'
 
 export default {
   name: "Register",
+   emits: ['nextPage', 'prevPage','complete'],
+ 
   components: {
     Form,
     Field,
@@ -71,11 +72,14 @@ export default {
             validationErrors: {}
         }
     },
+    props: {
+        formData: Object
+    },
     methods: {
         nextPage() {
             this.submitted = true;
             if (this.validateForm())
-            this.$emit('next-page', {formData: {firstname: this.firstname, lastname: this.lastname,phone: this.phone,token: this.$route.query}, pageIndex: 0});
+            this.$emit('next-page', {formData: {firstname: this.firstname, lastname: this.lastname,phone: this.phone}, pageIndex: 0});
         },
         validateForm() {
             if (!this.firstname.trim())
