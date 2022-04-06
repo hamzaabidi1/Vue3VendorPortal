@@ -1,5 +1,4 @@
 <template>
-  <register/>
 </template>
 
 <script>

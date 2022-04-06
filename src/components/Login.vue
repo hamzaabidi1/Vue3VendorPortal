@@ -78,7 +78,10 @@ export default {
 
       this.$store.dispatch("auth/login", user).then(
         () => {
+          if (this.currentUser && this.currentUser.status == "Draft") 
           this.$router.push("/register");
+          else
+          this.$router.push("/fournisseur");
         },
         (error) => {
           this.loading = false;

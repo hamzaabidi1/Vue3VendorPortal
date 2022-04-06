@@ -35,11 +35,13 @@
             {{ currentUser.status }}
           </router-link>
         </li>
+        
         <li class="nav-item">
-          <router-link to="/register" class="nav-link">
+          <router-link @click.prevent="droitModification" to="" class="nav-link">
             <font-awesome-icon icon="user" />
             {{ currentUser.username }}
           </router-link>
+          <Toast />
         </li>
         <li class="nav-item">
           <a class="nav-link" @click.prevent="logOut">
@@ -74,13 +76,21 @@ export default {
       }
 
       return false;
-    }
+    },
+   
   },
   methods: {
     logOut() {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
-    }
+    },
+     droitModification() {
+      if (this.currentUser && this.currentUser.status == "InProgress") 
+        this.$toast.add({severity:'warn', summary: 'Warn Message', detail:'Validation of your information In progress', life: 3000});
+        else{
+           this.$router.push('/register');
+        }
+      }
   }
 };
 </script>
