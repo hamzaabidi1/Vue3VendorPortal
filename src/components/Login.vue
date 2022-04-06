@@ -75,8 +75,7 @@ export default {
   methods: {
     handleLogin(user) {
       this.loading = true;
-
-      this.$store.dispatch("auth/login", user).then(
+      this.$store.dispatch("auth/login", user).then(        
         () => {
           if (this.currentUser && this.currentUser.status == "Draft") 
           this.$router.push("/register");

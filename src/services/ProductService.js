@@ -1,3 +1,6 @@
+import axios from "axios"
+import authHeader from './auth-header';
+
 export default class ProductService {
 
     getProductsSmall() {
@@ -5,7 +8,7 @@ export default class ProductService {
 	}
 
 	getProducts() {
-		return fetch('demo/data/products.json').then(res => res.json()).then(d => d.data);
+		return axios.get('http://localhost:8080/api/Admin/all',{ headers: authHeader()}).then(d => d.data);
     }
 
     getProductsWithOrdersSmall() {
