@@ -83,11 +83,22 @@
         <Dialog v-model:visible="deleteProductDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
             <div class="confirmation-content">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-                <span v-if="user">Are you sure you want to delete <b>{{user.name}}</b>?</span>
+                <span v-if="user">Are you sure you want to delete <b>{{user.firstname}}</b>?</span>
             </div>
             <template #footer>
                 <Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteProductDialog = false"/>
                 <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteProduct" />
+            </template>
+        </Dialog>
+
+        <Dialog v-model:visible="confirmProductDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
+            <div class="confirmation-content">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
+                <span v-if="user">Are you sure you want to confirm <b>{{user.firstname}}</b>?</span>
+            </div>
+            <template #footer>
+                <Button label="No" icon="pi pi-times" class="p-button-text" @click="confirmProductDialog = false"/>
+                <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="confirmProduct" />
             </template>
         </Dialog>
 
@@ -153,6 +164,7 @@ export default {
         return {
             vendors: null,
             productDialog: false,
+            confirmProductDialog : false,
             deleteProductDialog: false,
             deleteProductsDialog: false,
             user: {},
@@ -182,16 +194,12 @@ export default {
         },
         saveProduct() {
             this.submitted = true;
-
-			if (this.user.firstname.trim()) {
-                if (this.user.id) {
                     this.user.status = this.user.status.value ? this.user.status.value: this.user.status;
                     this.vendors[this.findIndexById(this.user.id)] = this.user;
                     this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Updated', life: 3000});
-                }
-                this.productDialog = false;
+               this.productService.updateStatus(this.user.id,this.user.status.value);
+               this.productDialog = false;
                 this.user = {};
-            }
         },
         editProduct(user) {
             this.user = {...user};
@@ -201,7 +209,18 @@ export default {
             this.user = user;
             this.deleteProductDialog = true;
         },
-        deleteProduct() {
+         confirmProduct(user) {
+            this.user = user;
+            this.confirmProductDialog = true;
+        },
+        confirmstatusProduct() {
+            this.vendors = this.vendors.filter(val => val.id !== this.user.id);
+            this.confirmProductDialog = false;
+            this.productService.confirmuser(this.user.id);
+            this.user = {};
+            this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Deleted', life: 3000});
+        },
+         deleteProduct() {
             this.vendors = this.vendors.filter(val => val.id !== this.user.id);
             this.deleteProductDialog = false;
             this.productService.deletevendor(this.user.id);

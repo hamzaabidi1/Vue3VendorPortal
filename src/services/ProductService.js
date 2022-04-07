@@ -17,4 +17,10 @@ export default class ProductService {
 	deletevendor(id){
 		return axios.delete('http://localhost:8080/api/Admin/delete/'+id,{ headers: authHeader()}).then(d => d.data);
 	}
+	updateStatus(id,status){
+		return axios.put('http://localhost:8080/api/Admin/changestatus/'+id+"/"+status,{ headers: authHeader()}).then(d => d.data);
+	}
+	confirmuser(id){
+		return axios.put('http://localhost:8080/api/Admin/confirm/'+id,{ headers: authHeader()}).then(d => d.data);
+	}
 }
