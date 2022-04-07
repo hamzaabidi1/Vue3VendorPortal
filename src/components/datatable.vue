@@ -3,7 +3,6 @@
         <div class="card">
             <Toolbar class="mb-4">
                 <template #start>
-                    <Button label="New" icon="pi pi-plus" class="p-button-success mr-2" @click="openNew" />
                     <Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selectedProducts || !selectedProducts.length" />
                 </template>
 
@@ -58,20 +57,10 @@
         </div>
 
         <Dialog v-model:visible="productDialog" :style="{width: '450px'}" header="user Details" :modal="true" class="p-fluid">
-            <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" :alt="user.image" class="product-image" v-if="user.image" />
+        
             <div class="field">
-                <label for="name">Name</label>
-                <InputText id="name" v-model.trim="user.name" required="true" autofocus :class="{'p-invalid': submitted && !product.name}" />
-                <small class="p-error" v-if="submitted && !user.name">Name is required.</small>
-            </div>
-            <div class="field">
-                <label for="description">Description</label>
-                <Textarea id="description" v-model="user.description" required="true" rows="3" cols="20" />
-            </div>
-
-            <div class="field">
-				<label for="inventoryStatus" class="mb-3">Inventory Status</label>
-				<Dropdown id="inventoryStatus" v-model="user.inventoryStatus" :options="statuses" optionLabel="label" placeholder="Select a Status">
+				<label for="status" class="mb-3">Status</label>
+				<Dropdown id="status" v-model="user.inventoryStatus" :options="statuses" optionLabel="label" placeholder="Select a Status">
 					<template #value="slotProps">
 						<div v-if="slotProps.value && slotProps.value.value">
 							<span :class="'product-badge status-' +slotProps.value.value">{{slotProps.value.label}}</span>
@@ -85,39 +74,6 @@
 					</template>
 				</Dropdown>
 			</div>
-
-            <div class="field">
-                <label class="mb-3">Category</label>
-                <div class="formgrid grid">
-                    <div class="field-radiobutton col-6">
-                        <RadioButton id="category1" name="category" value="Accessories" v-model="user.category" />
-                        <label for="category1">Accessories</label>
-                    </div>
-                    <div class="field-radiobutton col-6">
-                        <RadioButton id="category2" name="category" value="Clothing" v-model="user.category" />
-                        <label for="category2">Clothing</label>
-                    </div>
-                    <div class="field-radiobutton col-6">
-                        <RadioButton id="category3" name="category" value="Electronics" v-model="user.category" />
-                        <label for="category3">Electronics</label>
-                    </div>
-                    <div class="field-radiobutton col-6">
-                        <RadioButton id="category4" name="category" value="Fitness" v-model="user.category" />
-                        <label for="category4">Fitness</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="formgrid grid">
-                <div class="field col">
-                    <label for="price">Price</label>
-                    <InputNumber id="price" v-model="user.price" mode="currency" currency="USD" locale="en-US" />
-                </div>
-                <div class="field col">
-                    <label for="quantity">Quantity</label>
-                    <InputNumber id="quantity" v-model="user.quantity" integeronly />
-                </div>
-            </div>
             <template #footer>
                 <Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
                 <Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveProduct" />
@@ -204,9 +160,10 @@ export default {
             filters: {},
             submitted: false,
             statuses: [
-				{label: 'INSTOCK', value: 'instock'},
-				{label: 'LOWSTOCK', value: 'lowstock'},
-				{label: 'OUTOFSTOCK', value: 'outofstock'}
+				{label: 'DRAFT', value: 'Draft'},
+				{label: 'SUBMITTED', value: 'Submitted'},
+				{label: 'INPROGRESS', value: 'InProgress'},
+                {label: 'CONFIRMED', value: 'Confirmed'}
             ]
         }
     },
@@ -219,16 +176,6 @@ export default {
         this.productService.getProducts().then(data => this.vendors = data);
     },
     methods: {
-        formatCurrency(value) {
-            if(value)
-				return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-			return;
-        },
-        openNew() {
-            this.user = {};
-            this.submitted = false;
-            this.productDialog = true;
-        },
         hideDialog() {
             this.productDialog = false;
             this.submitted = false;
@@ -236,21 +183,12 @@ export default {
         saveProduct() {
             this.submitted = true;
 
-			if (this.user.name.trim()) {
+			if (this.user.firstname.trim()) {
                 if (this.user.id) {
-                    this.user.inventoryStatus = this.user.inventoryStatus.value ? this.user.inventoryStatus.value: this.user.inventoryStatus;
+                    this.user.status = this.user.status.value ? this.user.status.value: this.user.status;
                     this.vendors[this.findIndexById(this.user.id)] = this.user;
                     this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Updated', life: 3000});
                 }
-                else {
-                    this.user.id = this.createId();
-                    this.user.code = this.createId();
-                    this.user.image = 'product-placeholder.svg';
-                    this.user.inventoryStatus = this.user.inventoryStatus ? this.user.inventoryStatus.value : 'INSTOCK';
-                    this.vendors.push(this.vendors);
-                    this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Created', life: 3000});
-                }
-
                 this.productDialog = false;
                 this.user = {};
             }
@@ -266,6 +204,7 @@ export default {
         deleteProduct() {
             this.vendors = this.vendors.filter(val => val.id !== this.user.id);
             this.deleteProductDialog = false;
+            this.productService.deletevendor(this.user.id);
             this.user = {};
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Deleted', life: 3000});
         },
@@ -279,14 +218,6 @@ export default {
             }
 
             return index;
-        },
-        createId() {
-            let id = '';
-            var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            for ( var i = 0; i < 5; i++ ) {
-                id += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return id;
         },
         exportCSV() {
             this.$refs.dt.exportCSV();

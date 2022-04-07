@@ -14,4 +14,7 @@ export default class ProductService {
     getProductsWithOrdersSmall() {
 		return fetch('demo/data/products-orders-small.json').then(res => res.json()).then(d => d.data);
 	}
+	deletevendor(id){
+		return axios.delete('http://localhost:8080/api/Admin/delete/'+id,{ headers: authHeader()}).then(d => d.data);
+	}
 }

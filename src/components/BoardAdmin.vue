@@ -1,10 +1,8 @@
 <template>
   <div class="container">
-    <header class="jumbotron">
-      <h3>{{ content }}</h3>
-      <Table />
-    </header>
+      <center><h3>{{ content }}</h3></center>
   </div>
+   <Table />
 </template>
 
 <script>

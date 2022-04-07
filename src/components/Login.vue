@@ -80,7 +80,7 @@ export default {
         () => {
       let jsonobject= localStorage.user;
       let monobjet = JSON.parse(jsonobject)
-      console.log("current user : "+monobjet.status);
+      console.log("current user : "+monobjet.roles);
           if (monobjet.status === "Draft") {
             this.$router.push("/register");
           }
