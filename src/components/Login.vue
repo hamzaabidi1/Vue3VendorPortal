@@ -75,12 +75,19 @@ export default {
   methods: {
     handleLogin(user) {
       this.loading = true;
+   
       this.$store.dispatch("auth/login", user).then(        
         () => {
-          if (this.currentUser && this.currentUser.status == "Draft") 
-          this.$router.push("/register");
-          else
+      let jsonobject= localStorage.user;
+      let monobjet = JSON.parse(jsonobject)
+      console.log("current user : "+monobjet.status);
+          if (monobjet.status === "Draft") {
+            this.$router.push("/register");
+          }
+          else{
           this.$router.push("/fournisseur");
+          }
+         
         },
         (error) => {
           this.loading = false;
