@@ -46,11 +46,13 @@
                         <span :class="'product-badge status-' + (slotProps.data.status ? slotProps.data.status.toLowerCase() : '')">{{slotProps.data.status}}</span>
                     </template>
                 </Column>
-                <Column :exportable="false" style="min-width:12rem">
+                <Column :exportable="false" style="min-width:16rem">
                     <template #body="slotProps">
                         <Button icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2" @click="editProduct(slotProps.data)" />
                         <Button icon="pi pi-check" class="p-button-rounded p-button-success mr-2" @click="confirmProduct(slotProps.data)" />
-                        <Button icon="pi pi-trash" class="p-button-rounded p-button-error" @click="confirmDeleteProduct(slotProps.data)" />
+                        <Button icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" @click="confirmDeleteProduct(slotProps.data)" />
+                        <Button icon="pi pi-book" class="p-button-rounded p-button-error" @click="confirmDeleteProduct(slotProps.data)" />
+
                     </template>
                 </Column>
             </DataTable>
