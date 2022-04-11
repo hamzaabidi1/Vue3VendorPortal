@@ -30,13 +30,13 @@
       </div>
 
       <div v-if="currentUser" class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li v-if="currentUser.roles =='ROLE_FOURNISSEUR'" class="nav-item">
           <router-link to="" class="nav-link">
             {{ currentUser.status }}
           </router-link>
         </li>
         
-        <li class="nav-item">
+        <li  class="nav-item">
           <router-link @click.prevent="droitModification" to="" class="nav-link">
             <font-awesome-icon icon="user" />
             {{ currentUser.username }}
@@ -85,12 +85,15 @@ export default {
       this.$router.push('/login');
     },
      droitModification() {
+       if (this.currentUser.roles == "ROLE_FOURNISSEUR")
+       {
       if (this.currentUser && this.currentUser.status == "InProgress") 
         this.$toast.add({severity:'warn', summary: 'Warn Message', detail:'Validation of your information In progress', life: 3000});
         else{
            this.$router.push('/register');
         }
       }
+     }
   }
 };
 </script>

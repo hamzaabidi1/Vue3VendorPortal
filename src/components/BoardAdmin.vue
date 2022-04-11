@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <center><h3>{{ content }}</h3></center>
+      <h3 style="text-align: center">{{ content }}</h3>
   </div>
    <Table />
 </template>

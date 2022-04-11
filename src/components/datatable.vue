@@ -209,14 +209,16 @@ export default {
         },
         saveProduct() {
             this.submitted = true;
-                    this.user.status = this.user.status.value ? this.user.status.value: this.user.status;
-                    this.vendors[this.findIndexById(this.user.id)] = this.user;
-                    this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Updated', life: 3000});
-                    console.log(this.user.id)
-                    console.log(this.user.email)
-               this.productService.updateStatus(this.user.id,this.user.status,this.user.email);
-               this.productDialog = false;
-                this.user = {};
+            let jsonobject= localStorage.user;
+            let monobjet = JSON.parse(jsonobject)
+            this.user.status = this.user.status.value ? this.user.status.value: this.user.status;
+            this.vendors[this.findIndexById(this.user.id)] = this.user;
+            this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Updated', life: 3000});
+            console.log(this.user.id)
+            console.log(this.user.email)
+            this.productService.updateStatus(this.user.id,this.user.status,monobjet.email);
+            this.productDialog = false;
+            this.user = {};
         },
         editProduct(user) {
             this.user = {...user};
@@ -237,10 +239,11 @@ export default {
             this.confirmProductDialog = true;
         },
         confirmstatusProduct() {
+            let jsonobject= localStorage.user;
+            let monobjet = JSON.parse(jsonobject)
             this.vendors = this.vendors.filter(val => val.id !== this.user.id);
             this.confirmProductDialog = false;
-            this.productService.confirmuser(this.user.id,this.user.email);
-             this.user = user;
+            this.productService.confirmuser(this.user.id,monobjet.email);
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Confirmed', life: 3000});
         },
          deleteProduct() {

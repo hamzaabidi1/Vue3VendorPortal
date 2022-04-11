@@ -80,13 +80,19 @@ export default {
         () => {
       let jsonobject= localStorage.user;
       let monobjet = JSON.parse(jsonobject)
-      console.log("current user : "+monobjet.roles);
+      if (monobjet.roles == "ROLE_ADMIN")
+      {
+        this.$router.push("/admin");
+      }
+      else{
           if (monobjet.status === "Draft") {
             this.$router.push("/register");
           }
           else{
           this.$router.push("/fournisseur");
           }
+      }
+        
          
         },
         (error) => {
