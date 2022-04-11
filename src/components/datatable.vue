@@ -214,8 +214,6 @@ export default {
             this.user.status = this.user.status.value ? this.user.status.value: this.user.status;
             this.vendors[this.findIndexById(this.user.id)] = this.user;
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Updated', life: 3000});
-            console.log(this.user.id)
-            console.log(this.user.email)
             this.productService.updateStatus(this.user.id,this.user.status,monobjet.email);
             this.productDialog = false;
             this.user = {};
@@ -227,7 +225,6 @@ export default {
          historyProduct(user) {
              this.user = user;
             this.historyDialog = true;
-            console.log(this.user.email)
             this.productService.getHistory(this.user.email).then(data => this.vendorHistory = data);
         },
         confirmDeleteProduct(user) {

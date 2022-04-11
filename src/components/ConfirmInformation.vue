@@ -97,18 +97,12 @@ export default {
      currentUser() {
       return this.$store.state.auth.user;}
   },
-  mounted() {
-    console.log(this.currentUser);
-    }
-  ,
     methods: {
             prevPage() {
             this.$emit('prev-page', {pageIndex: 4});
         },
       
       complete(formData) {
-        console.log(formData);
-          console.log("current "+this.currentUser.username);
           this.$toast.add({severity:'success', summary: 'Success Message', detail:'User Informations registred', life: 3000});
           var optionAxios = {
       headers: {

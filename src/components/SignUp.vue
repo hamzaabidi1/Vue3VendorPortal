@@ -67,11 +67,6 @@ export default {
         return  axios.get('http://localhost:8080/api/auth/existbyusername/'+this.username);
         },
     async signup() {
-        console.log("username " +this.username);
-        console.log("password "+this.password);
-        console.log("token "+this.$route.query.token);
-        console.log(this.existename());
-        //console.log(this.existename() === false);
         this.submitted = true;
         if (this.validateForm()) { 
             let result= await this.existename();
@@ -79,14 +74,12 @@ export default {
        
         try {
             let res = {username: this.username,password: this.password};
-            console.log("res", res);
              axios.put('http://localhost:8080/api/auth/'+'signupdraft/'+this.$route.query.token,res);
              this.$router.push('/login');
               this.$toast.add({severity:'success', summary: 'Success Message', detail:'UserName registred', life: 3000});
         } catch (error) {
             console.log(error);
         }
-        
         }
       else {
         this.$toast.add({severity:'error', summary: 'Error Message', detail:'UserName already taken', life: 3000});
