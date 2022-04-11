@@ -51,7 +51,7 @@
                         <Button icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2" @click="editProduct(slotProps.data)" />
                         <Button icon="pi pi-check" class="p-button-rounded p-button-success mr-2" @click="confirmProduct(slotProps.data)" />
                         <Button icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" @click="confirmDeleteProduct(slotProps.data)" />
-                        <Button icon="pi pi-book" class="p-button-rounded p-button-error" @click="confirmDeleteProduct(slotProps.data)" />
+                        <Button icon="pi pi-book" class="p-button-rounded p-button-error" @click="historyProduct(slotProps.data)" />
 
                     </template>
                 </Column>
@@ -62,7 +62,7 @@
         
             <div class="field">
 				<label for="status" class="mb-3">Status</label>
-				<Dropdown id="status" v-model="user.inventoryStatus" :options="statuses" optionLabel="label" placeholder="Select a Status">
+				<Dropdown id="status" v-model="user.status" :options="statuses" optionLabel="label" placeholder="Select a Status">
 					<template #value="slotProps">
 						<div v-if="slotProps.value && slotProps.value.value">
 							<span :class="'product-badge status-' +slotProps.value.value">{{slotProps.value.label}}</span>
@@ -80,6 +80,17 @@
                 <Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
                 <Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveProduct" />
             </template>
+        </Dialog>
+
+        <Dialog v-model:visible="historyDialog" :style="{width: '450px'}" header="user History" :modal="true" class="p-fluid">
+            <div>
+        <DataTable :value="products" responsiveLayout="scroll">
+            <Column field="code" header="Code"></Column>
+            <Column field="name" header="Name"></Column>
+            <Column field="category" header="Category"></Column>
+            <Column field="quantity" header="Quantity"></Column>
+        </DataTable>
+    </div>
         </Dialog>
 
         <Dialog v-model:visible="deleteProductDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
@@ -166,6 +177,7 @@ export default {
         return {
             vendors: null,
             productDialog: false,
+            historyDialog: false,
             confirmProductDialog : false,
             deleteProductDialog: false,
             deleteProductsDialog: false,
@@ -193,19 +205,26 @@ export default {
         hideDialog() {
             this.productDialog = false;
             this.submitted = false;
+            historyDialog = false;
         },
         saveProduct() {
             this.submitted = true;
                     this.user.status = this.user.status.value ? this.user.status.value: this.user.status;
                     this.vendors[this.findIndexById(this.user.id)] = this.user;
                     this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Updated', life: 3000});
-               this.productService.updateStatus(this.user.id,this.user.status.value);
+                    console.log(this.user.id)
+                    console.log(this.user.email)
+               this.productService.updateStatus(this.user.id,this.user.status,this.user.email);
                this.productDialog = false;
                 this.user = {};
         },
         editProduct(user) {
             this.user = {...user};
             this.productDialog = true;
+        },
+         historyProduct(user) {
+            this.user = {...user};
+            this.historyDialog = true;
         },
         confirmDeleteProduct(user) {
             this.user = user;
