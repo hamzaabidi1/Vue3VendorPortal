@@ -84,11 +84,10 @@
 
         <Dialog v-model:visible="historyDialog" :style="{width: '450px'}" header="user History" :modal="true" class="p-fluid">
             <div>
-        <DataTable :value="products" responsiveLayout="scroll">
-            <Column field="code" header="Code"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="category" header="Category"></Column>
-            <Column field="quantity" header="Quantity"></Column>
+        <DataTable :value="vendorHistory" responsiveLayout="scroll">
+            <Column field="status" header="Status"></Column>
+            <Column field="statusDate" header="Status Date"></Column>
+            <Column field="changedBy.username" header="Changed By"></Column>
         </DataTable>
     </div>
         </Dialog>
@@ -111,7 +110,7 @@
             </div>
             <template #footer>
                 <Button label="No" icon="pi pi-times" class="p-button-text" @click="confirmProductDialog = false"/>
-                <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="confirmProduct" />
+                <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="confirmstatusProduct" />
             </template>
         </Dialog>
 
@@ -176,6 +175,7 @@ export default {
     data() {
         return {
             vendors: null,
+            vendorHistory: null,
             productDialog: false,
             historyDialog: false,
             confirmProductDialog : false,
@@ -223,8 +223,10 @@ export default {
             this.productDialog = true;
         },
          historyProduct(user) {
-            this.user = {...user};
+             this.user = user;
             this.historyDialog = true;
+            console.log(this.user.email)
+            this.productService.getHistory(this.user.email).then(data => this.vendorHistory = data);
         },
         confirmDeleteProduct(user) {
             this.user = user;
@@ -237,9 +239,9 @@ export default {
         confirmstatusProduct() {
             this.vendors = this.vendors.filter(val => val.id !== this.user.id);
             this.confirmProductDialog = false;
-            this.productService.confirmuser(this.user.id);
-            this.user = {};
-            this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Deleted', life: 3000});
+            this.productService.confirmuser(this.user.id,this.user.email);
+             this.user = user;
+            this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Confirmed', life: 3000});
         },
          deleteProduct() {
             this.vendors = this.vendors.filter(val => val.id !== this.user.id);
