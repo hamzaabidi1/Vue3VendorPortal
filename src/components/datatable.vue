@@ -244,9 +244,11 @@ export default {
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Confirmed', life: 3000});
         },
          deleteProduct() {
+            let jsonobject= localStorage.user;
+            let monobjet = JSON.parse(jsonobject)
             this.vendors = this.vendors.filter(val => val.id !== this.user.id);
             this.deleteProductDialog = false;
-            this.productService.deletevendor(this.user.id);
+            this.productService.deletevendor(this.user.id,monobjet.email);
             this.user = {};
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Deleted', life: 3000});
         },
