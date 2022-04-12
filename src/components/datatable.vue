@@ -211,7 +211,7 @@ export default {
             this.submitted = false;
             historyDialog = false;
         },
-            async saveProduct() {
+            saveProduct() {
             this.submitted = true;
             let jsonobject= localStorage.user;
             let monobjet = JSON.parse(jsonobject)
@@ -220,7 +220,7 @@ export default {
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Updated', life: 3000});
             this.productService.updateStatus(this.user.id,this.user.status,monobjet.email);
             this.productDialog = false;
-            this.user = {};
+            //this.user = {};
         },
         editProduct(user) {
             this.user = {...user};
