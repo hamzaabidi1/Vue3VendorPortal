@@ -85,7 +85,11 @@
         <Dialog v-model:visible="historyDialog" :style="{width: '450px'}" header="user History" :modal="true" class="p-fluid">
             <div>
         <DataTable :value="vendorHistory" responsiveLayout="scroll">
-            <Column field="status" header="Status"></Column>
+             <Column field="status" header="Status" :sortable="true" style="min-width:12rem">
+                    <template #body="slotProps">
+                        <span :class="'product-badge status-' + (slotProps.data.status ? slotProps.data.status.toLowerCase() : '')">{{slotProps.data.status}}</span>
+                    </template>
+                </Column>
             <Column field="statusDate" header="Status Date"></Column>
             <Column field="changedBy.username" header="Changed By"></Column>
         </DataTable>
@@ -207,7 +211,7 @@ export default {
             this.submitted = false;
             historyDialog = false;
         },
-        saveProduct() {
+            async saveProduct() {
             this.submitted = true;
             let jsonobject= localStorage.user;
             let monobjet = JSON.parse(jsonobject)
@@ -235,7 +239,7 @@ export default {
             this.user = user;
             this.confirmProductDialog = true;
         },
-        confirmstatusProduct() {
+            confirmstatusProduct() {
             let jsonobject= localStorage.user;
             let monobjet = JSON.parse(jsonobject)
             this.vendors = this.vendors.filter(val => val.id !== this.user.id);
@@ -294,7 +298,30 @@ export default {
         align-items: start;
 	}
 }
-
+.product-badge {
+    border-radius: 2px;
+    padding: 0.25em 0.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+.status-inprogress{
+   background: #feedaf;
+    color: #8a5340;
+}
+.status-confirmed{
+    background: #c8e6c9;
+    color: #256029;
+}
+.status-submitted {
+    background: #ffcdd2;
+    color: #c63737;
+}
+.status-draft {
+    background: #99d9f7;
+    color: #1a07cc;
+}
 .product-image {
     width: 50px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
