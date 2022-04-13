@@ -235,16 +235,17 @@ export default {
             this.deleteProductDialog = true;
         },
          confirmProduct(user) {
-            this.user = user;
+            this.user = {...user};
             this.confirmProductDialog = true;
         },
             confirmstatusProduct() {
             let jsonobject= localStorage.user;
             let monobjet = JSON.parse(jsonobject)
-            this.vendors = this.vendors.filter(val => val.id !== this.user.id);
+            this.user.status = 'Confirmed'
+            this.vendors [this.findIndexById(this.user.id)] = this.user;
             this.confirmProductDialog = false;
-            this.adminService.confirmuser(this.user.id,monobjet.email);
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Confirmed', life: 3000});
+            this.adminService.confirmuser(this.user.id,monobjet.email);
         },
          deleteProduct() {
             let jsonobject= localStorage.user;
