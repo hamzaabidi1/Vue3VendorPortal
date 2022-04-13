@@ -23,14 +23,10 @@
                     </div>
 
                     <div class="field">
-                        <label for="fileupload">Revenue For Last Fiscal Year</label>
-                    <FileUpload  name="demo[]" url="./upload.php" @upload="onUpload" :multiple="true" accept="image/*" :maxFileSize="1000000" id="fileupload" v-model="fileupload" :class="{'p-invalid': validationErrors.fileupload && submitted}">
-                    <template #empty>
-                        <p>Drag and drop files to here to upload.</p>
-                    </template>
-                </FileUpload>
-                <small v-show="validationErrors.fileupload && submitted" class="p-error">revenue for last fiscal year is required.</small>
-                </div>
+                        <label for="revenu">Revenu</label>
+                        <InputText id="revenu" v-model="revenu" :class="{'p-invalid': validationErrors.revenu && submitted}" />
+                        <small v-show="validationErrors.revenu && submitted" class="p-error">Revenu is required.</small>
+                    </div>
                    
                     <div class="field">
                         <label for="dateestablished">Date Established</label>
@@ -72,14 +68,13 @@ export default {
     InputNumber,
     Dropdown,
     Calendar,
-    FileUpload,
   },
     data () {
         return {
             taxclassificationcode: '',
             taxregistrationnumber: '',
             dateestablished: '',
-            fileupload: '',
+            revenu: '',
             submitted: false,
             validationErrors: {}
         
@@ -89,7 +84,7 @@ export default {
         nextPage() {
              this.submitted = true;
             if (this.validateForm() ) {
-            this.$emit('next-page', {formData: {taxclassificationcode: this.taxclassificationcode,taxregistrationnumber: this.taxregistrationnumber,dateestablished: this.dateestablished,fileupload: this.fileupload}, pageIndex: 2});
+            this.$emit('next-page', {formData: {taxclassificationcode: this.taxclassificationcode,taxregistrationnumber: this.taxregistrationnumber,dateestablished: this.dateestablished,revenu: this.revenu}, pageIndex: 2});
             }
        },
         prevPage() {
@@ -107,6 +102,10 @@ export default {
                 this.validationErrors['taxclassificationcode'] = true;
             else
                 delete this.validationErrors['taxclassificationcode'];
+                if (!this.revenu.trim())
+                this.validationErrors['revenu'] = true;
+            else
+                delete this.validationErrors['revenu'];
                         if (this.dateestablished === null)
                 this.validationErrors['dateestablished'] = true;
             else

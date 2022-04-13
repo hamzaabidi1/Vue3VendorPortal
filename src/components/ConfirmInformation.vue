@@ -34,8 +34,8 @@
                     <b>{{formData.taxclassificationcode ? formData.taxclassificationcode : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="Revenuelastyear">Revenue For Last Year </label>
-                    <b>{{formData.Revenuelastyear ? formData.Revenuelastyear : '-'}}</b>
+                    <label for="revenu">Revenue For Last Year </label>
+                    <b>{{formData.revenu ? formData.revenu : '-'}}</b>
                 </div>
                 <div class="field col-12">
                     <label for="date">Date Established </label>
