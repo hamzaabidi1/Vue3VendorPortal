@@ -1,7 +1,7 @@
 import axios from "axios"
 import authHeader from './auth-header';
 
-export default class ProductService {
+export default class AdminService {
 
 	getProducts() {
 		return axios.get('http://localhost:8080/api/admin/all',{ headers: authHeader()}).then(d => d.data);
@@ -12,7 +12,8 @@ export default class ProductService {
 	updateStatus(id,status,email){
 		console.log(axios.put('http://localhost:8080/api/admin/changestatus/'+id+'/'+status+'/'+email,{ headers: authHeader()}))
 		console.log(authHeader())
-		return axios.put('http://localhost:8080/api/admin/changestatus/'+id+'/'+status+'/'+email,[,null,{ headers: authHeader()}]);
+		
+		return axios.put('http://localhost:8080/api/admin/changestatus/'+id+'/'+status+'/'+email,{ headers: authHeader()});
 	
 	}
 	confirmuser(id,email){

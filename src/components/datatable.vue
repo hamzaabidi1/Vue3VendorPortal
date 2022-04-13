@@ -133,7 +133,7 @@
 
 <script>
 import { FilterMatchMode } from 'primevue/api';
-import ProductService from '../services/ProductService';
+import AdminService from '../services/AdminService';
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Button from 'primevue/button';
 import Card from 'primevue/card';
@@ -197,19 +197,18 @@ export default {
             ]
         }
     },
-    productService: null,
+    adminService: null,
     created() {
-        this.productService = new ProductService();
+        this.adminService = new AdminService();
         this.initFilters();
     },
     mounted() {
-        this.productService.getProducts().then(data => this.vendors = data);
+        this.adminService.getProducts().then(data => this.vendors = data);
     },
     methods: {
         hideDialog() {
             this.productDialog = false;
             this.submitted = false;
-            historyDialog = false;
         },
             saveProduct() {
             this.submitted = true;
@@ -218,7 +217,7 @@ export default {
             this.user.status = this.user.status.value ? this.user.status.value: this.user.status;
             this.vendors[this.findIndexById(this.user.id)] = this.user;
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Updated', life: 3000});
-            this.productService.updateStatus(this.user.id,this.user.status,monobjet.email);
+            this.adminService.updateStatus(this.user.id,this.user.status,monobjet.email);
             this.productDialog = false;
             //this.user = {};
         },
@@ -229,7 +228,7 @@ export default {
          historyProduct(user) {
              this.user = user;
             this.historyDialog = true;
-            this.productService.getHistory(this.user.email).then(data => this.vendorHistory = data);
+            this.adminService.getHistory(this.user.email).then(data => this.vendorHistory = data);
         },
         confirmDeleteProduct(user) {
             this.user = user;
@@ -244,7 +243,7 @@ export default {
             let monobjet = JSON.parse(jsonobject)
             this.vendors = this.vendors.filter(val => val.id !== this.user.id);
             this.confirmProductDialog = false;
-            this.productService.confirmuser(this.user.id,monobjet.email);
+            this.adminService.confirmuser(this.user.id,monobjet.email);
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Confirmed', life: 3000});
         },
          deleteProduct() {
@@ -252,7 +251,7 @@ export default {
             let monobjet = JSON.parse(jsonobject)
             this.vendors = this.vendors.filter(val => val.id !== this.user.id);
             this.deleteProductDialog = false;
-            this.productService.deletevendor(this.user.id,monobjet.email);
+            this.adminService.deletevendor(this.user.id,monobjet.email);
             this.user = {};
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Deleted', life: 3000});
         },
