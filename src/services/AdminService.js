@@ -10,8 +10,6 @@ export default class AdminService {
 		return axios.delete('http://localhost:8080/api/admin/delete/'+id+'/'+email,{ headers: authHeader()});
 	}
 	updateStatus(id,status,email){
-		console.log(axios.put('http://localhost:8080/api/admin/changestatus/'+id+'/'+status+'/'+email,null,{headers: authHeader()}))
-		console.log(authHeader())
 		return axios.put('http://localhost:8080/api/admin/changestatus/'+id+'/'+status+'/'+email,null,{headers: authHeader()});
 	
 	}
@@ -21,4 +19,7 @@ export default class AdminService {
 	getHistory(email) {
 		return axios.get('http://localhost:8080/api/admin/all/history/'+email,{ headers: authHeader()}).then(d => d.data);
     }
+	addtoMaximo(id,email){
+		return axios.post('http://localhost:8080/api/admin/addcompany/'+id+'/'+email,null,{headers: authHeader()});
+	}
 }

@@ -219,6 +219,9 @@ export default {
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Updated', life: 3000});
             this.adminService.updateStatus(this.user.id,this.user.status,monobjet.email);
             this.productDialog = false;
+            if (this.user.status == "Confirmed"){
+                this.adminService.addtoMaximo(this.user.id,monobjet.email);
+            }
             //this.user = {};
         },
         editProduct(user) {
@@ -238,14 +241,15 @@ export default {
             this.user = {...user};
             this.confirmProductDialog = true;
         },
-            confirmstatusProduct() {
+            async confirmstatusProduct() {
             let jsonobject= localStorage.user;
             let monobjet = JSON.parse(jsonobject)
             this.user.status = 'Confirmed'
             this.vendors [this.findIndexById(this.user.id)] = this.user;
             this.confirmProductDialog = false;
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Confirmed', life: 3000});
-            this.adminService.confirmuser(this.user.id,monobjet.email);
+            await this.adminService.confirmuser(this.user.id,monobjet.email);
+            this.adminService.addtoMaximo(this.user.id,monobjet.email);
         },
          deleteProduct() {
             let jsonobject= localStorage.user;
@@ -321,6 +325,10 @@ export default {
 .status-draft {
     background: #99d9f7;
     color: #1a07cc;
+}
+.status-deleted {
+    background: #f2d2f5;
+    color: #9b0482;
 }
 .product-image {
     width: 50px;
