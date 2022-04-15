@@ -249,7 +249,7 @@ export default {
             this.confirmProductDialog = false;
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Confirmed', life: 3000});
             await this.adminService.confirmuser(this.user.id,monobjet.email);
-            this.adminService.addtoMaximo(this.user.id,monobjet.email);
+            this.adminService.addtoMaximo(this.user.id,monobjet.email,monobjet.encode);
         },
          deleteProduct() {
             let jsonobject= localStorage.user;
