@@ -1,14 +1,16 @@
 <template>
+<TablesFournisseur />
 </template>
 
 <script>
 import UserService from "../services/user.service";
 import register from "./Register.vue"
-
+import TablesFournisseur from "./TablesFournisseur.vue"
 export default {
   name: "Moderator",
    components: {
-   register
+   register,
+   TablesFournisseur
   },
   data() {
     return {
