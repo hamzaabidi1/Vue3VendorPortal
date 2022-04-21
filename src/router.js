@@ -15,7 +15,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Login,
+    component: Home,
   },
   {
     path: "/home",
@@ -69,7 +69,7 @@ const routes = [
     path: '/register',
     component: () => import('./components/StepSignup.vue'),
     children: [{
-        path: '',
+        path: '/register',
         component: () => import('./components/Register.vue')
     },
     {

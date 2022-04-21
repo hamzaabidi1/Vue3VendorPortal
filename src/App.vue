@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <a class="navbar-brand">VendorPortal</a>
+     
+        <li class="nav-item" >
+      <router-link to="/" class="navbar-brand"><font-awesome-icon icon="home" />VendorPortal</router-link>
+      </li>
+      
       <div class="navbar-nav mr-auto">
         <div v-if="!currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -87,7 +91,7 @@ export default {
      droitModification() {
        if (this.currentUser.roles == "ROLE_FOURNISSEUR")
        {
-      if (this.currentUser && this.currentUser.status == "InProgress") 
+      if (this.currentUser && this.currentUser.status == "InProgress" ) 
         this.$toast.add({severity:'warn', summary: 'Warn Message', detail:'Validation of your information In progress', life: 3000});
         else{
            this.$router.push('/register');
