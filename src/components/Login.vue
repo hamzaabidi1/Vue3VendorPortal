@@ -37,11 +37,18 @@
       </Form>
     </div>
   </div>
+  <Dialog header="VendorPortal" v-model:visible="displayConfirmation" :style="{width: '350px'}" :modal="true">
+            <div class="confirmation-content">
+                <span>welcome to vendor portal</span>
+            </div>
+        </Dialog>
 </template>
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+import Dialog from 'primevue/dialog';
+import Button from 'primevue/button';
 
 export default {
   name: "Login",
@@ -49,6 +56,8 @@ export default {
     Form,
     Field,
     ErrorMessage,
+    Dialog,
+    Button
   },
   data() {
     const schema = yup.object().shape({
@@ -60,6 +69,7 @@ export default {
       loading: false,
       message: "",
       schema,
+      displayConfirmation : false
     };
   },
   computed: {
@@ -72,7 +82,16 @@ export default {
       this.$router.push("/register");
     }
   },
+   mounted() {
+     this.displayConfirmation = true;
+    },
   methods: {
+    openConfirmation() {
+            this.displayConfirmation = true;
+        },
+        closeConfirmation() {
+            this.displayConfirmation = false;
+        },
     handleLogin(user) {
       this.loading = true;
    

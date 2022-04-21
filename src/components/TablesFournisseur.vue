@@ -66,9 +66,9 @@ export default {
         let jsonobject= localStorage.user;
         let monobjet = JSON.parse(jsonobject)
         this.vendorService.getpo(monobjet.username).then(data => this.po = data);
-        console.log(this.vendorService.getpo(monobjet.username).then(data => this.po = data))
-        this.vendorService.getinvoice(monobjet.username).then(data2 => this.invoice = data2);
-        this.vendorService.getrfq(monobjet.username).then(data3 => this.rfq = data3);
+        console.log(this.po)
+     //   this.vendorService.getinvoice(monobjet.username).then(data2 => this.invoice = data2);
+     //   this.vendorService.getrfq(monobjet.username).then(data3 => this.rfq = data3);
     }
     
 }
