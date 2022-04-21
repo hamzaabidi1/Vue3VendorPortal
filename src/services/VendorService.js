@@ -7,10 +7,10 @@ export default class VendorService {
 		return axios.get('http://localhost:8080/api/fournisseur/po/'+vendor,{ headers: authHeader()}).then(d => d.data);
     }
     getinvoice(vendor) {
-		return axios.get('http://localhost:8080/api/fournisseur/invoices/'+vendor,{ headers: authHeader(),optionAxios}).then(d => d.data);
+		return axios.get('http://localhost:8080/api/fournisseur/invoices/'+vendor,{ headers: authHeader()}).then(d => d.data);
     }
     getrfq(vendor) {
-		return axios.get('http://localhost:8080/api/fournisseur/rfq/'+vendor,{ headers: authHeader(),optionAxios}).then(d => d.data);
+		return axios.get('http://localhost:8080/api/fournisseur/rfq/'+vendor,{ headers: authHeader()}).then(d => d.data);
     }
 
 }
