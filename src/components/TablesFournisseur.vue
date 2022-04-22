@@ -4,7 +4,10 @@
             <TabView>
 	<TabPanel header="RFQ LIST">
 		<div>
-        <DataTable  :value="rfq" responsiveLayout="scroll">
+        <DataTable  :value="rfq" :paginator="true" :rows="5"
+            paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+            :rowsPerPageOptions="[5,10,20,50]" responsiveLayout="scroll"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords}">
             <Column field="orgid" header="orgid"></Column>
             <Column field="replyto" header="replyto"></Column>
             <Column field="replytoattn" header="replytoattn"></Column>
@@ -14,7 +17,10 @@
 	</TabPanel>
 	<TabPanel header="PO LIST">
 		<div>
-        <DataTable :value="po" responsiveLayout="scroll">
+        <DataTable :value="po" :paginator="true" :rows="5"
+            paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+            :rowsPerPageOptions="[5,10,20,50]" responsiveLayout="scroll"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords}">
             <Column field="receipts_description" header="receipts_description"></Column>
             <Column field="contractrefnum" header="contractrefnum"></Column>
             <Column field="changeby" header="changeby"></Column>
@@ -24,7 +30,10 @@
 	</TabPanel>
 	<TabPanel header="INVOICE LIST">
 		<div>
-        <DataTable :value="invoice" responsiveLayout="scroll">
+        <DataTable :value="invoice" :paginator="true" :rows="5"
+            paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+            :rowsPerPageOptions="[5,10,20,50]" responsiveLayout="scroll"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords}">
             <Column field="status_description" header="status_description"></Column>
             <Column field="contractrefnum" header="contractrefnum"></Column>
             <Column field="orgid" header="orgid"></Column>

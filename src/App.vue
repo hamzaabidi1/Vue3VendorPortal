@@ -20,9 +20,7 @@
         <li v-if="showFournisseurBoard" class="nav-item">
           <router-link to="/fournisseur" class="nav-link">Fournisseur Board</router-link>
         </li>
-        <li class="nav-item">
-          <router-link v-if="currentUser" to="/user" class="nav-link">User</router-link>
-        </li>
+       
       </div>
 
       <div v-if="!currentUser" class="navbar-nav ml-auto">
