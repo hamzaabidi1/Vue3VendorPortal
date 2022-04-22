@@ -5,30 +5,30 @@
 	<TabPanel header="RFQ LIST">
 		<div>
         <DataTable  :value="rfq" responsiveLayout="scroll">
-            <Column field="code" header="Code"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="category" header="Category"></Column>
-            <Column field="quantity" header="Quantity"></Column>
+            <Column field="orgid" header="orgid"></Column>
+            <Column field="replyto" header="replyto"></Column>
+            <Column field="replytoattn" header="replytoattn"></Column>
+            <Column field="fob" header="fob"></Column>
         </DataTable>
     </div>
 	</TabPanel>
 	<TabPanel header="PO LIST">
 		<div>
         <DataTable :value="po" responsiveLayout="scroll">
-            <Column field="code" header="Code"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="category" header="Category"></Column>
-            <Column field="quantity" header="Quantity"></Column>
+            <Column field="receipts_description" header="receipts_description"></Column>
+            <Column field="contractrefnum" header="contractrefnum"></Column>
+            <Column field="changeby" header="changeby"></Column>
+            <Column field="currencycode" header="currencycode"></Column>
         </DataTable>
     </div>
 	</TabPanel>
 	<TabPanel header="INVOICE LIST">
 		<div>
         <DataTable :value="invoice" responsiveLayout="scroll">
-            <Column field="code" header="Code"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="category" header="Category"></Column>
-            <Column field="quantity" header="Quantity"></Column>
+            <Column field="status_description" header="status_description"></Column>
+            <Column field="contractrefnum" header="contractrefnum"></Column>
+            <Column field="orgid" header="orgid"></Column>
+            <Column field="description" header="description"></Column>
         </DataTable>
     </div>
 	</TabPanel>
@@ -65,10 +65,10 @@ export default {
     mounted() {
         let jsonobject= localStorage.user;
         let monobjet = JSON.parse(jsonobject)
-        this.vendorService.getpo(monobjet.username).then(data => this.po = data);
-        console.log(this.po)
-     //   this.vendorService.getinvoice(monobjet.username).then(data2 => this.invoice = data2);
-     //   this.vendorService.getrfq(monobjet.username).then(data3 => this.rfq = data3);
+        this.vendorService.getPo(monobjet.username).then(data => this.po = data);
+       this.vendorService.getInvoice(monobjet.username).then(data => this.invoice = data);
+        this.vendorService.getRfq(monobjet.username).then(data => this.rfq = data);
+        
     }
     
 }

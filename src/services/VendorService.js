@@ -3,13 +3,13 @@ import authHeader from './auth-header';
 
 export default class VendorService {
 
-    getpo(vendor) {
+    getPo(vendor) {
 		return axios.get('http://localhost:8080/api/fournisseur/po/'+vendor,{ headers: authHeader()}).then(d => d.data);
     }
-    getinvoice(vendor) {
+    getInvoice(vendor) {
 		return axios.get('http://localhost:8080/api/fournisseur/invoices/'+vendor,{ headers: authHeader()}).then(d => d.data);
     }
-    getrfq(vendor) {
+    getRfq(vendor) {
 		return axios.get('http://localhost:8080/api/fournisseur/rfq/'+vendor,{ headers: authHeader()}).then(d => d.data);
     }
 
