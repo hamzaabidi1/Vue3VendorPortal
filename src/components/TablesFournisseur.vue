@@ -74,7 +74,7 @@
 	</TabPanel>
 	<TabPanel header="INVOICE LIST">
 		<div>
-      <DataTable :value="po" v-model:expandedRows="expandedRows" dataKey="id" 
+      <DataTable :value="invoice" v-model:expandedRows="expandedRows" dataKey="id" 
       @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" responsiveLayout="scroll">
             <template #header>
                  <div class="table-header-container">
@@ -89,6 +89,8 @@
             <Column field="totalcost" header="totalcost" sortable></Column>
             <Column field="totaltax1" header="totaltax1" sortable></Column>
             <Column field="currencycode" header="currencycode" sortable></Column>
+            <Column field="enterby" header="enterby" sortable></Column>
+            <Column field="enterdate" header="enterdate" sortable></Column>
             <template #expansion="slotProps">
                 <div class="orders-subtable">
                 <h5>Orders for {{slotProps.data.invoicenum}}</h5>
@@ -98,6 +100,8 @@
                 <Column field="description" header="description" sortable></Column>
                 <Column field="unitcost" header="unitcost" sortable></Column>
                 <Column field="linecost" header="linecost" sortable></Column>
+                <Column field="qtyforui" header="qtyforui" sortable></Column>
+                <Column field="invoiceunit" header="invoiceunit" sortable></Column>
             </DataTable>
                 </div>
             </template>
