@@ -5,8 +5,8 @@
 	<TabPanel header="RFQ LIST">
 		<div>
 
-              <DataTable :value="rfq" v-model:expandedRows="expandedRows" dataKey="id" 
-      @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" responsiveLayout="scroll">
+              <DataTable :value="rfq" v-model:expandedRows="expandedRows" dataKey="rfqnum" 
+      @rowExpand="onRowExpandRfq" @rowCollapse="onRowCollapseRfq" responsiveLayout="scroll">
             <template #header>
                  <div class="table-header-container">
                     <Button icon="pi pi-plus" label="Expand All" @click="expandAll" class="mr-2" />
@@ -14,16 +14,16 @@
                 </div>
             </template>
             <Column :expander="true" headerStyle="width: 3rem" />
-            <Column field="rfqnum" header="rfqnum"></Column>
-            <Column field="description" header="description"></Column>
-            <Column field="status" header="status"></Column>
-            <Column field="requireddate" header="requireddate"></Column>
-            <Column field="purchaseagent" header="purchaseagent"></Column>
+            <Column field="rfqnum" header="rfqnum" sortable></Column>
+            <Column field="description" header="description" sortable></Column>
+            <Column field="status" header="status" sortable></Column>
+            <Column field="requireddate" header="requireddate" sortable></Column>
+            <Column field="purchaseagent" header="purchaseagent" sortable></Column>
             <template #expansion="slotProps">
                 <div class="orders-subtable">
                 <h5>Orders for {{slotProps.data.rfqnum}}</h5>
             <DataTable :value="slotProps.data.rfqline" responsiveLayout="scroll">
-                <Column field="rfqnum" header="rfqnum" sortable></Column>
+                <Column field="rfqlinenum" header="rfqlinenum" sortable></Column>
                 <Column field="itemnum" header="itemnum" sortable></Column>
                 <Column field="description" header="description" sortable></Column>
                 <Column field="orderqty" header="orderqty" sortable></Column>
@@ -38,8 +38,9 @@
 	</TabPanel>
 	<TabPanel header="PO LIST">
 		<div>
-            <DataTable :value="po" v-model:expandedRows="expandedRows" dataKey="id" 
-      @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" responsiveLayout="scroll">
+            <Toast />
+            <DataTable :value="po" v-model:expandedRows="expandedRows" dataKey="ponum" 
+      @rowExpand="onRowExpandPO" @rowCollapse="onRowCollapsePO" responsiveLayout="scroll">
             <template #header>
                  <div class="table-header-container">
                     <Button icon="pi pi-plus" label="Expand All" @click="expandAll" class="mr-2" />
@@ -59,7 +60,7 @@
                 <div class="orders-subtable">
                 <h5>Orders for {{slotProps.data.invoicenum}}</h5>
             <DataTable :value="slotProps.data.poline" responsiveLayout="scroll">
-                <Column field="polinenum" header="ponum" sortable></Column>
+                <Column field="polinenum" header="polinenum" sortable></Column>
                 <Column field="itemnum" header="itemnum" sortable></Column>
                 <Column field="description" header="description" sortable></Column>
                 <Column field="orderqty" header="orderqty" sortable></Column>
@@ -74,7 +75,7 @@
 	</TabPanel>
 	<TabPanel header="INVOICE LIST">
 		<div>
-      <DataTable :value="invoice" v-model:expandedRows="expandedRows" dataKey="id" 
+      <DataTable :value="invoice" v-model:expandedRows="expandedRows" dataKey="invoicenum" 
       @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" responsiveLayout="scroll">
             <template #header>
                  <div class="table-header-container">
@@ -145,13 +146,25 @@ export default {
     mounted() {
         let jsonobject= localStorage.user;
         let monobjet = JSON.parse(jsonobject)
-        this.vendorService.getPo(monobjet.username).then(data => this.po = data);
+        this.vendorService.getPo(monobjet.username).then(data1 => this.po = data1);
        this.vendorService.getInvoice(monobjet.username).then(data => this.invoice = data);
-        this.vendorService.getRfq(monobjet.username).then(data => this.rfq = data);
+        this.vendorService.getRfq(monobjet.username).then(data2 => this.rfq = data2);
         
     },
     methods: {
-        onRowExpand(event) {
+        onRowExpandRfq(event) {
+            this.$toast.add({severity: 'info', summary: 'RFQ Expanded', detail: event.data.rfqnum, life: 3000});
+        },
+        onRowCollapseRfq(event) {
+            this.$toast.add({severity: 'success', summary: 'RFQ Collapsed', detail: event.data.rfqnum, life: 3000});
+        },
+        onRowExpandPO(event) {
+            this.$toast.add({severity: 'info', summary: 'RFQ Expanded', detail: event.data.ponum, life: 3000});
+        },
+        onRowCollapsePO(event) {
+            this.$toast.add({severity: 'success', summary: 'RFQ Collapsed', detail: event.data.ponum, life: 3000});
+        },
+         onRowExpand(event) {
             this.$toast.add({severity: 'info', summary: 'Invoice Expanded', detail: event.data.invoicenum, life: 3000});
         },
         onRowCollapse(event) {

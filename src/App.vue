@@ -33,7 +33,7 @@
 
       <div v-if="currentUser" class="navbar-nav ml-auto">
         <li v-if="currentUser.roles =='ROLE_FOURNISSEUR'" class="nav-item">
-          <router-link to="" class="nav-link">
+          <router-link to="" class="nav-link status- +slotProps.value.toLowerCase()">
             {{ currentUser.status }}
           </router-link>
         </li>
@@ -99,3 +99,21 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.status-inprogress{
+   background: #feedaf;
+    color: #8a5340;
+}
+.status-Confirmed{
+    background: #c8e6c9;
+    color: #256029;
+}
+.status-submitted {
+    background: #ffcdd2;
+    color: #c63737;
+}
+.status-draft {
+    background: #99d9f7;
+    color: #1a07cc;
+}
+</style>
