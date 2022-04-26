@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import PrimeVue from "primevue/config";
 import Steps from 'primevue/steps';
+import Sidebar from 'primevue/sidebar';
 import Toast from 'primevue/toast';
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -20,4 +21,5 @@ createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
   .component("Steps", Steps)
   .component("Toast",Toast )
+  .component("Sidebar",Sidebar)
   .mount("#app");

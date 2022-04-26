@@ -1,7 +1,18 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <div v-if="currentUser" >
+      <Sidebar v-model:visible="visibleLeft" class="bg-dark">
+	        <li v-if="showAdminBoard">
+          <router-link to="/admin" class="navbar-brand" style="color:white;">Admin Board</router-link>
+        </li>
+        <li v-if="showFournisseurBoard" >
+          <router-link to="/fournisseur" class="navbar-brand" style="color:white;">Vendor Board</router-link>
+        </li>
+      </Sidebar>
+     <i class="pi pi-bars navbar-brand" @click="visibleLeft = true" ></i>
      
+     </div>
         <li class="nav-item" >
       <router-link to="/" class="navbar-brand"><font-awesome-icon icon="home" />VendorPortal</router-link>
       </li>
@@ -14,13 +25,6 @@
           </router-link>
         </li>
         </div>
-        <li v-if="showAdminBoard" class="nav-item">
-          <router-link to="/admin" class="nav-link">Admin Board</router-link>
-        </li>
-        <li v-if="showFournisseurBoard" class="nav-item">
-          <router-link to="/fournisseur" class="nav-link">Fournisseur Board</router-link>
-        </li>
-       
       </div>
 
       <div v-if="!currentUser" class="navbar-nav ml-auto">
@@ -29,11 +33,16 @@
             <font-awesome-icon icon="user-plus" /> Sign Up
           </router-link>
         </li>
+         <li class="nav-item">
+          <router-link to="/login" class="nav-link">
+            <font-awesome-icon icon="sign-in-alt" /> Sign In
+          </router-link>
+        </li>
       </div>
 
       <div v-if="currentUser" class="navbar-nav ml-auto">
         <li v-if="currentUser.roles =='ROLE_FOURNISSEUR'" class="nav-item">
-          <router-link to="" class="nav-link status- +slotProps.value.toLowerCase()">
+          <router-link to="" class="nav-link">
             {{ currentUser.status }}
           </router-link>
         </li>
@@ -53,6 +62,10 @@
       </div>
     </nav>
 
+    
+
+
+
     <div class="container">
       <router-view />
     </div>
@@ -60,7 +73,12 @@
 </template>
 
 <script>
+import 'primeicons/primeicons.css';
 export default {
+   data() {
+        return {
+            visibleLeft: false,
+        }},
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
@@ -91,7 +109,7 @@ export default {
        {
       if (this.currentUser && this.currentUser.status == "InProgress" ) 
         this.$toast.add({severity:'warn', summary: 'Warn Message', detail:'Validation of your information In progress', life: 3000});
-        else{
+        else if (this.currentUser && this.currentUser.status == "Draft" ){
            this.$router.push('/register');
         }
       }

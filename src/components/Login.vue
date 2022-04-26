@@ -38,9 +38,6 @@
     </div>
   </div>
   <Dialog header="VendorPortal" v-model:visible="displayConfirmation" :style="{width: '350px'}" :modal="true">
-            <div class="confirmation-content">
-                <span>welcome to vendor portal</span>
-            </div>
         </Dialog>
 </template>
 
@@ -129,7 +126,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped >
 label {
   display: block;
   margin-top: 10px;
@@ -166,4 +163,8 @@ label {
 .error-feedback {
   color: red;
 }
+
+
+
+
 </style>
