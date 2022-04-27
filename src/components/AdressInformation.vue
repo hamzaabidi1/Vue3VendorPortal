@@ -50,8 +50,6 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
-//import * as yup from "yup";
-import StepSignup from './StepSignup.vue';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
 import InputText from "primevue/inputtext"

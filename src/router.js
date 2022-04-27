@@ -4,6 +4,7 @@ import Login from "./components/Login.vue";
 import ForgotPassword from "./components/ForgotPassword.vue";
 import VerifyEmail from "./components/VerifyEmail.vue";
 import PasswordsConfirmation from "./components/PasswordsConfirmation.vue"
+import requests from "./components/Requests.vue"
 import SignUp from "./components/SignUp.vue"
 // lazy-loaded
 const Profile = () => import("./components/Profile.vue")
@@ -61,9 +62,15 @@ const routes = [
     path: '/verifyemail',
     component: VerifyEmail
   },
+  
   {
     path: '/passwordsConfirmation',
     component: PasswordsConfirmation
+  },
+  {
+    path: '/requests',
+    component: requests,
+    name: "requests",
   },
   {
     path: '/register',

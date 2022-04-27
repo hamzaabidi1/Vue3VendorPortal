@@ -3,11 +3,15 @@
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <div v-if="currentUser" >
       <Sidebar v-model:visible="visibleLeft" class="bg-dark">
+        <img src="../public/logo-home.png" width="50" height="50" class="sponsor_button">
 	        <li v-if="showAdminBoard">
           <router-link to="/admin" class="navbar-brand" style="color:white;">Admin Board</router-link>
         </li>
         <li v-if="showFournisseurBoard" >
           <router-link to="/fournisseur" class="navbar-brand" style="color:white;">Vendor Board</router-link>
+        </li>
+        <li v-if="showAdminBoard" >
+          <router-link to="//requests" class="navbar-brand" style="color:white;">Update profile Requests</router-link>
         </li>
       </Sidebar>
      <i class="pi pi-bars navbar-brand" @click="visibleLeft = true" ></i>
@@ -41,6 +45,10 @@
       </div>
 
       <div v-if="currentUser" class="navbar-nav ml-auto">
+        <li v-if="currentUser.roles =='ROLE_ADMIN'" class="nav-item">
+<i class="pi pi-bell mr-2 p-text-secondary" style="font-size: 1.5rem"  v-badge.danger="number" @click="getAllrequest()"></i>
+      </li>
+    
         <li v-if="currentUser.roles =='ROLE_FOURNISSEUR'" class="nav-item">
           <router-link to="" class="nav-link">
             {{ currentUser.status }}
@@ -74,11 +82,25 @@
 
 <script>
 import 'primeicons/primeicons.css';
+import Badge from 'primevue/badge';
+import AdminService from './services/AdminService';
 export default {
+   components: {
+     Badge
+  },
+  
    data() {
         return {
+            number: null,
             visibleLeft: false,
         }},
+         AdminService: null,
+    created() {
+        this.AdminService = new AdminService();
+    },
+        mounted() {
+        console.log(this.AdminService.getNumberOfRequest().then(data => this.number = data));       
+    },
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
@@ -113,7 +135,10 @@ export default {
            this.$router.push('/register');
         }
       }
-     }
+     },
+       getAllrequest() {
+             this.$router.push('/requests');
+        },
   }
 };
 </script>
@@ -133,5 +158,11 @@ export default {
 .status-draft {
     background: #99d9f7;
     color: #1a07cc;
+}
+
+.sponsor_button img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 </style>

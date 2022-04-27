@@ -22,4 +22,10 @@ export default class AdminService {
 	addtoMaximo(id,email,encode){
 		return axios.post('http://localhost:8080/api/admin/addcompany/'+id+'/'+email+'/'+encode,null,{headers: authHeader()});
 	}
+	getNumberOfRequest(){
+		return axios.get('http://localhost:8080/api/auth/getNumberProfiles').then(d => d.data);
+	}
+	getRequests() {
+		return axios.get('http://localhost:8080/api/profile/getProfiles',{ headers: authHeader()}).then(d => d.data);
+    }
 }

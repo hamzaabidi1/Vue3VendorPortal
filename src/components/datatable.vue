@@ -152,7 +152,6 @@ import Textarea from 'primevue/textarea';
 import Dropdown from 'primevue/dropdown';
 import RadioButton from 'primevue/radiobutton';
 import Dialog from 'primevue/dialog';
-import axios from 'axios'
 
 
 export default {
