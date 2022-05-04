@@ -5,13 +5,16 @@
       <Sidebar v-model:visible="visibleLeft" class="bg-dark">
         <img src="../public/logo-home.png" width="50" height="50" class="sponsor_button">
 	        <li v-if="showAdminBoard">
-          <router-link to="/admin" class="navbar-brand" style="color:white;">Admin Board</router-link>
+          <router-link to="/admin" class="navbar-brand" style="color:white;">Vendors List</router-link>
         </li>
         <li v-if="showFournisseurBoard" >
-          <router-link to="/fournisseur" class="navbar-brand" style="color:white;">Vendor Board</router-link>
+          <router-link to="/fournisseur" class="navbar-brand" style="color:white;">RFQ,PO,INVOICE</router-link>
+        </li>
+        <li v-if="showFournisseurBoard" >
+          <router-link to="" @click.prevent="requestUpdate" class="navbar-brand" style="color:white;">Change Informations</router-link>
         </li>
         <li v-if="showAdminBoard" >
-          <router-link to="//requests" class="navbar-brand" style="color:white;">Update profile Requests</router-link>
+          <router-link to="/requests" class="navbar-brand" style="color:white;">Update profile Requests</router-link>
         </li>
       </Sidebar>
      <i class="pi pi-bars navbar-brand" @click="visibleLeft = true" ></i>
@@ -20,6 +23,173 @@
         <li class="nav-item" >
       <router-link to="/" class="navbar-brand"><font-awesome-icon icon="home" />VendorPortal</router-link>
       </li>
+
+       <Dialog v-model:visible="requestDialog" :breakpoints="{'960px': '75vw'}" :style="{width: '50vw'}" header="Update Informations" >
+       
+        
+          
+            
+
+              <div class="flex">
+                <div class=row>
+        <div class=col-md-6>
+          <div class="card">
+                    <h5 class="text-center">General Informations</h5>
+                        <div class="p-fluid">
+    
+                      
+                        <label for="firstname">Vendor Name</label>
+                        <InputText  id="firstname" v-model="firstname" :class="{'p-invalid': validationErrors.firstname && submitted}" />
+                        <small v-show="validationErrors.firstname && submitted" class="p-error">Firstname is required.</small>
+                       
+                        
+                        <label for="lastname">Vendor Subname</label>
+                        <InputText id="lastname" v-model="lastname" :class="{'p-invalid': validationErrors.lastname && submitted}" />
+                        <small v-show="validationErrors.lastname && submitted" class="p-error">Lastname is required.</small>
+                    
+                   
+                   
+                    
+                        <label for="phone">Phone Number</label>
+                        <InputNumber id="phone" v-model="phone" :class="{'p-invalid': validationErrors.phone && submitted}" />
+                        <small v-show="validationErrors.phone && submitted" class="p-error">Phone Number is required.</small>
+                
+                  
+                    
+                    </div>
+                  
+          </div>
+      </div>
+                    
+                     
+      <div class=col-md-6>
+        <div class="card">
+                    <h5 class="text-center">Address Informations</h5>
+                        <div class="p-fluid">
+                           <div class=row> 
+                            <div class=col-md-6>
+                         <div class="field">
+                        <label for="country">Country</label>
+                        <InputText id="country" v-model="country" :class="{'p-invalid': validationErrors.country && submitted}" />
+                        <small v-show="validationErrors.country && submitted" class="p-error">Country is required.</small>
+                    </div>
+                            </div>
+                              
+                            <div class=col-md-6>
+                        <div class="field">
+                        <label for="region">State / Region</label>
+                        <InputText id="region" v-model="region" :class="{'p-invalid': validationErrors.region && submitted}" />
+                        <small v-show="validationErrors.region && submitted" class="p-error">region is required.</small>
+                    </div>
+                    </div>
+                            </div>
+                             <div class=row> 
+                            <div class=col-md-6>
+                        <div class="field">
+                        <label for="city">City</label>
+                        <InputText id="city" v-model="city" :class="{'p-invalid': validationErrors.city && submitted}" />
+                        <small v-show="validationErrors.city && submitted" class="p-error">City is required.</small>
+                    </div>
+                            </div>
+                           
+                            <div class=col-md-6>
+                     <div class="field">
+                        <label for="postalcode">Postal Code</label>
+                        <InputText id="postalcode" v-model="postalcode" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
+                        <small v-show="validationErrors.postalcode && submitted" class="p-error">Postal Code is required.</small>
+                    </div>
+                            </div>
+                            </div>
+                             <div class=row> 
+                           
+                       <div class=col-md-12>
+                        <label for="address">Address</label>
+                        <InputText id="address" v-model="address" :class="{'p-invalid': validationErrors.address && submitted}" />
+                        <small v-show="validationErrors.address && submitted" class="p-error">address is required.</small>
+                    </div>
+                    </div>
+                        
+                      </div>   
+                    </div>
+      
+         </div>  
+         
+          </div>
+
+
+          <div class=row>        
+
+           <div class=col-md-6>   
+             <div class="card">        
+                    <h5 class="text-center">Fiscal Informations</h5>
+                    
+                        <div class="p-fluid">
+                          <div class=row> 
+                            <div class=col-md-6>
+                     <div class="field">
+                        <label for="taxregistrationnumber">Tax Registration Number</label>
+                        <InputText id="taxregistrationnumber" v-model="taxregistrationnumber" :class="{'p-invalid': validationErrors.taxregistrationnumber && submitted}" />
+                        <small v-show="validationErrors.taxregistrationnumber && submitted" class="p-error">tax registration number is required.</small>
+                    </div>
+                    </div>
+                     
+                            <div class=col-md-6>
+                     <div class="field">
+                        <label for="taxclassificationcode">Tax Classification Code</label>
+                        <InputText id="taxclassificationcode" v-model="taxclassificationcode" :class="{'p-invalid': validationErrors.taxclassificationcode && submitted}" />
+                        <small v-show="validationErrors.taxclassificationcode && submitted" class="p-error">tax classification code is required.</small>
+                    </div>
+                            </div>
+                            </div>
+
+                            <div class=row> 
+                            <div class=col-md-6>
+
+                    <div class="field">
+                        <label for="revenu">Revenu</label>
+                        <InputText id="revenu" v-model="revenu" :class="{'p-invalid': validationErrors.revenu && submitted}" />
+                        <small v-show="validationErrors.revenu && submitted" class="p-error">Revenu is required.</small>
+                    </div>
+                            </div>
+                             
+                            <div class=col-md-6>
+                    <div class="field">
+                        <label for="dateestablished">Date Established</label>
+                        <Calendar id="dateestablished" v-model="dateestablished" :showIcon="true" />
+                        <small v-show="validationErrors.dateestablished && submitted" class="p-error">dateestablished is required.</small>
+                    </div>
+                            </div>
+                            </div>
+                      </div>
+                    </div>
+          
+         </div>           
+                    
+         <div class=col-md-6>   
+           <div class="card">     
+                    <h5 class="text-center">Legacy Informations</h5>
+                        <div class="p-fluid">
+                    <div class="field">
+                        <label for="companywebsite">Company Web Site</label>
+                        <InputText id="companywebsite" v-model="companywebsite" :class="{'p-invalid': validationErrors.companywebsite && submitted}" />
+                        <small v-show="validationErrors.companywebsite && submitted" class="p-error">company web site is required.</small>
+                    </div>
+                    <div class="field-checkbox">
+                            <Checkbox id="accept" :binary="true" v-model="accept" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
+                            <label for="accept">I agree to the terms and conditions*</label>
+                            <small v-show="validationErrors.accept && submitted" class="p-error">we have to accept conditions.</small>
+                        </div>
+                        <Button label="confirm" @click="confirm()"  />
+                     </div>
+                    </div>
+   
+      </div>             
+        </div>        
+                 </div>
+               
+            
+      
+        </Dialog>
       
       <div class="navbar-nav mr-auto">
         <div v-if="!currentUser" class="navbar-nav ml-auto">
@@ -84,22 +254,58 @@
 import 'primeicons/primeicons.css';
 import Badge from 'primevue/badge';
 import AdminService from './services/AdminService';
+import VendorService from './services/VendorService';
+import Dialog from 'primevue/dialog';
+import InputText from "primevue/inputtext"
+import Button from 'primevue/button';
+import Checkbox from 'primevue/checkbox';
+import InputNumber from 'primevue/inputnumber';
+import Calendar from 'primevue/calendar';
+import Divider from 'primevue/divider';
 export default {
    components: {
-     Badge
+     Badge,
+     Dialog,
+     InputText,
+     Button,
+     Checkbox,
+     InputNumber,
+     Calendar,
+     Divider
+
   },
   
    data() {
         return {
+          firstname: '',
+          lastname: '',
+          phone: null,
+          country: '',
+          region: '',
+          address: '',
+           postalcode: '',
+           city: '',
+           taxregistrationnumber: '',
+           taxclassificationcode: '',
+           revenu: '',
+           dateestablished: '',
+           companywebsite: '',
+           accept: null,
             number: null,
             visibleLeft: false,
+             requestDialog: false,
+             vendorDetails: null,
+             submitted: false,
+            validationErrors: {}
         }},
          AdminService: null,
+         VendorService: null ,
     created() {
         this.AdminService = new AdminService();
+        this.VendorService= new VendorService();
     },
         mounted() {
-        console.log(this.AdminService.getNumberOfRequest().then(data => this.number = data));       
+        this.AdminService.getNumberOfRequest().then(data => this.number = data);       
     },
   computed: {
     currentUser() {
@@ -126,6 +332,14 @@ export default {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
     },
+     validateForm() {
+                        if (!this.postalcode.trim())
+                this.validationErrors['postalcode'] = true;
+            else
+                delete this.validationErrors['postalcode'];
+
+            return !Object.keys(this.validationErrors).length;
+        },
      droitModification() {
        if (this.currentUser.roles == "ROLE_FOURNISSEUR")
        {
@@ -138,6 +352,13 @@ export default {
      },
        getAllrequest() {
              this.$router.push('/requests');
+        },
+        requestUpdate() {
+            this.requestDialog = true;
+            let jsonobject= localStorage.user;
+            let monobjet = JSON.parse(jsonobject)
+            this.VendorService.getDetailsProfile(monobjet.email).then(data => this.vendorDetails = data);
+     
         },
   }
 };

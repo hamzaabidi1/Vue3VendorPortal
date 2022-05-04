@@ -12,5 +12,8 @@ export default class VendorService {
     getRfq(vendor) {
 		return axios.get('http://localhost:8080/api/fournisseur/rfq/'+vendor,{ headers: authHeader()}).then(d => d.data);
     }
+    getDetailsProfile(email) {
+      return axios.get('http://localhost:8080/api/fournisseur/getvendor/'+email,{ headers: authHeader()}).then(d => d.data);
+      }
 
 }

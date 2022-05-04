@@ -54,7 +54,6 @@ import Card from 'primevue/card';
 import InputNumber from "primevue/inputnumber"
 import Dropdown from "primevue/dropdown"
 import Calendar from 'primevue/calendar';
-import FileUpload from 'primevue/fileupload';
 export default {
   name: "Register",
    emits: ['nextPage', 'prevPage','complete'],
