@@ -15,5 +15,8 @@ export default class VendorService {
     getDetailsProfile(email) {
       return axios.get('http://localhost:8080/api/fournisseur/getvendor/'+email,{ headers: authHeader()}).then(d => d.data);
       }
+      postRequestForUpdateProfile(formData,email) {
+        return axios.post('http://localhost:8080/api/fournisseur/requestUpdateProfile/'+email,formData,{ headers: authHeader()});
+        }
 
 }

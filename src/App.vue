@@ -24,34 +24,34 @@
       <router-link to="/" class="navbar-brand"><font-awesome-icon icon="home" />VendorPortal</router-link>
       </li>
 
-       <Dialog v-model:visible="requestDialog" :breakpoints="{'960px': '75vw'}" :style="{width: '50vw'}" header="Update Informations" >
+       <Dialog v-model:visible="requestDialog" :breakpoints="{'960px': '75vw'}" :style="{width: '90vw'}" header="Update Informations" >
        
         
           
             
 
               <div class="flex">
-                <div class=row>
+                <div class="row align-items-start" style="margin-bottom:3vw;">
         <div class=col-md-6>
           <div class="card">
-                    <h5 class="text-center">General Informations</h5>
+                    <h5 class="text-center" style="margin-top:1vw;">General Informations</h5>
                         <div class="p-fluid">
     
                       
-                        <label for="firstname">Vendor Name</label>
-                        <InputText  id="firstname" v-model="firstname" :class="{'p-invalid': validationErrors.firstname && submitted}" />
+                        <label for="firstname" style="width: 90%;margin-left:2vw;">Vendor Name</label>
+                        <InputText  style="width: 90%;margin-left:2vw;"  id="firstname" v-model="posts.firstname" :class="{'p-invalid': validationErrors.firstname && submitted}" />
                         <small v-show="validationErrors.firstname && submitted" class="p-error">Firstname is required.</small>
                        
                         
-                        <label for="lastname">Vendor Subname</label>
-                        <InputText id="lastname" v-model="lastname" :class="{'p-invalid': validationErrors.lastname && submitted}" />
+                        <label for="lastname" style="width: 90%;margin-left:2vw;">Vendor Subname</label>
+                        <InputText style="width: 90%;margin-left:2vw;" id="lastname" v-model="posts.lastname" :class="{'p-invalid': validationErrors.lastname && submitted}" />
                         <small v-show="validationErrors.lastname && submitted" class="p-error">Lastname is required.</small>
                     
                    
                    
                     
-                        <label for="phone">Phone Number</label>
-                        <InputNumber id="phone" v-model="phone" :class="{'p-invalid': validationErrors.phone && submitted}" />
+                        <label style="width: 90%;margin-left:2vw;" for="phone">Phone Number</label>
+                        <InputNumber style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="phone" v-model="posts.phone" :class="{'p-invalid': validationErrors.phone && submitted}" />
                         <small v-show="validationErrors.phone && submitted" class="p-error">Phone Number is required.</small>
                 
                   
@@ -64,21 +64,21 @@
                      
       <div class=col-md-6>
         <div class="card">
-                    <h5 class="text-center">Address Informations</h5>
+                    <h5 class="text-center" style="margin-top:1vw;">Address Informations</h5>
                         <div class="p-fluid">
                            <div class=row> 
                             <div class=col-md-6>
                          <div class="field">
-                        <label for="country">Country</label>
-                        <InputText id="country" v-model="country" :class="{'p-invalid': validationErrors.country && submitted}" />
+                        <label for="country" style="width: 90%;margin-left:2vw;">Country</label>
+                        <InputText style="width: 90%;margin-left:2vw;" id="country" v-model="posts.country" :class="{'p-invalid': validationErrors.country && submitted}" />
                         <small v-show="validationErrors.country && submitted" class="p-error">Country is required.</small>
                     </div>
                             </div>
                               
                             <div class=col-md-6>
                         <div class="field">
-                        <label for="region">State / Region</label>
-                        <InputText id="region" v-model="region" :class="{'p-invalid': validationErrors.region && submitted}" />
+                        <label for="region" style="width: 90%;margin-right:2vw;">State / Region</label>
+                        <InputText style="width: 90%;margin-right:2vw;" id="region" v-model="posts.region" :class="{'p-invalid': validationErrors.region && submitted}" />
                         <small v-show="validationErrors.region && submitted" class="p-error">region is required.</small>
                     </div>
                     </div>
@@ -86,16 +86,16 @@
                              <div class=row> 
                             <div class=col-md-6>
                         <div class="field">
-                        <label for="city">City</label>
-                        <InputText id="city" v-model="city" :class="{'p-invalid': validationErrors.city && submitted}" />
+                        <label style="width: 90%;margin-left:2vw;" for="city">City</label>
+                        <InputText style="width: 90%;margin-left:2vw;" id="city" v-model="posts.city" :class="{'p-invalid': validationErrors.city && submitted}" />
                         <small v-show="validationErrors.city && submitted" class="p-error">City is required.</small>
                     </div>
                             </div>
                            
                             <div class=col-md-6>
                      <div class="field">
-                        <label for="postalcode">Postal Code</label>
-                        <InputText id="postalcode" v-model="postalcode" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
+                        <label style="width: 90%;margin-right:2vw;" for="postalcode">Postal Code</label>
+                        <InputText style="width: 90%;margin-right:2vw;" id="postalcode" v-model="posts.postalcode" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
                         <small v-show="validationErrors.postalcode && submitted" class="p-error">Postal Code is required.</small>
                     </div>
                             </div>
@@ -103,8 +103,8 @@
                              <div class=row> 
                            
                        <div class=col-md-12>
-                        <label for="address">Address</label>
-                        <InputText id="address" v-model="address" :class="{'p-invalid': validationErrors.address && submitted}" />
+                        <label style="width: 90%;margin-left:2vw;" for="address">Address</label>
+                        <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw" id="address" v-model="posts.address" :class="{'p-invalid': validationErrors.address && submitted}" />
                         <small v-show="validationErrors.address && submitted" class="p-error">address is required.</small>
                     </div>
                     </div>
@@ -117,26 +117,26 @@
           </div>
 
 
-          <div class=row>        
+           <div class="row align-items-end " style="margin-bottom:3vw;">       
 
            <div class=col-md-6>   
              <div class="card">        
-                    <h5 class="text-center">Fiscal Informations</h5>
+                    <h5 class="text-center" style="margin-top:1vw;">Fiscal Informations</h5>
                     
                         <div class="p-fluid">
                           <div class=row> 
                             <div class=col-md-6>
                      <div class="field">
-                        <label for="taxregistrationnumber">Tax Registration Number</label>
-                        <InputText id="taxregistrationnumber" v-model="taxregistrationnumber" :class="{'p-invalid': validationErrors.taxregistrationnumber && submitted}" />
+                        <label style="width: 90%;margin-left:2vw;" for="taxregistrationnumber">Tax Registration Number</label>
+                        <InputText style="width: 90%;margin-left:2vw;" id="taxregistrationnumber" v-model="posts.taxregistrationnumber" :class="{'p-invalid': validationErrors.taxregistrationnumber && submitted}" />
                         <small v-show="validationErrors.taxregistrationnumber && submitted" class="p-error">tax registration number is required.</small>
                     </div>
                     </div>
                      
                             <div class=col-md-6>
                      <div class="field">
-                        <label for="taxclassificationcode">Tax Classification Code</label>
-                        <InputText id="taxclassificationcode" v-model="taxclassificationcode" :class="{'p-invalid': validationErrors.taxclassificationcode && submitted}" />
+                        <label style="width: 90%;margin-right:2vw;" for="taxclassificationcode">Tax Classification Code</label>
+                        <InputText style="width: 90%;margin-right:2vw;" id="taxclassificationcode" v-model="posts.taxclassificationcode" :class="{'p-invalid': validationErrors.taxclassificationcode && submitted}" />
                         <small v-show="validationErrors.taxclassificationcode && submitted" class="p-error">tax classification code is required.</small>
                     </div>
                             </div>
@@ -146,16 +146,16 @@
                             <div class=col-md-6>
 
                     <div class="field">
-                        <label for="revenu">Revenu</label>
-                        <InputText id="revenu" v-model="revenu" :class="{'p-invalid': validationErrors.revenu && submitted}" />
+                        <label style="width: 90%;margin-left:2vw;" for="revenu">Revenu</label>
+                        <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="revenu" v-model="posts.revenu" :class="{'p-invalid': validationErrors.revenu && submitted}" />
                         <small v-show="validationErrors.revenu && submitted" class="p-error">Revenu is required.</small>
                     </div>
                             </div>
                              
                             <div class=col-md-6>
                     <div class="field">
-                        <label for="dateestablished">Date Established</label>
-                        <Calendar id="dateestablished" v-model="dateestablished" :showIcon="true" />
+                        <label style="width: 90%;margin-right:2vw;" for="dateestablished">Date Established</label>
+                        <Calendar style="width: 90%;margin-right:2vw;margin-bottom:3vw;" id="dateestablished" v-model="posts.dateestablished" :showIcon="true" />
                         <small v-show="validationErrors.dateestablished && submitted" class="p-error">dateestablished is required.</small>
                     </div>
                             </div>
@@ -167,25 +167,33 @@
                     
          <div class=col-md-6>   
            <div class="card">     
-                    <h5 class="text-center">Legacy Informations</h5>
+                    <h5 class="text-center" style="margin-top:1vw;">Legacy Informations</h5>
                         <div class="p-fluid">
+                           <div class=row> 
+                            <div class=col-md-12>
                     <div class="field">
-                        <label for="companywebsite">Company Web Site</label>
-                        <InputText id="companywebsite" v-model="companywebsite" :class="{'p-invalid': validationErrors.companywebsite && submitted}" />
+                        <label style="width: 90%;margin-left:2vw;" for="companywebsite">Company Web Site</label>
+                        <InputText style="width: 90%;margin-left:2vw;margin-bottom:1vw;" id="companywebsite" v-model="posts.companywebsite" :class="{'p-invalid': validationErrors.companywebsite && submitted}" />
                         <small v-show="validationErrors.companywebsite && submitted" class="p-error">company web site is required.</small>
                     </div>
+                            </div>
+                            </div>
+                             <div class=row> 
+                            <div class=col-md-12>
                     <div class="field-checkbox">
-                            <Checkbox id="accept" :binary="true" v-model="accept" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
-                            <label for="accept">I agree to the terms and conditions*</label>
+                            <Checkbox style="width: 90%;margin-left:2vw;" id="accept" :binary="true" v-model="accept" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
+                            <label style="width: 90%;margin-left:2vw;margin-bottom:3vw;" for="accept">I agree to the terms and conditions*</label>
                             <small v-show="validationErrors.accept && submitted" class="p-error">we have to accept conditions.</small>
                         </div>
-                        <Button label="confirm" @click="confirm()"  />
+                            </div></div>
                      </div>
                     </div>
    
       </div>             
         </div>        
                  </div>
+                                         <Button label="confirm" @click="confirm()" style="width: 20%;float:right;margin-right:2vw;margin-bottom:3vw"/>
+
                
             
       
@@ -277,6 +285,7 @@ export default {
   
    data() {
         return {
+          posts:{
           firstname: '',
           lastname: '',
           phone: null,
@@ -290,6 +299,7 @@ export default {
            revenu: '',
            dateestablished: '',
            companywebsite: '',
+          },
            accept: null,
             number: null,
             visibleLeft: false,
@@ -327,6 +337,7 @@ export default {
     },
    
   },
+  
   methods: {
     logOut() {
       this.$store.dispatch('auth/logout');
@@ -357,9 +368,14 @@ export default {
             this.requestDialog = true;
             let jsonobject= localStorage.user;
             let monobjet = JSON.parse(jsonobject)
-            this.VendorService.getDetailsProfile(monobjet.email).then(data => this.vendorDetails = data);
+            this.VendorService.getDetailsProfile(monobjet.email).then(data => this.posts = data);
      
         },
+        confirm(){
+           let jsonobject= localStorage.user;
+            let monobjet = JSON.parse(jsonobject)                 
+          this.VendorService.postRequestForUpdateProfile(this.posts,monobjet.email);
+        }
   }
 };
 </script>
@@ -386,4 +402,5 @@ export default {
     margin-left: auto;
     margin-right: auto;
 }
+
 </style>
