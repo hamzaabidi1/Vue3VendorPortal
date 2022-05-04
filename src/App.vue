@@ -192,7 +192,7 @@
       </div>             
         </div>        
                  </div>
-                                         <Button label="confirm" @click="confirm()" style="width: 20%;float:right;margin-right:2vw;margin-bottom:3vw"/>
+                    <Button :disabled='isDisabled' label="confirm" @click="confirm()" style="width: 20%;float:right;margin-right:2vw;margin-bottom:3vw"/>
 
                
             
@@ -288,7 +288,7 @@ export default {
           posts:{
           firstname: '',
           lastname: '',
-          phone: null,
+          phone:null ,
           country: '',
           region: '',
           address: '',
@@ -306,6 +306,7 @@ export default {
              requestDialog: false,
              vendorDetails: null,
              submitted: false,
+             state: null,
             validationErrors: {}
         }},
          AdminService: null,
@@ -335,6 +336,20 @@ export default {
 
       return false;
     },
+    isDisabled() {
+
+      ///to complete 
+      let jsonobject= localStorage.user;
+      let monobjet = JSON.parse(jsonobject)
+      this.VendorService.findRequest(monobjet.email).then(data => this.state = data)
+       if (this.accept == true &&  this.state ==false){
+       
+        return false 
+      }
+        else 
+        return true
+        
+      }
    
   },
   
@@ -344,7 +359,11 @@ export default {
       this.$router.push('/login');
     },
      validateForm() {
-                        if (!this.postalcode.trim())
+        if (!this.postalcode.trim())
+                this.validationErrors['firstname'] = true;
+            else
+                delete this.validationErrors['firstname'];
+        if (!this.postalcode.trim())
                 this.validationErrors['postalcode'] = true;
             else
                 delete this.validationErrors['postalcode'];
@@ -372,8 +391,9 @@ export default {
      
         },
         confirm(){
+          this.submitted = true;
            let jsonobject= localStorage.user;
-            let monobjet = JSON.parse(jsonobject)                 
+          let monobjet = JSON.parse(jsonobject)                 
           this.VendorService.postRequestForUpdateProfile(this.posts,monobjet.email);
         }
   }
