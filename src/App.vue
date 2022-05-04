@@ -154,9 +154,9 @@
                              
                             <div class=col-md-6>
                     <div class="field">
-                        <label style="width: 90%;margin-right:2vw;" for="dateestablished">Date Established</label>
-                        <Calendar style="width: 90%;margin-right:2vw;margin-bottom:3vw;" id="dateestablished" v-model="posts.dateestablished" :showIcon="true" />
-                        <small v-show="validationErrors.dateestablished && submitted" class="p-error">dateestablished is required.</small>
+                        <label style="width: 90%;margin-right:2vw;" for="dateEstablished">Date Established</label>
+                        <Calendar style="width: 90%;margin-right:2vw;margin-bottom:3vw;" id="dateEstablished" v-model="posts.dateEstablished" :showIcon="true" />
+                        <small v-show="validationErrors.dateEstablished && submitted" class="p-error">dateEstablished is required.</small>
                     </div>
                             </div>
                             </div>
@@ -297,7 +297,7 @@ export default {
            taxregistrationnumber: '',
            taxclassificationcode: '',
            revenu: '',
-           dateestablished: '',
+           dateEstablished: '',
            companywebsite: '',
           },
            accept: null,
