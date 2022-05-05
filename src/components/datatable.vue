@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card">
+        <div class="card" style="margin-top:3vw;">
             <Toolbar class="mb-4">
                 <template #start>
                     <Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selectedProducts || !selectedProducts.length" />
@@ -31,6 +31,7 @@
                 <Column field="lastname" header="vendor Subname" :sortable="true" style="min-width:16rem"></Column>
                 <Column field="username" header="username" :sortable="true" style="min-width:16rem"></Column>
                 <Column field="email" header="email" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="phone" header="phone" :sortable="true" style="min-width:10rem"></Column>
                 <Column field="address" header="address" :sortable="true" style="min-width:12rem"></Column>
                 <Column field="country" header="country" :sortable="true" style="min-width:10rem"></Column>
                 <Column field="city" header="city" :sortable="true" style="min-width:10rem"></Column>

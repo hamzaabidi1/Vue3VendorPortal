@@ -40,19 +40,17 @@
                       
                         <label for="firstname" style="width: 90%;margin-left:2vw;">Vendor Name</label>
                         <InputText  style="width: 90%;margin-left:2vw;"  id="firstname" v-model="posts.firstname" :class="{'p-invalid': validationErrors.firstname && submitted}" />
-                        <small v-show="validationErrors.firstname && submitted" class="p-error">Firstname is required.</small>
+                        <small style="width: 90%;margin-left:2vw;" v-show="validationErrors.firstname && submitted" class="p-error">Vendor Name is required.</small>
                        
                         
                         <label for="lastname" style="width: 90%;margin-left:2vw;">Vendor Subname</label>
                         <InputText style="width: 90%;margin-left:2vw;" id="lastname" v-model="posts.lastname" :class="{'p-invalid': validationErrors.lastname && submitted}" />
-                        <small v-show="validationErrors.lastname && submitted" class="p-error">Lastname is required.</small>
+                        <small style="width: 90%;margin-left:2vw;" v-show="validationErrors.lastname && submitted" class="p-error">Vendor Subname is required.</small>
                     
                    
-                   
-                    
                         <label style="width: 90%;margin-left:2vw;" for="phone">Phone Number</label>
                         <InputNumber style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="phone" v-model="posts.phone" :class="{'p-invalid': validationErrors.phone && submitted}" />
-                        <small v-show="validationErrors.phone && submitted" class="p-error">Phone Number is required.</small>
+                        <small style="width: 90%;margin-left:2vw;margin-bottom:3vw;" v-show="validationErrors.phone && submitted" class="p-error">Phone Number is required.</small>
                 
                   
                     
@@ -67,19 +65,20 @@
                     <h5 class="text-center" style="margin-top:1vw;">Address Informations</h5>
                         <div class="p-fluid">
                            <div class=row> 
-                            <div class=col-md-6>
+
+                          <div class=col-md-6>
                          <div class="field">
                         <label for="country" style="width: 90%;margin-left:2vw;">Country</label>
                         <InputText style="width: 90%;margin-left:2vw;" id="country" v-model="posts.country" :class="{'p-invalid': validationErrors.country && submitted}" />
-                        <small v-show="validationErrors.country && submitted" class="p-error">Country is required.</small>
-                    </div>
-                            </div>
+                        <small style="width: 90%;margin-left:2vw;" v-show="validationErrors.country && submitted" class="p-error">Country is required.</small>
+                        </div>
+                        </div>
                               
                             <div class=col-md-6>
                         <div class="field">
                         <label for="region" style="width: 90%;margin-right:2vw;">State / Region</label>
                         <InputText style="width: 90%;margin-right:2vw;" id="region" v-model="posts.region" :class="{'p-invalid': validationErrors.region && submitted}" />
-                        <small v-show="validationErrors.region && submitted" class="p-error">region is required.</small>
+                        <small style="width: 90%;margin-right:2vw;" v-show="validationErrors.region && submitted" class="p-error">region is required.</small>
                     </div>
                     </div>
                             </div>
@@ -88,7 +87,7 @@
                         <div class="field">
                         <label style="width: 90%;margin-left:2vw;" for="city">City</label>
                         <InputText style="width: 90%;margin-left:2vw;" id="city" v-model="posts.city" :class="{'p-invalid': validationErrors.city && submitted}" />
-                        <small v-show="validationErrors.city && submitted" class="p-error">City is required.</small>
+                        <small style="width: 90%;margin-left:2vw;" v-show="validationErrors.city && submitted" class="p-error">City is required.</small>
                     </div>
                             </div>
                            
@@ -96,7 +95,7 @@
                      <div class="field">
                         <label style="width: 90%;margin-right:2vw;" for="postalcode">Postal Code</label>
                         <InputText style="width: 90%;margin-right:2vw;" id="postalcode" v-model="posts.postalcode" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
-                        <small v-show="validationErrors.postalcode && submitted" class="p-error">Postal Code is required.</small>
+                        <small style="width: 90%;margin-right:2vw;" v-show="validationErrors.postalcode && submitted" class="p-error">Postal Code is required.</small>
                     </div>
                             </div>
                             </div>
@@ -105,7 +104,7 @@
                        <div class=col-md-12>
                         <label style="width: 90%;margin-left:2vw;" for="address">Address</label>
                         <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw" id="address" v-model="posts.address" :class="{'p-invalid': validationErrors.address && submitted}" />
-                        <small v-show="validationErrors.address && submitted" class="p-error">address is required.</small>
+                        <small style="width: 90%;margin-left:2vw;margin-bottom:3vw" v-show="validationErrors.address && submitted" class="p-error">address is required.</small>
                     </div>
                     </div>
                         
@@ -129,7 +128,7 @@
                      <div class="field">
                         <label style="width: 90%;margin-left:2vw;" for="taxregistrationnumber">Tax Registration Number</label>
                         <InputText style="width: 90%;margin-left:2vw;" id="taxregistrationnumber" v-model="posts.taxregistrationnumber" :class="{'p-invalid': validationErrors.taxregistrationnumber && submitted}" />
-                        <small v-show="validationErrors.taxregistrationnumber && submitted" class="p-error">tax registration number is required.</small>
+                        <small style="width: 90%;margin-left:2vw;" v-show="validationErrors.taxregistrationnumber && submitted" class="p-error">tax registration number is required.</small>
                     </div>
                     </div>
                      
@@ -137,7 +136,7 @@
                      <div class="field">
                         <label style="width: 90%;margin-right:2vw;" for="taxclassificationcode">Tax Classification Code</label>
                         <InputText style="width: 90%;margin-right:2vw;" id="taxclassificationcode" v-model="posts.taxclassificationcode" :class="{'p-invalid': validationErrors.taxclassificationcode && submitted}" />
-                        <small v-show="validationErrors.taxclassificationcode && submitted" class="p-error">tax classification code is required.</small>
+                        <small style="width: 90%;margin-right:2vw;" v-show="validationErrors.taxclassificationcode && submitted" class="p-error">tax classification code is required.</small>
                     </div>
                             </div>
                             </div>
@@ -148,7 +147,7 @@
                     <div class="field">
                         <label style="width: 90%;margin-left:2vw;" for="revenu">Revenu</label>
                         <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="revenu" v-model="posts.revenu" :class="{'p-invalid': validationErrors.revenu && submitted}" />
-                        <small v-show="validationErrors.revenu && submitted" class="p-error">Revenu is required.</small>
+                        <small style="width: 90%;margin-left:2vw;margin-bottom:3vw;" v-show="validationErrors.revenu && submitted" class="p-error">Revenu is required.</small>
                     </div>
                             </div>
                              
@@ -156,7 +155,7 @@
                     <div class="field">
                         <label style="width: 90%;margin-right:2vw;" for="dateEstablished">Date Established</label>
                         <Calendar style="width: 90%;margin-right:2vw;margin-bottom:3vw;" id="dateEstablished" v-model="posts.dateEstablished" :showIcon="true" />
-                        <small v-show="validationErrors.dateEstablished && submitted" class="p-error">dateEstablished is required.</small>
+                        <small style="width: 90%;margin-right:2vw;margin-bottom:3vw;" v-show="validationErrors.dateEstablished && submitted" class="p-error">dateEstablished is required.</small>
                     </div>
                             </div>
                             </div>
@@ -174,18 +173,25 @@
                     <div class="field">
                         <label style="width: 90%;margin-left:2vw;" for="companywebsite">Company Web Site</label>
                         <InputText style="width: 90%;margin-left:2vw;margin-bottom:1vw;" id="companywebsite" v-model="posts.companywebsite" :class="{'p-invalid': validationErrors.companywebsite && submitted}" />
-                        <small v-show="validationErrors.companywebsite && submitted" class="p-error">company web site is required.</small>
+                        <small style="width: 90%;margin-left:2vw;margin-bottom:1vw;" v-show="validationErrors.companywebsite && submitted" class="p-error">company web site is required.</small>
                     </div>
                             </div>
                             </div>
                              <div class=row> 
-                            <div class=col-md-12>
+                            <div class=col-md-1>
                     <div class="field-checkbox">
-                            <Checkbox style="width: 90%;margin-left:2vw;" id="accept" :binary="true" v-model="accept" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
-                            <label style="width: 90%;margin-left:2vw;margin-bottom:3vw;" for="accept">I agree to the terms and conditions*</label>
-                            <small v-show="validationErrors.accept && submitted" class="p-error">we have to accept conditions.</small>
+                            <Checkbox style="width: 100%;margin-left:2vw;" id="accept" :binary="true" v-model="accept" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
                         </div>
-                            </div></div>
+                            </div>
+                              <div class=col-md-4>
+                              <p style="color:#6495ED;width: 100%;float:left;" @click="terms()">read terms</p>
+                              </div>
+                            </div>
+                            <div class=row> 
+                              <div class=col-md-12>
+                             <label style="width: 100%;margin-bottom:3vw;;margin-left:2vw;" for="accept">I agree to the terms and conditions*</label>
+                              </div>
+                              </div>
                      </div>
                     </div>
    
@@ -193,11 +199,28 @@
         </div>        
                  </div>
                     <Button :disabled='isDisabled' label="confirm" @click="confirm()" style="width: 20%;float:right;margin-right:2vw;margin-bottom:3vw"/>
-
-               
-            
-      
         </Dialog>
+
+         <Dialog header="Header" v-model:visible="termsDialog" :style="{width: '50vw'}">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                        culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
+                        qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam,
+                        quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+
+                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
+                        similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
+                        cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe
+                        eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+                    <template #footer>
+                        <Button label="No" icon="pi pi-times" @click="closeBasic2" class="p-button-text"/>
+                        <Button label="Yes" icon="pi pi-check" @click="closeBasic2" autofocus />
+                    </template>
+                </Dialog>
       
       <div class="navbar-nav mr-auto">
         <div v-if="!currentUser" class="navbar-nav ml-auto">
@@ -224,7 +247,7 @@
 
       <div v-if="currentUser" class="navbar-nav ml-auto">
         <li v-if="currentUser.roles =='ROLE_ADMIN'" class="nav-item">
-<i class="pi pi-bell mr-2 p-text-secondary" style="font-size: 1.5rem"  v-badge.danger="number" @click="getAllrequest()"></i>
+      <i class="pi pi-bell mr-2 p-text-secondary" style="font-size: 1.5rem;margin-top:1vw;"  v-badge.danger="number" @click="getAllrequest()"></i>
       </li>
     
         <li v-if="currentUser.roles =='ROLE_FOURNISSEUR'" class="nav-item">
@@ -259,6 +282,7 @@
 </template>
 
 <script>
+import { Form, Field, ErrorMessage } from "vee-validate";
 import 'primeicons/primeicons.css';
 import Badge from 'primevue/badge';
 import AdminService from './services/AdminService';
@@ -272,6 +296,9 @@ import Calendar from 'primevue/calendar';
 import Divider from 'primevue/divider';
 export default {
    components: {
+     Form,
+     Field,
+     ErrorMessage,
      Badge,
      Dialog,
      InputText,
@@ -292,22 +319,23 @@ export default {
           country: '',
           region: '',
           address: '',
-           postalcode: '',
-           city: '',
-           taxregistrationnumber: '',
-           taxclassificationcode: '',
-           revenu: '',
-           dateEstablished: '',
-           companywebsite: '',
+          postalcode: '',
+          city: '',
+          taxregistrationnumber: '',
+          taxclassificationcode: '',
+          revenu: '',
+          dateEstablished: '',
+          companywebsite: '',
           },
-           accept: null,
-            number: null,
-            visibleLeft: false,
-             requestDialog: false,
-             vendorDetails: null,
-             submitted: false,
-             state: null,
-            validationErrors: {}
+          accept: null,
+          number: null,
+          visibleLeft: false,
+          requestDialog: false,
+          termsDialog: false,
+          vendorDetails: null,
+          state: null,
+          submitted: false,
+          validationErrors: {}
         }},
          AdminService: null,
          VendorService: null ,
@@ -337,12 +365,8 @@ export default {
       return false;
     },
     isDisabled() {
-
-      ///to complete 
-      let jsonobject= localStorage.user;
-      let monobjet = JSON.parse(jsonobject)
-      this.VendorService.findRequest(monobjet.email).then(data => this.state = data)
-       if (this.accept == true &&  this.state ==false){
+     
+       if (this.accept == true){
        
         return false 
       }
@@ -358,18 +382,6 @@ export default {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
     },
-     validateForm() {
-        if (!this.postalcode.trim())
-                this.validationErrors['firstname'] = true;
-            else
-                delete this.validationErrors['firstname'];
-        if (!this.postalcode.trim())
-                this.validationErrors['postalcode'] = true;
-            else
-                delete this.validationErrors['postalcode'];
-
-            return !Object.keys(this.validationErrors).length;
-        },
      droitModification() {
        if (this.currentUser.roles == "ROLE_FOURNISSEUR")
        {
@@ -379,6 +391,9 @@ export default {
            this.$router.push('/register');
         }
       }
+     },
+     terms(){
+          this.termsDialog = true;
      },
        getAllrequest() {
              this.$router.push('/requests');
@@ -390,12 +405,96 @@ export default {
             this.VendorService.getDetailsProfile(monobjet.email).then(data => this.posts = data);
      
         },
-        confirm(){
+        async confirm(){
           this.submitted = true;
-           let jsonobject= localStorage.user;
-          let monobjet = JSON.parse(jsonobject)                 
+          let jsonobject= localStorage.user;
+          let monobjet = JSON.parse(jsonobject) 
+          await this.VendorService.findRequest(monobjet.email).then(data => this.state = data)
+           if (this.validateForm()){
+          if( this.state == false){
+          this.$toast.add({severity:'success', summary: 'Success Message', detail:'Request Success', life: 3000});
           this.VendorService.postRequestForUpdateProfile(this.posts,monobjet.email);
-        }
+          this.requestDialog=false;
+          }else {
+          this.$toast.add({severity:'error', summary: 'Error Message', detail:'You have a request in progress', life: 3000});
+          }
+            }
+        },
+        validateForm() {
+        if (!this.posts.firstname.trim())
+                this.validationErrors['firstname'] = true;
+            else
+                delete this.validationErrors['firstname'];
+                 if (!this.posts.lastname.trim())
+                this.validationErrors['lastname'] = true;
+            else
+                delete this.validationErrors['lastname'];
+                 if(this.posts.phone === null)
+                this.validationErrors['phone'] = true;
+            else
+                delete this.validationErrors['phone'];
+                   if (!this.posts.country.trim())
+                this.validationErrors['country'] = true;
+            else
+                delete this.validationErrors['country'];
+                if (!this.posts.region.trim())
+                this.validationErrors['region'] = true;
+            else
+                delete this.validationErrors['region'];
+
+                 if (!this.posts.city.trim())
+                this.validationErrors['city'] = true;
+            else
+                delete this.validationErrors['city'];
+
+                if (!this.posts.postalcode.trim())
+                this.validationErrors['postalcode'] = true;
+            else
+                delete this.validationErrors['postalcode'];
+
+                if (!this.posts.address.trim())
+                this.validationErrors['address'] = true;
+            else
+                delete this.validationErrors['address'];
+
+
+          if (!this.posts.taxregistrationnumber.trim())
+                this.validationErrors['taxregistrationnumber'] = true;
+            else
+                delete this.validationErrors['taxregistrationnumber'];
+       
+        
+          if (!this.posts.taxclassificationcode.trim())
+                this.validationErrors['taxclassificationcode'] = true;
+            else
+                delete this.validationErrors['taxclassificationcode'];
+
+           if (!this.posts.revenu.trim())
+                this.validationErrors['revenu'] = true;
+            else
+                delete this.validationErrors['revenu'];
+
+              if (this.posts.dateEstablished === null)
+                this.validationErrors['dateEstablished'] = true;
+            else
+                delete this.validationErrors['dateEstablished'];
+
+                if (!this.posts.companywebsite.trim())
+                this.validationErrors['companywebsite'] = true;
+            else
+                delete this.validationErrors['companywebsite'];
+       
+
+
+                
+
+        if (!this.posts.postalcode.trim())
+                this.validationErrors['postalcode'] = true;
+            else
+                delete this.validationErrors['postalcode'];
+
+            return !Object.keys(this.validationErrors).length;
+        },
   }
 };
 </script>
