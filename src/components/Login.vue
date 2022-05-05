@@ -38,7 +38,11 @@
     </div>
   </div>
   <Dialog header="VendorPortal" v-model:visible="displayConfirmation" :style="{width: '350px'}" :modal="true">
+      <ProgressSpinner  v-model:visible="displayConfirmation" style="width:50px;height:50px" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
         </Dialog>
+  
+              <ProgressSpinner  v-model:visible="displayConfirmation" style="width:50px;height:50px" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
+
 </template>
 
 <script>
@@ -46,6 +50,7 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
+import ProgressSpinner from 'primevue/progressspinner';
 
 export default {
   name: "Login",
@@ -54,7 +59,8 @@ export default {
     Field,
     ErrorMessage,
     Dialog,
-    Button
+    Button,
+    ProgressSpinner
   },
   data() {
     const schema = yup.object().shape({

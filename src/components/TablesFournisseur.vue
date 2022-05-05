@@ -1,18 +1,12 @@
 <template>
     <div>
-        <div class="card">
-            <TabView>
+        <div class="card" style="margin-top:3vw;">
+            <TabView >
 	<TabPanel header="RFQ LIST">
 		<div>
-
-              <DataTable :value="rfq" v-model:expandedRows="expandedRows" dataKey="rfqnum" 
+              <DataTable  :lazy="true" :loading="loading" :value="rfq"  v-model:expandedRows="expandedRows" dataKey="rfqnum" 
       @rowExpand="onRowExpandRfq" @rowCollapse="onRowCollapseRfq" responsiveLayout="scroll">
-            <template #header>
-                 <div class="table-header-container">
-                    <Button icon="pi pi-plus" label="Expand All" @click="expandAll" class="mr-2" />
-                    <Button icon="pi pi-minus" label="Collapse All" @click="collapseAll" />
-                </div>
-            </template>
+           
             <Column :expander="true" headerStyle="width: 3rem" />
             <Column field="rfqnum" header="rfqnum" sortable></Column>
             <Column field="description" header="description" sortable></Column>
@@ -133,17 +127,20 @@ export default {
   },
   data() {
         return {
+    
             po: null,
             invoice: null,
             rfq: null,
-            expandedRows: []
+            expandedRows: [],   
         }
+     
   },
    vendorService: null,
     created() {
         this.vendorService = new VendorService();
     },
     mounted() {
+      
         let jsonobject= localStorage.user;
         let monobjet = JSON.parse(jsonobject)
         this.vendorService.getPo(monobjet.username).then(data1 => this.po = data1);
@@ -151,33 +148,26 @@ export default {
         this.vendorService.getRfq(monobjet.username).then(data2 => this.rfq = data2);
         
     },
-    methods: {
+    methods: { 
         onRowExpandRfq(event) {
-            this.$toast.add({severity: 'info', summary: 'RFQ Expanded', detail: event.data.rfqnum, life: 3000});
+            this.$toast.add({severity: 'info', summary: 'More Details for Rfq', detail: event.data.rfqnum, life: 3000});
         },
         onRowCollapseRfq(event) {
             this.$toast.add({severity: 'success', summary: 'RFQ Collapsed', detail: event.data.rfqnum, life: 3000});
         },
         onRowExpandPO(event) {
-            this.$toast.add({severity: 'info', summary: 'RFQ Expanded', detail: event.data.ponum, life: 3000});
+            this.$toast.add({severity: 'info', summary: 'More Details for Po', detail: event.data.ponum, life: 3000});
         },
         onRowCollapsePO(event) {
-            this.$toast.add({severity: 'success', summary: 'RFQ Collapsed', detail: event.data.ponum, life: 3000});
+            this.$toast.add({severity: 'success', summary: 'Po Collapsed', detail: event.data.ponum, life: 3000});
         },
          onRowExpand(event) {
-            this.$toast.add({severity: 'info', summary: 'Invoice Expanded', detail: event.data.invoicenum, life: 3000});
+            this.$toast.add({severity: 'info', summary: 'More Details for Invoice ', detail: event.data.invoicenum, life: 3000});
         },
         onRowCollapse(event) {
-            this.$toast.add({severity: 'success', summary: 'Invoice Collapsed', detail: event.data.invoicenum, life: 3000});
+            this.$toast.add({severity: 'success', summary: 'More Details for Invoice', detail: event.data.invoicenum, life: 3000});
         },
-        expandAll() {
-            this.expandedRows = this.invoice.filter(p => p.invoicenum);
-            this.$toast.add({severity: 'success', summary: 'All Invoice Expanded', life: 3000});
-        },
-        collapseAll() {
-            this.expandedRows = null;
-            this.$toast.add({severity: 'success', summary: 'All Invoice Collapsed', life: 3000});
-        }
+ 
     }
     
 }
