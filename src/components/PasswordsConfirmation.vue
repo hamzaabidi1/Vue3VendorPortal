@@ -8,12 +8,12 @@
       />
       <Form @submit="handleConfirmPassword" :validation-schema="schema">
        <div class="form-group">
-          <label for="password1">Password</label>
+          <label for="password1"><strong>Password</strong></label>
           <Field name="password1" type="password" class="form-control" v-model="password1" />
           <ErrorMessage name="password1" class="error-feedback" />
         </div>
         <div class="form-group">
-          <label for="password2">Confirm Password</label>
+          <label for="password2"><strong>Confirm Password</strong></label>
           <Field name="password2" type="password" class="form-control" v-model="password1"/>
           <ErrorMessage name="password2" class="error-feedback" />
         </div>

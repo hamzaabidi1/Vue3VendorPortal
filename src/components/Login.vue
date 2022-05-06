@@ -8,13 +8,13 @@
       />
       <Form @submit="handleLogin" :validation-schema="schema">
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username"><strong>Username</strong></label>
           <Field name="username" type="text" class="form-control" />
           <ErrorMessage name="username" class="error-feedback" />
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
-          <Field name="password" type="password" class="form-control" />
+          <label for="password"><strong>Password</strong></label>
+          <Field name="password"  type="password" class="form-control" />
           <ErrorMessage name="password" class="error-feedback" /> 
         </div>
 
@@ -181,8 +181,6 @@ label {
 .error-feedback {
   color: red;
 }
-
-
 
 
 </style>

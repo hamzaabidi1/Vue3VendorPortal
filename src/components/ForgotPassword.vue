@@ -8,7 +8,7 @@
       />
       <Form @submit="handleForgotPassword" :validation-schema="schema">
       <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email"><strong>Email</strong></label>
             <Field name="email" type="email" class="form-control" />
             <ErrorMessage name="email" class="error-feedback" />
           </div>
