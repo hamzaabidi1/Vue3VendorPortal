@@ -15,7 +15,7 @@
         <div class="form-group">
           <label for="password">Password</label>
           <Field name="password" type="password" class="form-control" />
-          <ErrorMessage name="password" class="error-feedback" />
+          <ErrorMessage name="password" class="error-feedback" /> 
         </div>
 
         <div class="form-group">
@@ -37,20 +37,23 @@
       </Form>
     </div>
   </div>
-  <Dialog header="VendorPortal" v-model:visible="displayConfirmation" :style="{width: '350px'}" :modal="true">
-      <ProgressSpinner  v-model:visible="displayConfirmation" style="width:50px;height:50px" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
-        </Dialog>
+ 
+
+        <loading
+     :show="show"
+     :label="label">
+ </loading>
+
   
-              <ProgressSpinner  v-model:visible="displayConfirmation" style="width:50px;height:50px" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
 
 </template>
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
+import loading from 'vue-full-loading';
 import * as yup from "yup";
-import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
-import ProgressSpinner from 'primevue/progressspinner';
+
 
 export default {
   name: "Login",
@@ -58,9 +61,8 @@ export default {
     Form,
     Field,
     ErrorMessage,
-    Dialog,
     Button,
-    ProgressSpinner
+    loading
   },
   data() {
     const schema = yup.object().shape({
@@ -72,7 +74,9 @@ export default {
       loading: false,
       message: "",
       schema,
-      displayConfirmation : false
+      displayConfirmation : false,
+      show: false,
+      label: 'Loading...'
     };
   },
   computed: {
@@ -86,9 +90,17 @@ export default {
     }
   },
    mounted() {
-     this.displayConfirmation = true;
+     this.show=true
+     this.delayCloseAlert();
+     
     },
   methods: {
+     delayCloseAlert() {
+            var self = this;
+            setTimeout(function() { 
+                self.show = false; 
+            }, 3000);
+        },
     openConfirmation() {
             this.displayConfirmation = true;
         },

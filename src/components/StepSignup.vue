@@ -1,13 +1,9 @@
 <template>
     <div>
-        <div class="content-section introduction">
-            <div class="feature-intro">
-                <h1>Register</h1>
-            </div>
-        </div>
+        
 
         <div class="content-section implementation">
-            <div class="card">
+            <div class="card" style="margin-top:3vw;">
                 <Steps :model="items" :readonly="true" />
             </div>
 

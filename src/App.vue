@@ -24,7 +24,7 @@
       <router-link to="/" class="navbar-brand"><font-awesome-icon icon="home" />VendorPortal</router-link>
       </li>
 
-       <Dialog v-model:visible="requestDialog" :breakpoints="{'960px': '75vw'}" :style="{width: '90vw'}" header="Update Informations" >
+       <Dialog v-model:visible="requestDialog" :dismissableMask="true" :breakpoints="{'960px': '75vw'}" :style="{width: '90vw'}" header="Update Informations" >
        
         
           
@@ -400,6 +400,7 @@ export default {
         },
         requestUpdate() {
             this.requestDialog = true;
+            this.visibleLeft=false;
             let jsonobject= localStorage.user;
             let monobjet = JSON.parse(jsonobject)
             this.VendorService.getDetailsProfile(monobjet.email).then(data => this.posts = data);

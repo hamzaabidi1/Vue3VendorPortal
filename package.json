@@ -24,6 +24,7 @@
     "v-stepper": "^0.1.6",
     "vee-validate": "^4.5.10",
     "vue": "^3.0.0",
+    "vue-full-loading": "^1.2.1",
     "vue-router": "^4.0.6",
     "vue-stepper": "^1.4.2",
     "vuex": "^4.0.0",
