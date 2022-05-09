@@ -8,7 +8,7 @@
           <router-link to="/admin" class="navbar-brand" style="color:white;">Vendors List</router-link>
         </li>
         <li v-if="showFournisseurBoard" >
-          <router-link to="/fournisseur" class="navbar-brand" style="color:white;">RFQ,PO,INVOICE</router-link>
+          <router-link to="/fournisseur" @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">RFQ,PO,INVOICE</router-link>
         </li>
         <li v-if="showFournisseurBoard" >
           <router-link to="" @click.prevent="requestUpdate" class="navbar-brand" style="color:white;">Change Informations</router-link>
@@ -394,7 +394,11 @@ export default {
           this.termsDialog = true;
      },
        getAllrequest() {
+            this.visibleLeft=false;
              this.$router.push('/requests');
+        },
+        showvendorboard(){
+          this.visibleLeft=false;
         },
         requestUpdate() {
             this.requestDialog = true;
@@ -512,7 +516,6 @@ export default {
     color: #e68e8e;
 }
 .status-draft {
-    background: #99d9f7;
     color: #6183f3;
 }
 

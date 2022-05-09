@@ -4,7 +4,7 @@
             <TabView >
 	<TabPanel header="RFQ LIST">
 		<div>
-              <DataTable  :lazy="true" :loading="loading" :value="rfq"  v-model:expandedRows="expandedRows" dataKey="rfqnum" 
+              <DataTable  :lazy="true" :value="rfq"  v-model:expandedRows="expandedRows" dataKey="rfqnum" 
       @rowExpand="onRowExpandRfq" @rowCollapse="onRowCollapseRfq" responsiveLayout="scroll">
            
             <Column :expander="true" headerStyle="width: 3rem" />
