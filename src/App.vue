@@ -250,10 +250,8 @@
       <i class="pi pi-bell mr-2 p-text-secondary" style="font-size: 1.5rem;margin-top:1vw;"  v-badge.danger="number" @click="getAllrequest()"></i>
       </li>
     
-        <li v-if="currentUser.roles =='ROLE_FOURNISSEUR'" class="nav-item">
-          <router-link to="" class="nav-link">
-            {{ currentUser.status }}
-          </router-link>
+        <li v-if="currentUser.roles =='ROLE_FOURNISSEUR'" style="margin-top:0.5vw;" :class="'status-' + ( currentUser.status ?  currentUser.status.toLowerCase() : '')">
+          {{ currentUser.status }}
         </li>
         
         <li  class="nav-item">
@@ -500,21 +498,22 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+
+
 .status-inprogress{
-   background: #feedaf;
-    color: #8a5340;
+ 
+    color: #e9e38e;
 }
-.status-Confirmed{
-    background: #c8e6c9;
-    color: #256029;
+.status-confirmed{
+    color: #7fc584 !important;
 }
 .status-submitted {
-    background: #ffcdd2;
-    color: #c63737;
+
+    color: #e68e8e;
 }
 .status-draft {
     background: #99d9f7;
-    color: #1a07cc;
+    color: #6183f3;
 }
 
 .sponsor_button img {

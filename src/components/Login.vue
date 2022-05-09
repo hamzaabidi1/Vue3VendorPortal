@@ -1,4 +1,9 @@
 <template>
+ <loading
+     :show="show"
+     :label="label"
+     >
+ </loading>
   <div class="col-md-12">
     <div class="card card-container">
       <img
@@ -36,13 +41,11 @@
         <a href="/ForgotPassword">Forgot Password?</a>
       </Form>
     </div>
+    
   </div>
  
 
-        <loading
-     :show="show"
-     :label="label">
- </loading>
+ 
 
   
 
@@ -149,6 +152,7 @@ label {
   display: block;
   margin-top: 10px;
 }
+
 
 .card-container.card {
   max-width: 350px !important;
