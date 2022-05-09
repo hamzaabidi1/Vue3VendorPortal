@@ -119,14 +119,14 @@ export default {
       let monobjet = JSON.parse(jsonobject)
       if (monobjet.roles == "ROLE_ADMIN")
       {
-        this.$router.push("/");
+        this.$router.push("/admin");
       }
       else{
           if (monobjet.status === "Draft") {
             this.$router.push("/register");
           }
           else{
-          this.$router.push("/");
+          this.$router.push("/fournisseur");
           }
       }
         

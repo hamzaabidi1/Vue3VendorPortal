@@ -49,7 +49,7 @@
             <template v-slot:footer>
                 <div class="grid grid-nogutter justify-content-between">
                     <Button label="Back" @click="prevPage()" icon="pi pi-angle-left" />
-                    <Button label="Complete" @click="complete(formData)" icon="pi pi-check" iconPos="right" class="p-button-success"/>
+                    <Button label="Complete" @click="complete(formData)" icon="pi pi-check" iconPos="right" class="p-button-success" style="float:right;"/>
                 </div>
             </template>
         </Card>
