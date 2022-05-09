@@ -35,12 +35,7 @@
             <Toast />
             <DataTable :value="po" v-model:expandedRows="expandedRows" dataKey="ponum" 
       @rowExpand="onRowExpandPO" @rowCollapse="onRowCollapsePO" responsiveLayout="scroll">
-            <template #header>
-                 <div class="table-header-container">
-                    <Button icon="pi pi-plus" label="Expand All" @click="expandAll" class="mr-2" />
-                    <Button icon="pi pi-minus" label="Collapse All" @click="collapseAll" />
-                </div>
-            </template>
+           
             <Column :expander="true" headerStyle="width: 3rem" />
            <Column field="ponum" header="ponum"></Column>
             <Column field="description" header="description"></Column>
@@ -71,12 +66,7 @@
 		<div>
       <DataTable :value="invoice" v-model:expandedRows="expandedRows" dataKey="invoicenum" 
       @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" responsiveLayout="scroll">
-            <template #header>
-                 <div class="table-header-container">
-                    <Button icon="pi pi-plus" label="Expand All" @click="expandAll" class="mr-2" />
-                    <Button icon="pi pi-minus" label="Collapse All" @click="collapseAll" />
-                </div>
-            </template>
+         
             <Column :expander="true" headerStyle="width: 3rem" />
             <Column field="invoicenum" header="invoicenum" sortable></Column>
             <Column field="description" header="description" sortable></Column>
