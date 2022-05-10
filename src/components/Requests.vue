@@ -1,7 +1,7 @@
-<template>
-    <div>
-        <div class="card" style="margin-top:3vw;">
-            <DataTable ref="dt" :value="vendors" v-model:selection="selectedProducts" dataKey="id" 
+<template >
+    <div >
+        <div class="card" style="margin-top:3vw;" >
+            <DataTable style="margin:1vw;" ref="dt" :value="vendors" v-model:selection="selectedProducts" dataKey="id" 
                 :paginator="true" :rows="10" :filters="filters"
                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} vendors" responsiveLayout="scroll">

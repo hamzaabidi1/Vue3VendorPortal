@@ -1,18 +1,9 @@
 <template>
     <div>
         <div class="card" style="margin-top:3vw;">
-            <Toolbar class="mb-4">
-                <template #start>
-                    <Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selectedProducts || !selectedProducts.length" />
-                </template>
+          
 
-                <template #end>
-                    <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block" />
-                    <Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
-                </template>
-            </Toolbar>
-
-            <DataTable ref="dt" :value="vendors" v-model:selection="selectedProducts" dataKey="id" 
+            <DataTable style="margin:1vw;" ref="dt" :value="vendors" v-model:selection="selectedProducts" dataKey="id" 
                 :paginator="true" :rows="10" :filters="filters"
                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} vendors" responsiveLayout="scroll">

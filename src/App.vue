@@ -3,25 +3,25 @@
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <div v-if="currentUser" >
       <Sidebar v-model:visible="visibleLeft" class="bg-dark">
-        <img src="../public/logo-home.png" width="50" height="50" class="sponsor_button">
+        <img src="../public/logo-home.png" v-tooltip="'Vendor Portal'" style="margin-left:8vw;margin-bottom:1vw;" width="50" height="50" class="sponsor_button">
 	        <li v-if="showAdminBoard">
-          <router-link to="/admin" @click.prevent="showvendorlist" class="navbar-brand" style="color:white;">Vendors List</router-link>
+          <router-link to="/admin" v-tooltip="'click to show table of list of vendor'" @click.prevent="showvendorlist" class="navbar-brand" style="color:white;">Vendors List</router-link>
         </li>
         <li v-if="showFournisseurBoard" >
-          <router-link to="/fournisseur" @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">RFQ,PO,INVOICE</router-link>
+          <router-link to="/fournisseur" v-tooltip="'click to show po list,rfq list and invoice list'" @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">RFQ,PO,INVOICE</router-link>
         </li>
         <li v-if="showFournisseurBoard" >
-          <router-link to="" @click.prevent="requestUpdate" class="navbar-brand" style="color:white;">Change Informations</router-link>
+          <router-link to="" @click.prevent="requestUpdate" v-tooltip="'click to update Information of account'" class="navbar-brand" style="color:white;">Change Informations</router-link>
         </li>
         <li v-if="showAdminBoard" >
-          <router-link to="/requests" @click.prevent="showrequestsUpdate" class="navbar-brand" style="color:white;">Update profile Requests</router-link>
+          <router-link to="/requests" @click.prevent="showrequestsUpdate" v-tooltip="'click to show list of requests to change information account'" class="navbar-brand" style="color:white;">Update profile Requests</router-link>
         </li>
       </Sidebar>
      <i class="pi pi-bars navbar-brand" @click="visibleLeft = true" ></i>
      
      </div>
         <li class="nav-item" >
-      <router-link to="/" class="navbar-brand"><font-awesome-icon icon="home" />VendorPortal</router-link>
+      <router-link to="/" class="navbar-brand" v-tooltip="'home'"><font-awesome-icon icon="home" />VendorPortal</router-link>
       </li>
 
        <Dialog v-model:visible="requestDialog" :dismissableMask="true" :breakpoints="{'960px': '75vw'}" :style="{width: '90vw'}" header="Update Informations" >
@@ -247,7 +247,7 @@
 
       <div v-if="currentUser" class="navbar-nav ml-auto">
         <li v-if="currentUser.roles =='ROLE_ADMIN'" class="nav-item">
-      <i class="pi pi-bell mr-2 p-text-secondary" style="font-size: 1.5rem;margin-top:1vw;"  v-badge.danger="number" @click="getAllrequest()"></i>
+      <i class="pi pi-bell mr-2 p-text-secondary" style="font-size: 1.5rem;margin-top:1vw;" v-tooltip="'click to show list of request toupdate informations account'"  v-badge.danger="number" @click="getAllrequest()"></i>
       </li>
     
         <li v-if="currentUser.roles =='ROLE_FOURNISSEUR'" style="margin-top:0.5vw;" :class="'status-' + ( currentUser.status ?  currentUser.status.toLowerCase() : '')">
@@ -344,6 +344,7 @@ export default {
         mounted() {
         this.AdminService.getNumberOfRequest().then(data => this.number = data);       
     },
+    
   computed: {
     currentUser() {
       return this.$store.state.auth.user;

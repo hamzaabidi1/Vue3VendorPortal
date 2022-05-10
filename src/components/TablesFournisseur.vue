@@ -1,11 +1,11 @@
 <template>
     <div>
         <div class="card" style="margin-top:3vw;">
-            <TabView >
+            <TabView style="margin:1vw;">
 	<TabPanel header="RFQ LIST">
 		<div>
-              <DataTable  :lazy="true" :value="rfq"  v-model:expandedRows="expandedRows" dataKey="rfqnum" 
-      @rowExpand="onRowExpandRfq" @rowCollapse="onRowCollapseRfq" responsiveLayout="scroll">
+              <DataTable  :lazy="true" :loading="loading" :value="rfq"  v-model:expandedRows="expandedRows" dataKey="rfqnum" 
+      @rowExpand="onRowExpandRfq" @rowCollapse="onRowCollapseRfq" responsiveLayout="scroll" >
            
             <Column :expander="true" headerStyle="width: 3rem" />
             <Column field="rfqnum" header="rfqnum" sortable></Column>
@@ -33,7 +33,7 @@
 	<TabPanel header="PO LIST">
 		<div>
             <Toast />
-            <DataTable :value="po" v-model:expandedRows="expandedRows" dataKey="ponum" 
+            <DataTable :lazy="true" :loading="loading" :value="po" v-model:expandedRows="expandedRows" dataKey="ponum" 
       @rowExpand="onRowExpandPO" @rowCollapse="onRowCollapsePO" responsiveLayout="scroll">
            
             <Column :expander="true" headerStyle="width: 3rem" />
@@ -64,7 +64,7 @@
 	</TabPanel>
 	<TabPanel header="INVOICE LIST">
 		<div>
-      <DataTable :value="invoice" v-model:expandedRows="expandedRows" dataKey="invoicenum" 
+      <DataTable :lazy="true" :loading="loading" :value="invoice" v-model:expandedRows="expandedRows" dataKey="invoicenum" 
       @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" responsiveLayout="scroll">
          
             <Column :expander="true" headerStyle="width: 3rem" />
@@ -121,7 +121,8 @@ export default {
             po: null,
             invoice: null,
             rfq: null,
-            expandedRows: [],   
+            expandedRows: [],
+            loading: false,   
         }
      
   },
@@ -130,7 +131,8 @@ export default {
         this.vendorService = new VendorService();
     },
     mounted() {
-      
+        this.loading = true;
+        this.delayCloseAlert();
         let jsonobject= localStorage.user;
         let monobjet = JSON.parse(jsonobject)
         this.vendorService.getPo(monobjet.username).then(data1 => this.po = data1);
@@ -139,24 +141,22 @@ export default {
         
     },
     methods: { 
+        delayCloseAlert() {
+            var self = this;
+            setTimeout(function() { 
+                self.loading = false; 
+            }, 3000);
+        },
         onRowExpandRfq(event) {
             this.$toast.add({severity: 'info', summary: 'More Details for Rfq', detail: event.data.rfqnum, life: 3000});
-        },
-        onRowCollapseRfq(event) {
-            this.$toast.add({severity: 'success', summary: 'RFQ Collapsed', detail: event.data.rfqnum, life: 3000});
         },
         onRowExpandPO(event) {
             this.$toast.add({severity: 'info', summary: 'More Details for Po', detail: event.data.ponum, life: 3000});
         },
-        onRowCollapsePO(event) {
-            this.$toast.add({severity: 'success', summary: 'Po Collapsed', detail: event.data.ponum, life: 3000});
-        },
          onRowExpand(event) {
             this.$toast.add({severity: 'info', summary: 'More Details for Invoice ', detail: event.data.invoicenum, life: 3000});
         },
-        onRowCollapse(event) {
-            this.$toast.add({severity: 'success', summary: 'More Details for Invoice', detail: event.data.invoicenum, life: 3000});
-        },
+   
  
     }
     
