@@ -21,8 +21,8 @@ export default class AdminService {
 	getHistory(email) {
 		return axios.get(API_URL+'admin/all/history/'+email,{ headers: authHeader()}).then(d => d.data);
     }
-	addtoMaximo(id,email,encode){
-		return axios.post(API_URL+'admin/addcompany/'+id+'/'+email+'/'+encode,null,{headers: authHeader()});
+	addtoMaximo(id,email){
+		return axios.post(API_URL+'admin/addcompany/'+id+'/'+email,null,{headers: authHeader()});
 	}
 	getNumberOfRequest(){
 		return axios.get(API_URL+'auth/getNumberProfiles').then(d => d.data);
@@ -34,6 +34,6 @@ export default class AdminService {
 		return axios.delete(API_URL+'profile/deleterequest/'+email,{ headers: authHeader()});
 	}
 	updateProfile(email,emailconnected,encode){
-		return axios.put(API_URL+'profile/requestUpdateProfile/'+email+'/'+emailconnected+'/'+encode,null,{headers: authHeader()});
+		return axios.put(API_URL+'profile/requestUpdateProfile/'+email+'/'+emailconnected,null,{headers: authHeader()});
 	}
 }

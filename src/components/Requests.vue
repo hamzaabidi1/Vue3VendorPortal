@@ -156,7 +156,7 @@ export default {
             let monobjet = JSON.parse(jsonobject)
             this.vendors = this.vendors.filter(val => val.id !== this.user.id);
             this.confirmProductDialog = false;
-            this.adminService.updateProfile(this.user.email,monobjet.email,monobjet.encode);
+            this.adminService.updateProfile(this.user.email,monobjet.email);
             this.user = {};
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Deleted', life: 3000});
         },

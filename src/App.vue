@@ -5,7 +5,7 @@
       <Sidebar v-model:visible="visibleLeft" class="bg-dark">
         <img src="../public/logo-home.png" width="50" height="50" class="sponsor_button">
 	        <li v-if="showAdminBoard">
-          <router-link to="/admin" class="navbar-brand" style="color:white;">Vendors List</router-link>
+          <router-link to="/admin" @click.prevent="showvendorlist" class="navbar-brand" style="color:white;">Vendors List</router-link>
         </li>
         <li v-if="showFournisseurBoard" >
           <router-link to="/fournisseur" @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">RFQ,PO,INVOICE</router-link>
@@ -14,7 +14,7 @@
           <router-link to="" @click.prevent="requestUpdate" class="navbar-brand" style="color:white;">Change Informations</router-link>
         </li>
         <li v-if="showAdminBoard" >
-          <router-link to="/requests" class="navbar-brand" style="color:white;">Update profile Requests</router-link>
+          <router-link to="/requests" @click.prevent="showrequestsUpdate" class="navbar-brand" style="color:white;">Update profile Requests</router-link>
         </li>
       </Sidebar>
      <i class="pi pi-bars navbar-brand" @click="visibleLeft = true" ></i>
@@ -398,6 +398,12 @@ export default {
              this.$router.push('/requests');
         },
         showvendorboard(){
+          this.visibleLeft=false;
+        },
+        showvendorlist(){
+           this.visibleLeft=false;
+        },
+        showrequestsUpdate(){
           this.visibleLeft=false;
         },
         requestUpdate() {
