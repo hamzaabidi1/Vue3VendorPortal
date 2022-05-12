@@ -156,6 +156,15 @@ export default {
          onRowExpand(event) {
             this.$toast.add({severity: 'info', summary: 'More Details for Invoice ', detail: event.data.invoicenum, life: 3000});
         },
+        onRowCollapseRfq(event){
+
+        },
+        onRowCollapsePO(event){
+
+        },
+        onRowCollapse(event){
+
+        },
    
  
     }

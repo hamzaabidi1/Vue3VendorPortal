@@ -268,17 +268,30 @@
         </li>
       </div>
     </nav>
-
-    
-
-
-
-    <div class="container">
       <router-view />
-    </div>
   </div>
-</template>
 
+  <Button  icon="pi pi-bell" @click="chat('bottomright')" class="p-button-rounded p-button-info p-button-outlined voice" style="float:bottom;margin-right:1vw;margin-left:96vw;">
+    <img alt="logo" src="./assets/chat.png" style="width: 1.5rem" />
+  </Button>
+      <Dialog class="chatbox"  style="float:bottom;margin-right:5vw;overflow: auto;" :draggable="false" header="Assistant" v-model:visible="displayResponsive" :position="position" :breakpoints="{'960px': '75vw'}" :style="{width: '20vw'}">     
+        <div id="container">
+        <div class="chat-container">
+            <p class="voice2text">Hi there</p>
+        </div>
+
+        <div class="chat-container darker">
+            <p class="voice2text">Hello back</p>
+        </div>
+    </div>
+                </Dialog>
+
+ 
+                
+              
+ 
+
+</template>
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import 'primeicons/primeicons.css';
@@ -307,7 +320,7 @@ export default {
      Divider
 
   },
-  
+
    data() {
         return {
           posts:{
@@ -333,16 +346,20 @@ export default {
           vendorDetails: null,
           state: null,
           submitted: false,
-          validationErrors: {}
+          validationErrors: {},
+          position: 'bottomright',
+          displayResponsive: false,
+          val: 0,
         }},
          AdminService: null,
          VendorService: null ,
+        
     created() {
         this.AdminService = new AdminService();
         this.VendorService= new VendorService();
     },
         mounted() {
-        this.AdminService.getNumberOfRequest().then(data => this.number = data);       
+        this.AdminService.getNumberOfRequest().then(data => this.number = data); 
     },
     
   computed: {
@@ -377,6 +394,88 @@ export default {
   },
   
   methods: {
+    // chat box methods...
+
+     addHumanText(text) {
+  const voice = document.querySelector(".voice");
+  const voice2text = document.querySelector(".voice2text");
+  const chatContainer = document.createElement("div");
+  chatContainer.classList.add("chat-container");
+  const chatBox = document.createElement("p");
+  chatBox.classList.add("voice2text");
+  const chatText = document.createTextNode(text);
+  chatBox.appendChild(chatText);
+  chatContainer.appendChild(chatBox);
+  return chatContainer;
+},
+
+ addBotText(text) {
+  const voice = document.querySelector(".voice");
+  const voice2text = document.querySelector(".voice2text");
+  const chatContainer1 = document.createElement("div");
+  chatContainer1.classList.add("chat-container");
+  chatContainer1.classList.add("darker");
+  const chatBox1 = document.createElement("p");
+  chatBox1.classList.add("voice2text");
+  const chatText1 = document.createTextNode(text);
+  chatBox1.appendChild(chatText1);
+  chatContainer1.appendChild(chatBox1);
+  return chatContainer1;
+},
+    botVoice(message) {
+      const speech = new SpeechSynthesisUtterance();
+      speech.text = "Sorry, I did not understand that.";
+
+      if (message.includes('how are you')) {
+        speech.text = "I am fine, thanks. How are you?";
+      }
+
+      if (message.includes('fine')) {
+        speech.text = "Nice to hear that. How can I assist you today?";
+      }
+
+      if (message.includes('weather')) {
+        speech.text = "Of course. Where are you currently?";
+      }
+
+      if (message.includes('London')) {
+        speech.text = "It is 18 degrees and sunny.";
+      }
+
+      speech.volume = 1;
+      speech.rate = 1;
+      speech.pitch = 1;
+      window.speechSynthesis.speak(speech);
+      var element = document.getElementById("container");
+      element.appendChild(addBotText(speech.text));
+    },
+
+    chat(position){
+      if (this.val==0){
+        this.displayResponsive=true;
+        this.position=position;
+        this.val=1;
+    
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recorder = new SpeechRecognition();
+        recorder.start()
+        recorder.onstart = () =>  console.log('Voice activated');
+
+        recorder.onresult = (event) => {
+          const resultIndex = event.resultIndex;
+          console.log("*********")
+          //console.log(event, resultIndex, "result occured!");
+          const transcript = event.results[resultIndex][0].transcript;
+          let element = document.getElementById("container");
+          element.appendChild(addHumanText(transcript));
+          botVoice(transcript);
+        };
+      }
+      else{
+        this.displayResponsive=false;
+         this.val=0;
+      }
+    },
     logOut() {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
@@ -493,10 +592,6 @@ export default {
                 this.validationErrors['companywebsite'] = true;
             else
                 delete this.validationErrors['companywebsite'];
-       
-
-
-                
 
         if (!this.posts.postalcode.trim())
                 this.validationErrors['postalcode'] = true;
@@ -505,6 +600,8 @@ export default {
 
             return !Object.keys(this.validationErrors).length;
         },
+
+        
   }
 };
 </script>
@@ -531,5 +628,4 @@ export default {
     margin-left: auto;
     margin-right: auto;
 }
-
 </style>
