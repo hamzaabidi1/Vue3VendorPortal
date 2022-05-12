@@ -271,19 +271,18 @@
       <router-view />
   </div>
 
-  <Button  icon="pi pi-bell" @click="chat('bottomright')" class="p-button-rounded p-button-info p-button-outlined voice" style="float:bottom;margin-right:1vw;margin-left:96vw;">
+  <Button  icon="pi pi-bell" @click="chatdialog('bottomright')" class="p-button-rounded p-button-info p-button-outlined" style="float:bottom;margin-right:1vw;margin-left:96vw;">
     <img alt="logo" src="./assets/chat.png" style="width: 1.5rem" />
   </Button>
-      <Dialog class="chatbox"  style="float:bottom;margin-right:5vw;overflow: auto;" :draggable="false" header="Assistant" v-model:visible="displayResponsive" :position="position" :breakpoints="{'960px': '75vw'}" :style="{width: '20vw'}">     
+      <Dialog class="chatbox" :footer="false" :closable="false"  style="float:bottom;margin-right:5vw;overflow: auto;" :draggable="false" header="Assistant"  v-model:visible="displayResponsive" :position="position" :breakpoints="{'960px': '75vw'}" :style="{width: '20vw'}">     
         <div id="container">
-        <div class="chat-container">
-            <p class="voice2text">Hi there</p>
+    
         </div>
 
-        <div class="chat-container darker">
-            <p class="voice2text">Hello back</p>
-        </div>
-    </div>
+        <Button  icon="pi pi-bell" @click="chat"  class="p-button-rounded p-button-secondary p-button-outlined voice" style="float:bottom,right;margin-right:1vw;margin-top:1vw;margin-left:85%">
+    <img alt="logo" src="./assets/record.png" style="width: 1.5rem" />
+  </Button>
+    
                 </Dialog>
 
  
@@ -396,7 +395,7 @@ export default {
   methods: {
     // chat box methods...
 
-     addHumanText(text) {
+  addHumanText(text) {
   const voice = document.querySelector(".voice");
   const voice2text = document.querySelector(".voice2text");
   const chatContainer = document.createElement("div");
@@ -447,16 +446,11 @@ export default {
       speech.pitch = 1;
       window.speechSynthesis.speak(speech);
       var element = document.getElementById("container");
-      element.appendChild(addBotText(speech.text));
+      element.appendChild(this.addBotText(speech.text));
     },
 
-    chat(position){
-      if (this.val==0){
-        this.displayResponsive=true;
-        this.position=position;
-        this.val=1;
-    
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    chat(){
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         const recorder = new SpeechRecognition();
         recorder.start()
         recorder.onstart = () =>  console.log('Voice activated');
@@ -467,9 +461,18 @@ export default {
           //console.log(event, resultIndex, "result occured!");
           const transcript = event.results[resultIndex][0].transcript;
           let element = document.getElementById("container");
-          element.appendChild(addHumanText(transcript));
-          botVoice(transcript);
+          element.appendChild(this.addHumanText(transcript));
+          this.botVoice(transcript);
         };
+    },
+
+    chatdialog(position){
+      if (this.val==0){
+        this.displayResponsive=true;
+        this.position=position;
+        this.val=1;
+    
+        
       }
       else{
         this.displayResponsive=false;
