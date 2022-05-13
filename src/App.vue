@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <div v-if="currentUser" >
-      <Sidebar v-model:visible="visibleLeft" class="bg-dark">
+      <Sidebar v-model:visible="visibleLeft" class="bg-dark" >
         <img src="../public/logo-home.png" v-tooltip="'Vendor Portal'" style="margin-left:8vw;margin-bottom:1vw;" width="50" height="50" class="sponsor_button">
 	        <li v-if="showAdminBoard">
           <router-link to="/admin" v-tooltip="'click to show table of list of vendor'" @click.prevent="showvendorlist" class="navbar-brand" style="color:white;">Vendors List</router-link>
@@ -274,17 +274,15 @@
   <Button  icon="pi pi-bell" @click="chatdialog('bottomright')" class="p-button-rounded p-button-info p-button-outlined" style="float:bottom;margin-right:1vw;margin-left:96vw;">
     <img alt="logo" src="./assets/chat.png" style="width: 1.5rem" />
   </Button>
-      <Dialog class="chatbox" :footer="false" :closable="false"  style="float:bottom;margin-right:5vw;overflow: auto;" :draggable="false" header="Assistant"  v-model:visible="displayResponsive" :position="position" :breakpoints="{'960px': '75vw'}" :style="{width: '20vw'}">     
+  
+      <Dialog class="bg-dark" header="Assistant "  :closable="false"  style="float:bottom;margin-right:5vw;overflow: auto;" :draggable="false"   v-model:visible="displayResponsive" :position="position" :breakpoints="{'960px': '75vw'}" :style="{width: '20vw'}">     
         <div id="container">
-    
         </div>
-
         <Button  icon="pi pi-bell" @click="chat"  class="p-button-rounded p-button-secondary p-button-outlined voice" style="float:bottom,right;margin-right:1vw;margin-top:1vw;margin-left:85%">
     <img alt="logo" src="./assets/record.png" style="width: 1.5rem" />
   </Button>
-    
                 </Dialog>
-
+ 
  
                 
               
@@ -399,7 +397,10 @@ export default {
   const voice = document.querySelector(".voice");
   const voice2text = document.querySelector(".voice2text");
   const chatContainer = document.createElement("div");
-  chatContainer.classList.add("chat-container");
+  chatContainer.setAttribute(
+    'style',
+    'border-color: #ccc ; background-color: #c0ffee;   border: 2px solid #dedede;background-color: white; border-radius: 10px;padding: 10px;margin: 10px auto;width: 90%',
+  );
   const chatBox = document.createElement("p");
   chatBox.classList.add("voice2text");
   const chatText = document.createTextNode(text);
@@ -412,8 +413,11 @@ export default {
   const voice = document.querySelector(".voice");
   const voice2text = document.querySelector(".voice2text");
   const chatContainer1 = document.createElement("div");
-  chatContainer1.classList.add("chat-container");
-  chatContainer1.classList.add("darker");
+   chatContainer1.setAttribute(
+    'style',
+    'border-color: #ccc ; background-color: #c0ffee;   border: 2px solid #dedede; border-radius: 10px;padding: 10px;margin: 10px auto;width: 90%',
+  );
+ 
   const chatBox1 = document.createElement("p");
   chatBox1.classList.add("voice2text");
   const chatText1 = document.createTextNode(text);
@@ -425,22 +429,18 @@ export default {
       const speech = new SpeechSynthesisUtterance();
       speech.text = "Sorry, I did not understand that.";
 
+       if (message.includes('hello')) {
+        speech.text = "hello, how can i help you?";
+      }
+
       if (message.includes('how are you')) {
-        speech.text = "I am fine, thanks. How are you?";
+        speech.text = "I am fine, thanks. and you?";
       }
 
       if (message.includes('fine')) {
-        speech.text = "Nice to hear that. How can I assist you today?";
+        speech.text = "Nice to hear that. How can I help you today?";
       }
-
-      if (message.includes('weather')) {
-        speech.text = "Of course. Where are you currently?";
-      }
-
-      if (message.includes('London')) {
-        speech.text = "It is 18 degrees and sunny.";
-      }
-
+      speech.lang = 'en-US';
       speech.volume = 1;
       speech.rate = 1;
       speech.pitch = 1;
@@ -452,6 +452,7 @@ export default {
     chat(){
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         const recorder = new SpeechRecognition();
+        recorder.lang = 'en-US';
         recorder.start()
         recorder.onstart = () =>  console.log('Voice activated');
 
@@ -631,4 +632,6 @@ export default {
     margin-left: auto;
     margin-right: auto;
 }
+
+
 </style>
