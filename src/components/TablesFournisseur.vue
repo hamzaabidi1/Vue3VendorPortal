@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card" style="margin-top:3vw;">
+        <div class="card" style="margin:3vw;">
             <TabView style="margin:1vw;">
 	<TabPanel header="RFQ LIST">
 		<div>

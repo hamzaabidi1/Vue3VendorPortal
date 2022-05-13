@@ -271,17 +271,19 @@
       <router-view />
   </div>
 
-  <Button  icon="pi pi-bell" @click="chatdialog('bottomright')" class="p-button-rounded p-button-info p-button-outlined" style="float:bottom;margin-right:1vw;margin-left:96vw;">
+  <Button  icon="pi pi-bell"  @click="chatdialog('bottomright')" class="p-button-rounded p-button-info p-button-outlined" style="float:bottom;margin-right:1vw;margin-left:96vw;position:fixed;top: 550px;">
     <img alt="logo" src="./assets/chat.png" style="width: 1.5rem" />
   </Button>
-  
-      <Dialog class="bg-dark" header="Assistant "  :closable="false"  style="float:bottom;margin-right:5vw;overflow: auto;" :draggable="false"   v-model:visible="displayResponsive" :position="position" :breakpoints="{'960px': '75vw'}" :style="{width: '20vw'}">     
+
+    <Dialog class="bg-dark" header="Assistant "  :closable="false"  style="bottom:50px;margin-right:5vw;overflow: auto; position:fixed;max-height: 35vw;" :draggable="false"   v-model:visible="displayResponsive" :position="position" :breakpoints="{'960px': '75vw'}" :style="{width: '20vw'}">     
         <div id="container">
         </div>
         <Button  icon="pi pi-bell" @click="chat"  class="p-button-rounded p-button-secondary p-button-outlined voice" style="float:bottom,right;margin-right:1vw;margin-top:1vw;margin-left:85%">
-    <img alt="logo" src="./assets/record.png" style="width: 1.5rem" />
+    <img alt="logo" src="./assets/record.png" style="width: 1.5rem;" />
   </Button>
                 </Dialog>
+  
+     
  
  
                 
@@ -338,6 +340,7 @@ export default {
           accept: null,
           number: null,
           visibleLeft: false,
+          visibleRight: false,
           requestDialog: false,
           termsDialog: false,
           vendorDetails: null,
@@ -345,7 +348,7 @@ export default {
           submitted: false,
           validationErrors: {},
           position: 'bottomright',
-          displayResponsive: false,
+           displayResponsive: false,
           val: 0,
         }},
          AdminService: null,
@@ -469,15 +472,17 @@ export default {
 
     chatdialog(position){
       if (this.val==0){
-        this.displayResponsive=true;
+       this.displayResponsive=true;
         this.position=position;
         this.val=1;
     
         
       }
       else{
-        this.displayResponsive=false;
+       
+      this.displayResponsive=false;
          this.val=0;
+
       }
     },
     logOut() {
