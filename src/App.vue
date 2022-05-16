@@ -306,7 +306,7 @@
       <div v-if="currentUser" class="navbar-nav ml-auto">
         <li v-if="currentUser.roles == 'ROLE_ADMIN'" class="nav-item">
           <i class="pi pi-bell mr-2 p-text-secondary" style="font-size: 1.5rem;margin-top:1vw;"
-            v-tooltip="'click to show list of request toupdate informations account'" v-badge.danger="number"
+            v-tooltip="'click to show list of request to update informations account'" v-badge.danger="number"
             @click="getAllrequest()"></i>
         </li>
 
@@ -333,7 +333,7 @@
   </div>
 
   <Button icon="pi pi-bell" @click="chatdialog('bottomright')" class="p-button-rounded p-button-info p-button-outlined"
-    style="float:bottom;margin-right:1vw;margin-left:96vw;position:fixed;top: 550px;">
+    style="float:bottom;margin-right:1vw;margin-left:96vw;position:fixed;top: 550px;" v-tooltip="'VendorPortal Assistant'">
     <img alt="logo" src="./assets/chat.png" style="width: 1.5rem" />
   </Button>
 
@@ -344,27 +344,29 @@
     :style="{ width: '20vw' }">
 
 <template #header :style="{color:black }" style="background-color: black; color: aqua;">
-		<h6>VendorPortal Assistant</h6>
-    <img alt="logo" src="./assets/assistant-intelligent.png" style="width: 2rem;height: 2rem;" />
-   
+		<img alt="logo" src="./assets/assistant-intelligent.png" style="width: 2rem;height: 2rem;" />
+    <h6>VendorPortal Assistant</h6>
 	</template>
 
-	<div id="container" style="min-height: 15vw;">
+	<div id="container" style="min-height: 15vw;border-radius: 5px;border-style: outset;" >
     </div>
 
-	<template #footer >
-    <div class=row>
-                    <div class=col-md-8>
-     <InputText style="width: 100%;margin-top: 1vw;" id="chattext" v-model="chattext" />
-     </div>
-      <div class=col-md-2 >
-      <i class="pi pi-send" style="font-size: 2rem;margin-right:1vw;margin-top: 1.5vw;float: left;"  @click="chattextfn"></i>
+	<template #footer  >
+    <div class="row" style="border-top:3px ridge;" >
+    <div style="max-width: 70%"   >
+     <Form @submit="chattextfn"  >                
+     <InputText class="p-inputtext-sm" placeholder="message ..."  style="margin-top: 1.5vw;max-width: 100%;" id="chattext" v-model="chattext" />
+    </Form>
     </div>
-     <div class=col-md-2>
-		 <Button icon="pi pi-bell" @click="chat" class="p-button-rounded p-button-secondary p-button-outlined voice"
-      style="margin-right:1vw;margin-top: 1.5vw;border: none;">
-      <img alt="logo" src="./assets/record.png" style="width:2rem;" />
-    </Button>
+    <div style="max-width: 15%;margin-left:4%"  >
+      <i class="pi pi-send" style="font-size: 1.5rem;margin-right:1%;margin-top: 2vw;max-width: 100%;"  @click="chattextfn" v-tooltip="'send message'"></i>
+    </div>
+    <div style="max-width: 15%;margin-left:2%;" >
+    
+		 <Button icon="pi pi-bell" @click="chat" class="p-button-rounded p-button-secondary p-button-outlined voice"  v-tooltip="'vocal message'"
+      style="margin-top: 1.5vw;border: none;max-width: 100%;  float: right; ">
+      <img alt="logo" src="./assets/record.png" style="width:1.8rem;" />
+    </Button>   
     </div>
     </div>
 	</template>
@@ -493,7 +495,7 @@ export default {
       const chatContainer = document.createElement("div");
       chatContainer.setAttribute(
         'style',
-        'border-color: #ccc ; background-color: #c0ffee;   border: 2px solid #dedede;background-color: white; border-radius: 10px;padding: 10px;margin: 10px auto;width: 90%',
+        'border-color: #ccc ; border: 2px solid #dedede;background-color: 	#F5F5F5; border-radius: 10px;padding: 10px;margin: 10px auto;width: 90%',
       );
       const chatBox = document.createElement("p");
       chatBox.classList.add("voice2text");
@@ -523,7 +525,7 @@ export default {
       const speech = new SpeechSynthesisUtterance();
       speech.text = "Sorry, I did not understand that.";
 
-      if (message.includes('')) {
+      if (message == "" ) {
         speech.text = "Welcome to VendorPortal Assistant,how can i help you?";
       }
 
@@ -561,8 +563,8 @@ export default {
     },
     chattextfn(){
       let element = document.getElementById("container");
-        element.appendChild(this.addHumanText(this.chattext));
-        this.botVoice(this.chattext);
+        element.appendChild(this.addHumanText(this.chattext.toLowerCase()));
+        this.botVoice(this.chattext.toLowerCase());
         this.chattext=""
     },
 
