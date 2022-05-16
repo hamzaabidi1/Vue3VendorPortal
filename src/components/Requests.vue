@@ -13,23 +13,14 @@
                             <InputText v-model="filters['global'].value" placeholder="Search..." />
                         </span>
 					</div>
-                </template>
-
-                <Column style="width: 3rem" :exportable="false"></Column>
-                <Column field="firstname" header="vendor Name" :sortable="true" style="min-width:12rem"></Column>
-                <Column field="lastname" header="vendor Subname" :sortable="true" style="min-width:16rem"></Column>
-                <Column field="phone" header="phone" :sortable="true" style="min-width:12rem"></Column>
-                <Column field="address" header="address" :sortable="true" style="min-width:12rem"></Column>
-                <Column field="country" header="country" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="city" header="city" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="region" header="region" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="postalcode" header="postalcode" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="companywebsite" header="companywebsite" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="revenu" header="revenu" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="taxregistrationnumber" header="taxregistrationnumber" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="taxclassificationcode" header="taxclassificationcode" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="dateEstablished" header="dateEstablished" :sortable="true" style="min-width:10rem"></Column>
-                <Column :exportable="false" style="min-width:16rem">
+                </template> 
+                <Column field="firstname" header="Name" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="phone" header="Phone" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="address" header="Address" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="country" header="Country" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="city" header="City" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="postalcode" header="Postal Code" :sortable="true" style="min-width:10rem"></Column>
+                <Column :exportable="false" style="min-width:8rem">
                     <template #body="slotProps">
                         <Button icon="pi pi-check" class="p-button-rounded p-button-success mr-2" @click="confirmProduct(slotProps.data)" />
                         <Button icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" @click="confirmDeleteProduct(slotProps.data)" />
@@ -110,6 +101,7 @@ export default {
   },
     data() {
         return {
+         
             vendors: null,
             confirmProductDialog : false,
             deleteProductDialog: false,

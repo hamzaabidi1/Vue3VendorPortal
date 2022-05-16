@@ -47,21 +47,21 @@
                 <div class="p-fluid">
 
 
-                  <label for="firstname" style="width: 90%;margin-left:2vw;">Vendor Name</label>
+                  <label for="firstname" style="width: 90%;margin-left:2vw;">Name</label>
                   <InputText style="width: 90%;margin-left:2vw;" id="firstname" v-model="posts.firstname"
                     :class="{ 'p-invalid': validationErrors.firstname && submitted }" />
                   <small style="width: 90%;margin-left:2vw;" v-show="validationErrors.firstname && submitted"
                     class="p-error">Vendor Name is required.</small>
 
 
-                  <label for="lastname" style="width: 90%;margin-left:2vw;">Vendor Subname</label>
+                  <label for="lastname" style="width: 90%;margin-left:2vw;">Subname</label>
                   <InputText style="width: 90%;margin-left:2vw;" id="lastname" v-model="posts.lastname"
                     :class="{ 'p-invalid': validationErrors.lastname && submitted }" />
                   <small style="width: 90%;margin-left:2vw;" v-show="validationErrors.lastname && submitted"
                     class="p-error">Vendor Subname is required.</small>
 
 
-                  <label style="width: 90%;margin-left:2vw;" for="phone">Phone Number</label>
+                  <label style="width: 90%;margin-left:2vw;" for="phone">Phone</label>
                   <InputNumber style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="phone" v-model="posts.phone"
                     :class="{ 'p-invalid': validationErrors.phone && submitted }" />
                   <small style="width: 90%;margin-left:2vw;margin-bottom:3vw;"
@@ -275,8 +275,7 @@
           sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus
           asperiores repellat.</p>
         <template #footer>
-          <Button label="No" icon="pi pi-times" @click="closeBasic2" class="p-button-text" />
-          <Button label="Yes" icon="pi pi-check" @click="closeBasic2" autofocus />
+          <Button label="Confirm" icon="pi pi-check" @click="closeBasic2" autofocus style="margin-top:1vw" />
         </template>
       </Dialog>
 

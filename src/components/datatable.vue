@@ -16,31 +16,20 @@
                         </span>
 					</div>
                 </template>
-
-                <Column selectionMode="multiple" style="width: 3rem" :exportable="false"></Column>
-                <Column field="firstname" header="vendor Name" :sortable="true" style="min-width:12rem"></Column>
-                <Column field="lastname" header="vendor Subname" :sortable="true" style="min-width:16rem"></Column>
-                <Column field="username" header="username" :sortable="true" style="min-width:16rem"></Column>
-                <Column field="email" header="email" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="phone" header="phone" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="address" header="address" :sortable="true" style="min-width:12rem"></Column>
-                <Column field="country" header="country" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="city" header="city" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="region" header="region" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="postalcode" header="postalcode" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="companywebsite" header="companywebsite" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="revenu" header="revenu" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="taxregistrationnumber" header="taxregistrationnumber" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="taxclassificationcode" header="taxclassificationcode" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="dateEstablished" header="dateEstablished" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="status" header="Status" :sortable="true" style="min-width:12rem">
+                <Column field="status" header="Status" :sortable="true" style="min-width:10rem">
                     <template #body="slotProps">
                         <span :class="'product-badge status-' + (slotProps.data.status ? slotProps.data.status.toLowerCase() : '')">{{slotProps.data.status}}</span>
                     </template>
                 </Column>
+                <Column field="firstname" header="Name" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="username" header="User Name" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="email" header="E-mail" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="phone" header="Phone" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="address" header="Address" :sortable="true" style="min-width:10rem"></Column>
                 <Column :exportable="false" style="min-width:16rem">
                     <template #body="slotProps">
                         <Button icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2" @click="editProduct(slotProps.data)" />
+                        <Button icon="pi pi-bookmark" class="p-button-rounded p-button-secondary  mr-2" @click="userdetails" />
                         <Button icon="pi pi-check" class="p-button-rounded p-button-success mr-2" @click="confirmProduct(slotProps.data)" />
                         <Button icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" @click="confirmDeleteProduct(slotProps.data)" />
                         <Button icon="pi pi-book" class="p-button-rounded p-button-error" @click="historyProduct(slotProps.data)" />
@@ -120,12 +109,191 @@
                 <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteSelectedProducts" />
             </template>
         </Dialog>
+
+          <Dialog v-model:visible="vendordetailsDialog" :dismissableMask="true" :breakpoints="{ '960px': '75vw' }"
+        :style="{ width: '90vw' }" header="Update Informations">
+
+
+
+
+
+        <div class="flex">
+          <div class="row align-items-start" style="margin-bottom:3vw;">
+            <div class=col-md-6>
+              <div class="card">
+                <h5 class="text-center" style="margin-top:1vw;">General Informations</h5>
+                <div class="p-fluid">
+
+
+                  <label for="firstname" style="width: 90%;margin-left:2vw;">Name</label>
+                  <InputText style="width: 90%;margin-left:2vw;" id="firstname" v-model="posts.firstname" />
+                 
+
+                  <label for="lastname" style="width: 90%;margin-left:2vw;">Subname</label>
+                  <InputText style="width: 90%;margin-left:2vw;" id="lastname" v-model="posts.lastname" />
+                 
+
+
+                  <label style="width: 90%;margin-left:2vw;" for="phone">Phone</label>
+                  <InputNumber style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="phone" v-model="posts.phone" />
+                 
+
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class=col-md-6>
+              <div class="card">
+                <h5 class="text-center" style="margin-top:1vw;">Address Informations</h5>
+                <div class="p-fluid">
+                  <div class=row>
+
+                    <div class=col-md-6>
+                      <div class="field">
+                        <label for="country" style="width: 90%;margin-left:2vw;">Country</label>
+                        <InputText style="width: 90%;margin-left:2vw;" id="country" v-model="posts.country" />
+                       
+                      </div>
+                    </div>
+
+                    <div class=col-md-6>
+                      <div class="field">
+                        <label for="region" style="width: 90%;margin-right:2vw;">State / Region</label>
+                        <InputText style="width: 90%;margin-right:2vw;" id="region" v-model="posts.region" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class=row>
+                    <div class=col-md-6>
+                      <div class="field">
+                        <label style="width: 90%;margin-left:2vw;" for="city">City</label>
+                        <InputText style="width: 90%;margin-left:2vw;" id="city" v-model="posts.city" />
+                      </div>
+                    </div>
+
+                    <div class=col-md-6>
+                      <div class="field">
+                        <label style="width: 90%;margin-right:2vw;" for="postalcode">Postal Code</label>
+                        <InputText style="width: 90%;margin-right:2vw;" id="postalcode" v-model="posts.postalcode"/>  
+                      </div>
+                    </div>
+                  </div>
+                  <div class=row>
+
+                    <div class=col-md-12>
+                      <label style="width: 90%;margin-left:2vw;" for="address">Address</label>
+                      <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw" id="address" v-model="posts.address"/>
+                      
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="row align-items-end " style="margin-bottom:3vw;">
+
+            <div class=col-md-6>
+              <div class="card">
+                <h5 class="text-center" style="margin-top:1vw;">Fiscal Informations</h5>
+
+                <div class="p-fluid">
+                  <div class=row>
+                    <div class=col-md-6>
+                      <div class="field">
+                        <label style="width: 90%;margin-left:2vw;" for="taxregistrationnumber">Tax Registration
+                          Number</label>
+                        <InputText style="width: 90%;margin-left:2vw;" id="taxregistrationnumber"
+                          v-model="posts.taxregistrationnumber" />
+                      
+                      </div>
+                    </div>
+
+                    <div class=col-md-6>
+                      <div class="field">
+                        <label style="width: 90%;margin-right:2vw;" for="taxclassificationcode">Tax Classification
+                          Code</label>
+                        <InputText style="width: 90%;margin-right:2vw;" id="taxclassificationcode"
+                          v-model="posts.taxclassificationcode" />
+                 
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class=row>
+                    <div class=col-md-6>
+
+                      <div class="field">
+                        <label style="width: 90%;margin-left:2vw;" for="revenu">Revenu</label>
+                        <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="revenu"
+                          v-model="posts.revenu"  />
+                      </div>
+                    </div>
+
+                    <div class=col-md-6>
+                      <div class="field">
+                        <label style="width: 90%;margin-right:2vw;" for="dateEstablished">Date Established</label>
+                        <Calendar style="width: 90%;margin-right:2vw;margin-bottom:3vw;" id="dateEstablished"
+                          v-model="posts.dateEstablished" :showIcon="true" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class=col-md-6>
+              <div class="card">
+                <h5 class="text-center" style="margin-top:1vw;">Legacy Informations</h5>
+                <div class="p-fluid">
+                  <div class=row>
+                    <div class=col-md-12>
+                      <div class="field">
+                        <label style="width: 90%;margin-left:2vw;" for="companywebsite">Company Web Site</label>
+                        <InputText style="width: 90%;margin-left:2vw;margin-bottom:1vw;" id="companywebsite"
+                          v-model="posts.companywebsite" />
+                    
+                      </div>
+                    </div>
+                  </div>
+                  <div class=row>
+                    <div class=col-md-1>
+                      
+                    </div>
+                    <div class=col-md-4>
+                      <p style="color:#6495ED;width: 100%;float:left;" @click="terms()">read terms</p>
+                    </div>
+                  </div>
+                  <div class=row>
+                    <div class=col-md-12>
+                      <label style="width: 100%;margin-bottom:3vw;;margin-left:2vw;" for="accept">I agree to the terms
+                        and conditions*</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+           <Button label="Success"  class="p-button-success mr-2"  @click="confirmProduct(slotProps.data)" style="float:right" />
+                        <Button label="Danger" class="p-button-danger mr-2"  @click="confirmDeleteProduct(slotProps.data)" style="float:right"/>
+        
+      </Dialog>
 	</div>
 </template>
 
 <script>
 import { FilterMatchMode } from 'primevue/api';
 import AdminService from '../services/AdminService';
+import VendorService from '../services/VendorService';
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Button from 'primevue/button';
 import Card from 'primevue/card';
@@ -169,6 +337,21 @@ export default {
   },
     data() {
         return {
+                   posts: {
+        firstname: '',
+        lastname: '',
+        phone: null,
+        country: '',
+        region: '',
+        address: '',
+        postalcode: '',
+        city: '',
+        taxregistrationnumber: '',
+        taxclassificationcode: '',
+        revenu: '',
+        dateEstablished: '',
+        companywebsite: '',
+      },
             vendors: null,
             vendorHistory: null,
             productDialog: false,
@@ -176,6 +359,7 @@ export default {
             confirmProductDialog : false,
             deleteProductDialog: false,
             deleteProductsDialog: false,
+            vendordetailsDialog: false,
             user: {},
             selectedProducts: null,
             filters: {},
@@ -189,14 +373,21 @@ export default {
         }
     },
     adminService: null,
+     VendorService: null,
     created() {
         this.adminService = new AdminService();
+         this.VendorService = new VendorService();
         this.initFilters();
     },
     mounted() {
         this.adminService.getProducts().then(data => this.vendors = data);
     },
     methods: {
+        userdetails() {
+      this.vendordetailsDialog = true;
+      this.VendorService.getDetailsProfile(slotProps.data.status.email).then(data => this.posts = data);
+
+    },
         hideDialog() {
             this.productDialog = false;
             this.submitted = false;
