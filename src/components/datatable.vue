@@ -26,13 +26,11 @@
                 <Column field="email" header="E-mail" :sortable="true" style="min-width:10rem"></Column>
                 <Column field="phone" header="Phone" :sortable="true" style="min-width:10rem"></Column>
                 <Column field="address" header="Address" :sortable="true" style="min-width:10rem"></Column>
-                <Column :exportable="false" style="min-width:16rem">
+                <Column :exportable="false" style="min-width:10rem">
                     <template #body="slotProps">
-                        <Button icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2" @click="editProduct(slotProps.data)" />
-                        <Button icon="pi pi-bookmark" class="p-button-rounded p-button-secondary  mr-2" @click="userdetails" />
-                        <Button icon="pi pi-check" class="p-button-rounded p-button-success mr-2" @click="confirmProduct(slotProps.data)" />
-                        <Button icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" @click="confirmDeleteProduct(slotProps.data)" />
-                        <Button icon="pi pi-book" class="p-button-rounded p-button-error" @click="historyProduct(slotProps.data)" />
+                        <Button icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2" @click="editProduct(slotProps.data)" v-tooltip="'Edit Status'" />
+                        <Button icon="pi pi-bookmark" class="p-button-rounded p-button-secondary  mr-2" @click="userdetails(slotProps.data)"  v-tooltip="'More Details'" />
+                        <Button icon="pi pi-book" class="p-button-rounded p-button-error" @click="historyProduct(slotProps.data)" v-tooltip="'History Status'" />
 
                     </template>
                 </Column>
@@ -111,7 +109,7 @@
         </Dialog>
 
           <Dialog v-model:visible="vendordetailsDialog" :dismissableMask="true" :breakpoints="{ '960px': '75vw' }"
-        :style="{ width: '90vw' }" header="Update Informations">
+        :style="{ width: '90vw' }" header="Vendor Informations">
 
 
 
@@ -126,16 +124,16 @@
 
 
                   <label for="firstname" style="width: 90%;margin-left:2vw;">Name</label>
-                  <InputText style="width: 90%;margin-left:2vw;" id="firstname" v-model="posts.firstname" />
+                  <InputText style="width: 90%;margin-left:2vw;" id="firstname" v-model="posts.firstname" disabled  />
                  
 
                   <label for="lastname" style="width: 90%;margin-left:2vw;">Subname</label>
-                  <InputText style="width: 90%;margin-left:2vw;" id="lastname" v-model="posts.lastname" />
+                  <InputText style="width: 90%;margin-left:2vw;" id="lastname" v-model="posts.lastname" disabled  />
                  
 
 
                   <label style="width: 90%;margin-left:2vw;" for="phone">Phone</label>
-                  <InputNumber style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="phone" v-model="posts.phone" />
+                  <InputNumber style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="phone" v-model="posts.phone" disabled  />
                  
 
                 </div>
@@ -153,7 +151,7 @@
                     <div class=col-md-6>
                       <div class="field">
                         <label for="country" style="width: 90%;margin-left:2vw;">Country</label>
-                        <InputText style="width: 90%;margin-left:2vw;" id="country" v-model="posts.country" />
+                        <InputText style="width: 90%;margin-left:2vw;" id="country" v-model="posts.country" disabled  />
                        
                       </div>
                     </div>
@@ -161,7 +159,7 @@
                     <div class=col-md-6>
                       <div class="field">
                         <label for="region" style="width: 90%;margin-right:2vw;">State / Region</label>
-                        <InputText style="width: 90%;margin-right:2vw;" id="region" v-model="posts.region" />
+                        <InputText style="width: 90%;margin-right:2vw;" id="region" v-model="posts.region" disabled  />
                       </div>
                     </div>
                   </div>
@@ -169,14 +167,14 @@
                     <div class=col-md-6>
                       <div class="field">
                         <label style="width: 90%;margin-left:2vw;" for="city">City</label>
-                        <InputText style="width: 90%;margin-left:2vw;" id="city" v-model="posts.city" />
+                        <InputText style="width: 90%;margin-left:2vw;" id="city" v-model="posts.city"  disabled />
                       </div>
                     </div>
 
                     <div class=col-md-6>
                       <div class="field">
                         <label style="width: 90%;margin-right:2vw;" for="postalcode">Postal Code</label>
-                        <InputText style="width: 90%;margin-right:2vw;" id="postalcode" v-model="posts.postalcode"/>  
+                        <InputText style="width: 90%;margin-right:2vw;" id="postalcode" v-model="posts.postalcode" disabled />  
                       </div>
                     </div>
                   </div>
@@ -184,7 +182,7 @@
 
                     <div class=col-md-12>
                       <label style="width: 90%;margin-left:2vw;" for="address">Address</label>
-                      <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw" id="address" v-model="posts.address"/>
+                      <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw" id="address" v-model="posts.address" disabled />
                       
                     </div>
                   </div>
@@ -210,7 +208,7 @@
                         <label style="width: 90%;margin-left:2vw;" for="taxregistrationnumber">Tax Registration
                           Number</label>
                         <InputText style="width: 90%;margin-left:2vw;" id="taxregistrationnumber"
-                          v-model="posts.taxregistrationnumber" />
+                          v-model="posts.taxregistrationnumber" disabled />
                       
                       </div>
                     </div>
@@ -220,7 +218,7 @@
                         <label style="width: 90%;margin-right:2vw;" for="taxclassificationcode">Tax Classification
                           Code</label>
                         <InputText style="width: 90%;margin-right:2vw;" id="taxclassificationcode"
-                          v-model="posts.taxclassificationcode" />
+                          v-model="posts.taxclassificationcode" disabled  />
                  
                       </div>
                     </div>
@@ -232,7 +230,7 @@
                       <div class="field">
                         <label style="width: 90%;margin-left:2vw;" for="revenu">Revenu</label>
                         <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="revenu"
-                          v-model="posts.revenu"  />
+                          v-model="posts.revenu" disabled   />
                       </div>
                     </div>
 
@@ -240,7 +238,7 @@
                       <div class="field">
                         <label style="width: 90%;margin-right:2vw;" for="dateEstablished">Date Established</label>
                         <Calendar style="width: 90%;margin-right:2vw;margin-bottom:3vw;" id="dateEstablished"
-                          v-model="posts.dateEstablished" :showIcon="true" />
+                          v-model="posts.dateEstablished" :showIcon="true" disabled  />
                       </div>
                     </div>
                   </div>
@@ -258,7 +256,7 @@
                       <div class="field">
                         <label style="width: 90%;margin-left:2vw;" for="companywebsite">Company Web Site</label>
                         <InputText style="width: 90%;margin-left:2vw;margin-bottom:1vw;" id="companywebsite"
-                          v-model="posts.companywebsite" />
+                          v-model="posts.companywebsite" disabled />
                     
                       </div>
                     </div>
@@ -268,13 +266,15 @@
                       
                     </div>
                     <div class=col-md-4>
-                      <p style="color:#6495ED;width: 100%;float:left;" @click="terms()">read terms</p>
+                    
                     </div>
                   </div>
                   <div class=row>
-                    <div class=col-md-12>
-                      <label style="width: 100%;margin-bottom:3vw;;margin-left:2vw;" for="accept">I agree to the terms
-                        and conditions*</label>
+                    <div class=col-md-12 style="margin-bottom: 3vw;margin-top: 2vw;">
+                
+                   <Button label="Confirm" icon="pi pi-check" class="p-button-success mr-4"  @click="confirmProduct(posts)" style="float:right;max-width: 9vw;" />
+                        <Button label="Delete" icon="pi pi-trash" class="p-button-danger mr-2"  @click="confirmDeleteProduct(posts)" style="float:right;max-width: 9vw;"/>
+                
                     </div>
                   </div>
                 </div>
@@ -283,8 +283,7 @@
             </div>
           </div>
         </div>
-           <Button label="Success"  class="p-button-success mr-2"  @click="confirmProduct(slotProps.data)" style="float:right" />
-                        <Button label="Danger" class="p-button-danger mr-2"  @click="confirmDeleteProduct(slotProps.data)" style="float:right"/>
+        
         
       </Dialog>
 	</div>
@@ -373,19 +372,18 @@ export default {
         }
     },
     adminService: null,
-     VendorService: null,
     created() {
         this.adminService = new AdminService();
-         this.VendorService = new VendorService();
         this.initFilters();
     },
     mounted() {
         this.adminService.getProducts().then(data => this.vendors = data);
     },
     methods: {
-        userdetails() {
+        userdetails(user) {
       this.vendordetailsDialog = true;
-      this.VendorService.getDetailsProfile(slotProps.data.status.email).then(data => this.posts = data);
+      console.log(user.email+"**********");
+      this.adminService.getDetailsProfile(user.email).then(data => this.posts = data);
 
     },
         hideDialog() {

@@ -33,7 +33,13 @@ export default class AdminService {
 	deleteRequest(email){
 		return axios.delete(API_URL+'profile/deleterequest/'+email,{ headers: authHeader()});
 	}
-	updateProfile(email,emailconnected,encode){
+	updateProfile(email,emailconnected){
 		return axios.put(API_URL+'profile/requestUpdateProfile/'+email+'/'+emailconnected,null,{headers: authHeader()});
 	}
+	getDetailsProfile(email) {
+		return axios.get(API_URL+'admin/getvendor/'+email,{ headers: authHeader()}).then(d => d.data);
+		}
+	getDetailsRequest(email) {
+		return axios.get(API_URL+'admin/retrievevendor/'+email,{ headers: authHeader()}).then(d => d.data);
+		}
 }
