@@ -55,7 +55,7 @@
 
 
          <Dialog v-model:visible="vendordetailsDialog" :dismissableMask="true" :breakpoints="{ '960px': '75vw' }"
-        :style="{ width: '90vw' }" header="Update Informations">
+        :style="{ width: '90vw' }" header="Requests Detals">
 
 
 
@@ -216,7 +216,7 @@
                     </div>
                   </div>
                   <div class=row>
-                    <div class=col-md-12 style="margin-bottom: 3vw;margin-top: 2vw;">
+                    <div class=col-md-12 style="margin-bottom: 2vw;margin-top: 2vw;">
                 
                    <Button label="Confirm" icon="pi pi-check" class="p-button-success mr-4"  @click="confirmProduct(posts)" style="float:right;max-width: 9vw;" />
                         <Button label="Delete" icon="pi pi-trash" class="p-button-danger mr-2"  @click="confirmDeleteProduct(posts)" style="float:right;max-width: 9vw;"/>
@@ -316,7 +316,8 @@ export default {
         this.adminService.getRequests().then(data => this.vendors = data);
     },
     methods: {
-           userdetails(user) {
+      
+      userdetails(user) {
       this.vendordetailsDialog = true;
       console.log(user.email+"**********");
       this.adminService.getDetailsRequest(user.email).then(data => this.posts = data);
@@ -352,14 +353,15 @@ export default {
             this.confirmProductDialog = false;
             this.adminService.updateProfile(this.user.email,monobjet.email);
             this.user = {};
-            this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Deleted', life: 3000});
+            this.vendordetailsDialog=false;
+            this.$toast.add({severity:'success', summary: 'Successful', detail: 'Request Accepted', life: 3000});
         },
          deleteProduct() {
             this.vendors = this.vendors.filter(val => val.id !== this.user.id);
             this.deleteProductDialog = false;
             this.adminService.deleteRequest(this.user.email);
             this.user = {};
-            this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Deleted', life: 3000});
+            this.$toast.add({severity:'success', summary: 'Successful', detail: 'Request Deleted', life: 3000});
         },
         findIndexById(id) {
             let index = -1;

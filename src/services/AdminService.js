@@ -40,6 +40,6 @@ export default class AdminService {
 		return axios.get(API_URL+'admin/getvendor/'+email,{ headers: authHeader()}).then(d => d.data);
 		}
 	getDetailsRequest(email) {
-		return axios.get(API_URL+'admin/retrievevendor/'+email,{ headers: authHeader()}).then(d => d.data);
+		return axios.get(API_URL+'profile/retrievevendor/'+email,{ headers: authHeader()}).then(d => d.data);
 		}
 }

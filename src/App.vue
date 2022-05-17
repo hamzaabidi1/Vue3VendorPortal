@@ -222,20 +222,20 @@
                     </div>
                   </div>
                   <div class=row>
-                    <div class=col-md-1>
-                      <div class="field-checkbox">
-                        <Checkbox style="width: 100%;margin-left:2vw;" id="accept" :binary="true" v-model="accept"
-                          :class="{ 'p-invalid': validationErrors.postalcode && submitted }" />
+                    <div class=col-md-2>
+                      <div class="field-checkbox" style="margin-left:2vw;">
+                        <Checkbox style="width: 100%" id="accept" :binary="true" v-model="accept"/>
                       </div>
                     </div>
-                    <div class=col-md-4>
-                      <p style="color:#6495ED;width: 100%;float:left;" @click="terms()">read terms</p>
+                    <div class=col-md-10>
+                      <label style="width: 100% ; margin-left:-3vw;" for="accept">I agree to the terms
+                        and conditions*</label>
+                      
                     </div>
                   </div>
                   <div class=row>
                     <div class=col-md-12>
-                      <label style="width: 100%;margin-bottom:3vw;;margin-left:2vw;" for="accept">I agree to the terms
-                        and conditions*</label>
+                      <p style="color:#6495ED;width: 80%;float:left;margin-bottom:3vw;margin-left: 2vw;" @click="terms()">read terms</p>
                     </div>
                   </div>
                 </div>
@@ -647,6 +647,7 @@ export default {
           this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Request Success', life: 3000 });
           this.VendorService.postRequestForUpdateProfile(this.posts, monobjet.email);
           this.requestDialog = false;
+          this.accept= null;
         } else {
           this.$toast.add({ severity: 'error', summary: 'Error Message', detail: 'You have a request in progress', life: 3000 });
         }
