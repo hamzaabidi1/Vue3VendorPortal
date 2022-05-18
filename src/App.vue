@@ -342,7 +342,7 @@
 
 <template #header :style="{color:black }" style="background-color: black; color: aqua;">
 		<img alt="logo" src="./assets/assistant-intelligent.png" style="width: 2rem;height: 2rem;" />
-    <h6>VendorPortal Assistant</h6>
+    <h6>Vendor Portal Assistant</h6>
 	</template>
 
 	<div id="container" style="min-height: 15vw;border-radius: 5px;border-style: outset;" >

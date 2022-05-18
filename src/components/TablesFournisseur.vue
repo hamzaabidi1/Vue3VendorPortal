@@ -8,22 +8,22 @@
       @rowExpand="onRowExpandRfq" @rowCollapse="onRowCollapseRfq" responsiveLayout="scroll" >
            
             <Column :expander="true" headerStyle="width: 3rem" />
-            <Column field="rfqnum" header="rfqnum" sortable></Column>
-            <Column field="description" header="description" sortable></Column>
-            <Column field="status" header="status" sortable></Column>
-            <Column field="requireddate" header="requireddate" sortable></Column>
-            <Column field="purchaseagent" header="purchaseagent" sortable></Column>
+            <Column field="rfqnum" header="RFQ" sortable></Column>
+            <Column field="description" header="Description" sortable></Column>
+            <Column field="status" header="Status" sortable></Column>
+            <Column field="requireddate" header="Require date" sortable></Column>
+            <Column field="purchaseagent" header="Purchase Agent" sortable></Column>
             <template #expansion="slotProps">
                 <div class="orders-subtable">
                 <h5>Orders for {{slotProps.data.rfqnum}}</h5>
             <DataTable :value="slotProps.data.rfqline" responsiveLayout="scroll">
-                <Column field="rfqlinenum" header="rfqlinenum" sortable></Column>
-                <Column field="itemnum" header="itemnum" sortable></Column>
-                <Column field="description" header="description" sortable></Column>
-                <Column field="orderqty" header="orderqty" sortable></Column>
-                <Column field="orderunit" header="orderunit" sortable></Column>
-                <Column field="unitcost" header="unitcost" sortable></Column>
-                <Column field="linecost" header="linecost" sortable></Column>
+                <Column field="rfqlinenum" header="Line" sortable></Column>
+                <Column field="itemnum" header="Item" sortable></Column>
+                <Column field="description" header="Description" sortable></Column>
+                <Column field="orderqty" header="Quantity" sortable></Column>
+                <Column field="orderunit" header="Unit" sortable></Column>
+                <Column field="unitcost" header="Unit cost" sortable></Column>
+                <Column field="linecost" header="Line cost" sortable></Column>
             </DataTable>
                 </div>
             </template>
@@ -37,25 +37,25 @@
       @rowExpand="onRowExpandPO" @rowCollapse="onRowCollapsePO" responsiveLayout="scroll">
            
             <Column :expander="true" headerStyle="width: 3rem" />
-           <Column field="ponum" header="ponum"></Column>
-            <Column field="description" header="description"></Column>
-            <Column field="status" header="status"></Column>
-            <Column field="requireddate" header="requireddate"></Column>
-            <Column field="totalcost" header="totalcost"></Column>
-            <Column field="totaltax1" header="totaltax1"></Column>
-            <Column field="currencycode" header="currencycode"></Column>
-            <Column field="purchaseagent" header="purchaseagent"></Column>
+           <Column field="ponum" header="PO"></Column>
+            <Column field="description" header="Description"></Column>
+            <Column field="status" header="Status"></Column>
+            <Column field="requireddate" header="Require Date"></Column>
+            <Column field="totalcost" header="Total Cost"></Column>
+            <Column field="totaltax1" header="Total Tax"></Column>
+            <Column field="currencycode" header="Currency"></Column>
+            <Column field="purchaseagent" header="Purchase Agent"></Column>
             <template #expansion="slotProps">
                 <div class="orders-subtable">
                 <h5>Orders for {{slotProps.data.invoicenum}}</h5>
             <DataTable :value="slotProps.data.poline" responsiveLayout="scroll">
-                <Column field="polinenum" header="polinenum" sortable></Column>
-                <Column field="itemnum" header="itemnum" sortable></Column>
-                <Column field="description" header="description" sortable></Column>
-                <Column field="orderqty" header="orderqty" sortable></Column>
-                <Column field="orderunit" header="orderunit" sortable></Column>
-                <Column field="unitcost" header="unitcost" sortable></Column>
-                <Column field="linecost" header="linecost" sortable></Column>
+                <Column field="polinenum" header="Line" sortable></Column>
+                <Column field="itemnum" header="Item" sortable></Column>
+                <Column field="description" header="Description" sortable></Column>
+                <Column field="orderqty" header="Quantity" sortable></Column>
+                <Column field="orderunit" header="Unit" sortable></Column>
+                <Column field="unitcost" header="Unit Cost" sortable></Column>
+                <Column field="linecost" header="Line Cost" sortable></Column>
             </DataTable>
                 </div>
             </template>
@@ -68,25 +68,25 @@
       @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" responsiveLayout="scroll">
          
             <Column :expander="true" headerStyle="width: 3rem" />
-            <Column field="invoicenum" header="invoicenum" sortable></Column>
-            <Column field="description" header="description" sortable></Column>
-            <Column field="status" header="status" sortable></Column>
-            <Column field="totalcost" header="totalcost" sortable></Column>
-            <Column field="totaltax1" header="totaltax1" sortable></Column>
-            <Column field="currencycode" header="currencycode" sortable></Column>
-            <Column field="enterby" header="enterby" sortable></Column>
-            <Column field="enterdate" header="enterdate" sortable></Column>
+            <Column field="invoicenum" header="Invoice" sortable></Column>
+            <Column field="description" header="Description" sortable></Column>
+            <Column field="status" header="Status" sortable></Column>
+            <Column field="totalcost" header="Total Cost" sortable></Column>
+            <Column field="totaltax1" header="Total Tax" sortable></Column>
+            <Column field="currencycode" header="Currency" sortable></Column>
+            <Column field="enterby" header="Enter By" sortable></Column>
+            <Column field="enterdate" header="Enter Date" sortable></Column>
             <template #expansion="slotProps">
                 <div class="orders-subtable">
                 <h5>Orders for {{slotProps.data.invoicenum}}</h5>
             <DataTable :value="slotProps.data.invoiceline" responsiveLayout="scroll">
-                <Column field="invoicelinenum" header="invoicelinenum" sortable></Column>
-                <Column field="itemnum" header="itemnum" sortable></Column>
-                <Column field="description" header="description" sortable></Column>
-                <Column field="unitcost" header="unitcost" sortable></Column>
-                <Column field="linecost" header="linecost" sortable></Column>
-                <Column field="qtyforui" header="qtyforui" sortable></Column>
-                <Column field="invoiceunit" header="invoiceunit" sortable></Column>
+                <Column field="invoicelinenum" header="Line" sortable></Column>
+                <Column field="itemnum" header="Item" sortable></Column>
+                <Column field="description" header="Description" sortable></Column>
+                <Column field="unitcost" header="Unit cost" sortable></Column>
+                <Column field="linecost" header="Line cost" sortable></Column>
+                <Column field="qtyforui" header="Quantity" sortable></Column>
+                <Column field="invoiceunit" header="Unit" sortable></Column>
             </DataTable>
                 </div>
             </template>
