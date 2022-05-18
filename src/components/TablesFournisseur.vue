@@ -37,14 +37,14 @@
       @rowExpand="onRowExpandPO" @rowCollapse="onRowCollapsePO" responsiveLayout="scroll">
            
             <Column :expander="true" headerStyle="width: 3rem" />
-           <Column field="ponum" header="PO"></Column>
-            <Column field="description" header="Description"></Column>
-            <Column field="status" header="Status"></Column>
-            <Column field="requireddate" header="Require Date"></Column>
-            <Column field="totalcost" header="Total Cost"></Column>
-            <Column field="totaltax1" header="Total Tax"></Column>
-            <Column field="currencycode" header="Currency"></Column>
-            <Column field="purchaseagent" header="Purchase Agent"></Column>
+           <Column field="ponum" header="PO " sortable></Column>
+            <Column field="description" header="Description" sortable></Column>
+            <Column field="status" header="Status" sortable></Column>
+            <Column field="requireddate" header="Require Date" sortable></Column>
+            <Column field="totalcost" header="Total Cost" sortable></Column>
+            <Column field="totaltax1" header="Total Tax" sortable></Column>
+            <Column field="currencycode" header="Currency" sortable></Column>
+            <Column field="purchaseagent" header="Purchase Agent" sortable></Column>
             <template #expansion="slotProps">
                 <div class="orders-subtable">
                 <h5>Orders for {{slotProps.data.invoicenum}}</h5>
