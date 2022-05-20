@@ -1,13 +1,14 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:8080/api/auth/';
+const URL =  process.env.VUE_APP_SERVICE_URL+'/api/auth/';
 
 class AuthService {
   
   login(user) {
+    console.log(process.env.VUE_APP_SERVICE_URL)
     return axios
-      .post(API_URL + 'signin', {
+      .post(URL + 'signin', {
         username: user.username,
         password: user.password
       })
@@ -25,7 +26,7 @@ class AuthService {
   }
 
   register(formData) {
-    return axios.post(API_URL + 'signup/'+this.$route.query, {
+    return axios.post(URL + 'signup/'+this.$route.query, {
       firstname: user.firstname,
       lastname: user.lastname,
       username: user.username,
@@ -55,7 +56,7 @@ class AuthService {
           'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
       }
   }
-    return axios.post(API_URL + 'verify/'+user.email,{ headers: authHeader(),optionAxios }) ;
+    return axios.post(URL + 'verify/'+user.email,{ headers: authHeader(),optionAxios }) ;
   }
 
   forgotpassword(user) {
@@ -67,7 +68,7 @@ class AuthService {
           'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
       }
   }
-    return axios.post(API_URL + 'forgetpassword/'+user.email,{ headers: authHeader(),optionAxios }) ;
+    return axios.post(URL + 'forgetpassword/'+user.email,{ headers: authHeader(),optionAxios }) ;
   }
 }
 

@@ -71,18 +71,18 @@
 
                   <label for="firstname" style="width: 90%;margin-left:2vw;"><strong>Name</strong></label>
                   <InputText style="width: 90%;margin-left:2vw;" id="firstname" v-model="posts.firstname" disabled  />
-                  <p style="width: 90%;margin-left:2vw;color: rgb(214, 122, 127);">Old Name : {{old.firstname}}</p>
+                  <p style="width: 90%;margin-left:2vw;color:#3f2de1;">Old Name : {{old.firstname}}</p>
                  
 
                   <label for="lastname" style="width: 90%;margin-left:2vw;"><strong>SubName</strong></label>
                   <InputText style="width: 90%;margin-left:2vw;" id="lastname" v-model="posts.lastname" disabled  />
-                  <p style="width: 90%;margin-left:2vw;color: rgb(214, 122, 127);">Old SubName : {{old.lastname}}</p>
+                  <p style="width: 90%;margin-left:2vw;color:#3f2de1;">Old SubName : {{old.lastname}}</p>
                  
 
 
                   <label style="width: 90%;margin-left:2vw;" for="phone"><strong>Phone</strong></label>
                   <InputNumber style="width: 90%;margin-left:2vw;" id="phone" v-model="posts.phone" disabled  />
-                  <p style="width: 90%;margin-left:2vw;color: rgb(214, 122, 127);margin-bottom:3vw;">Old Phone : {{old.phone}}</p>
+                  <p style="width: 90%;margin-left:2vw;color:#3f2de1;margin-bottom:3vw;">Old Phone : {{old.phone}}</p>
                  
 
                 </div>
@@ -101,7 +101,7 @@
                       <div class="field">
                         <label for="country" style="width: 90%;margin-left:2vw;"><strong>Country</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="country" v-model="posts.country" disabled  />
-                        <p style="width: 90%;margin-left:2vw;color: rgb(214, 122, 127);">Old Country : {{old.country}}</p>
+                        <p style="width: 90%;margin-left:2vw;color: #3f2de1;">Old Country : {{old.country}}</p>
                        
                       </div>
                     </div>
@@ -110,7 +110,7 @@
                       <div class="field">
                         <label for="region" style="width: 90%;margin-right:2vw;"><strong>State / Region</strong></label>
                         <InputText style="width: 90%;margin-right:2vw;" id="region" v-model="posts.region" disabled  />
-                        <p style="width: 90%;color: rgb(214, 122, 127);">Old State / Region : {{old.region}}</p>
+                        <p style="width: 90%;color:#3f2de1;">Old State / Region : {{old.region}}</p>
                       </div>
                     </div>
                   </div>
@@ -119,7 +119,7 @@
                       <div class="field">
                         <label style="width: 90%;margin-left:2vw;" for="city"><strong>City</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="city" v-model="posts.city"  disabled />
-                        <p style="width: 90%;margin-left:2vw;color: rgb(214, 122, 127);">Old City : {{old.city}}</p>
+                        <p style="width: 90%;margin-left:2vw;color: #3f2de1;">Old City : {{old.city}}</p>
                       </div>
                     </div>
 
@@ -127,7 +127,7 @@
                       <div class="field">
                         <label style="width: 90%;margin-right:2vw;" for="postalcode"><strong>Postal Code</strong></label>
                         <InputText style="width: 90%;margin-right:2vw;" id="postalcode" v-model="posts.postalcode" disabled />  
-                        <p style="width: 90%;color: rgb(214, 122, 127);">Old Postal Code : {{old.postalcode}}</p>
+                        <p style="width: 90%;color:#3f2de1;">Old Postal Code : {{old.postalcode}}</p>
                       </div>
                     </div>
                   </div>
@@ -136,7 +136,7 @@
                     <div class=col-md-12>
                       <label style="width: 90%;margin-left:2vw;" for="address"><strong>Address</strong></label>
                       <InputText style="width: 90%;margin-left:2vw;" id="address" v-model="posts.address" disabled />
-                      <p style="width: 90%;margin-left:2vw;color: rgb(214, 122, 127);margin-bottom:3vw">Old Address : {{old.address}}</p>
+                      <p style="width: 90%;margin-left:2vw;color:#3f2de1;margin-bottom:3vw">Old Address : {{old.address}}</p>
                       
                     </div>
                   </div>
@@ -162,7 +162,7 @@
                         <label style="width: 90%;margin-left:2vw;" for="taxregistrationnumber"><strong>Tax Registration Number</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="taxregistrationnumber"
                           v-model="posts.taxregistrationnumber" disabled />
-                          <p style="width: 90%;margin-left:2vw;color: rgb(214, 122, 127);">Old Tax Registration Number : {{old.taxregistrationnumber}}</p>
+                          <p style="width: 90%;margin-left:2vw;color:#3f2de1;">Old Tax Registration Number : {{old.taxregistrationnumber}}</p>
                       
                       </div>
                     </div>
@@ -172,7 +172,7 @@
                         <label style="width: 90%;margin-right:2vw;" for="taxclassificationcode"><strong>Tax Classification Code</strong></label>
                         <InputText style="width: 90%;margin-right:2vw;" id="taxclassificationcode"
                           v-model="posts.taxclassificationcode" disabled  />
-                          <p style="width: 90%;color: rgb(214, 122, 127);">Old Tax Classification Code : {{old.taxclassificationcode}}</p>
+                          <p style="width: 90%;color:#3f2de1;">Old Tax Classification Code : {{old.taxclassificationcode}}</p>
                  
                       </div>
                     </div>
@@ -185,7 +185,7 @@
                         <label style="width: 90%;margin-left:2vw;" for="revenu"><strong>Revenu</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="revenu"
                           v-model="posts.revenu" disabled   />
-                          <p style="width: 90%;margin-left:2vw;color: rgb(214, 122, 127);margin-bottom:3vw;">Old Revenu : {{old.revenu}}</p>
+                          <p style="width: 90%;margin-left:2vw;color: #3f2de1;margin-bottom:3vw;">Old Revenu : {{old.revenu}}</p>
                       </div>
                     </div>
 
@@ -194,7 +194,7 @@
                         <label style="width: 90%;margin-right:2vw;" for="dateEstablished"><strong>Date Established</strong></label>
                         <Calendar style="width: 90%;margin-right:2vw;" id="dateEstablished"
                           v-model="posts.dateEstablished" :showIcon="true" disabled  />
-                          <p style="width: 90%;color: rgb(214, 122, 127);margin-bottom:3vw;">Old Date Established : {{old.dateEstablished}}</p>
+                          <p style="width: 90%;color: #3f2de1;margin-bottom:3vw;">Old Date Established : {{old.dateEstablished}}</p>
                       </div>
                     </div>
                   </div>
@@ -213,7 +213,7 @@
                         <label style="width: 90%;margin-left:2vw;" for="companywebsite"><strong>Company Web Site</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="companywebsite"
                           v-model="posts.companywebsite" disabled />
-                          <p style="width: 90%;color: rgb(214, 122, 127);margin-bottom:2vw;margin-left: 2vw;">Old Company Web Site : {{old.dateEstablished}}</p>
+                          <p style="width: 90%;color:#3f2de1;margin-bottom:2vw;margin-left: 2vw;">Old Company Web Site : {{old.dateEstablished}}</p>
                           
                     
                       </div>
