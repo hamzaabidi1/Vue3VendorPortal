@@ -1,23 +1,18 @@
-# Choose the Image which has Node installed already
-FROM node:lts-alpine
+FROM node:lts-alpine as build-npm-stage
+LABEL maintainer="Abidi hamza"
 
-# install simple http server for serving static content
-RUN npm install -g http-server
-
-# make the 'app' folder the current working directory
-WORKDIR /app
-
-# copy both 'package.json' and 'package-lock.json' (if available)
+WORKDIR ./
 COPY package*.json ./
-
-# install project dependencies
 RUN npm install
+COPY public ./public
+COPY src ./src
+COPY .env.production ./
 
-# copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY . .
-
-# build app for production with minification
 RUN npm run build
 
-EXPOSE 8081
-CMD [ "http-server", "dist" ]
+# Run env
+FROM nginx:stable-alpine
+COPY --from=build-npm-stage ./dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

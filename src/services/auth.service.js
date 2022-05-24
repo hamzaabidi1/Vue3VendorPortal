@@ -56,7 +56,7 @@ class AuthService {
           'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
       }
   }
-    return axios.post(URL + 'verify/'+user.email,{ headers: authHeader(),optionAxios }) ;
+    return axios.post(URL + 'verify/'+user.email,this.$route.query,{ headers: authHeader(),optionAxios }) ;
   }
 
   forgotpassword(user) {
@@ -68,7 +68,7 @@ class AuthService {
           'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
       }
   }
-    return axios.post(URL + 'forgetpassword/'+user.email,{ headers: authHeader(),optionAxios }) ;
+    return axios.post(URL + 'forgetpassword/'+user.email,this.$route.query,{ headers: authHeader(),optionAxios }) ;
   }
 }
 
