@@ -1,6 +1,5 @@
 FROM node:lts-alpine as build-npm-stage
 LABEL maintainer="Abidi hamza"
-
 WORKDIR ./
 COPY package*.json ./
 RUN npm install

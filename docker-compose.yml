@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  frontend:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    image: vendorportalfront
+
+
+  vendorportalfront:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    image: nginx
+    depends_on:
+      - frontend
+    ports:
+      - "80:80"
+  
+  
