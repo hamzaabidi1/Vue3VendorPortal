@@ -1,5 +1,5 @@
 {
-  "name": "vue-3-authentication-jwt",
+  "name": "vendorPortalFront",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "cors": "^2.8.5",
     "jquery": "^3.6.0",
     "mdb-vue-ui-kit": "^1.11.0",
+    "node-sass": "^7.0.1",
     "popper.js": "^1.16.1",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.2",
@@ -27,9 +28,11 @@
     "vee-validate": "^4.5.10",
     "vue": "^3.0.0",
     "vue-full-loading": "^1.2.1",
+    "vue-loading-overlay": "^5.0.3",
     "vue-router": "^4.0.6",
     "vue-stepper": "^1.4.2",
     "vuex": "^4.0.0",
+    "webpack": "^5.72.1",
     "yup": "^0.32.9"
   },
   "devDependencies": {
@@ -38,7 +41,8 @@
     "@vue/compiler-sfc": "^3.2.31",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.12.0",
-    "eslint-plugin-vue": "^8.5.0"
+    "eslint-plugin-vue": "^8.5.0",
+    "mini-css-extract-plugin": "^2.6.0"
   },
   "eslintConfig": {
     "root": true,

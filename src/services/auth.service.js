@@ -48,6 +48,7 @@ class AuthService {
 
 
   verifyemail(user) {
+    console.log(window.location.origin)
     var optionAxios = {
       headers: {
           'Content-Type': 'application/json',
@@ -56,7 +57,7 @@ class AuthService {
           'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
       }
   }
-    return axios.post(URL + 'verify/'+user.email,"http://localhost:80",{ headers: authHeader(),optionAxios }) ;
+    return axios.post(URL + 'verify/'+user.email,window.location.origin,{ headers: authHeader(),optionAxios }) ;
   }
 
   forgotpassword(user) {
@@ -68,7 +69,7 @@ class AuthService {
           'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
       }
   }
-    return axios.post(URL + 'forgetpassword/'+user.email,"http://localhost:80",{ headers: authHeader(),optionAxios }) ;
+    return axios.post(URL + 'forgetpassword/'+user.email,window.location.origin,{ headers: authHeader(),optionAxios }) ;
   }
 }
 

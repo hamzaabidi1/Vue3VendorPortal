@@ -82,7 +82,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 label {
   display: block;
   margin-top: 10px;
