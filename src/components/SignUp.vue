@@ -7,13 +7,13 @@
         class="profile-img-card"/>
      
            <div class="form-group">
-                        <label for="username">Vendor Name</label>
+                        <label for="username"><strong>Username</strong></label>
                         <Field name="username" class="form-control" id="username" v-model="username" :class="{'p-invalid': validationErrors.username && submitted}" />
                         <small v-show="validationErrors.username && submitted" class="p-error">Vendor Name is required.</small>
                     </div>
 
                     <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password"><strong>Password</strong></label>
                     <Field name="password" type="password" class="form-control" v-model="password" id="password" :class="{'p-invalid': validationErrors.password && submitted}" />
                  <small v-show="validationErrors.password && submitted" class="p-error">password is required.</small>
                 </div>

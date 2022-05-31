@@ -116,10 +116,10 @@
 
 
         <div class="flex">
-          <div class="row align-items-start" style="margin-bottom:3vw;">
+          <div class="row align-items-start" >
             <div class=col-md-6>
               <div class="card">
-                <h5 class="text-center" style="margin-top:1vw;"><strong>General Informations</strong></h5>
+                <h5 class="text-center" ><strong>General Informations</strong></h5>
                 <div class="p-fluid">
 
 
@@ -133,7 +133,7 @@
 
 
                   <label style="width: 90%;margin-left:2vw;" for="phone"><strong>Phone</strong></label>
-                  <InputNumber style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="phone" v-model="posts.phone" disabled  />
+                  <InputNumber style="width: 90%;margin-left:2vw;margin-bottom:1vw;" id="phone" v-model="posts.phone" disabled  />
                  
 
                 </div>
@@ -144,7 +144,7 @@
 
             <div class=col-md-6>
               <div class="card">
-                <h5 class="text-center" style="margin-top:1vw;"><strong>Address Informations</strong></h5>
+                <h5 class="text-center" ><strong>Address Informations</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
 
@@ -182,7 +182,7 @@
 
                     <div class=col-md-12>
                       <label style="width: 90%;margin-left:2vw;" for="address"><strong>Address</strong></label>
-                      <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw" id="address" v-model="posts.address" disabled />
+                      <InputText style="width: 90%;margin-left:2vw;margin-bottom:1vw" id="address" v-model="posts.address" disabled />
                       
                     </div>
                   </div>
@@ -195,7 +195,7 @@
           </div>
 
 
-          <div class="row align-items-end " style="margin-bottom:3vw;">
+          <div class="row align-items-end ">
 
             <div class=col-md-6>
               <div class="card">
@@ -290,7 +290,6 @@
 <script>
 import { FilterMatchMode } from 'primevue/api';
 import AdminService from '../services/AdminService';
-import VendorService from '../services/VendorService';
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Button from 'primevue/button';
 import Card from 'primevue/card';
@@ -380,7 +379,6 @@ export default {
     methods: {
         userdetails(user) {
       this.vendordetailsDialog = true;
-      console.log(user.email+"**********");
       this.adminService.getDetailsProfile(user.email).then(data => this.posts = data);
 
     },

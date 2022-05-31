@@ -40,7 +40,7 @@
 
 
         <div class="flex">
-          <div class="row align-items-start" style="margin-bottom:3vw;">
+          <div class="row align-items-start">
             <div class=col-md-6>
               <div class="card">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>General Informations</strong></h5>
@@ -141,7 +141,7 @@
           </div>
 
 
-          <div class="row align-items-end " style="margin-bottom:3vw;">
+          <div class="row align-items-end " style="margin-bottom:2vw;">
 
             <div class=col-md-6>
               <div class="card">
@@ -243,7 +243,7 @@
           </div>
         </div>
         <Button :disabled='isDisabled' label="confirm" @click="confirm()"
-          style="width: 20%;float:right;margin-right:2vw;margin-bottom:3vw" />
+          style="width: 20%;float:right;margin-right:2vw;margin-bottom:1vw" />
       </Dialog>
 
       <Dialog header="Terms" v-model:visible="termsDialog" :style="{ width: '50vw' }">
