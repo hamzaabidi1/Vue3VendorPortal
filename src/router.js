@@ -3,9 +3,11 @@ import Home from "./components/Home.vue";
 import Login from "./components/Login.vue";
 import ForgotPassword from "./components/ForgotPassword.vue";
 import VerifyEmail from "./components/VerifyEmail.vue";
-import PasswordsConfirmation from "./components/PasswordsConfirmation.vue"
-import requests from "./components/Requests.vue"
-import SignUp from "./components/SignUp.vue"
+import PasswordsConfirmation from "./components/PasswordsConfirmation.vue";
+import requests from "./components/Requests.vue";
+import SignUp from "./components/SignUp.vue";
+import Rfq from "./components/Rfq.vue";
+import RfqDetails from "./components/RfqDetails.vue";
 // lazy-loaded
 const Profile = () => import("./components/Profile.vue")
 const BoardAdmin = () => import("./components/BoardAdmin.vue")
@@ -67,6 +69,15 @@ const routes = [
     path: '/passwordsConfirmation',
     component: PasswordsConfirmation
   },
+
+ { path: '/rfq',
+  component: Rfq,
+  name: "rfq"
+},
+{ path: '/rfqdetails',
+  component: RfqDetails,
+  name: "rfqdetails"
+},
   {
     path: '/requests',
     component: requests,

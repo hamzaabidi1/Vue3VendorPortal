@@ -23,5 +23,13 @@ export default class VendorService {
           return axios.get(API_URL+'fournisseur/retrievevendor/'+email,{ headers: authHeader()}).then(d => d.data);
 
         }
+        findRfq(email){
+          return axios.get(API_URL+'Rfq/GetRfq/'+email,{ headers: authHeader()}).then(d => d.data);
+
+        }
+        findRfqDetails(id){
+          return axios.get(API_URL+'Rfq/GetRfqdetails/'+id,{ headers: authHeader()}).then(d => d.data);
+
+        }
 
 }

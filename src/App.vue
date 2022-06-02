@@ -14,6 +14,10 @@
               @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">RFQ,PO,INVOICE</router-link>
           </li>
           <li v-if="showFournisseurBoard">
+            <router-link to="/rfq" v-tooltip="'click to show rfq list '"
+              @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">RFQ</router-link>
+          </li>
+          <li v-if="showFournisseurBoard">
             <router-link to="" @click.prevent="requestUpdate" v-tooltip="'click to update Information of account'"
               class="navbar-brand" style="color:white;">Change Informations</router-link>
           </li>
@@ -574,8 +578,6 @@ export default {
 
       recorder.onresult = (event) => {
         const resultIndex = event.resultIndex;
-        console.log("*********")
-        //console.log(event, resultIndex, "result occured!");
         const transcript = event.results[resultIndex][0].transcript;
         let element = document.getElementById("container");
         element.appendChild(this.addHumanText(transcript));

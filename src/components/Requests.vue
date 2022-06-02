@@ -346,7 +346,6 @@ export default {
       
       userdetails(user) {
       this.vendordetailsDialog = true;
-      console.log(user.email+"**********");
       this.adminService.getDetailsRequest(user.email).then(data => this.posts = data);
       this.adminService.getDetailsProfile(user.email).then(data2 => this.old = data2);
       
