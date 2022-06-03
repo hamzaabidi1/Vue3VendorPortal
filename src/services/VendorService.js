@@ -32,4 +32,19 @@ export default class VendorService {
 
         }
 
+        findRfqLines(id){
+          return axios.get(API_URL+'Rfq/GetRfqLines/'+id,{ headers: authHeader()}).then(d => d.data);
+
+        }
+
+        findRfqLineById(id){
+          return axios.get(API_URL+'Rfq/GetRfqLine/'+id,{ headers: authHeader()}).then(d => d.data);
+
+        }
+
+        updateRfqLineById(rfqline){
+          return axios.put(API_URL+'Rfq/updateRfqLine',rfqline,{ headers: authHeader()});
+
+        }
+
 }

@@ -1,6 +1,7 @@
 <template>
-    <div class="p-fluid">
-        <Card style="max-width: 96% ;" class="card">
+  
+
+        <Card  class="card" style=" margin-top: 0vw;">
             <template v-slot:title>
                 RFQ Details
             </template>
@@ -26,79 +27,52 @@
                     <label for="class">Purchase Agent :</label>
                     <b>{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
                 </div>
+
+               
 				      
-            </template>
-          
-         
-           
-          
+				      
+            </template>  
         </Card>
 
-        <div class="card" style="max-width: 96% ; margin-top: -2vw;">
-            <h5>RFQ Lines</h5>
-            <DataTable :value="rfq.rfqline" editMode="row" dataKey="id" v-model:editingRows="editingRows" @row-edit-save="onRowEditSave" responsiveLayout="scroll">
-                <Column field="rfqlinenum" header="Line" style="width:20%">
-                    <template #editor="{ data, field }">
-                        <InputText v-model="data[field]" autofocus />
-                    </template>
-                </Column>
-                <Column field="itemnum" header="Item" style="width:20%">
-                    <template #editor="{ data, field }">
-                        <InputText v-model="data[field]" autofocus />
-                    </template>
-                </Column>
-                <Column field="description" header="Description" style="width:20%">
-                    <template #editor="{ data, field }">
-                        <InputText v-model="data[field]" autofocus />
-                    </template>
-                </Column>
-                <Column field="orderqty" header="Quantity" style="width:20%">
-                    <template #editor="{ data, field }">
-                        <InputText v-model="data[field]" autofocus />
-                    </template>
-                </Column>
-                <Column field="orderunit" header="Unit" style="width:20%">
-                    <template #editor="{ data, field }">
-                        <InputText v-model="data[field]" autofocus />
-                    </template>
-                </Column>
-                <Column field="unitcost" header="Unit Cost" style="width:20%">
-                    <template #editor="{ data, field }">
-                        <InputText v-model="data[field]" autofocus />
-                    </template>
-                </Column>
-                <Column field="linecost" header="Line Cost" style="width:20%">
-                    <template #editor="{ data, field }">
-                        <InputText v-model="data[field]" autofocus />
-                    </template>
-                </Column>
-                <Column field="quotationqty" header="Quantity for Quote" style="width:20%">
-                    <template #editor="{ data, field }">
-                        <InputText v-model="data[field]" autofocus />
-                    </template>
-                </Column>
-                <Column field="quoteStartDate" header="Quote Start Date" style="width:20%">
-                    <template #editor="{ data, field }">
-                    <Calendar id="icon" v-model="data[field]" :showIcon="true" autofocus />
-                    
-                    </template>
-                </Column>
-                <Column field="quoteEndDate" header="Quote End Date" style="width:20%">
-                    <template #editor="{ data, field }">
-                        <Calendar id="icon" v-model="data[field]" :showIcon="true" autofocus />
-                    </template>
-                </Column>
-                <Column field="delivryDate" header="Delivery Date" style="width:20%">
-                    <template #editor="{ data, field }">
-                       <Calendar id="icon" v-model="data[field]" :showIcon="true" autofocus />
-                    </template>
-                </Column>
-               
-                <Column :rowEditor="true" style="width:10%; min-width:8rem" bodyStyle="text-align:center"></Column>
+        
+        <Toast />
+        <div class="card" style=" margin-top: -2vw;">
+            <h5>RFQ List</h5>
+            <DataTable :value="rfq.rfqline" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
+                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll">
+                <Column field="rfqlinenum" header="Line" />
+                <Column field="itemnum" header="Item" />
+                <Column field="description" header="Description" />
+                <Column field="orderqty" header="Qty Requested" />
+                <Column field="orderunit" header="Unit" />
+                <Column field="unitcost" header="Unit Cost"/>
+                <Column field="linecost" header="Line Cost" />
+                <Column field="quotationqty" header="Qty" />
+                <Column field="quoteStartDate" header="Start Date" />
+                <Column field="quoteEndDate" header="End Date"/>
+                <Column field="delivryDate" header="Delivery Date"/>
             </DataTable>
         </div>
-        
-    </div>
+
+      
+	
+
+      <Dialog  v-model:visible="rfqEdit" :style="{width: '50vw'}" :closable="false">
+                   <label style="width: 90%;margin-right:2vw;" ><strong>Qty</strong></label>
+                    <InputText v-model="rfqline.quotationqty"  style="width: 95%;" /> 
+                    <label style="width: 90%;margin-right:2vw;" ><strong>Start Date</strong></label>
+                    <Calendar v-model="rfqline.quoteStartDate" :showIcon="true" style="width: 95%;" />
+                    <label style="width: 90%;margin-right:2vw;" ><strong>End Date</strong></label>
+                    <Calendar  v-model="rfqline.quoteEndDate" :showIcon="true" style="width: 95%;" />
+                    <label style="width: 90%;margin-right:2vw;" ><strong>Delivery Date</strong></label>
+                    <Calendar  v-model="rfqline.delivryDate" :showIcon="true" style="width: 95%;" />
+                     <template #footer>
+                        <Button label="Cancel" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
+                        <Button label="Save" icon="pi pi-check" @click="saveEdit" autofocus />
+                    </template>
+                </Dialog>
+
+              
 </template>
 
 <script>
@@ -109,6 +83,14 @@ import InputText from "primevue/inputtext"
 import Dropdown from "primevue/dropdown"
 import Card from 'primevue/card';
 import Calendar from 'primevue/calendar';
+import Button from 'primevue/button';
+import Dialog from 'primevue/dialog';
+
+
+
+import ColumnGroup from 'primevue/columngroup';    
+import Row from 'primevue/row'; 
+
 import { useRoute } from 'vue-router';
 
 export default {
@@ -119,63 +101,89 @@ export default {
     Column,
     InputText,
     Card,
-    Calendar
+    Calendar,
+    Button,
+     ColumnGroup,
+    Row,
+    Dialog
+
 
   },
     data() {
         return {
-        rfq: {
-            "id":null,
-            "rfqnum":'',
-            "description":'',
-            "status":'',
-            "requireddate":'',
-            "purchaseagent":'',
-            "rfqline":{
-                "id":null,
-                "rfqlinenum":null,
-                "itemnum":null,
-                "description":'',
-                "orderqty":null,
-                "orderunit":null,
-                "unitcost":null,
-                "linecost":null,
-                "quotationqty":null,
-                "quoteStartDate":'',
-                "quoteEndDate":'',
-                "delivryDate":''
+            rfqEdit: false,
+             selectedProduct2: null,
+
+              rfqline:{
+                id:null,
+                rfqlinenum:null,
+                itemnum:null,
+                description:'',
+                orderqty:null,
+                orderunit:null,
+                unitcost:null,
+                linecost:null,
+                quotationqty:null,
+                quoteStartDate:'',
+                quoteEndDate:'',
+                delivryDate:'',
+                rfq: {
+                    id:''
+                }
                 },
-            "user":{
-                "id":null,
-                "firstname":'',
-                "lastname":'',
-                "username":'',
-                "email":'',
-                "address":'',
-                "city":'',
-                "region":'',
-                "postalcode":'',
-                "country":'',
-                "phone":'',
-                "status":'',
-                "dateEstablished":'',
-                "dateCreation":'',
-                "companywebsite":'',
-                "revenu":'',
-                "taxregistrationnumber":'',
-                "taxclassificationcode":'',
-                "password":'',
-                "verifyAccountToken":'',
-                "resetPasswordToken":'',
-                "roles":{
-                    "id":'',
-                    "name":'',
-                "vendorCommodities":{}
-                ,"enabled":true,
-                "admin":false,
-                "vendor":true}},
+        rfq: {
+            id:null,
+            rfqnum:'',
+            description:'',
+            status:'',
+            requireddate:'',
+            purchaseagent:'',
+            rfqline:{
+                id:null,
+                rfqlinenum:null,
+                itemnum:null,
+                description:'',
+                orderqty:null,
+                orderunit:null,
+                unitcost:null,
+                linecost:null,
+                quotationqty:null,
+                quoteStartDate:'',
+                quoteEndDate:'',
+                delivryDate:''
+                },
+            user:{
+                id:null,
+                firstname:'',
+                lastname:'',
+                username:'',
+                email:'',
+                address:'',
+                city:'',
+                region:'',
+                postalcode:'',
+                country:'',
+                phone:'',
+                status:'',
+                dateEstablished:'',
+                dateCreation:'',
+                companywebsite:'',
+                revenu:'',
+                taxregistrationnumber:'',
+                taxclassificationcode:'',
+                password:'',
+                verifyAccountToken:'',
+                resetPasswordToken:'',
+                roles:{
+                    id:null,
+                    name:'',
+                },
+                vendorCommodities:{},
+                enabled:true,
+                admin:false,
+                vendor:true},
         
-        editingRows: [],
+   
         }
     }},
 
@@ -184,22 +192,44 @@ export default {
     created() {
 
         this.vendorservice = new VendorService();
+
+    
     
     },
     
-    mounted() {
+    async mounted() {
         const route = useRoute();  
         const id = route.params.idpath; 
         console.log(id)
-        this.vendorservice.findRfqDetails(id).then(data => this.rfq = data);
+        await this.vendorservice.findRfqDetails(id).then(data => this.rfq = data);
+      //  this.vendorservice. findRfqLines(this.rfq.id).then(data => this.rfqLine = data);
         console.log(this.rfq)
   
     },
     methods: {
-        onRowEditSave(event) {
-            let { newData, index } = event;
 
-            this.rfq.rfqline[index] = newData;
+         async  onRowSelect(event) {
+            const idline = event.data.id
+              this.rfqEdit= true;
+             await  this.vendorservice. findRfqLineById(idline).then(data1 => this.rfqline = data1);
+              console.log(this.rfqline)
+          //  this.$router.push({ name: 'rfqdetails', params: { idpath } }) 
+            
+            
+            
+        },
+        onRowUnselect(event) {
+          
+        },
+
+        closeBasic(){
+            this.rfqEdit= false;
+        },
+        saveEdit()
+        {
+            this.vendorservice. updateRfqLineById(this.rfqline);
+            this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
+
         }
     }
 }

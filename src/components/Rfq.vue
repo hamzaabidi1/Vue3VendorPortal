@@ -38,13 +38,8 @@ export default {
         return {
             rfq: null,
 
-            products: null,
-            selectedProduct1: null,
             selectedProduct2: null,
-            selectedProduct3: null,
-            selectedProducts1: null,
-            selectedProducts2: null,
-            selectedProducts3: null
+           
         }
     },
     vendorservice: null,
