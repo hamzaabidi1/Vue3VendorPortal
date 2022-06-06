@@ -8,7 +8,9 @@ import requests from "./components/Requests.vue";
 import SignUp from "./components/SignUp.vue";
 import Rfq from "./components/Rfq.vue";
 import RfqDetails from "./components/RfqDetails.vue";
-import DemandeEnCours from "./components/DemandeEnCours";
+import DemandeEnCours from "./components/DemandeEnCours.vue";
+import Config from "./components/Config.vue";
+import NotFound from "./components/NotFound.vue";
 // lazy-loaded
 const Profile = () => import("./components/Profile.vue")
 const BoardAdmin = () => import("./components/BoardAdmin.vue")
@@ -88,6 +90,16 @@ const routes = [
     path: '/requests',
     component: requests,
     name: "requests",
+  },
+  {
+    path: '/config',
+    component: Config,
+    name: "config",
+  },
+  {
+    path: '/notfound',
+    component: NotFound,
+    name: "notfound",
   },
   {
     path: '/register',

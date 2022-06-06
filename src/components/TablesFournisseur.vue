@@ -7,7 +7,7 @@
               <DataTable  :lazy="true" :loading="loading" :value="rfq"  v-model:expandedRows="expandedRows" dataKey="rfqnum" 
       @rowExpand="onRowExpandRfq" @rowCollapse="onRowCollapseRfq" responsiveLayout="scroll" >
            
-            <Column :expander="true" headerStyle="width: 3rem" />
+            <Column :expander="true" headerStyle="width: 1rem" />
             <Column field="rfqnum" header="RFQ" sortable></Column>
             <Column field="description" header="Description" sortable></Column>
             <Column field="status" header="Status" sortable></Column>
@@ -36,7 +36,7 @@
             <DataTable :lazy="true" :loading="loading" :value="po" v-model:expandedRows="expandedRows" dataKey="ponum" 
       @rowExpand="onRowExpandPO" @rowCollapse="onRowCollapsePO" responsiveLayout="scroll">
            
-            <Column :expander="true" headerStyle="width: 3rem" />
+            <Column :expander="true" headerStyle="width: 1rem" />
            <Column field="ponum" header="PO " sortable></Column>
             <Column field="description" header="Description" sortable></Column>
             <Column field="status" header="Status" sortable></Column>
@@ -67,7 +67,7 @@
       <DataTable :lazy="true" :loading="loading" :value="invoice" v-model:expandedRows="expandedRows" dataKey="invoicenum" 
       @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" responsiveLayout="scroll">
          
-            <Column :expander="true" headerStyle="width: 3rem" />
+            <Column :expander="true" headerStyle="width: 1rem" />
             <Column field="invoicenum" header="Invoice" sortable></Column>
             <Column field="description" header="Description" sortable></Column>
             <Column field="status" header="Status" sortable></Column>
