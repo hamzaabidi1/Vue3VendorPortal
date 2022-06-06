@@ -199,8 +199,7 @@ export default {
     
     async mounted() {
         const route = useRoute();  
-        const id = route.params.idpath; 
-        console.log(id)
+         var id = route.params.idpath; 
         await this.vendorservice.findRfqDetails(id).then(data => this.rfq = data);
       //  this.vendorservice. findRfqLines(this.rfq.id).then(data => this.rfqLine = data);
         console.log(this.rfq)
@@ -229,6 +228,8 @@ export default {
         {
             this.vendorservice. updateRfqLineById(this.rfqline);
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
+            this.rfqEdit= false;
+            this.$router.go();
 
         }
     }

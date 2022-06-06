@@ -75,7 +75,7 @@ const routes = [
   component: Rfq,
   name: "rfq"
 },
-{ path: '/rfqdetails',
+{ path: '/rfqdetails/:idpath',
   component: RfqDetails,
   name: "rfqdetails"
 },
