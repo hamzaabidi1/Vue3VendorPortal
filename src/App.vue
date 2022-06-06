@@ -230,7 +230,7 @@
                       </div>
                     </div>
                     <div class=col-md-10>
-                      <label style="width: 100% ; margin-left:-3vw;" for="accept">I agree to the terms
+                      <label style="width: 100% ; margin-left:-3vw;margin-top: -1vw;" for="accept">I agree to the terms
                         and conditions*</label>
                       
                     </div>
@@ -379,10 +379,14 @@
 
 
 
-
-
+<footer class="footer mt-auto py-1 bg-light text-center" >
+        <div class="container" >
+          <span class="text-muted">Copyright  &copy; 2022 All rights reserved.
+        </span></div>
+      </footer>
 
 </template>
+
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import 'primeicons/primeicons.css';

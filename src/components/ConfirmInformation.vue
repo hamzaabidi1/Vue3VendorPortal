@@ -104,7 +104,7 @@ export default {
         },
       
       complete(formData) {
-          this.$toast.add({severity:'success', summary: 'Success Message', detail:'User Informations registred', life: 3000});
+        
           var optionAxios = {
       headers: {
           'Content-Type': 'application/json',
@@ -113,7 +113,10 @@ export default {
           'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
       }
   }
-     return  axios.post('http://localhost:8080/api/auth/'+'signup/'+this.currentUser.username,formData,{headers: authHeader(),optionAxios }  );
+       axios.post('http://localhost:8080/api/auth/'+'signup/'+this.currentUser.username,formData,{headers: authHeader(),optionAxios }  );
+         this.$toast.add({severity:'success', summary: 'Success Message', detail:'User Informations registred', life: 3000});
+         this.$router.push('/encours');
+
         }
     }
 }

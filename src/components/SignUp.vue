@@ -1,6 +1,7 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container">
+   
       <img
         id="profile-img"
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -12,10 +13,17 @@
                         <small v-show="validationErrors.username && submitted" class="p-error">Vendor Name is required.</small>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group ">
                     <label for="password"><strong>Password</strong></label>
-                    <Field name="password" type="password" class="form-control" v-model="password" id="password" :class="{'p-invalid': validationErrors.password && submitted}" />
-                 <small v-show="validationErrors.password && submitted" class="p-error">password is required.</small>
+                    <Field name="password" type="password" class="form-control" v-model="password" id="password" :class="{'p-invalid': validationErrors.password && submitted}" />  
+                    <small v-show="validationErrors.password && submitted" class="p-error">password is required.</small>
+                </div>
+
+
+                 <div class="form-group ">
+                    <label for="confirmPassword"><strong>Confirm Password</strong></label>
+                    <Field name="confirmPassword" type="password" class="form-control" v-model="confirmPassword" id="confirmPassword" :class="{'p-invalid': validationErrors.confirmPassword && submitted}" />  
+                    <small v-show="validationErrors.confirmPassword && submitted" class="p-error">Confirm password is required.</small>
                 </div>
         <div class="form-group">
           <Button class="btn btn-primary btn-block" label="SignUp" @click="signup()"  />
@@ -57,6 +65,7 @@ export default {
     return {
             username: '',
             password: '',
+            confirmPassword: '',
             submitted: false,
             validationErrors: {},
             message: ''
@@ -71,18 +80,27 @@ export default {
         if (this.validateForm()) { 
             let result= await this.existename();
         if(result.data === false) {
+
+          if (this.password == this.confirmPassword){
+
+         
        
         try {
             let res = {username: this.username,password: this.password};
              axios.put('http://localhost:8080/api/auth/'+'signupdraft/'+this.$route.query.token,res);
-             this.$router.push('/login');
               this.$toast.add({severity:'success', summary: 'Success Message', detail:'UserName registred', life: 3000});
+              await this.$router.push('/login');
         } catch (error) {
             console.log(error);
         }
         }
+        else 
+        {
+        this.$toast.add({severity:'error', summary: 'Error Message', detail:'Password does not similar', life: 3000});
+        }
+        }
       else {
-        this.$toast.add({severity:'error', summary: 'Error Message', detail:'UserName already taken', life: 3000});
+      
       }
       }
       },
@@ -95,6 +113,11 @@ export default {
                 this.validationErrors['password'] = true;
             else
                 delete this.validationErrors['password'];
+
+                       if (!this.confirmPassword.trim())
+                this.validationErrors['confirmPassword'] = true;
+            else
+                delete this.validationErrors['confirmPassword'];
             return !Object.keys(this.validationErrors).length;
 
         }

@@ -8,6 +8,7 @@ import requests from "./components/Requests.vue";
 import SignUp from "./components/SignUp.vue";
 import Rfq from "./components/Rfq.vue";
 import RfqDetails from "./components/RfqDetails.vue";
+import DemandeEnCours from "./components/DemandeEnCours";
 // lazy-loaded
 const Profile = () => import("./components/Profile.vue")
 const BoardAdmin = () => import("./components/BoardAdmin.vue")
@@ -77,6 +78,11 @@ const routes = [
 { path: '/rfqdetails',
   component: RfqDetails,
   name: "rfqdetails"
+},
+{
+  path: '/encours',
+  component: DemandeEnCours,
+  name: "DemandeEnCours",
 },
   {
     path: '/requests',
