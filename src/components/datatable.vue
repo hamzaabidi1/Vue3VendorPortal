@@ -412,6 +412,7 @@ export default {
         confirmDeleteProduct(user) {
             this.user = user;
             this.deleteProductDialog = true;
+            
         },
          confirmProduct(user) {
             this.user = {...user};
@@ -434,6 +435,7 @@ export default {
             this.deleteProductDialog = false;
             this.adminService.deletevendor(this.user.id,monobjet.email);
             this.user = {};
+            this.vendordetailsDialog= false;
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'user Deleted', life: 3000});
         },
         findIndexById(id) {

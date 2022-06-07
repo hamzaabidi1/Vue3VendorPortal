@@ -1,4 +1,5 @@
 <template>
+<Toast />
             <div>
         <div class="card" >
 
@@ -16,7 +17,7 @@
                  <div class="col-md-6">
                 <div class="p-fluid">
                     <label for="email" style="width: 90%;margin-left:2vw;"><strong>Email</strong></label>
-                    <InputText style="width: 90%;margin-left:2vw;" id="email" v-model="email" />
+                    <InputText style="width: 90%;margin-left:2vw;" id="email" v-model="configuration.email" />
                 </div>
             </div>
 
@@ -24,7 +25,7 @@
                  <div class="col-md-6">
                 <div class="p-fluid">
               <label for="password" style="width: 90%;margin-left:2vw;"><strong>Email Password</strong></label>
-            <Password v-model="password" :feedback="false"  style="width: 90%;margin-left:2vw;" id="password"/>
+            <Password v-model="configuration.password" :feedback="false"  style="width: 90%;margin-left:2vw;" id="password" toggleMask/>
                 </div>
                 </div>
                  
@@ -37,7 +38,7 @@
                  <div class="col-md-6">
                 <div class="p-fluid">
                     <label for="maximopath" style="width: 90%;margin-left:2vw;"><strong>Maximo Path</strong></label>
-                    <InputText style="width: 90%;margin-left:2vw;" id="maximopath" v-model="maximopath" />
+                    <InputText style="width: 90%;margin-left:2vw;" id="maximopath" v-model="configuration.maximopath" />
                 </div>
             </div>
 
@@ -45,12 +46,14 @@
                    <div class="col-md-6">
                 <div class="p-fluid">
                     <label for="logpath" style="width: 90%;margin-left:2vw;"><strong>Log Path</strong></label>
-                    <InputText style="width: 90%;margin-left:2vw;" id="logpath" v-model="logpath" />
+                    <InputText style="width: 90%;margin-left:2vw;" id="logpath" v-model="configuration.logpath" />
                 </div>
             </div>
                  
 
             </div>
+
+            <Button label="Apply" icon="pi pi-check" @click="apply()" style="margin: 2vw;float: right;"  />
 
             
             
@@ -65,35 +68,57 @@
 import Card from 'primevue/card';
 import InputText from "primevue/inputtext"
 import Password from 'primevue/password';
+import Button from 'primevue/button';
+import ConfigService from '../services/ConfigService';
 
 export default {
   components: {
     InputText,
     Card,
-    Password
+    Password,
+    Button
+
   },
    
     data() {
     return {
-email: '',
-password: '',
-maximopath:'',
-logpath:''
+           configuration: {
+            email: '',
+            password: '',
+            maximopath:'',
+            logpath:'',
+        }
+
+     
 
   }
-    }
-  ,
+    },
+
+    ConfigService: null,
+  
+    created() {
+
+        this.ConfigService = new ConfigService();
+  
+    },
+  
   mounted()
   {
       let person = prompt("Please enter your password");
-if (person != "admin") {
+      if (person != "admin") {
+        this.$router.push('/notfound');
+}
+this.ConfigService. getConfig().then(data => this.configuration = data);
+  },
+  methods: {
 
-    this.$router.push('/notfound');
+apply(){
 
-
+     this.ConfigService.updateConfig(this.configuration);
+        this.$toast.add({severity:'success', summary: 'Success Message', detail:'Configuration saved successfully', life: 3000});
 
 }
   }
-}
+};
 
 </script>
