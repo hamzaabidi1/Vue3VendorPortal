@@ -7,22 +7,22 @@
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         class="profile-img-card"/>
      
-           <div class="form-group">
+           <div >
                         <label for="username"><strong>Username</strong></label>
-                        <Field name="username" class="form-control" id="username" v-model="username" :class="{'p-invalid': validationErrors.username && submitted}" />
-                        <small v-show="validationErrors.username && submitted" class="p-error">Vendor Name is required.</small>
+                    <Field name="username" class="form-control" id="username" v-model="username" :class="{'p-invalid': validationErrors.username && submitted}" />    
+                     <small v-show="validationErrors.username && submitted" class="p-error">Username is required.</small>
                     </div>
 
-                    <div class="form-group ">
+                    <div>
                     <label for="password"><strong>Password</strong></label>
-                    <Field name="password" type="password" class="form-control" v-model="password" id="password" :class="{'p-invalid': validationErrors.password && submitted}" />  
+                    <Password name="password" toggleMask  v-model="password" id="password" :class="{'p-invalid': validationErrors.password && submitted}" />  
                     <small v-show="validationErrors.password && submitted" class="p-error">password is required.</small>
                 </div>
 
 
                  <div class="form-group ">
                     <label for="confirmPassword"><strong>Confirm Password</strong></label>
-                    <Field name="confirmPassword" type="password" class="form-control" v-model="confirmPassword" id="confirmPassword" :class="{'p-invalid': validationErrors.confirmPassword && submitted}" />  
+                    <Password  toggleMask name="confirmPassword"  v-model="confirmPassword" id="confirmPassword" :class="{'p-invalid': validationErrors.confirmPassword && submitted}" />  
                     <small v-show="validationErrors.confirmPassword && submitted" class="p-error">Confirm password is required.</small>
                 </div>
         <div class="form-group">
@@ -126,6 +126,15 @@ export default {
 </script>
 
 <style scoped>
+
+::v-deep(.p-password input) {
+    width: 16.8rem
+}
+
+::v-deep(.p-inputtext input) {
+    width: 17rem
+}
+
 label {
   display: block;
   margin-top: 10px;

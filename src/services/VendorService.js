@@ -44,6 +44,30 @@ export default class VendorService {
 
         updateRfqLineById(rfqline){
           return axios.put(API_URL+'Rfq/updateRfqLine',rfqline,{ headers: authHeader()});
+        }
+
+
+        findPo(email){
+          return axios.get(API_URL+'po/GetPo/'+email,{ headers: authHeader()}).then(d => d.data);
+
+        }
+        findPoDetails(id){
+          return axios.get(API_URL+'po/GetPodetails/'+id,{ headers: authHeader()}).then(d => d.data);
+
+        }
+
+        findPoLines(id){
+          return axios.get(API_URL+'po/GetpoLines/'+id,{ headers: authHeader()}).then(d => d.data);
+
+        }
+
+        findPoLineById(id){
+          return axios.get(API_URL+'po/GetpoLine/'+id,{ headers: authHeader()}).then(d => d.data);
+
+        }
+
+        updatePoLineById(Poline){
+          return axios.put(API_URL+'po/updatepoLine',Poline,{ headers: authHeader()});
 
         }
 

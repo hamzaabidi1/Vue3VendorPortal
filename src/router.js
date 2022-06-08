@@ -8,6 +8,8 @@ import requests from "./components/Requests.vue";
 import SignUp from "./components/SignUp.vue";
 import Rfq from "./components/Rfq.vue";
 import RfqDetails from "./components/RfqDetails.vue";
+import Po from "./components/Po.vue";
+import PoDetails from "./components/PoDetails.vue";
 import DemandeEnCours from "./components/DemandeEnCours.vue";
 import Config from "./components/Config.vue";
 import NotFound from "./components/NotFound.vue";
@@ -80,6 +82,15 @@ const routes = [
 { path: '/rfqdetails/:idpath',
   component: RfqDetails,
   name: "rfqdetails"
+},
+
+{ path: '/po',
+component: Po,
+name: "po"
+},
+{ path: '/podetails/:idpath',
+component: PoDetails,
+name: "podetails"
 },
 {
   path: '/encours',
