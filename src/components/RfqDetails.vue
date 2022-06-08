@@ -7,25 +7,34 @@
             </template>
 
             <template v-slot:content>
-                <div class="field col-12">
-                    <label for="class">RFQ : </label>
-                    <b>{{rfq.rfqnum ? rfq.rfqnum : ' - '}}</b>
+                <div class="row align-items-start">
+                    <div class="col-md-4">
+                
+                    <label for="class" style="color:#3f2de1;">RFQ : </label>
+                    <b style="margin-left:0.5vw">{{rfq.rfqnum ? rfq.rfqnum : ' - '}}</b>
+                
                 </div>
-                <div class="field col-12">
-                    <label for="class">Description : </label>
-                    <b>{{rfq.description ? rfq.description : '-'}}</b>
+                <div class="col-md-4">
+                
+                    <label for="class" style="color:#3f2de1;">Description : </label>
+                    <b style="margin-left:0.5vw">{{rfq.description ? rfq.description : '-'}}</b>
+               
                 </div>
-                <div class="field col-12">
-                    <label for="class">Status :</label>
-                    <b>{{rfq.status ? rfq.status : '-'}}</b>
+                <div class="col-md-4">
+                    <label for="class" style="color:#3f2de1;">Status :</label>
+                    <b style="margin-left:0.5vw">{{rfq.status ? rfq.status : '-'}}</b>
                 </div>
-                <div class="field col-12">
-                    <label for="class">Require date :</label>
-                    <b>{{rfq.requireddate ? rfq.requireddate : '-'}}</b>
                 </div>
-                <div class="field col-12">
-                    <label for="class">Purchase Agent :</label>
-                    <b>{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
+
+                <div class="row align-items-start">
+                <div class="col-md-4">
+                    <label for="class" style="color:#3f2de1;">Require date :</label>
+                    <b style="margin-left:0.5vw">{{rfq.requireddate ? rfq.requireddate : '-'}}</b>
+                </div>
+                <div class="col-md-4">
+                    <label for="class" style="color:#3f2de1;">Purchase Agent :</label>
+                    <b style="margin-left:0.5vw">{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
+                </div>
                 </div>
 
                
@@ -45,12 +54,12 @@
                 <Column field="description" header="Description" />
                 <Column field="orderqty" header="Qty Requested" />
                 <Column field="orderunit" header="Unit" />
-                <Column field="unitcost" header="Unit Cost"/>
-                <Column field="linecost" header="Line Cost" />
-                <Column field="quotationqty" header="Qty" />
                 <Column field="quoteStartDate" header="Start Date" />
                 <Column field="quoteEndDate" header="End Date"/>
                 <Column field="delivryDate" header="Delivery Date"/>
+                <Column field="quotationqty" header="Qty" />
+                <Column field="unitcost" header="Unit Cost"/>
+                <Column field="linecost" header="Line Cost" />
             </DataTable>
         </div>
 
@@ -58,14 +67,37 @@
 	
 
       <Dialog  v-model:visible="rfqEdit" :style="{width: '50vw'}" :closable="false">
+      <div class="row align-items-start">
+          <div class="col-md-6">
                    <label style="width: 90%;margin-right:2vw;" ><strong>Qty</strong></label>
-                    <InputText v-model="rfqline.quotationqty"  style="width: 95%;" /> 
+                    <InputText id="qty" v-on:change="calcul" v-model="rfqline.quotationqty"  style="width: 95%;" /> 
+                    </div>
+                    <div class="col-md-6">
+                    <label style="width: 90%;margin-right:2vw;" ><strong>Unit Cost</strong></label>
+                    <InputText id="unit" v-on:change="calcul" v-model="rfqline.unitcost"  style="width: 95%;" /> 
+                    </div>
+
+        </div>
+        <div class="row align-items-start">
+            <div class="col-md-6">
+                    <label style="width: 90%;margin-right:2vw;" ><strong>Line Cost</strong></label>
+                    <InputText id="line" v-model="rfqline.linecost"  style="width: 95%;" disabled /> 
+                    </div>
+                    <div class="col-md-6">
                     <label style="width: 90%;margin-right:2vw;" ><strong>Start Date</strong></label>
                     <Calendar v-model="rfqline.quoteStartDate" :showIcon="true" style="width: 95%;" />
+                    </div>
+    </div>
+    <div class="row align-items-start">
+        <div class="col-md-6">
                     <label style="width: 90%;margin-right:2vw;" ><strong>End Date</strong></label>
                     <Calendar  v-model="rfqline.quoteEndDate" :showIcon="true" style="width: 95%;" />
+                    </div>
+                    <div class="col-md-6">
                     <label style="width: 90%;margin-right:2vw;" ><strong>Delivery Date</strong></label>
                     <Calendar  v-model="rfqline.delivryDate" :showIcon="true" style="width: 95%;" />
+                    </div>
+    </div>
                      <template #footer>
                         <Button label="Cancel" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
                         <Button label="Save" icon="pi pi-check" @click="saveEdit" autofocus />
@@ -196,6 +228,9 @@ export default {
     
     
     },
+
+
+
     
     async mounted() {
         const route = useRoute();  
@@ -206,16 +241,20 @@ export default {
   
     },
     methods: {
+        calcul(){
+            let qty=document.getElementById("qty").value
+            let unit =document.getElementById("unit").value
+            console.log(qty)
+                let line =document.getElementById("line").value 
+                line=qty*unit;
+                this.rfqline.linecost=line;
+        },
 
          async  onRowSelect(event) {
             const idline = event.data.id
               this.rfqEdit= true;
              await  this.vendorservice. findRfqLineById(idline).then(data1 => this.rfqline = data1);
               console.log(this.rfqline)
-          //  this.$router.push({ name: 'rfqdetails', params: { idpath } }) 
-            
-            
-            
         },
         onRowUnselect(event) {
           
