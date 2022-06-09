@@ -3,38 +3,61 @@
 
         <Card  class="card" style=" margin-top: 0vw;">
             <template v-slot:title>
-                RFQ Details
+                PO Details
             </template>
 
             <template v-slot:content>
                 <div class="row align-items-start">
                     <div class="col-md-4">
+
+                    
+            
+            
                 
-                    <label for="class" style="color:#3f2de1;">RFQ : </label>
-                    <b style="margin-left:0.5vw">{{rfq.rfqnum ? rfq.rfqnum : ' - '}}</b>
+                    <label for="class" style="color:#3f2de1;">PO : </label>
+                    <b style="margin-left:0.5vw">{{po.ponum ? po.ponum : ' - '}}</b>
                 
                 </div>
                 <div class="col-md-4">
                 
                     <label for="class" style="color:#3f2de1;">Description : </label>
-                    <b style="margin-left:0.5vw">{{rfq.description ? rfq.description : '-'}}</b>
+                    <b style="margin-left:0.5vw">{{po.description ? po.description : '-'}}</b>
                
                 </div>
                 <div class="col-md-4">
                     <label for="class" style="color:#3f2de1;">Status :</label>
-                    <b style="margin-left:0.5vw">{{rfq.status ? rfq.status : '-'}}</b>
+                    <b style="margin-left:0.5vw">{{po.status ? po.status : '-'}}</b>
                 </div>
                 </div>
 
                 <div class="row align-items-start">
                 <div class="col-md-4">
                     <label for="class" style="color:#3f2de1;">Require date :</label>
-                    <b style="margin-left:0.5vw">{{rfq.requireddate ? rfq.requireddate : '-'}}</b>
+                    <b style="margin-left:0.5vw">{{po.requireddate ? po.requireddate : '-'}}</b>
                 </div>
+            
                 <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Purchase Agent :</label>
-                    <b style="margin-left:0.5vw">{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
+                    <label for="class" style="color:#3f2de1;">Total Cost :</label>
+                    <b style="margin-left:0.5vw">{{po.totalcost ? po.totalcost : '-'}}</b>
                 </div>
+                 <div class="col-md-4">
+                    <label for="class" style="color:#3f2de1;">Total Tax :</label>
+                    <b style="margin-left:0.5vw">{{po.totaltax1 ? po.totaltax1 : '-'}}</b>
+                </div>
+                </div>
+
+                  <div class="row align-items-start">
+               
+                 
+                <div class="col-md-4">
+                    <label for="class" style="color:#3f2de1;">Currency :</label>
+                    <b style="margin-left:0.5vw">{{po.currencycode ? po.currencycode : '-'}}</b>
+                </div>
+                  <div class="col-md-4">
+                    <label for="class" style="color:#3f2de1;">Purchase Agent :</label>
+                    <b style="margin-left:0.5vw">{{po.purchaseagent ? po.purchaseagent : '-'}}</b>
+                </div>
+
                 </div>
 
                
@@ -46,20 +69,16 @@
         
         <Toast />
         <div class="card" style=" margin-top: -2vw;">
-            <h5>RFQ List</h5>
-            <DataTable :value="rfq.rfqline" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
+            <h5>PO Line List</h5>
+            <DataTable :value="po.poline" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll">
-                <Column field="rfqlinenum" header="Line" />
-                <Column field="itemnum" header="Item" />
-                <Column field="description" header="Description" />
-                <Column field="orderqty" header="Qty Requested" />
-                <Column field="orderunit" header="Unit" />
-                <Column field="quoteStartDate" header="Start Date" />
-                <Column field="quoteEndDate" header="End Date"/>
-                <Column field="delivryDate" header="Delivery Date"/>
-                <Column field="quotationqty" header="Qty" />
-                <Column field="unitcost" header="Unit Cost"/>
-                <Column field="linecost" header="Line Cost" />
+                <Column field="polinenum" header="Line" sortable />
+                <Column field="itemnum" header="Item" sortable />
+                <Column field="description" header="Description" sortable />
+                <Column field="orderqty" header="Quantity" sortable/>
+                <Column field="orderunit" header="Unit" sortable/>
+                <Column field="unitcost" header="Unit Cost" sortable/>
+                <Column field="linecost" header="Line Cost" sortable/>
             </DataTable>
         </div>
 
@@ -146,43 +165,38 @@ export default {
             poEdit: false,
              selectedProduct2: null,
 
-              rfqline:{
-                id:null,
-                rfqlinenum:null,
-                itemnum:null,
-                description:'',
-                orderqty:null,
-                orderunit:null,
-                unitcost:null,
-                linecost:null,
-                quotationqty:null,
-                quoteStartDate:'',
-                quoteEndDate:'',
-                delivryDate:'',
-                rfq: {
-                    id:''
+              poline:{
+            id: null,
+            polinenum: null,
+            itemnum: null,
+            description: null,
+            orderqty: null,
+            orderunit: null,
+            unitcost: null,
+            linecost: null,
+            po: {
+                id:''
                 }
                 },
-        rfq: {
+        po: {
             id:null,
-            rfqnum:'',
+            ponum:'',
             description:'',
             status:'',
             requireddate:'',
             purchaseagent:'',
-            rfqline:{
+             totalcost: null,
+            totaltax1: null,
+            currencycode: null,
+            poline:{
                 id:null,
-                rfqlinenum:null,
-                itemnum:null,
-                description:'',
-                orderqty:null,
-                orderunit:null,
-                unitcost:null,
-                linecost:null,
-                quotationqty:null,
-                quoteStartDate:'',
-                quoteEndDate:'',
-                delivryDate:''
+                polinenum: null,
+                itemnum: null,
+                description: null,
+                orderqty: null,
+                orderunit: null,
+                unitcost: null,
+                linecost: null,
                 },
             user:{
                 id:null,
@@ -235,9 +249,9 @@ export default {
     async mounted() {
         const route = useRoute();  
          var id = route.params.idpath; 
-        await this.vendorservice.findRfqDetails(id).then(data => this.rfq = data);
+        await this.vendorservice.findPoDetails(id).then(data => this.po = data);
       //  this.vendorservice. findRfqLines(this.rfq.id).then(data => this.rfqLine = data);
-        console.log(this.rfq)
+        console.log(this.po)
   
     },
     methods: {

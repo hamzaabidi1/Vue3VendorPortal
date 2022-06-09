@@ -22,6 +22,10 @@
               @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">PO</router-link>
           </li>
           <li v-if="showFournisseurBoard && currentUser.status == 'Confirmed'">
+            <router-link to="/invoice" v-tooltip="'click to show Invoice list '"
+              @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">Invoice</router-link>
+          </li>
+          <li v-if="showFournisseurBoard && currentUser.status == 'Confirmed'">
             <router-link to="" @click.prevent="requestUpdate" v-tooltip="'click to update Information of account'"
               class="navbar-brand" style="color:white;">Change Informations</router-link>
           </li>

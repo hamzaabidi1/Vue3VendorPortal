@@ -71,4 +71,30 @@ export default class VendorService {
 
         }
 
+
+        
+        findInvoice(email){
+          return axios.get(API_URL+'invoice/Getinvoice/'+email,{ headers: authHeader()}).then(d => d.data);
+
+        }
+        findInvoiceDetails(id){
+          return axios.get(API_URL+'invoice/Getinvoicedetails/'+id,{ headers: authHeader()}).then(d => d.data);
+
+        }
+
+        findInvoiceLines(id){
+          return axios.get(API_URL+'invoice/GetInvoiceLines/'+id,{ headers: authHeader()}).then(d => d.data);
+
+        }
+
+        findInvoiceLineById(id){
+          return axios.get(API_URL+'invoice/GetInvoiceLine/'+id,{ headers: authHeader()}).then(d => d.data);
+
+        }
+
+        updateInvoiceLineById(Invoiceline){
+          return axios.put(API_URL+'invoice/updateinvoiceLine',Invoiceline,{ headers: authHeader()});
+
+        }
+
 }

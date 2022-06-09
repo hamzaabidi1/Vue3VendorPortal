@@ -10,6 +10,8 @@ import Rfq from "./components/Rfq.vue";
 import RfqDetails from "./components/RfqDetails.vue";
 import Po from "./components/Po.vue";
 import PoDetails from "./components/PoDetails.vue";
+import Invoice from "./components/Invoice.vue";
+import InvoiceDetails from "./components/InvoiceDetails.vue";
 import DemandeEnCours from "./components/DemandeEnCours.vue";
 import Config from "./components/Config.vue";
 import NotFound from "./components/NotFound.vue";
@@ -91,6 +93,15 @@ name: "po"
 { path: '/podetails/:idpath',
 component: PoDetails,
 name: "podetails"
+},
+
+{ path: '/invoice',
+component: Invoice,
+name: "invoice"
+},
+{ path: '/invoicedetails/:idpath',
+component: InvoiceDetails,
+name: "invoicedetails"
 },
 {
   path: '/encours',
