@@ -57,6 +57,10 @@
                     <label for="class" style="color:#3f2de1;">Purchase Agent :</label>
                     <b style="margin-left:0.5vw">{{po.purchaseagent ? po.purchaseagent : '-'}}</b>
                 </div>
+                <div class="col-md-4">
+                    <label for="class" style="color:#3f2de1;">Delivery Date :</label>
+                    <b style="margin-left:0.5vw">{{po.vendeliverydate ? po.vendeliverydate : '-'}}</b>
+                </div>
 
                 </div>
 
@@ -79,44 +83,23 @@
                 <Column field="orderunit" header="Unit" sortable/>
                 <Column field="unitcost" header="Unit Cost" sortable/>
                 <Column field="linecost" header="Line Cost" sortable/>
+                <Column field="vendeliverydate" header="Delivery Date" sortable/>
             </DataTable>
         </div>
 
       
 	
 
-      <Dialog  v-model:visible="poEdit" :style="{width: '50vw'}" :closable="false">
+      <Dialog  v-model:visible="poEdit" :style="{width: '30vw'}" :closable="false">
       <div class="row align-items-start">
-          <div class="col-md-6">
-                   <label style="width: 90%;margin-right:2vw;" ><strong>Qty</strong></label>
-                    <InputText id="qty" v-on:change="calcul" v-model="rfqline.quotationqty"  style="width: 95%;" /> 
+          
+                     <label style="width: 90%;margin-right:2vw;" ><strong>Delivery Date</strong></label>
+                    <Calendar v-model="poline.vendeliverydate" :showIcon="true" style="width: 95%;" />
                     </div>
-                    <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Unit Cost</strong></label>
-                    <InputText id="unit" v-on:change="calcul" v-model="rfqline.unitcost"  style="width: 95%;" /> 
-                    </div>
+                
+                   
 
-        </div>
-        <div class="row align-items-start">
-            <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Line Cost</strong></label>
-                    <InputText id="line" v-model="rfqline.linecost"  style="width: 95%;" disabled /> 
-                    </div>
-                    <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Start Date</strong></label>
-                    <Calendar v-model="rfqline.quoteStartDate" :showIcon="true" style="width: 95%;" />
-                    </div>
-    </div>
-    <div class="row align-items-start">
-        <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>End Date</strong></label>
-                    <Calendar  v-model="rfqline.quoteEndDate" :showIcon="true" style="width: 95%;" />
-                    </div>
-                    <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Delivery Date</strong></label>
-                    <Calendar  v-model="rfqline.delivryDate" :showIcon="true" style="width: 95%;" />
-                    </div>
-    </div>
+ 
                      <template #footer>
                         <Button label="Cancel" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
                         <Button label="Save" icon="pi pi-check" @click="saveEdit" autofocus />
@@ -174,6 +157,7 @@ export default {
             orderunit: null,
             unitcost: null,
             linecost: null,
+            vendeliverydate:null,
             po: {
                 id:''
                 }
@@ -188,6 +172,7 @@ export default {
              totalcost: null,
             totaltax1: null,
             currencycode: null,
+            vendeliverydate:null ,
             poline:{
                 id:null,
                 polinenum: null,
@@ -197,6 +182,7 @@ export default {
                 orderunit: null,
                 unitcost: null,
                 linecost: null,
+                vendeliverydate: null,
                 },
             user:{
                 id:null,
@@ -267,8 +253,8 @@ export default {
          async  onRowSelect(event) {
             const idline = event.data.id
               this.poEdit= true;
-             await  this.vendorservice. findRfqLineById(idline).then(data1 => this.rfqline = data1);
-              console.log(this.rfqline)
+             await  this.vendorservice. findPoLineById(idline).then(data1 => this.poline = data1);
+              console.log(this.poline)
         },
         onRowUnselect(event) {
           
@@ -279,7 +265,7 @@ export default {
         },
         saveEdit()
         {
-            this.vendorservice. updateRfqLineById(this.rfqline);
+            this.vendorservice.updatePoLineById(this.poline);
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             this.poEdit= false;
             this.$router.go();

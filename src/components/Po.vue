@@ -15,6 +15,7 @@
             <Column field="totaltax1" header="Total Tax" sortable></Column>
             <Column field="currencycode" header="Currency" sortable></Column>
             <Column field="purchaseagent" header="Purchase Agent" sortable></Column>
+            <Column field="vendeliverydate" header="Delivery Date" sortable></Column>
             </DataTable>
         </div>
 

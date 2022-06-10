@@ -8,6 +8,7 @@
               
 
             <Column field="rfqnum" header="RFQ" sortable></Column>
+            <Column field="siteid" header="Site" sortable></Column>
             <Column field="description" header="Description" sortable></Column>
             <Column field="status" header="Status" sortable></Column>
             <Column field="requireddate" header="Require date" sortable></Column>

@@ -35,6 +35,10 @@
                     <label for="class" style="color:#3f2de1;">Purchase Agent :</label>
                     <b style="margin-left:0.5vw">{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
                 </div>
+                 <div class="col-md-4">
+                    <label for="class" style="color:#3f2de1;">Site :</label>
+                    <b style="margin-left:0.5vw">{{rfq.siteid ? rfq.siteid : '-'}}</b>
+                </div>
                 </div>
 
                
@@ -166,6 +170,7 @@ export default {
         rfq: {
             id:null,
             rfqnum:'',
+            siteid:'',
             description:'',
             status:'',
             requireddate:'',
