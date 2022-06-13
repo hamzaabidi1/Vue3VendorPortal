@@ -2,8 +2,9 @@ import axios from 'axios';
 import authHeader from './auth-header';
 
 const API_URL = process.env.VUE_APP_SERVICE_URL+'/api/test/';
+const URL =  process.env.VUE_APP_SERVICE_URL+'/api/auth/';
 
-class UserService {
+export default class UserService {
   getPublicContent() {
     return axios.get(API_URL + 'all');
   }
@@ -19,6 +20,16 @@ class UserService {
   getAdminBoard() {
     return axios.get(API_URL + 'admin', { headers: authHeader() });
   }
+
+
+  existebyname(username){
+    return  axios.get(URL +'existbyusername/'+username);
+
+  }
+
+  signupDraft(route,res){
+    axios.put(URL+'signupdraft/'+route,res);
+
+  }
 }
 
-export default new UserService();

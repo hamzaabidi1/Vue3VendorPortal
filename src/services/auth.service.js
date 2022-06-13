@@ -71,6 +71,7 @@ class AuthService {
   }
     return axios.post(URL + 'forgetpassword/'+user.email,window.location.origin,{ headers: authHeader(),optionAxios }) ;
   }
+  
 }
 
 export default new AuthService();

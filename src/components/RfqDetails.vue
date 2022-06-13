@@ -54,17 +54,17 @@
             <h5>RFQ Line List</h5>
             <DataTable :value="rfq.rfqline" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll">
-                <Column field="rfqlinenum" header="Line" sortable/>
-                <Column field="itemnum" header="Item" sortable/>
-                <Column field="description" header="Description" sortable/>
-                <Column field="orderqty" header="Qty Requested" sortable/>
-                <Column field="orderunit" header="Unit" sortable/>
-                <Column field="quoteStartDate" header="Start Date" sortable />
-                <Column field="quoteEndDate" header="End Date" sortable/>
-                <Column field="delivryDate" header="Delivery Date" sortable/>
-                <Column field="quotationqty" header="Qty" sortable/>
-                <Column field="unitcost" header="Unit Cost" sortable/>
-                <Column field="linecost" header="Line Cost" sortable />
+                <Column field="rfqlinenum" header="Line" sortable style="font-size:small;"/>
+                <Column field="itemnum" header="Item" sortable style="font-size:small;"/>
+                <Column field="description" header="Description" sortable style="font-size:small;"/>
+                <Column field="orderqty" header="Qty Requested" sortable style="font-size:small;"/>
+                <Column field="orderunit" header="Unit" sortable style="font-size:small;"/>
+                <Column field="quoteStartDate" header="Start Date" sortable style="font-size:small;" />
+                <Column field="quoteEndDate" header="End Date" sortable style="font-size:small;"/>
+                <Column field="delivryDate" header="Delivery Date" sortable style="font-size:small;"/>
+                <Column field="quotationqty" header="Qty" sortable style="font-size:small;"/>
+                <Column field="unitcost" header="Unit Cost" sortable style="font-size:small;"/>
+                <Column field="linecost" header="Line Cost" sortable style="font-size:small;" />
             </DataTable>
         </div>
 

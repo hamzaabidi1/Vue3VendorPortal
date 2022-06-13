@@ -9,13 +9,13 @@
      
            <div >
                         <label for="username"><strong>Username</strong></label>
-                    <Field name="username" class="form-control" id="username" v-model="username" :class="{'p-invalid': validationErrors.username && submitted}" />    
+                    <Field name="username" class="form-control" id="username" v-model="res.username" :class="{'p-invalid': validationErrors.username && submitted}" />    
                      <small v-show="validationErrors.username && submitted" class="p-error">Username is required.</small>
                     </div>
 
                     <div>
                     <label for="password"><strong>Password</strong></label>
-                    <Password name="password" toggleMask  v-model="password" id="password" :class="{'p-invalid': validationErrors.password && submitted}" />  
+                    <Password name="password" toggleMask  v-model="res.password" id="password" :class="{'p-invalid': validationErrors.password && submitted}" />  
                     <small v-show="validationErrors.password && submitted" class="p-error">password is required.</small>
                 </div>
 
@@ -41,6 +41,7 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
+import UserService from '../services/user.service';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
 import InputText from "primevue/inputtext"
@@ -63,17 +64,31 @@ export default {
   },
   data() {
     return {
+          res:{
             username: '',
             password: '',
+          },
+            
             confirmPassword: '',
             submitted: false,
             validationErrors: {},
             message: ''
     };
   },
+
+     userService: null,
+
+    created() {
+
+        this.userService = new UserService();
+
+    
+    
+    },
   methods: {
        existename(){
-        return  axios.get('http://localhost:8080/api/auth/existbyusername/'+this.username);
+
+        return  this.userService.existebyname(this.username);
         },
     async signup() {
         this.submitted = true;
@@ -81,13 +96,15 @@ export default {
             let result= await this.existename();
         if(result.data === false) {
 
-          if (this.password == this.confirmPassword){
+          if (this.res.password == this.confirmPassword){
 
          
        
         try {
-            let res = {username: this.username,password: this.password};
-             axios.put('http://localhost:8080/api/auth/'+'signupdraft/'+this.$route.query.token,res);
+          //  var res = {username: this.username,password: this.password};
+            console.log("******"+this.$route.query.token)
+            console.log("******** res : ",this.res)
+            this.userService.signupDraft(this.$route.query.token,this.res);
               this.$toast.add({severity:'success', summary: 'Success Message', detail:'UserName registred', life: 3000});
               await this.$router.push('/login');
         } catch (error) {
@@ -100,16 +117,16 @@ export default {
         }
         }
       else {
-      
+      this.$toast.add({severity:'error', summary: 'Error Message', detail:'Username already exist', life: 3000});
       }
       }
       },
         validateForm() {
-                        if (!this.username.trim())
+                        if (!this.res.username.trim())
                 this.validationErrors['username'] = true;
             else
                 delete this.validationErrors['username'];
-                        if (!this.password.trim())
+                        if (!this.res.password.trim())
                 this.validationErrors['password'] = true;
             else
                 delete this.validationErrors['password'];

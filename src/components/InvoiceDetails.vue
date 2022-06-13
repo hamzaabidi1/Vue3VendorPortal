@@ -252,19 +252,11 @@ export default {
     },
     methods: {
         calcul(){
-            let qty=document.getElementById("qty").value
-            let unit =document.getElementById("unit").value
-            console.log(qty)
-                let line =document.getElementById("line").value 
-                line=qty*unit;
-                this.rfqline.linecost=line;
+          
         },
 
          async  onRowSelect(event) {
-            const idline = event.data.id
-              this.invoiceEdit= true;
-             await  this.vendorservice. findRfqLineById(idline).then(data1 => this.rfqline = data1);
-              console.log(this.rfqline)
+         
         },
         onRowUnselect(event) {
           
