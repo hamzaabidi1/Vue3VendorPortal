@@ -348,7 +348,7 @@
 
 
   <Dialog :closable="false"
-    style="bottom:50px;margin-right:5vw; position:fixed;max-height: 35vw;min-height: 20vw;opacity: 1;border-radius: 10%;background: #6495ED;" :draggable="false"
+    style="bottom:50px;margin-right:5vw; position:fixed;max-height: 35vw;min-height: 20vw;opacity: 1;border-radius: 20%;background: #6495ED;" :draggable="false"
     v-model:visible="displayResponsive" :position="position" :breakpoints="{ '960px': '75vw' }"
     :style="{ width: '20vw' }">
 

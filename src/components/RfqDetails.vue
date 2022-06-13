@@ -4,7 +4,7 @@
         <Card  class="card" style=" margin-top: 0vw;">
             <template v-slot:title>
                 RFQ Details
-                <Button label="Submit" class="p-button-raised p-button-text p-button-outlined" style="float:right;" :loading="loading[0]" @click="load(0)" ><b style="color:#4998DC;height: 2vw;margin-right: 0.5vw;">Submit </b><img src="../assets/ibmmaximo.png" style="max-width:3vw;max-height:1.5vw;"/></Button>
+                <Button  class="p-button-raised p-button-text" style="float:right;" :loading="loading[0]" @click="load(0)" ><b style="color:#4998DC;height: 2vw;margin-right: 0.5vw;">Submit </b><img src="../assets/ibmmaximo.png" style="max-width:3vw;max-height:1.5vw;"/></Button>
             </template>
 
             <template v-slot:content>

@@ -47,7 +47,7 @@ export default class VendorService {
         }
 
         addRfqToMaximo(id){
-          return axios.post(API_URL+'Rfq/addRfqmaximo/'+id,{ headers: authHeader()});
+          return axios.post(API_URL+'Rfq/addRfqmaximo/'+id,null,{ headers: authHeader()});
         }
 
 
