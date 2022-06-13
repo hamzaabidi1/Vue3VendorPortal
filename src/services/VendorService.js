@@ -46,6 +46,10 @@ export default class VendorService {
           return axios.put(API_URL+'Rfq/updateRfqLine',rfqline,{ headers: authHeader()});
         }
 
+        addRfqToMaximo(id){
+          return axios.post(API_URL+'Rfq/addRfqmaximo/'+id,{ headers: authHeader()});
+        }
+
 
         findPo(email){
           return axios.get(API_URL+'po/GetPo/'+email,{ headers: authHeader()}).then(d => d.data);
