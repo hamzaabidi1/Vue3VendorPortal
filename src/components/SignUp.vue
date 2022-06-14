@@ -49,7 +49,6 @@ import InputText from "primevue/inputtext"
 import InputNumber from "primevue/inputnumber"
 import Calendar from 'primevue/calendar';
 import Password from 'primevue/password';
-import axios from 'axios'
 
 
 export default {

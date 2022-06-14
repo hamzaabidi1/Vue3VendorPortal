@@ -125,6 +125,9 @@ export default {
           if (monobjet.status === "Draft") {
             this.$router.push("/register");
           }
+          if (monobjet.status === "Submitted") {
+            this.$router.push("/submitted");
+          }
           else{
           this.$router.push("/fournisseur");
           }

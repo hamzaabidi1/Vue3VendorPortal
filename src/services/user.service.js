@@ -31,5 +31,16 @@ export default class UserService {
     axios.put(URL+'signupdraft/'+route,res);
 
   }
+
+  signupafterSteps(username,formData){
+    axios.post(URL+'signup/'+username,formData,{headers: authHeader()}  );
+
+  }
+
+  newpassword(token,password){
+
+    axios.post(URL+'newpassword/'+token+'/'+password,null,{headers: authHeader()});
+
+  }
 }
 

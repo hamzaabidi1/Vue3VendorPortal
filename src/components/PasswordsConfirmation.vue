@@ -42,7 +42,8 @@
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import Password from 'primevue/password';
-import axios from 'axios';
+import UserService from '../services/user.service';
+
 
 export default {
   name: "PasswordsConfirmation",
@@ -66,19 +67,24 @@ export default {
     };
   },
 
+  userService: null,
+
+    created() {
+
+        this.userService = new UserService();
+
+    
+    
+    },
+
   methods: {
     handleConfirmPassword(){
+                   
+          this.userService.newpassword(this.$route.query.token,this.password1)
           this.$toast.add({severity:'success', summary: 'Success Message', detail:'Password changed succefully please connect with your new password', life: 6000})
           this.$router.push('/login');
-           var optionAxios = {
-      headers: {
-          'Content-Type': 'application/json',
-          "Access-Control-Allow-Origin": "*",
-          'Access-Control-Allow-Headers': 'Content-Type',
-          'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
-      }
-  }
-        return  axios.post('http://localhost:8080/api/auth/'+'newpassword/'+this.$route.query.token+'/'+this.password1);
+  
+      
          
   
   /*   this.message = "";

@@ -59,13 +59,13 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
-import axios from 'axios';
-import authHeader from '../services/auth-header';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
 import InputText from "primevue/inputtext"
 import InputNumber from "primevue/inputnumber"
 import Dropdown from "primevue/dropdown"
+import UserService from '../services/user.service';
+
 export default {
   name: "Register",
    emits: ['nextPage', 'prevPage','complete'],
@@ -98,22 +98,24 @@ export default {
       return this.$store.state.auth.user;},
 
   },
+   userService: null,
+
+    created() {
+
+        this.userService = new UserService();
+
+    
+    
+    },
     methods: {
             prevPage() {
             this.$emit('prev-page', {pageIndex: 4});
         },
       
       complete(formData) {
-        
-          var optionAxios = {
-      headers: {
-          'Content-Type': 'application/json',
-          "Access-Control-Allow-Origin": "*",
-          'Access-Control-Allow-Headers': 'Content-Type',
-          'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
-      }
-  }
-       axios.post('http://localhost:8080/api/auth/'+'signup/'+this.currentUser.username,formData,{headers: authHeader(),optionAxios }  );
+    
+
+         this.userService.signupafterSteps(this.currentUser.username,formData)
          this.$toast.add({severity:'success', summary: 'Success Message', detail:'User Informations registred', life: 3000});
          this.$router.push('/encours');
 

@@ -15,6 +15,8 @@ import InvoiceDetails from "./components/InvoiceDetails.vue";
 import DemandeEnCours from "./components/DemandeEnCours.vue";
 import Config from "./components/Config.vue";
 import NotFound from "./components/NotFound.vue";
+import Submitted from "./components/submitted.vue";
+
 // lazy-loaded
 const Profile = () => import("./components/Profile.vue")
 const BoardAdmin = () => import("./components/BoardAdmin.vue")
@@ -122,6 +124,11 @@ name: "invoicedetails"
     path: '/notfound',
     component: NotFound,
     name: "notfound",
+  },
+  {
+    path: '/submitted',
+    component: Submitted,
+    name: "submitted",
   },
   {
     path: '/register',
