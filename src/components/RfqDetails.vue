@@ -4,7 +4,7 @@
         <Card  class="card" style=" margin-top: 0vw;">
             <template v-slot:title>
                 RFQ Details
-                <Button  class="p-button-raised p-button-text" style="float:right;" :loading="loading[0]" @click="load(0)" ><b style="color:#4998DC;height: 2vw;margin-right: 0.5vw;">Submit </b><img src="../assets/ibmmaximo.png" style="max-width:3vw;max-height:1.5vw;"/></Button>
+                <Button id="submitToMaximo" :disabled='isDisabled' class="p-button-raised p-button-text" style="float:right;" :loading="loading[0]" @click="load(0)" ><b style="color:#4998DC;height: 2vw;margin-right: 0.5vw;">Submit </b><img src="../assets/ibmmaximo.png" style="max-width:3vw;max-height:1.5vw;"/><b style="color:#4998DC;height: 2vw;margin-left: 0.5vw;" id="date"></b></Button>
             </template>
 
             <template v-slot:content>
@@ -177,6 +177,8 @@ export default {
             status:'',
             requireddate:'',
             purchaseagent:'',
+            statusofSend:'',
+            dateEnvoie:'',
             rfqline:{
                 id:null,
                 rfqlinenum:null,
@@ -243,11 +245,39 @@ export default {
         const route = useRoute();  
          var id = route.params.idpath; 
         await this.vendorservice.findRfqDetails(id).then(data => this.rfq = data);
-      //  this.vendorservice. findRfqLines(this.rfq.id).then(data => this.rfqLine = data);
+
+      if (this.rfq.statusofSend ==true){
+            const myTextNode = document.createTextNode(this.rfq.dateEnvoie)
+            
+            const dateEnvoieelement = document.getElementById("submitToMaximo");
+            dateEnvoieelement.appendChild(myTextNode)
+
+            const dateEnvoie = document.getElementById("date");
+             dateEnvoie.setAttribute(
+        'style',
+        'color:#4998DC;height: 2vw;margin-left: 0.5vw;',
+      );
+      }
         console.log(this.rfq)
   
     },
+     computed: {
+
+         isDisabled() {
+            console.log( this.rfq.statusofSend)
+
+      if ( this.rfq.statusofSend == true ) {
+
+        return true
+      }
+      else
+        return false
+
+    },
+
+     },
     methods: {
+
         calcul(){
             let qty=document.getElementById("qty").value
             let unit =document.getElementById("unit").value
@@ -260,17 +290,20 @@ export default {
          async load(index) {
             this.loading[index] = true;
             setTimeout(() => this.loading[index] = false, 2000);
-              
-           
             await this.vendorservice.addRfqToMaximo(this.rfq.id);
              this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Rfq submitted Successfuly to maximo', life: 3000 });
+             this.$router.go();
         },
+       
 
          async  onRowSelect(event) {
+             if ( this.rfq.statusofSend == false)
+             {
             const idline = event.data.id
               this.rfqEdit= true;
              await  this.vendorservice. findRfqLineById(idline).then(data1 => this.rfqline = data1);
               console.log(this.rfqline)
+             }
         },
         onRowUnselect(event) {
           

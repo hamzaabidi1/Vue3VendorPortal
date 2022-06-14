@@ -15,8 +15,9 @@
 
                     <div>
                     <label for="password"><strong>Password</strong></label>
-                    <Password name="password" toggleMask  v-model="res.password" id="password" :class="{'p-invalid': validationErrors.password && submitted}" />  
-                    <small v-show="validationErrors.password && submitted" class="p-error">password is required.</small>
+                    <Password name="password" toggleMask v-on:change="verif"  v-model="res.password" id="password" :class="{'p-invalid': validationErrors.password && submitted}" />  
+                   <div id="container" ></div>
+                   <small v-show="validationErrors.password && submitted" class="p-error">password is required.</small>
                 </div>
 
 
@@ -86,6 +87,31 @@ export default {
     
     },
   methods: {
+    verif(){
+       console.log("***")
+      console.log(this.res.password.length)
+if (this.res.password.length < 6 )
+{
+
+const myTextNode = document.createTextNode("Password Must be over 6 caracter")
+const verification = document.createElement("p");
+verification.setAttribute(
+        'style',
+        'color: red',
+      );
+      verification.appendChild(myTextNode)
+      var element = document.getElementById("container");
+      element.appendChild(verification);
+
+}
+else
+{
+  const elementrem = document.getElementById("container");
+  elementrem.remove();
+
+}
+
+    },
        existename(){
 
         return  this.userService.existebyname(this.username);
@@ -96,7 +122,7 @@ export default {
             let result= await this.existename();
         if(result.data === false) {
 
-          if (this.res.password == this.confirmPassword){
+          if (this.res.password == this.confirmPassword && this.res.password.length >= 6){
 
          
        
@@ -113,7 +139,7 @@ export default {
         }
         else 
         {
-        this.$toast.add({severity:'error', summary: 'Error Message', detail:'Password does not similar', life: 3000});
+        this.$toast.add({severity:'error', summary: 'Error Message', detail:'Password is less than 6 caracter or does not confirmed', life: 3000});
         }
         }
       else {
