@@ -14,12 +14,12 @@
                         </span>
 					</div>
                 </template> 
-                <Column field="firstname" header="Name" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="phone" header="Phone" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="firstname" header="Name" :sortable="true" style="max-width:8rem"></Column>
+                <Column field="phone" header="Phone" :sortable="true" style="max-width:8rem"></Column>
                 <Column field="address" header="Address" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="country" header="Country" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="city" header="City" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="postalcode" header="Postal Code" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="country" header="Country" :sortable="true" style="max-width:8rem"></Column>
+                <Column field="city" header="City" :sortable="true" style="max-width:8rem"></Column>
+                <Column field="postalcode" header="Postal Code" :sortable="true" style="max-width:8rem"></Column>
                 <Column :exportable="false" style="min-width:8rem">
                     <template #body="slotProps">
                         <Button icon="pi pi-bookmark" class="p-button-rounded p-button-secondary  mr-2" @click="userdetails(slotProps.data)"  v-tooltip="'More Details'" />

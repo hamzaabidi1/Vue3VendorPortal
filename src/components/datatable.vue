@@ -16,15 +16,15 @@
                         </span>
 					</div>
                 </template>
-                <Column field="status" header="Status" :sortable="true" style="min-width:10rem">
+                <Column field="status" header="Status" :sortable="true" style="max-width:8rem">
                     <template #body="slotProps">
                         <span :class="'product-badge status-' + (slotProps.data.status ? slotProps.data.status.toLowerCase() : '')">{{slotProps.data.status}}</span>
                     </template>
                 </Column>
-                <Column field="firstname" header="Name" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="username" header="User Name" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="firstname" header="Name" :sortable="true" style="max-width:8rem"></Column>
+                <Column field="username" header="User Name" :sortable="true" style="max-width:8rem"></Column>
                 <Column field="email" header="E-mail" :sortable="true" style="min-width:10rem"></Column>
-                <Column field="phone" header="Phone" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="phone" header="Phone" :sortable="true" style="max-width:8rem"></Column>
                 <Column field="address" header="Address" :sortable="true" style="min-width:10rem"></Column>
                 <Column :exportable="false" style="min-width:10rem">
                     <template #body="slotProps">
