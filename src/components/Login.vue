@@ -122,10 +122,10 @@ export default {
         this.$router.push("/admin");
       }
       else{
-          if (monobjet.status === "Draft") {
+          if (monobjet.status == "Draft") {
             this.$router.push("/register");
           }
-          if (monobjet.status === "Submitted") {
+          else if (monobjet.status == "Submitted") {
             this.$router.push("/submitted");
           }
           else{
