@@ -62,7 +62,7 @@
 
 
         <div class="flex">
-          <div class="row align-items-start" style="margin-bottom:3vw;">
+          <div class="row align-items-start">
             <div class=col-md-6>
               <div class="card" style="margin:auto">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>General Informations</strong></h5>
@@ -152,7 +152,7 @@
           <div class="row align-items-end ">
 
             <div class=col-md-6>
-              <div class="card" style="margin:auto">
+              <div class="card" style="margin:auto;margin-top: 1vw;">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>Fiscal Informations</strong></h5>
 
                 <div class="p-fluid">
@@ -204,7 +204,7 @@
             </div>
 
             <div class=col-md-6>
-              <div class="card" style="margin:auto;">
+              <div class="card" style="margin:auto;margin-top: 1vw;">
                 <h5 class="text-center" style="margin-top:1vw;margin-bottom: 2vw;"><strong>Legacy Informations</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
@@ -221,7 +221,7 @@
                   </div>
                
                   <div class=row>
-                    <div class=col-md-12 style="margin-bottom: 2vw;margin-top: 4vw;">
+                    <div class=col-md-12 style="margin-bottom: 3vw;margin-top: 4vw;">
                 
                    <Button label="Confirm" icon="pi pi-check" class="p-button-success mr-4"  @click="confirmProduct(posts)" style="float:right;max-width: 9vw;" />
                         <Button label="Delete" icon="pi pi-trash" class="p-button-danger mr-2"  @click="confirmDeleteProduct(posts)" style="float:right;max-width: 9vw;"/>
