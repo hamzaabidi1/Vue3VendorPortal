@@ -108,7 +108,7 @@
             </template>
         </Dialog>
 
-          <Dialog v-model:visible="vendordetailsDialog" :dismissableMask="true" :breakpoints="{ '960px': '75vw' }"
+          <Dialog :maximizable="true" v-model:visible="vendordetailsDialog" :dismissableMask="true" :breakpoints="{ '960px': '75vw' }"
         :style="{ width: '90vw' }" header="Vendor Informations">
 
 
@@ -118,7 +118,7 @@
         <div class="flex">
           <div class="row align-items-start" >
             <div class=col-md-6>
-              <div class="card">
+              <div class="card" style="margin:auto">
                 <h5 class="text-center" ><strong>General Informations</strong></h5>
                 <div class="p-fluid">
 
@@ -143,7 +143,7 @@
 
 
             <div class=col-md-6>
-              <div class="card">
+              <div class="card" style="margin:auto">
                 <h5 class="text-center" ><strong>Address Informations</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
@@ -198,7 +198,7 @@
           <div class="row align-items-end ">
 
             <div class=col-md-6>
-              <div class="card">
+              <div class="card" style="margin:auto;margin-top: 1vw;">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>Fiscal Informations</strong></h5>
 
                 <div class="p-fluid">
@@ -246,7 +246,7 @@
             </div>
 
             <div class=col-md-6>
-              <div class="card">
+              <div class="card" style="margin:auto;margin-top: 1vw;" >
                 <h5 class="text-center" style="margin-top:1vw;"><strong>Legacy Informations</strong></h5>
                 <div class="p-fluid">
                   <div class=row>

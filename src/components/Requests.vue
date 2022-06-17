@@ -54,7 +54,7 @@
         </Dialog>
 
 
-         <Dialog v-model:visible="vendordetailsDialog" :dismissableMask="true" :breakpoints="{ '960px': '75vw' }"
+         <Dialog  :maximizable="true" v-model:visible="vendordetailsDialog" :dismissableMask="true" :breakpoints="{ '960px': '75vw' }"
         :style="{ width: '90vw' }" header="Requests Details">
 
 
@@ -64,7 +64,7 @@
         <div class="flex">
           <div class="row align-items-start" style="margin-bottom:3vw;">
             <div class=col-md-6>
-              <div class="card">
+              <div class="card" style="margin:auto">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>General Informations</strong></h5>
                 <div class="p-fluid">
 
@@ -82,7 +82,7 @@
 
                   <label style="width: 90%;margin-left:2vw;" for="phone"><strong>Phone</strong></label>
                   <InputNumber style="width: 90%;margin-left:2vw;" id="phone" v-model="posts.phone" disabled  />
-                  <p style="width: 90%;margin-left:2vw;color:#3f2de1;margin-bottom:3vw;">Old Phone : {{old.phone}}</p>
+                  <p style="width: 90%;margin-left:2vw;color:#3f2de1;">Old Phone : {{old.phone}}</p>
                  
 
                 </div>
@@ -92,7 +92,7 @@
 
 
             <div class=col-md-6>
-              <div class="card">
+              <div class="card" style="margin:auto">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>Address Informations</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
@@ -136,7 +136,7 @@
                     <div class=col-md-12>
                       <label style="width: 90%;margin-left:2vw;" for="address"><strong>Address</strong></label>
                       <InputText style="width: 90%;margin-left:2vw;" id="address" v-model="posts.address" disabled />
-                      <p style="width: 90%;margin-left:2vw;color:#3f2de1;margin-bottom:3vw">Old Address : {{old.address}}</p>
+                      <p style="width: 90%;margin-left:2vw;color:#3f2de1;">Old Address : {{old.address}}</p>
                       
                     </div>
                   </div>
@@ -149,10 +149,10 @@
           </div>
 
 
-          <div class="row align-items-end " style="margin-bottom:3vw;">
+          <div class="row align-items-end ">
 
             <div class=col-md-6>
-              <div class="card">
+              <div class="card" style="margin:auto">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>Fiscal Informations</strong></h5>
 
                 <div class="p-fluid">
@@ -185,7 +185,7 @@
                         <label style="width: 90%;margin-left:2vw;" for="revenu"><strong>Revenu</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="revenu"
                           v-model="posts.revenu" disabled   />
-                          <p style="width: 90%;margin-left:2vw;color: #3f2de1;margin-bottom:3vw;">Old Revenu : {{old.revenu}}</p>
+                          <p style="width: 90%;margin-left:2vw;color: #3f2de1;">Old Revenu : {{old.revenu}}</p>
                       </div>
                     </div>
 
@@ -194,7 +194,7 @@
                         <label style="width: 90%;margin-right:2vw;" for="dateEstablished"><strong>Date Established</strong></label>
                         <Calendar style="width: 90%;margin-right:2vw;" id="dateEstablished"
                           v-model="posts.dateEstablished" :showIcon="true" disabled  />
-                          <p style="width: 90%;color: #3f2de1;margin-bottom:3vw;">Old Date Established : {{old.dateEstablished}}</p>
+                          <p style="width: 90%;color: #3f2de1;">Old Date Established : {{old.dateEstablished}}</p>
                       </div>
                     </div>
                   </div>
@@ -204,8 +204,8 @@
             </div>
 
             <div class=col-md-6>
-              <div class="card">
-                <h5 class="text-center" style="margin-top:1vw;"><strong>Legacy Informations</strong></h5>
+              <div class="card" style="margin:auto;">
+                <h5 class="text-center" style="margin-top:1vw;margin-bottom: 2vw;"><strong>Legacy Informations</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
                     <div class=col-md-12>
@@ -213,22 +213,15 @@
                         <label style="width: 90%;margin-left:2vw;" for="companywebsite"><strong>Company Web Site</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="companywebsite"
                           v-model="posts.companywebsite" disabled />
-                          <p style="width: 90%;color:#3f2de1;margin-bottom:2vw;margin-left: 2vw;">Old Company Web Site : {{old.dateEstablished}}</p>
+                          <p style="width: 90%;color:#3f2de1;margin-bottom:2vw;margin-left: 2vw;">Old Company Web Site : {{old.companywebsite}}</p>
                           
                     
                       </div>
                     </div>
                   </div>
+               
                   <div class=row>
-                    <div class=col-md-1>
-                      
-                    </div>
-                    <div class=col-md-4>
-                    
-                    </div>
-                  </div>
-                  <div class=row>
-                    <div class=col-md-12 style="margin-bottom: 2vw;margin-top: 2vw;">
+                    <div class=col-md-12 style="margin-bottom: 2vw;margin-top: 4vw;">
                 
                    <Button label="Confirm" icon="pi pi-check" class="p-button-success mr-4"  @click="confirmProduct(posts)" style="float:right;max-width: 9vw;" />
                         <Button label="Delete" icon="pi pi-trash" class="p-button-danger mr-2"  @click="confirmDeleteProduct(posts)" style="float:right;max-width: 9vw;"/>
