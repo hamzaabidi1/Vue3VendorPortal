@@ -44,7 +44,7 @@
         </router-link>
       </li>
 
-      <Dialog v-model:visible="requestDialog" :dismissableMask="true" :breakpoints="{ '960px': '75vw' }"
+      <Dialog :maximizable="true" v-model:visible="requestDialog" :dismissableMask="true" :breakpoints="{ '960px': '75vw' }"
         :style="{ width: '90vw' }" header="Update Informations">
 
 
@@ -54,7 +54,7 @@
         <div class="flex">
           <div class="row align-items-start">
             <div class=col-md-6>
-              <div class="card">
+              <div class="card" style="margin:auto">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>General Informations</strong></h5>
                 <div class="p-fluid">
 
@@ -76,7 +76,7 @@
                   <label style="width: 90%;margin-left:2vw;" for="phone"><strong>Phone</strong></label>
                   <InputNumber style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="phone" v-model="posts.phone"
                     :class="{ 'p-invalid': validationErrors.phone && submitted }" />
-                  <small style="width: 90%;margin-left:2vw;margin-bottom:3vw;"
+                  <small style="width: 90%;margin-left:2vw"
                     v-show="validationErrors.phone && submitted" class="p-error">Phone Number is required.</small>
 
 
@@ -88,7 +88,7 @@
 
 
             <div class=col-md-6>
-              <div class="card">
+              <div class="card" style="margin:auto">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>Address Informations</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
@@ -140,7 +140,7 @@
                       <label style="width: 90%;margin-left:2vw;" for="address"><strong>Address</strong></label>
                       <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw" id="address"
                         v-model="posts.address" :class="{ 'p-invalid': validationErrors.address && submitted }" />
-                      <small style="width: 90%;margin-left:2vw;margin-bottom:3vw"
+                      <small style="width: 90%;margin-left:2vw"
                         v-show="validationErrors.address && submitted" class="p-error">address is required.</small>
                     </div>
                   </div>
@@ -153,10 +153,10 @@
           </div>
 
 
-          <div class="row align-items-end " style="margin-bottom:2vw;">
+          <div class="row align-items-end " >
 
             <div class=col-md-6>
-              <div class="card">
+              <div class="card" style="margin:auto;margin-top: 1vw;">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>Fiscal Informations</strong></h5>
 
                 <div class="p-fluid">
@@ -215,7 +215,7 @@
             </div>
 
             <div class=col-md-6>
-              <div class="card">
+              <div class="card" style="margin:auto;">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>Legacy Informations</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
@@ -243,7 +243,7 @@
                       
                     </div>
                   </div>
-                  <div class=row>
+                  <div class=row style="margin-top:1vw">
                     <div class=col-md-12>
                       <p style="color:#6495ED;width: 80%;float:left;margin-bottom:3vw;margin-left: 2vw;" @click="terms()">read terms</p>
                     </div>
@@ -255,7 +255,7 @@
           </div>
         </div>
         <Button :disabled='isDisabled' label="confirm" @click="confirm()"
-          style="width: 20%;float:right;margin-right:2vw;margin-bottom:1vw" />
+          style="width: 20%;float:right;margin-right:2vw;margin-bottom:1vw;margin-top: 2vw;" />
       </Dialog>
 
       <Dialog header="Terms" v-model:visible="termsDialog" :style="{ width: '50vw' }">
@@ -347,7 +347,7 @@
   </Button>
 
 
-  <Dialog :closable="false"
+  <Dialog :closable="false"  
     style="bottom:50px;margin-right:5vw; position:fixed;max-height: 35vw;min-height: 20vw;opacity: 1;border-radius: 20%;background: #6495ED;" :draggable="false"
     v-model:visible="displayResponsive" :position="position" :breakpoints="{ '960px': '75vw' }"
     :style="{ width: '20vw' }">
@@ -385,13 +385,15 @@
 
 
 
+<footer class="bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:All rights reserved.
+    <a class="text-Blue" href="https://www.smartech-tn.com/">smartech-tn.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
 
-
-<footer class="footer mt-auto py-1 bg-light text-center" >
-        <div class="container" >
-          <span class="text-muted">Copyright  &copy; 2022 All rights reserved.
-        </span></div>
-      </footer>
 
 </template>
 

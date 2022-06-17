@@ -19,9 +19,12 @@
         </div>
         <div class="form-group">
           <label for="password"><strong>Password</strong></label>
-          <Field name="password"  type="password" class="form-control" />
+          <Field name="password"  type="password" class="form-control"/>
           <ErrorMessage name="password" class="error-feedback" /> 
         </div>
+
+        
+
 
         <div class="form-group">
           <button class="btn btn-primary btn-block" :disabled="loading">
@@ -56,11 +59,14 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import loading from 'vue-full-loading';
 import * as yup from "yup";
 import Button from 'primevue/button';
+import Password from 'primevue/password';
+
 
 
 export default {
   name: "Login",
   components: {
+    Password,
     Form,
     Field,
     ErrorMessage,
