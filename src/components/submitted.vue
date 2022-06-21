@@ -48,7 +48,7 @@
                 <div class="row" style="margin-bottom:2vw">
                 <div class="field col-6" style="margin-right:-5vw;margin-left: 5vw;">
                     <label for="date" style="margin-right:0.5vw">Date Established :</label>
-                    <b>{{details.dateestablished ? details.dateestablished : '-'}}</b>
+                    <b>{{details.dateEstablished ? details.dateEstablished : '-'}}</b>
                 </div>
                 <div class="field col-6">
                     <label for="companywebsite" style="margin-right:0.5vw">Company Web Site :</label>
@@ -57,7 +57,7 @@
                 </div>
         
 
-               <img alt="logo" src="../assets/submitted.png" style="max-width: 200px;max-height: 150px;margin: auto;margin-bottom: 0vw;" />
+               <img alt="logo" src="../assets/submitted.png" style="max-width: 200px;max-height: 150px;margin: auto;margin-bottom: 1vw;" />
                <p style="margin: auto;">we will inform you by email when the request has been processed</p>
 
         </div>

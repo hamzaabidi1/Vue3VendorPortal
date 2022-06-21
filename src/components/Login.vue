@@ -134,8 +134,11 @@ export default {
           else if (monobjet.status == "Submitted") {
             this.$router.push("/submitted");
           }
+          else if (monobjet.status == "InProgress"){
+          this.$router.push("/");
+          }
           else{
-          this.$router.push("/fournisseur");
+            this.$router.push("/boardfournisseur");
           }
       }
         
