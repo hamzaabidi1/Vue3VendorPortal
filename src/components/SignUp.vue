@@ -11,6 +11,7 @@
                         <label for="username"><strong>Username</strong></label>
                     <Field name="username" class="form-control" id="username" v-model="res.username" :class="{'p-invalid': validationErrors.username && submitted}" />    
                      <small v-show="validationErrors.username && submitted" class="p-error">Username is required.</small>
+                     <small v-show="validationErrors.usernamelength && submitted" class="p-error">Maximum length of username is 12 caracter.</small>
                     </div>
 
                     <div>
@@ -151,6 +152,10 @@ else
                 this.validationErrors['username'] = true;
             else
                 delete this.validationErrors['username'];
+                   if (this.res.username.length>12)
+                this.validationErrors['usernamelength'] = true;
+            else
+                delete this.validationErrors['usernamelength'];
                         if (!this.res.password.trim())
                 this.validationErrors['password'] = true;
             else

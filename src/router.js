@@ -16,6 +16,8 @@ import DemandeEnCours from "./components/DemandeEnCours.vue";
 import Config from "./components/Config.vue";
 import NotFound from "./components/NotFound.vue";
 import Submitted from "./components/submitted.vue";
+import BoardFournisseur from "./components/BoardFournisseur.vue";
+import AdminDashboard from "./components/AdminDashboard.vue";
 
 // lazy-loaded
 const Profile = () => import("./components/Profile.vue")
@@ -78,6 +80,15 @@ const routes = [
     path: '/passwordsConfirmation',
     component: PasswordsConfirmation
   },
+  { path: '/boardfournisseur',
+  component: BoardFournisseur,
+  name: "BoardFournisseur"
+},
+
+{ path: '/admindashboard',
+component: AdminDashboard,
+name: "AdminDashboard"
+},
 
  { path: '/rfq',
   component: Rfq,

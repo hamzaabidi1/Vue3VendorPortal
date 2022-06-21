@@ -38,8 +38,18 @@
         <i class="pi pi-bars navbar-brand" @click="visibleLeft = true"></i>
 
       </div>
-      <li class="nav-item">
+      <li class="nav-item" v-if="!currentUser">
         <router-link to="/" class="navbar-brand" v-tooltip="'home'">
+          <font-awesome-icon icon="home" />Vendor Portal
+        </router-link>
+      </li>
+        <li class="nav-item" v-if="currentUser && currentUser.roles == 'ROLE_FOURNISSEUR'">
+        <router-link to="/boardfournisseur" class="navbar-brand" v-tooltip="'home'">
+          <font-awesome-icon icon="home" />Vendor Portal
+        </router-link>
+      </li>
+       <li class="nav-item" v-if="currentUser && currentUser.roles == 'ROLE_ADMIN'">
+        <router-link to="/admindashboard" class="navbar-brand" v-tooltip="'home'">
           <font-awesome-icon icon="home" />Vendor Portal
         </router-link>
       </li>
@@ -349,15 +359,14 @@
 
   <Dialog :closable="false"  
     style="bottom:50px;margin-right:5vw; position:fixed;max-height: 35vw;min-height: 20vw;opacity: 1;border-radius: 20%;background: #6495ED;" :draggable="false"
-    v-model:visible="displayResponsive" :position="position" :breakpoints="{ '960px': '75vw' }"
-    :style="{ width: '20vw' }">
+    v-model:visible="displayResponsive" :position="position" :breakpoints="{ '960px': '75vw', '640px': '90vw'}" :style="{width: '20vw'}">
 
 <template #header :style="{color:black }" style="background-color: black; color: aqua;">
 		<img alt="logo" src="./assets/assistant-intelligent.png" style="width: 2rem;height: 2rem;" />
     <h6>Vendor Portal Assistant</h6>
 	</template>
 
-	<div id="container" style="min-height: 15vw" >
+	<div id="container" style="min-height: 15vw;min-width: 15vw" >
     </div>
 
 	<template #footer  >
