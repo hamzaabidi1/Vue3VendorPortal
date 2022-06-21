@@ -341,7 +341,7 @@
     <router-view />
   </div>
 
-  <Button icon="pi pi-bell" @click="chatdialog('bottomright')" class="p-button-rounded p-button-info p-button-outlined"
+  <Button icon="pi pi-check" @click="chatdialog('bottomright')" class="p-button-rounded  p-button-outlined"
     style="float:bottom;margin-right:1vw;margin-left:96vw;position:fixed;top: 550px;" v-tooltip="'VendorPortal Assistant'">
     <img alt="logo" src="./assets/chat.png" style="width: 1.5rem" />
   </Button>
@@ -357,7 +357,7 @@
     <h6>Vendor Portal Assistant</h6>
 	</template>
 
-	<div id="container" style="min-height: 15vw;border-radius: 5px;border-style: outset;" >
+	<div id="container" style="min-height: 15vw" >
     </div>
 
 	<template #footer  >
@@ -388,7 +388,7 @@
 <footer class="bg-light text-center text-lg-start">
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2020 Copyright:All rights reserved.
+    © 2022 Copyright:All rights reserved.
     <a class="text-Blue" href="https://www.smartech-tn.com/">smartech-tn.com</a>
   </div>
   <!-- Copyright -->
