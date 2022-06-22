@@ -411,6 +411,7 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import 'primeicons/primeicons.css';
 import Badge from 'primevue/badge';
 import AdminService from './services/AdminService';
+import UserService from './services/user.service';
 import VendorService from './services/VendorService';
 import Dialog from 'primevue/dialog';
 import InputText from "primevue/inputtext"
@@ -437,6 +438,7 @@ export default {
 
   data() {
     return {
+      statusVendor:'',
       posts: {
         firstname: '',
         lastname: '',
@@ -468,19 +470,31 @@ export default {
       val: 0,
     }
   },
+  UserService: null,
   AdminService: null,
   VendorService: null,
 
   created() {
+    this.UserService= new UserService();
     this.AdminService = new AdminService();
     this.VendorService = new VendorService();
   },
-  mounted() {
-    this.AdminService.getNumberOfRequest().then(data => this.number = data);
+  
+  async mounted() {
+     await this.AdminService.getNumberOfRequest().then(data => this.number = data);
+  /*  let jsonobject= localStorage.user;
+      let monobjet = JSON.parse(jsonobject)
+      let st =this.UserService.statusVendor(monobjet.email)
+      console.log(st)
+      window.localStorage.setItem('status', JSON.stringify(st));*/
   },
 
   computed: {
     currentUser() {
+      
+     
+  
+
       return this.$store.state.auth.user;
     },
     showAdminBoard() {

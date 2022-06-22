@@ -12,6 +12,6 @@ export default class ConfigService {
   }
 
   getConfig() {
-    return axios.get(API_URL + '/get',{ headers: authHeader() }).then(d => d.data);;
+    return axios.get(API_URL + '/get',{ headers: authHeader() }).then(d => d.data);
   }
 }

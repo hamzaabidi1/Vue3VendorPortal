@@ -118,6 +118,8 @@ export default {
         },
     handleLogin(user) {
       this.loading = true;
+
+      
    
       this.$store.dispatch("auth/login", user).then(        
         () => {
@@ -138,7 +140,7 @@ export default {
           this.$router.push("/");
           }
           else{
-            this.$router.push("/boardfournisseur");
+            this.$router.push("/");
           }
       }
         

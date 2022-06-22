@@ -42,5 +42,15 @@ export default class UserService {
     axios.post(URL+'newpassword/'+token+'/'+password,null,{headers: authHeader()});
 
   }
+
+  statusVendor(email){
+
+    return axios.get(URL+'retrievestatusoneuserbyemail/'+email).then(d => d.data);
+
+  }
+
+
+  
+
 }
 

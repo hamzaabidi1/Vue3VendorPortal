@@ -23,9 +23,9 @@
                 </Column>
                 <Column field="firstname" header="Name" :sortable="true" style="max-width:8rem"></Column>
                 <Column field="username" header="User Name" :sortable="true" style="max-width:8rem"></Column>
-                <Column field="email" header="E-mail" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="email" header="E-mail" :sortable="true" style="max-width:10rem"></Column>
                 <Column field="phone" header="Phone" :sortable="true" style="max-width:8rem"></Column>
-                <Column field="address" header="Address" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="address" header="Address" :sortable="true" style="max-width:10rem"></Column>
                 <Column :exportable="false" style="min-width:10rem">
                     <template #body="slotProps">
                         <Button icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2" @click="editProduct(slotProps.data)" v-tooltip="'Edit Status'" />

@@ -117,7 +117,7 @@ export default {
 
          this.userService.signupafterSteps(this.currentUser.username,formData)
          this.$toast.add({severity:'success', summary: 'Success Message', detail:'User Informations registred', life: 3000});
-         this.$router.push('/encours');
+         this.$router.push('/submitted');
 
         }
     }

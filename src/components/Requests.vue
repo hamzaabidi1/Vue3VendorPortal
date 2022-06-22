@@ -16,7 +16,7 @@
                 </template> 
                 <Column field="firstname" header="Name" :sortable="true" style="max-width:8rem"></Column>
                 <Column field="phone" header="Phone" :sortable="true" style="max-width:8rem"></Column>
-                <Column field="address" header="Address" :sortable="true" style="min-width:10rem"></Column>
+                <Column field="address" header="Address" :sortable="true" style="max-width:10rem"></Column>
                 <Column field="country" header="Country" :sortable="true" style="max-width:8rem"></Column>
                 <Column field="city" header="City" :sortable="true" style="max-width:8rem"></Column>
                 <Column field="postalcode" header="Postal Code" :sortable="true" style="max-width:8rem"></Column>
