@@ -4,7 +4,7 @@
         <div class="card" style="max-width: 96% ;">
             <h5>Invoice List</h5>
             <DataTable :value="invoice" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
-                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll">
+                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="5"  :rowsPerPageOptions="[5,10,20]">
               
 
             <Column field="invoicenum" header="Invoice" sortable></Column>

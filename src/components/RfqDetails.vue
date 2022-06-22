@@ -53,7 +53,7 @@
         <div class="card" style=" margin-top: -2vw;">
             <h5>RFQ Line List</h5>
             <DataTable :value="rfq.rfqline" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
-                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll">
+                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" >
                 <Column field="rfqlinenum" header="Line" sortable style="font-size:small;"/>
                 <Column field="itemnum" header="Item" sortable style="font-size:small;"/>
                 <Column field="description" header="Description" sortable style="font-size:small;"/>
