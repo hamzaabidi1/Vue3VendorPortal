@@ -10,32 +10,51 @@
             </template>
             <template v-slot:content>
                 <div class="p-fluid formgrid grid">
+
+                     <div class="row align-items-start">
+                    <div class="col-md-6">
                     
                       <div class="field">
                         <label for="country">Country</label>
                         <InputText id="country" v-model="country" :class="{'p-invalid': validationErrors.country && submitted}" />
                         <small v-show="validationErrors.country && submitted" class="p-error">Country is required.</small>
                     </div>
+                    </div>
+                      <div class="col-md-6">
                         <div class="field">
                         <label for="region">State / Region</label>
                         <InputText id="region" v-model="region" :class="{'p-invalid': validationErrors.region && submitted}" />
                         <small v-show="validationErrors.region && submitted" class="p-error">region is required.</small>
                     </div>
+                    </div>
+                    </div>
+
+                    <div class="row align-items-start">
+                    <div class="col-md-6">
                         <div class="field">
                         <label for="city">City</label>
                         <InputText id="city" v-model="city" :class="{'p-invalid': validationErrors.city && submitted}" />
                         <small v-show="validationErrors.city && submitted" class="p-error">City is required.</small>
                     </div>
-                        <div class="field">
-                        <label for="address">Address</label>
-                        <InputText id="address" v-model="address" :class="{'p-invalid': validationErrors.address && submitted}" />
-                        <small v-show="validationErrors.address && submitted" class="p-error">address is required.</small>
                     </div>
-                        <div class="field">
+                     <div class="col-md-6">
+
+                          <div class="field">
                         <label for="postalcode">Postal Code</label>
                         <InputText id="postalcode" v-model="postalcode" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
                         <small v-show="validationErrors.postalcode && submitted" class="p-error">Postal Code is required.</small>
                     </div>
+                       
+                    </div>
+                    </div>
+                      
+
+                    <div class="field">
+                        <label for="address">Address</label>
+                        <InputText id="address" v-model="address" :class="{'p-invalid': validationErrors.address && submitted}" />
+                        <small v-show="validationErrors.address && submitted" class="p-error">address is required.</small>
+                    </div>
+
                 </div>
             </template>
             <template v-slot:footer>

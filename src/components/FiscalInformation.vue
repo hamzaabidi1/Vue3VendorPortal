@@ -11,28 +11,40 @@
             <template v-slot:content>
                 <div class="p-fluid formgrid grid">
 
+                     <div class="row align-items-start">
+                    <div class="col-md-6">
+
                      <div class="field">
                         <label for="taxregistrationnumber">Tax Registration Number</label>
                         <InputText id="taxregistrationnumber" v-model="taxregistrationnumber" :class="{'p-invalid': validationErrors.taxregistrationnumber && submitted}" />
                         <small v-show="validationErrors.taxregistrationnumber && submitted" class="p-error">tax registration number is required.</small>
                     </div>
+                    </div>
+                    <div class="col-md-6">
                      <div class="field">
                         <label for="taxclassificationcode">Tax Classification Code</label>
                         <InputText id="taxclassificationcode" v-model="taxclassificationcode" :class="{'p-invalid': validationErrors.taxclassificationcode && submitted}" />
                         <small v-show="validationErrors.taxclassificationcode && submitted" class="p-error">tax classification code is required.</small>
                     </div>
+                    </div>
 
+                    </div>
+                    <div class="row align-items-start">
+                    <div class="col-md-6">
                     <div class="field">
                         <label for="revenu">Revenu</label>
                         <InputText id="revenu" v-model="revenu" :class="{'p-invalid': validationErrors.revenu && submitted}" />
                         <small v-show="validationErrors.revenu && submitted" class="p-error">Revenu is required.</small>
                     </div>
-                   
+                   </div>
+                   <div class="col-md-6">
                     <div class="field">
                         <label for="dateestablished">Date Established</label>
                         <Calendar id="dateestablished" v-model="dateestablished" :showIcon="true" />
                         <small v-show="validationErrors.dateestablished && submitted" class="p-error">dateestablished is required.</small>
 
+                    </div>
+                    </div>
                     </div>
                 </div>
             </template>

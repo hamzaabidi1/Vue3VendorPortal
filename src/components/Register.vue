@@ -1,7 +1,7 @@
 <template>
 
     <div class="stepsdemo-content">
-        <Card>
+        <Card >
             <template v-slot:title>
                 General Information
             </template>
@@ -10,28 +10,43 @@
             </template>
             <template v-slot:content>
                 <div class="p-fluid">
+                       <div class="row align-items-start">
+                    <div class="col-md-6">
                     <div class="field">
                         <label for="firstname">Vendor Name</label>
                         <InputText id="firstname" v-model="firstname" :class="{'p-invalid': validationErrors.firstname && submitted}" />
                         <small v-show="validationErrors.firstname && submitted" class="p-error">Firstname is required.</small>
                     </div>
+                    </div>
+                    <div class="col-md-6">
                     <div class="field">
                         <label for="lastname">Vendor Subname</label>
                         <InputText id="lastname" v-model="lastname" :class="{'p-invalid': validationErrors.lastname && submitted}" />
                         <small v-show="validationErrors.lastname && submitted" class="p-error">Lastname is required.</small>
                     </div>
+                    </div>
+                    </div>
+
+                    <div class="row align-items-start">
+                    <div class="col-md-6">
                     <div class="field">
                         <label for="phone">Phone Number</label>
                         <InputNumber id="phone" v-model="phone" :class="{'p-invalid': validationErrors.phone && submitted}" />
                         <small v-show="validationErrors.phone && submitted" class="p-error">Phone Number is required.</small>
                     </div>
                 </div>
+
+                  <div class="col-md-6">
+                <div class="grid grid-nogutter justify-content-between">
+                
+                    <Button label="Next" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" style="float:right;max-width: 10vw;margin-top: 3vw;" />
+                </div>
+                </div>
+                </div>
+                </div>
             </template>
             <template v-slot:footer>
-                <div class="grid grid-nogutter justify-content-between">
-                    <i></i>
-                    <Button label="Next" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" style="float:right;" />
-                </div>
+                
             </template>
         </Card>
     </div>
