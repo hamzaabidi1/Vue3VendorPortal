@@ -645,6 +645,8 @@ export default {
       if (this.currentUser.roles == "ROLE_FOURNISSEUR") {
         if (this.currentUser && this.currentUser.status == "InProgress")
           this.$toast.add({ severity: 'warn', summary: 'Warn Message', detail: 'Validation of your information In progress', life: 3000 });
+         else  if (this.currentUser && this.currentUser.status == "Submitted")
+          this.$toast.add({ severity: 'error', summary: 'Warn Message', detail: 'You Are in submitted Mode', life: 3000 });
         else if (this.currentUser && this.currentUser.status == "Draft") {
           this.$router.push('/register');
         }

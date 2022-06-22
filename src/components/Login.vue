@@ -95,7 +95,7 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push("/register");
+      this.$router.push("/");
     }
   },
    mounted() {
