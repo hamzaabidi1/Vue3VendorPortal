@@ -127,20 +127,28 @@ export default {
       let monobjet = JSON.parse(jsonobject)
       if (monobjet.roles == "ROLE_ADMIN")
       {
-        this.$router.push("/admin");
+       window.location.href = "/";
+       // this.$router.push("/admin");
       }
       else{
           if (monobjet.status == "Draft") {
-            this.$router.push("/register");
+            window.location.href = "/register";
+           // this.$router.push("/register");
           }
           else if (monobjet.status == "Submitted") {
-            this.$router.push("/submitted");
+
+         window.location.href = "/submitted";
+
+          //  this.$router.push("/submitted");
           }
           else if (monobjet.status == "InProgress"){
-          this.$router.push("/");
+         // this.$router.push("/");
+          window.location.href = "/";
           }
           else{
             this.$router.push("/");
+          window.location.href = "/";
+
           }
       }
         

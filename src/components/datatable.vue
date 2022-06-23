@@ -8,11 +8,11 @@
                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} vendors" responsiveLayout="scroll">
                 <template #header>
-                    <div class="table-header flex flex-column md:flex-row md:justiify-content-between">
+                    <div class="table-header flex flex-column md:flex-row md:justiify-content-between" >
 						<h5 class="mb-2 md:m-0 p-as-md-center">Vendors List</h5>
-						<span class="p-input-icon-left">
+						<span class="p-input-icon-left" >
                             <i class="pi pi-search" />
-                            <InputText v-model="filters['global'].value" placeholder="Search..." />
+                            <InputText  v-model="filters['global'].value" placeholder="Search..." />
                         </span>
 					</div>
                 </template>
