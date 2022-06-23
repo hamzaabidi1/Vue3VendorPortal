@@ -64,7 +64,7 @@
         <div class="flex">
           <div class="row align-items-start">
             <div class=col-md-6>
-              <div class="card" style="margin:auto">
+              <div class="card" style="margin:auto;width: 99%;height: 35vw;">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>General Informations</strong></h5>
                 <div class="p-fluid">
 
@@ -92,7 +92,7 @@
 
 
             <div class=col-md-6>
-              <div class="card" style="margin:auto">
+              <div class="card" style="margin:auto;width: 99%;height: 35vw;">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>Address Informations</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
@@ -152,7 +152,7 @@
           <div class="row align-items-end ">
 
             <div class=col-md-6>
-              <div class="card" style="margin:auto;margin-top: 1vw;">
+              <div class="card" style="margin:auto;margin-top: 1vw;width: 99%;height: 28vw;">
                 <h5 class="text-center" style="margin-top:1vw;"><strong>Fiscal Informations</strong></h5>
 
                 <div class="p-fluid">
@@ -204,7 +204,7 @@
             </div>
 
             <div class=col-md-6>
-              <div class="card" style="margin:auto;margin-top: 1vw;">
+              <div class="card" style="margin:auto;margin-top: 1vw;width: 99%;height: 28vw;">
                 <h5 class="text-center" style="margin-top:1vw;margin-bottom: 2vw;"><strong>Legacy Informations</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
