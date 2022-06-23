@@ -330,8 +330,8 @@
         </li>
 
         <li v-if="currentUser.roles == 'ROLE_FOURNISSEUR'" style="margin-top:0.5vw;"
-          :class="'status-' + (currentUser.status ? currentUser.status.toLowerCase() : '')">
-          {{ currentUser.status }}
+          :class="'status-' + (statusVendor ? statusVendor.toLowerCase() : '')">
+          {{ statusVendor }}
         </li>
 
         <li class="nav-item">
@@ -480,21 +480,18 @@ export default {
     this.VendorService = new VendorService();
   },
   
-  async mounted() {
-     await this.AdminService.getNumberOfRequest().then(data => this.number = data);
-  /*  let jsonobject= localStorage.user;
+   mounted() {
+      this.AdminService.getNumberOfRequest().then(data => this.number = data);
+      
+        let jsonobject = localStorage.user;
       let monobjet = JSON.parse(jsonobject)
-      let st =this.UserService.statusVendor(monobjet.email)
-      console.log(st)
-      window.localStorage.setItem('status', JSON.stringify(st));*/
+      if(monobjet.roles == 'ROLE_FOURNISSEUR')
+      this.UserService.statusVendor(monobjet.email).then(data => this.statusVendor = data);
+      
   },
 
   computed: {
     currentUser() {
-      
-     
-  
-
       return this.$store.state.auth.user;
     },
     showAdminBoard() {

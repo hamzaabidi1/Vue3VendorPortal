@@ -384,6 +384,7 @@ export default {
             this.adminService.deleteRequest(this.user.email);
             this.user = {};
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'Request Deleted', life: 3000});
+            this.$router.go();
         },
         findIndexById(id) {
             let index = -1;

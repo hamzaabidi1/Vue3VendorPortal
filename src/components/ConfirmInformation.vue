@@ -95,7 +95,9 @@ export default {
       return this.$store.state.auth.status.loggedIn;
     },
      currentUser() {
-      return this.$store.state.auth.user;},
+      return this.$store.state.auth.user;
+      
+      },
 
   },
    userService: null,
@@ -113,12 +115,10 @@ export default {
         },
       
       complete(formData) {
-    
 
          this.userService.signupafterSteps(this.currentUser.username,formData)
          this.$toast.add({severity:'success', summary: 'Success Message', detail:'User Informations registred', life: 3000});
-         this.$router.push('/submitted');
-
+         window.location.href = "/submitted";
         }
     }
 }

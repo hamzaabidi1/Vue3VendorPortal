@@ -110,6 +110,7 @@ export default {
     },
 
   mounted(){
+     
       let jsonobject = localStorage.user;
       let monobjet = JSON.parse(jsonobject);
       this.vendorService.getDetailsProfile(monobjet.email).then(data => this.details = data);
