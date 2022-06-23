@@ -376,7 +376,7 @@ export default {
             this.user = {};
             this.vendordetailsDialog=false;
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'Request Accepted', life: 3000});
-            this.$router.go();
+           
         },
          deleteProduct() {
             this.vendors = this.vendors.filter(val => val.id !== this.user.id);
@@ -384,7 +384,7 @@ export default {
             this.adminService.deleteRequest(this.user.email);
             this.user = {};
             this.$toast.add({severity:'success', summary: 'Successful', detail: 'Request Deleted', life: 3000});
-            this.$router.go();
+
         },
         findIndexById(id) {
             let index = -1;
