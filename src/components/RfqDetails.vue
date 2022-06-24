@@ -246,7 +246,7 @@ export default {
          var id = route.params.idpath; 
         await this.vendorservice.findRfqDetails(id).then(data => this.rfq = data);
 
-      if (this.rfq.statusofSend ==true){
+      if (this.rfq.statusofSend == true){
             const myTextNode = document.createTextNode(this.rfq.dateEnvoie)
             
             const dateEnvoieelement = document.getElementById("submitToMaximo");
