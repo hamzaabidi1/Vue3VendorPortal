@@ -30,7 +30,7 @@
               class="navbar-brand" style="color:white;">Change Informations</router-link>
           </li>
           <li v-if="showAdminBoard">
-            <router-link to="/requests" @click.prevent="showrequestsUpdate"
+            <router-link to="" @click.prevent="showrequestsUpdate"
               v-tooltip="'click to show list of requests to change information account'" class="navbar-brand"
               style="color:white;">Update Profile Requests</router-link>
           </li>
@@ -482,11 +482,13 @@ export default {
   
    mounted() {
       this.AdminService.getNumberOfRequest().then(data => this.number = data);
-      
-        let jsonobject = localStorage.user;
+
+    if(localStorage.user){
+      let jsonobject = localStorage.user
       let monobjet = JSON.parse(jsonobject)
       if(monobjet.roles == 'ROLE_FOURNISSEUR')
       this.UserService.statusVendor(monobjet.email).then(data => this.statusVendor = data);
+      }
       
   },
 
@@ -654,6 +656,7 @@ export default {
     },
     getAllrequest() {
       this.visibleLeft = false;
+      this.number=0;
       this.$router.push('/requests');
     },
     showvendorboard() {
@@ -664,6 +667,8 @@ export default {
     },
     showrequestsUpdate() {
       this.visibleLeft = false;
+      this.number=0;
+      this.$router.push('/requests');
     },
     requestUpdate() {
       this.requestDialog = true;
