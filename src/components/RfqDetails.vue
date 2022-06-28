@@ -168,6 +168,7 @@ export default {
   },
     data() {
         return {
+            files: '',
            idpath: null,
             loading: [false, false, false],
             rfqEdit: false,
@@ -302,7 +303,14 @@ export default {
            
             console.log(this.idpath)
              console.log(event.files)
-            this.vendorservice.UploadFile(event.files,this.idpath)
+             this.files=event.files;
+             let formData = new FormData();
+             for( var i = 0; i < this.files.length; i++ ){
+                 let file = this.files[i];
+
+                formData.append('file', file);
+                }
+            this.vendorservice.UploadFile(formData,this.idpath)
             this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
         },
 
