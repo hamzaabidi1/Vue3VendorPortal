@@ -9,39 +9,57 @@
 
             <template v-slot:content>
                 <div class="row align-items-start">
-                    <div class="col-md-4">
+                      <div class="col-md-4">
+                <FileUpload name="demo[]" :customUpload="true" @uploader="onUpload" :multiple="true" accept=".pdf,.png,.jpeg,jpg" :maxFileSize="100000000">
+                    <template #empty>
+                        <p>Drag and drop files to here to upload.</p>
+                    </template>
+                </FileUpload>
+            </div>
+                <div class="col-md-8">
+                <div class="row align-items-start">
+                    <div class="col-md-4" style="margin-left:2vw">
                 
                     <label for="class" style="color:#3f2de1;">RFQ : </label>
                     <b style="margin-left:0.5vw">{{rfq.rfqnum ? rfq.rfqnum : ' - '}}</b>
                 
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 " style="margin-left:2vw">
                 
                     <label for="class" style="color:#3f2de1;">Description : </label>
                     <b style="margin-left:0.5vw">{{rfq.description ? rfq.description : '-'}}</b>
                
                 </div>
-                <div class="col-md-4">
+              
+                </div>
+
+            <div class="row align-items-start">
+                  <div class="col-md-4" style="margin-left:2vw">
                     <label for="class" style="color:#3f2de1;">Status :</label>
                     <b style="margin-left:0.5vw">{{rfq.status ? rfq.status : '-'}}</b>
                 </div>
-                </div>
 
-                <div class="row align-items-start">
-                <div class="col-md-4">
+                  
+                <div class="col-md-4"  style="margin-left:2vw">
                     <label for="class" style="color:#3f2de1;">Require date :</label>
                     <b style="margin-left:0.5vw">{{rfq.requireddate ? rfq.requireddate : '-'}}</b>
                 </div>
-                <div class="col-md-4">
+                </div>
+
+              <div class="row align-items-start">
+                <div class="col-md-4" style="margin-left:2vw">
                     <label for="class" style="color:#3f2de1;">Purchase Agent :</label>
                     <b style="margin-left:0.5vw">{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
                 </div>
-                 <div class="col-md-4">
+                 <div class="col-md-4" style="margin-left:2vw">
                     <label for="class" style="color:#3f2de1;">Site :</label>
                     <b style="margin-left:0.5vw">{{rfq.siteid ? rfq.siteid : '-'}}</b>
                 </div>
                 </div>
+                </div>
 
+                
+            </div>
                
 				      
 				      
@@ -122,6 +140,7 @@ import Card from 'primevue/card';
 import Calendar from 'primevue/calendar';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
+import FileUpload from 'primevue/fileupload';
 
 
 
@@ -133,6 +152,7 @@ import { useRoute } from 'vue-router';
 export default {
 
         components: {
+            FileUpload,
             Dropdown,
     DataTable,
     Column,
@@ -148,6 +168,7 @@ export default {
   },
     data() {
         return {
+           idpath: null,
             loading: [false, false, false],
             rfqEdit: false,
              selectedProduct2: null,
@@ -243,8 +264,8 @@ export default {
     
     async mounted() {
         const route = useRoute();  
-         var id = route.params.idpath; 
-        await this.vendorservice.findRfqDetails(id).then(data => this.rfq = data);
+         this.idpath = route.params.idpath; 
+        await this.vendorservice.findRfqDetails(this.idpath).then(data => this.rfq = data);
 
       if (this.rfq.statusofSend == true){
             const myTextNode = document.createTextNode(this.rfq.dateEnvoie)
@@ -258,13 +279,11 @@ export default {
         'color:#4998DC;height: 2vw;margin-left: 0.5vw;',
       );
       }
-        console.log(this.rfq)
   
     },
      computed: {
 
          isDisabled() {
-            console.log( this.rfq.statusofSend)
 
       if ( this.rfq.statusofSend == true ) {
 
@@ -277,6 +296,15 @@ export default {
 
      },
     methods: {
+
+
+         onUpload(event) {
+           
+            console.log(this.idpath)
+             console.log(event.files)
+            this.vendorservice.UploadFile(event.files,this.idpath)
+            this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
+        },
 
         calcul(){
             let qty=document.getElementById("qty").value
