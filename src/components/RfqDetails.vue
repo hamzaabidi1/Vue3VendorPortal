@@ -60,17 +60,18 @@
 
                 <div class="col-md-2">
 
-                    
+                    <div class="card" style="width:100%; height: 100%; margin: auto;">
 
-                    <h5>File Attachment</h5>
+                    <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachment</span>
                     <tr v-for=" file in filedownload.data " :key="file.id">
 
-                    <a :href="file.url"  download> {{file.name}}  </a>
+                    <a style="font-size: small;" :href="file.url"  download><span style="color:red" class="pi pi-file-pdf"></span> {{file.name}}  </a>
                  
                     </tr>
-
+                    </div>
 
                 </div>
+                
 
                 
             </div>
