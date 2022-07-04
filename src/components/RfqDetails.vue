@@ -16,18 +16,18 @@
                     </template>
                 </FileUpload>
             </div>
-                <div class="col-md-8">
+                <div class="col-md-6">
                 <div class="row align-items-start">
                     <div class="col-md-4" style="margin-left:2vw">
                 
-                    <label for="class" style="color:#3f2de1;">RFQ : </label>
-                    <b style="margin-left:0.5vw">{{rfq.rfqnum ? rfq.rfqnum : ' - '}}</b>
+                    <label for="class" style="font-size: small;color:#3f2de1;">RFQ : </label>
+                    <b style="font-size: small;margin-left:0.5vw">{{rfq.rfqnum ? rfq.rfqnum : ' - '}}</b>
                 
                 </div>
                 <div class="col-md-4 " style="margin-left:2vw">
                 
-                    <label for="class" style="color:#3f2de1;">Description : </label>
-                    <b style="margin-left:0.5vw">{{rfq.description ? rfq.description : '-'}}</b>
+                    <label for="class" style="font-size: small;color:#3f2de1;">Description : </label>
+                    <b style="font-size: small;margin-left:0.5vw">{{rfq.description ? rfq.description : '-'}}</b>
                
                 </div>
               
@@ -35,27 +35,41 @@
 
             <div class="row align-items-start">
                   <div class="col-md-4" style="margin-left:2vw">
-                    <label for="class" style="color:#3f2de1;">Status :</label>
-                    <b style="margin-left:0.5vw">{{rfq.status ? rfq.status : '-'}}</b>
+                    <label for="class" style="font-size: small;color:#3f2de1;">Status :</label>
+                    <b style="font-size: small;margin-left:0.5vw">{{rfq.status ? rfq.status : '-'}}</b>
                 </div>
 
                   
                 <div class="col-md-4"  style="margin-left:2vw">
-                    <label for="class" style="color:#3f2de1;">Require date :</label>
-                    <b style="margin-left:0.5vw">{{rfq.requireddate ? rfq.requireddate : '-'}}</b>
+                    <label for="class" style="font-size: small;color:#3f2de1;">Require date :</label>
+                    <b style="font-size: small;margin-left:0.5vw">{{rfq.requireddate ? rfq.requireddate : '-'}}</b>
                 </div>
                 </div>
 
               <div class="row align-items-start">
                 <div class="col-md-4" style="margin-left:2vw">
-                    <label for="class" style="color:#3f2de1;">Purchase Agent :</label>
-                    <b style="margin-left:0.5vw">{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
+                    <label for="class" style="font-size: small;color:#3f2de1;">Purchase Agent :</label>
+                    <b style="font-size: small;margin-left:0.5vw">{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
                 </div>
                  <div class="col-md-4" style="margin-left:2vw">
-                    <label for="class" style="color:#3f2de1;">Site :</label>
-                    <b style="margin-left:0.5vw">{{rfq.siteid ? rfq.siteid : '-'}}</b>
+                    <label for="class" style="font-size: small;color:#3f2de1;">Site :</label>
+                    <b style="font-size: small;margin-left:0.5vw">{{rfq.siteid ? rfq.siteid : '-'}}</b>
                 </div>
                 </div>
+                </div>
+
+                <div class="col-md-2">
+
+                    
+
+                    <h5>File Attachment</h5>
+                    <tr v-for=" file in filedownload.data " :key="file.id">
+
+                    <a :href="file.url"  download> {{file.name}}  </a>
+                 
+                    </tr>
+
+
                 </div>
 
                 
@@ -168,6 +182,13 @@ export default {
   },
     data() {
         return {
+            filedownload:{
+                name:"",
+                size:"",
+                type:"",
+                url:""
+
+            },
             files: '',
            idpath: null,
             loading: [false, false, false],
@@ -266,6 +287,7 @@ export default {
     async mounted() {
         const route = useRoute();  
          this.idpath = route.params.idpath; 
+         
         await this.vendorservice.findRfqDetails(this.idpath).then(data => this.rfq = data);
 
       if (this.rfq.statusofSend == true){
@@ -280,6 +302,8 @@ export default {
         'color:#4998DC;height: 2vw;margin-left: 0.5vw;',
       );
       }
+
+       this.vendorservice. DownloadFile(this.idpath).then(data1 => this.filedownload = data1);
   
     },
      computed: {

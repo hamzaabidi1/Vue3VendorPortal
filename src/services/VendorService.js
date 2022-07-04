@@ -105,4 +105,9 @@ export default class VendorService {
 
         }
 
+        DownloadFile(id){
+          return axios.get(API_URL+'file/allfiles/'+id,{ headers: authHeader()});
+
+        }
+
 }
