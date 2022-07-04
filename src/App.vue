@@ -9,10 +9,12 @@
             <router-link to="/admin" v-tooltip="'click to show table of list of vendor'" @click.prevent="showvendorlist"
               class="navbar-brand" style="color:white;">Vendors List</router-link>
           </li>
-          <li v-if="showFournisseurBoard && currentUser.status == 'Confirmed'">
+      <!--    <li v-if="showFournisseurBoard && currentUser.status == 'Confirmed'">
             <router-link to="/fournisseur" v-tooltip="'click to show po list,rfq list and invoice list'"
               @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">RFQ,PO,INVOICE</router-link>
           </li>
+
+          -->
           <li v-if="showFournisseurBoard && currentUser.status == 'Confirmed'">
             <router-link to="/rfq" v-tooltip="'click to show rfq list '"
               @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">RFQ</router-link>
