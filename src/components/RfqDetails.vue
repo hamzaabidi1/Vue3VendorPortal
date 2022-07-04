@@ -4,7 +4,7 @@
         <Card  class="card" style=" margin-top: 0vw;">
             <template v-slot:title>
                 RFQ Details
-                <Button id="submitToMaximo" :disabled='isDisabled' class="p-button-raised p-button-text" style="float:right;" :loading="loading[0]" @click="load(0)" ><b style="color:#4998DC;height: 2vw;margin-right: 0.5vw;">Submit </b><img src="../assets/ibmmaximo.png" style="max-width:3vw;max-height:1.5vw;"/><b style="color:#4998DC;height: 2vw;margin-left: 0.5vw;" id="date"></b></Button>
+                <Button  v-tooltip.left="'click to send Rfq to Maximo'" id="submitToMaximo" :disabled='isDisabled' class="p-button-raised p-button-text" style="float:right;" :loading="loading[0]" @click="load(0)" ><b style="color:#4998DC;height: 2vw;margin-right: 0.5vw;">Submit </b><img src="../assets/ibmmaximo.png" style="max-width:3vw;max-height:1.5vw;"/><b style="color:#4998DC;height: 2vw;margin-left: 0.5vw;" id="date"></b></Button>
             </template>
 
             <template v-slot:content>
@@ -17,14 +17,15 @@
                 </FileUpload>
             </div>
                 <div class="col-md-6">
+                    
                 <div class="row align-items-start">
-                    <div class="col-md-4" style="margin-left:2vw">
+                    <div class="col-md-4"  style="margin-left:2vw">
                 
                     <label for="class" style="font-size: small;color:#3f2de1;">RFQ : </label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.rfqnum ? rfq.rfqnum : ' - '}}</b>
                 
                 </div>
-                <div class="col-md-4 " style="margin-left:2vw">
+                <div class="col-md-4 "  style="margin-left:2vw">
                 
                     <label for="class" style="font-size: small;color:#3f2de1;">Description : </label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.description ? rfq.description : '-'}}</b>
@@ -34,20 +35,20 @@
                 </div>
 
             <div class="row align-items-start">
-                  <div class="col-md-4" style="margin-left:2vw">
+                  <div class="col-md-4"  style="margin-left:2vw">
                     <label for="class" style="font-size: small;color:#3f2de1;">Status :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.status ? rfq.status : '-'}}</b>
                 </div>
 
                   
-                <div class="col-md-4"  style="margin-left:2vw">
+                <div class="col-md-4"   style="margin-left:2vw">
                     <label for="class" style="font-size: small;color:#3f2de1;">Require date :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.requireddate ? rfq.requireddate : '-'}}</b>
                 </div>
                 </div>
 
               <div class="row align-items-start">
-                <div class="col-md-4" style="margin-left:2vw">
+                <div class="col-md-4"  style="margin-left:2vw">
                     <label for="class" style="font-size: small;color:#3f2de1;">Purchase Agent :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
                 </div>
@@ -60,12 +61,12 @@
 
                 <div class="col-md-2">
 
-                    <div class="card" style="width:100%; height: 100%; margin: auto;">
+                    <div class="card" style="width:100%; height: 100; margin: auto;">
 
-                    <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachment</span>
+                    <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachments</span>
                     <tr v-for=" file in filedownload.data " :key="file.id">
 
-                    <a style="font-size: small;" :href="file.url"  download><span style="color:red" class="pi pi-file-pdf"></span> {{file.name}}  </a>
+                    <a v-tooltip.top="'click to Download'" style="font-size: small;" :href="file.url"  download><span style="color:red" class="pi pi-file-pdf"></span> {{file.name}}  </a>
                  
                     </tr>
                     </div>

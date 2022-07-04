@@ -4,7 +4,7 @@
       <div v-if="currentUser">
         <Sidebar v-model:visible="visibleLeft" class="bg-dark">
           <img src="../public/logo-home.png" v-tooltip="'Vendor Portal'" style="margin-left:8vw;margin-bottom:1vw;"
-            width="50" height="50" class="sponsor_button">
+            width="60" height="60" class="sponsor_button">
           <li v-if="showAdminBoard">
             <router-link to="/admin" v-tooltip="'click to show table of list of vendor'" @click.prevent="showvendorlist"
               class="navbar-brand" style="color:white;">Vendors List</router-link>
@@ -331,7 +331,7 @@
             @click="getAllrequest()"></i>
         </li>
 
-        <li v-if="currentUser.roles == 'ROLE_FOURNISSEUR'" style="margin-top:0.5vw;"
+        <li v-if="currentUser.roles == 'ROLE_FOURNISSEUR'" style="margin:auto;"
           :class="'status-' + (statusVendor ? statusVendor.toLowerCase() : '')">
           {{ statusVendor }}
         </li>
