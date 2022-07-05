@@ -110,4 +110,9 @@ export default class VendorService {
 
         }
 
+        DeleteFile(id){
+          return axios.delete(API_URL+'file/deletefile/'+id,{ headers: authHeader()});
+
+        }
+
 }
