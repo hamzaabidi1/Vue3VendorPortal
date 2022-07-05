@@ -1,7 +1,7 @@
 <template>
   
 
-        <Card  class="card" style=" margin-top: 0vw;">
+        <Card  class="card" style=" margin: auto;">
             <template v-slot:title>
                 RFQ Details
                 <Button  v-tooltip.left="'click to send Rfq to Maximo'" id="submitToMaximo" :disabled='isDisabled' class="p-button-raised p-button-text" style="float:right;" :loading="loading[0]" @click="load(0)" ><b style="color:#4998DC;height: 2vw;margin-right: 0.5vw;">Submit </b><img src="../assets/ibmmaximo.png" style="max-width:3vw;max-height:1.5vw;"/><b style="color:#4998DC;height: 2vw;margin-left: 0.5vw;" id="date"></b></Button>
@@ -61,7 +61,7 @@
 
                 <div class="col-md-2">
 
-                    <div class="card" style="width:100%; height: 100; margin: auto;">
+                    <div  style="width:100%; height: 100%; margin: auto;">
 
                     <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachments</span>
                     <tr v-for=" file in filedownload.data " :key="file.id">
@@ -84,7 +84,7 @@
 
         
         <Toast />
-        <div class="card" style=" margin-top: -2vw;">
+        <div class="card" style=" margin: auto;">
             <h5>RFQ Line List</h5>
             <DataTable :value="rfq.rfqline" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" >
@@ -207,23 +207,23 @@ export default {
                 unitcost:null,
                 linecost:null,
                 quotationqty:null,
-                quoteStartDate:'',
-                quoteEndDate:'',
-                delivryDate:'',
+                quoteStartDate:null,
+                quoteEndDate:null,
+                delivryDate:null,
                 rfq: {
                     id:''
                 }
                 },
         rfq: {
-            id:null,
+            id:'',
             rfqnum:'',
             siteid:'',
             description:'',
             status:'',
-            requireddate:'',
+            requireddate:null,
             purchaseagent:'',
             statusofSend:'',
-            dateEnvoie:'',
+            dateEnvoie:null,
             rfqline:{
                 id:null,
                 rfqlinenum:null,
@@ -234,12 +234,12 @@ export default {
                 unitcost:null,
                 linecost:null,
                 quotationqty:null,
-                quoteStartDate:'',
-                quoteEndDate:'',
-                delivryDate:''
+                quoteStartDate:null,
+                quoteEndDate:null,
+                delivryDate:null
                 },
             user:{
-                id:null,
+                id:'',
                 firstname:'',
                 lastname:'',
                 username:'',
@@ -249,25 +249,26 @@ export default {
                 region:'',
                 postalcode:'',
                 country:'',
-                phone:'',
+                phone:null,
                 status:'',
-                dateEstablished:'',
-                dateCreation:'',
+                dateEstablished:null,
+                dateCreation:null,
                 companywebsite:'',
                 revenu:'',
-                taxregistrationnumber:'',
-                taxclassificationcode:'',
+                taxregistrationnumber:null,
+                taxclassificationcode:null,
                 password:'',
                 verifyAccountToken:'',
                 resetPasswordToken:'',
                 roles:{
-                    id:null,
+                    id:'',
                     name:'',
                 },
                 vendorCommodities:{},
                 enabled:true,
                 admin:false,
-                vendor:true},
+                vendor:true
+                },
         
    
         }

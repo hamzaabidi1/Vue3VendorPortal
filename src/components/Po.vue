@@ -1,7 +1,7 @@
 <template>
 	<div>
         <Toast />
-        <div class="card" style="max-width: 96% ;">
+        <div class="card" style="max-width: 96% ;margin: auto;margin-top: 1vw;">
             <h5>PO List</h5>
             <DataTable :value="po" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="5"  :rowsPerPageOptions="[5,10,20]">

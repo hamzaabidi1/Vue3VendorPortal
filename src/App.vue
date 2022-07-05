@@ -354,7 +354,7 @@
   </div>
 
   <Button icon="pi pi-check" @click="chatdialog('bottomright')" class="p-button-rounded  p-button-outlined"
-    style="float:bottom;margin-right:1vw;margin-left:96vw;position:fixed;top: 550px;" v-tooltip="'VendorPortal Assistant'">
+    style="float:bottom;margin-right:1vw;margin-left:96vw;position:fixed;bottom:5vw" v-tooltip="'VendorPortal Assistant'">
     <img alt="logo" src="./assets/chat.png" style="width: 1.5rem" />
   </Button>
 
@@ -372,7 +372,7 @@
     </div>
 
 	<template #footer  >
-    <div class="row" style="border-top:3px ridge;" >
+    <div class="row" style="border-top:3px ridge" >
     <div style="max-width: 70%"   >
      <Form @submit="chattextfn"  >                
      <InputText class="p-inputtext-sm" placeholder="message ..."  style="margin-top: 1.5vw;max-width: 100%;" id="chattext" v-model="chattext" />
@@ -396,10 +396,10 @@
 
 
 
-<footer class="bg-light text-center text-lg-start">
+<footer style="position:fixed;bottom:0;width:100%" class="bg-light text-center text-lg-start">
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2022 Copyright:All rights reserved.
+    © 2022 Copyright: All rights reserved.
     <a class="text-Blue" href="https://www.smartech-tn.com/">smartech-tn.com</a>
   </div>
   <!-- Copyright -->

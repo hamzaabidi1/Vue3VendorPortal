@@ -1,6 +1,6 @@
 <template >
     <div >
-        <div class="card" style="margin:3vw;" >
+        <div class="card" style="margin:2vw;" >
             <DataTable style="margin:1vw;" ref="dt" :value="vendors" v-model:selection="selectedProducts" dataKey="id" 
                 :paginator="true" :rows="10" :filters="filters"
                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
