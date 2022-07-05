@@ -66,7 +66,7 @@
                     <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachments</span>
                     <tr v-for=" file in filedownload.data " :key="file.id">
 
-                    <a v-tooltip.top="'click to Download'" style="font-size: small;" :href="file.url"  download><span v-if="file.name.includes('.pdf')" style="color:red" class="pi pi-file-pdf"></span><span v-if="file.name.includes('.png','.jpg','.jpeg')" style="color:red" class="pi pi-image"></span>   {{file.name}}  </a> <i @click="deletefile(file.url)" class="pi pi-trash" style="margin-left:0.5vw ;color:red"></i>
+                    <a v-tooltip.top="'click to Download'" style="font-size: small;" :href="file.url"  download><span v-if="file.name.includes('.pdf')" style="color:red" class="pi pi-file-pdf"></span><span v-if="file.name.includes('.png','.jpg','.jpeg')" style="color:red" class="pi pi-image"></span>   {{file.name}}  </a> <i @click="deletefile(file.url)" class="pi pi-trash" style="margin-left:0.5vw ;color:blueviolet"></i>
                  
                     </tr>
                     </div>
