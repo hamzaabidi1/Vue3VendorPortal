@@ -9,12 +9,13 @@
       <Form @submit="handleConfirmPassword" :validation-schema="schema">
        <div class="form-group">
           <label for="password1"><strong>Password</strong></label>
-          <Field name="password1" type="password" class="form-control" v-model="password1" />
+          <Field name="password1" type="password" class="form-control" v-model="password1"  v-on:change="verif" />
+          <div id="container" ></div>
           <ErrorMessage name="password1" class="error-feedback" />
         </div>
         <div class="form-group">
           <label for="password2"><strong>Confirm Password</strong></label>
-          <Field name="password2" type="password" class="form-control" v-model="password1"/>
+          <Field name="password2" type="password" class="form-control" v-model="password2"/>
           <ErrorMessage name="password2" class="error-feedback" />
         </div>
         <div class="form-group">
@@ -78,36 +79,44 @@ export default {
     },
 
   methods: {
+
+    
+        verif(){
+       console.log("***")
+      console.log(this.password1.length)
+if (this.password1.length < 6 )
+{
+
+const myTextNode = document.createTextNode("Password Must be over 6 caracter")
+const verification = document.createElement("p");
+verification.setAttribute(
+        'style',
+        'color: red',
+      );
+      verification.appendChild(myTextNode)
+      var element = document.getElementById("container");
+      element.appendChild(verification);
+
+}
+else
+{
+  const elementrem = document.getElementById("container");
+  elementrem.remove();
+
+}
+
+    },
     handleConfirmPassword(){
-                   
+          if (this.password1 == this.password2){
           this.userService.newpassword(this.$route.query.token,this.password1)
           this.$toast.add({severity:'success', summary: 'Success Message', detail:'Password changed succefully please connect with your new password', life: 6000})
           this.$router.push('/login');
+            }
+            else
+          this.$toast.add({severity:'error', summary: 'Error Message', detail:'please confirm your password correctly', life: 6000})
+
   
-      
-         
-  
-  /*   this.message = "";
-      this.successful = false;
-      this.loading = true;
-      console.log(this.formData);
-      this.$store.dispatch("auth/register",{formData}).then(
-        (data) => {
-          this.message = data.message;
-          this.successful = true;
-          this.loading = false;
-        },
-        (error) => {
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          this.successful = false;
-          this.loading = false;
-        }*/
-     
+    
     },
   },
 };

@@ -46,8 +46,10 @@ export default class UserService {
   statusVendor(email){
 
     return axios.get(URL+'retrievestatusoneuserbyemail/'+email).then(d => d.data);
-
   }
+
+
+  
 
 
   

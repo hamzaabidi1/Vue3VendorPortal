@@ -31,6 +31,12 @@
             <router-link to="" @click.prevent="requestUpdate" v-tooltip="'click to update Information of account'"
               class="navbar-brand" style="color:white;">Change Informations</router-link>
           </li>
+
+          <li v-if="showFournisseurBoard && currentUser.status == 'Confirmed'">
+            <router-link to="" @click.prevent="changepassword" v-tooltip="'click to change password'"
+              class="navbar-brand" style="color:white;">Change Password</router-link>
+          </li>
+
           <li v-if="showAdminBoard">
             <router-link to="" @click.prevent="showrequestsUpdate"
               v-tooltip="'click to show list of requests to change information account'" class="navbar-brand"
@@ -56,13 +62,54 @@
         </router-link>
       </li>
 
+   <Dialog header="Change Password"  :dismissableMask="true" :showHeader="false"  v-model:visible="changepasswordDialog" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '25vw'}">
+         <div class="col-md-12" style="margin:auto;margin-top: 3vw;">
+    
+      <img
+        id="profile-img"
+        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        class="profile-img-card"
+      />
+      <Form @submit="handleConfirmPassword" :validation-schema="schema">
+       <div class="form-group">
+          <label for="password1"><strong>Password</strong></label>
+          <Field name="password1" type="password" class="form-control" v-model="password1" v-on:change="verif" />
+           <div id="container" ></div>
+          <ErrorMessage name="password1" class="error-feedback" />
+        </div>
+        <div class="form-group">
+          <label for="password2"><strong>Confirm Password</strong></label>
+          <Field name="password2" type="password" class="form-control" v-model="password2"/>
+          <ErrorMessage name="password2" class="error-feedback" />
+        </div>
+        <div class="form-group" style="margin-top:3vw">
+          <button class="btn btn-primary btn-block" :disabled="loading">
+            <span
+              v-show="loading"
+              class="spinner-border spinner-border-sm"
+            ></span>
+            <span>Confirm</span>
+          </button>
+        </div>
+
+        <div class="form-group">
+          <div v-if="message" class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>
+        </div>
+      </Form>
+    
+  </div>
+                  
+                </Dialog>
+
+
+
+
+
+
       <Dialog :maximizable="true" v-model:visible="requestDialog" :dismissableMask="true" :breakpoints="{ '960px': '75vw' }"
         :style="{ width: '90vw' }" header="Update Informations">
-
-
-
-
-
         <div class="flex">
           <div class="row align-items-start">
             <div class=col-md-6>
@@ -90,8 +137,6 @@
                     :class="{ 'p-invalid': validationErrors.phone && submitted }" />
                   <small style="width: 90%;margin-left:2vw"
                     v-show="validationErrors.phone && submitted" class="p-error">Phone Number is required.</small>
-
-
 
                 </div>
 
@@ -422,6 +467,7 @@ import Checkbox from 'primevue/checkbox';
 import InputNumber from 'primevue/inputnumber';
 import Calendar from 'primevue/calendar';
 import Divider from 'primevue/divider';
+import * as yup from "yup";
 export default {
   components: {
     Form,
@@ -439,7 +485,14 @@ export default {
   },
 
   data() {
+     const schema = yup.object().shape({
+      password2: yup.string().required("confirmation of password is required!"),
+      password1: yup.string().required("Password is required!"),
+    });
     return {
+      loading: false,
+       message: "",
+      schema,
       statusVendor:'',
       posts: {
         firstname: '',
@@ -462,6 +515,7 @@ export default {
       visibleLeft: false,
       visibleRight: false,
       requestDialog: false,
+      changepasswordDialog: false,
       termsDialog: false,
       vendorDetails: null,
       state: null,
@@ -526,6 +580,32 @@ export default {
   },
 
   methods: {
+
+        verif(){
+       console.log("***")
+      console.log(this.password1.length)
+if (this.password1.length < 6 )
+{
+
+const myTextNode = document.createTextNode("Password Must be over 6 caracter")
+const verification = document.createElement("p");
+verification.setAttribute(
+        'style',
+        'color: red',
+      );
+      verification.appendChild(myTextNode)
+      var element = document.getElementById("container");
+      element.appendChild(verification);
+
+}
+else
+{
+  const elementrem = document.getElementById("container");
+  elementrem.remove();
+
+}
+
+    },
     // chat box methods...
 
     addHumanText(text) {
@@ -562,7 +642,7 @@ export default {
     },
     botVoice(message) {
       const speech = new SpeechSynthesisUtterance();
-      speech.text = "Sorry, I did not understand that.";
+      speech.text = "Sorry,i do not have any idea, please contact the administration .";
 
       if (message == "" ) {
         speech.text = "Welcome to VendorPortal Assistant,how can i help you?";
@@ -576,17 +656,21 @@ export default {
         speech.text = "I am fine, thanks. and you?";
       }
 
+      if (message.includes('what time spend of registration process ')) {
+        speech.text = "we notify you when your request is processed ";
+      }
+
       
       if (message.includes('help')) {
         speech.text = "i will try to answer your questions";
       }
 
        if (message.includes('Vendor Portal do')) {
-        speech.text = "It is a portal for monitoring ";
+        speech.text = "It is a portal for monitoring and streamline the procurement process ";
       }
 
         if (message.includes('Vendor Portal values')) {
-        speech.text = "It is a portal for monitoring ";
+        speech.text = "It is a portal for monitoring and streamline the procurement process ";
       }
 
       if (message.includes('fine')) {
@@ -678,8 +762,28 @@ export default {
       let jsonobject = localStorage.user;
       let monobjet = JSON.parse(jsonobject)
       this.VendorService.getDetailsProfile(monobjet.email).then(data => this.posts = data);
+    },
+     changepassword() {
+      this.changepasswordDialog = true;
+      this.visibleLeft = false;
+    
 
     },
+
+
+    handleConfirmPassword(){
+          let jsonobject = localStorage.user;
+          let monobjet = JSON.parse(jsonobject)
+          this.VendorService.changeUserPassword(monobjet.email,this.password1)
+          if (this.password1 == this.password2){
+          this.$toast.add({severity:'success', summary: 'Success Message', detail:'Password changed succefully', life: 3000})
+          this.changepasswordDialog = false;
+          }
+          else
+          this.$toast.add({severity:'error', summary: 'Error Message', detail:'please confirm your password correctly', life: 6000})
+    },
+  
+
     async confirm() {
       this.submitted = true;
       let jsonobject = localStorage.user;

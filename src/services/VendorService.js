@@ -3,6 +3,11 @@ import authHeader from './auth-header';
 const API_URL = process.env.VUE_APP_SERVICE_URL+'/api/';
 
 export default class VendorService {
+  changeUserPassword(email,password){
+
+    axios.post(API_URL+'fournisseur/updateuserpassword/'+email+'/'+password,null,{headers: authHeader()});
+  
+    }
 
     getPo(vendor) {
 		return axios.get(API_URL+'fournisseur/po/'+vendor,{ headers: authHeader()}).then(d => d.data);
