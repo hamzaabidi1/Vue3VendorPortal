@@ -62,8 +62,11 @@
         </router-link>
       </li>
 
-   <Dialog header="Change Password"  :dismissableMask="true" :showHeader="false"  v-model:visible="changepasswordDialog" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '25vw'}">
-         <div class="col-md-12" style="margin:auto;margin-top: 3vw;">
+   <Dialog v-model:visible="changepasswordDialog" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '25vw'}">
+    <template #header>
+		<i class="pi pi-info-circle" v-tooltip="'password must be longer than 6 characters'"></i>
+	</template>
+         <div class="col-md-12" style="margin:auto">
     
       <img
         id="profile-img"

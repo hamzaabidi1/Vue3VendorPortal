@@ -30,8 +30,10 @@
     "vue": "^3.0.0",
     "vue-full-loading": "^1.2.1",
     "vue-loading-overlay": "^5.0.3",
+    "vue-recaptcha-v3": "^2.0.1",
     "vue-router": "^4.0.6",
     "vue-stepper": "^1.4.2",
+    "vue3-recaptcha2": "^1.7.0",
     "vuex": "^4.0.0",
     "webpack": "^5.72.1",
     "yup": "^0.32.9"
