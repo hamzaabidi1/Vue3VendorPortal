@@ -96,7 +96,8 @@ export default {
       schema,
       displayConfirmation : false,
       show: false,
-      label: 'Loading...'
+      label: 'Loading...', 
+      rec: false
     };
   },
   computed: {
@@ -112,20 +113,18 @@ export default {
    mounted() {
      this.show=true
      this.delayCloseAlert();
-     this.rec=true
+    // this.rec=true
      
     },
   methods: {
 
-    isdisabled(x){
-        return x
-    },
+ 
 
-      onEvent() {
+      async onEvent() {
         // when you need a reCAPTCHA challenge
 
-        this.$refs.recaptcha.execute();
-         this.rec=false
+        await this.$refs.recaptcha.execute();
+        this.rec=false
       
       },
     
