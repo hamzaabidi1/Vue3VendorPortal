@@ -26,15 +26,15 @@
 
 
         <div style="margin-bottom: 1vw;">
-  <vue-recaptcha ref="recaptcha" sitekey="6LfqZ_0gAAAAAKqip6SnPm_Xl3dPypzsoNnj6lVS"  style="transform:scale(0.9);transform-origin:0;-webkit-transform:scale(0.9);
-transform:scale(0.9);-webkit-transform-origin:0 0;transform-origin:0 0;" />
+  <vue-recaptcha ref="recaptcha" sitekey="6LfqZ_0gAAAAAKqip6SnPm_Xl3dPypzsoNnj6lVS"  style="transform:scale(0.88);transform-origin:0;-webkit-transform:scale(0.88);
+transform:scale(0.88);-webkit-transform-origin:0 0;transform-origin:0 0;" />
 
   </div>
 
         <!--<Recaptcha /> -->
 
         <div class="form-group">
-          <button class="btn btn-primary btn-block" :disabled="loading">
+          <button class="btn btn-primary btn-block" :disabled="rec">
             <span
               v-show="loading"
               class="spinner-border spinner-border-sm"
@@ -112,8 +112,7 @@ export default {
    mounted() {
      this.show=true
      this.delayCloseAlert();
-     this.loading=true
-    // this.isdisabled(true);
+     this.rec=true
      
     },
   methods: {
@@ -124,9 +123,10 @@ export default {
 
       onEvent() {
         // when you need a reCAPTCHA challenge
+
         this.$refs.recaptcha.execute();
-       // this.isdisabled(false);
-       this.loading=false
+         this.rec=false
+      
       },
     
      delayCloseAlert() {
