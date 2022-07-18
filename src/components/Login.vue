@@ -5,11 +5,12 @@
      >
  </loading>
   <div class="col-md-12" >
-    <div class="card card-container">
+    <div class="card card-container" style="margin-top:1vw;margin-bottom: 1vw;">
       <img
         id="profile-img"
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         class="profile-img-card"
+        style="height:3vw;width: 3vw;"
       />
       <Form @submit="handleLogin" :validation-schema="schema">
         <div class="form-group">
@@ -22,6 +23,8 @@
           <Field name="password"  type="password" class="form-control"/>
           <ErrorMessage name="password" class="error-feedback" /> 
         </div>
+
+        <Recaptcha />
 
         <div class="form-group">
           <button class="btn btn-primary btn-block" :disabled="loading">
@@ -57,6 +60,7 @@ import loading from 'vue-full-loading';
 import * as yup from "yup";
 import Button from 'primevue/button';
 import Password from 'primevue/password';
+import Recaptcha from './Recaptcha.vue'
 
 
 
@@ -68,6 +72,7 @@ export default {
     Field,
     ErrorMessage,
     Button,
+    Recaptcha,
     loading
   },
   data() {

@@ -7,13 +7,13 @@
         class="profile-img-card"
       />
       <Form @submit="handleForgotPassword" :validation-schema="schema">
-      <div class="form-group">
+      <div class="form-group" style="margin-bottom: 2vw;">
             <label for="email"><strong>Email</strong></label>
             <Field name="email" type="email" class="form-control" />
             <ErrorMessage name="email" class="error-feedback" />
           </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-bottom: 2vw;">
           <button class="btn btn-primary btn-block" :disabled="loading">
             <span
               v-show="loading"
