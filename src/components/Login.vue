@@ -26,7 +26,7 @@
 
 
         <div style="margin-bottom: 1vw;">
-  <vue-recaptcha ref="recaptcha" sitekey="6LfqZ_0gAAAAAKqip6SnPm_Xl3dPypzsoNnj6lVS"  style="transform:scale(0.88);transform-origin:0;-webkit-transform:scale(0.88);
+  <vue-recaptcha ref="recaptcha" @verify="verifyMethod" sitekey="6LfqZ_0gAAAAAKqip6SnPm_Xl3dPypzsoNnj6lVS"  style="transform:scale(0.88);transform-origin:0;-webkit-transform:scale(0.88);
 transform:scale(0.88);-webkit-transform-origin:0 0;transform-origin:0 0;" />
 
   </div>
@@ -113,10 +113,14 @@ export default {
    mounted() {
      this.show=true
      this.delayCloseAlert();
-    // this.rec=true
+    this.rec=true
      
     },
   methods: {
+
+    verifyMethod(){
+       this.rec=false
+    },
 
  
 
@@ -124,7 +128,7 @@ export default {
         // when you need a reCAPTCHA challenge
 
         await this.$refs.recaptcha.execute();
-        this.rec=false
+       
       
       },
     
