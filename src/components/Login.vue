@@ -24,10 +24,17 @@
           <ErrorMessage name="password" class="error-feedback" /> 
         </div>
 
-        <Recaptcha />
+
+        <div style="margin-bottom: 1vw;">
+  <vue-recaptcha ref="recaptcha" sitekey="6LfqZ_0gAAAAAKqip6SnPm_Xl3dPypzsoNnj6lVS"  style="transform:scale(0.9);transform-origin:0;-webkit-transform:scale(0.9);
+transform:scale(0.9);-webkit-transform-origin:0 0;transform-origin:0 0;" />
+
+  </div>
+
+        <!--<Recaptcha /> -->
 
         <div class="form-group">
-          <button class="btn btn-primary btn-block" :disabled="loading">
+          <button class="btn btn-primary btn-block" :disabled="isdisabled">
             <span
               v-show="loading"
               class="spinner-border spinner-border-sm"
@@ -61,6 +68,7 @@ import * as yup from "yup";
 import Button from 'primevue/button';
 import Password from 'primevue/password';
 import Recaptcha from './Recaptcha.vue'
+import { VueRecaptcha } from 'vue-recaptcha';
 
 
 
@@ -73,6 +81,7 @@ export default {
     ErrorMessage,
     Button,
     Recaptcha,
+    VueRecaptcha,
     loading
   },
   data() {
@@ -103,9 +112,21 @@ export default {
    mounted() {
      this.show=true
      this.delayCloseAlert();
+      this.isdisabled(true);
+     //document.selectElementByid('#btn').disabled = true;
      
     },
   methods: {
+
+    isdisabled(x){
+        return x
+    },
+
+      onEvent() {
+        // when you need a reCAPTCHA challenge
+        this.$refs.recaptcha.execute();
+        this.isdisabled(false);
+      },
     
      delayCloseAlert() {
             var self = this;
