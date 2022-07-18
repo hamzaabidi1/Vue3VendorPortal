@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-12">
-    <div class="card card-container">
+    <div class="card card-container" style="margin:auto;margin-top:1vw;margin-bottom:5vw;">
    
       <img
         id="profile-img"
