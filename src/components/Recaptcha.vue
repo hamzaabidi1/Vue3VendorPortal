@@ -1,6 +1,6 @@
 <template >
 <div style="margin-bottom: 1vw;">
-  <vue-recaptcha ref="recaptcha" sitekey="6Le4tfwgAAAAAEf7tSKiFg6cjqJVfLPza8nitego"  style="transform:scale(0.9);transform-origin:0;-webkit-transform:scale(0.9);
+  <vue-recaptcha ref="recaptcha" sitekey="6LfqZ_0gAAAAAKqip6SnPm_Xl3dPypzsoNnj6lVS"  style="transform:scale(0.9);transform-origin:0;-webkit-transform:scale(0.9);
 transform:scale(0.9);-webkit-transform-origin:0 0;transform-origin:0 0;" />
 
   </div>
