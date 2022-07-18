@@ -15,14 +15,14 @@
                     <div class="field">
                         <label for="firstname">Vendor Name</label>
                         <InputText id="firstname" v-model="firstname" :class="{'p-invalid': validationErrors.firstname && submitted}" />
-                        <small v-show="validationErrors.firstname && submitted" class="p-error">Firstname is required.</small>
+                        <small v-show="validationErrors.firstname && submitted" class="p-error">Vendor Name  is required.</small>
                     </div>
                     </div>
                     <div class="col-md-6">
                     <div class="field">
                         <label for="lastname">Vendor Subname</label>
                         <InputText id="lastname" v-model="lastname" :class="{'p-invalid': validationErrors.lastname && submitted}" />
-                        <small v-show="validationErrors.lastname && submitted" class="p-error">Lastname is required.</small>
+                        <small v-show="validationErrors.lastname && submitted" class="p-error">Vendor Subname is required.</small>
                     </div>
                     </div>
                     </div>
@@ -39,7 +39,7 @@
                   <div class="col-md-6">
                 <div class="grid grid-nogutter justify-content-between">
                 
-                    <Button label="Next" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" style="float:right;max-width: 10vw;margin-top: 3vw;" />
+                    <Button label="Next" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" style="float:right;max-width: 10vw;margin-top: 3vw;margin-right: 1vw;" />
                 </div>
                 </div>
                 </div>
@@ -90,6 +90,8 @@ export default {
     props: {
         formData: Object
     },
+
+    
     methods: {
         nextPage() {
             this.submitted = true;

@@ -1,6 +1,6 @@
 <template>
     <div class="stepsdemo-content">
-        <Card>
+        <Card style="margin-bottom: 3vw;">
             <template v-slot:title>
                 Confirmation
             </template>
@@ -45,11 +45,20 @@
                     <label for="companywebsite">Company Web Site </label>
                     <b>{{formData.companywebsite ? formData.companywebsite : '-'}}</b>
                 </div>
+
+<div class="field col-12" style="margin-top: 2vw;">
+           <div >
+  <vue-recaptcha ref="recaptcha" @verify="verifyMethod" sitekey="6LfqZ_0gAAAAAKqip6SnPm_Xl3dPypzsoNnj6lVS"  style="transform:scale(0.88);transform-origin:0;-webkit-transform:scale(0.88);
+transform:scale(0.88);-webkit-transform-origin:0 0;transform-origin:0 0;" />
+
+  </div>
+
+  </div>
             </template>
             <template v-slot:footer>
                 <div class="grid grid-nogutter justify-content-between">
-                    <Button label="Back" @click="prevPage()" icon="pi pi-angle-left" />
-                    <Button label="Complete" @click="complete(formData)" icon="pi pi-check" iconPos="right" class="p-button-success" style="float:right;"/>
+                    <Button label="Back" @click="prevPage()" icon="pi pi-angle-left" style="margin-left: 1vw;"/>
+                    <Button :disabled="rec" label="Complete" @click="complete(formData)" icon="pi pi-check" iconPos="right" class="p-button-success" style="float:right;margin-right: 1vw;"/>
                 </div>
             </template>
         </Card>
@@ -65,6 +74,7 @@ import InputText from "primevue/inputtext"
 import InputNumber from "primevue/inputnumber"
 import Dropdown from "primevue/dropdown"
 import UserService from '../services/user.service';
+import { VueRecaptcha } from 'vue-recaptcha';
 
 export default {
   name: "Register",
@@ -77,6 +87,7 @@ export default {
     Card,
     InputText,
     InputNumber,
+    VueRecaptcha,
     Dropdown
   },
     data() {
@@ -85,6 +96,7 @@ export default {
       loading: false,
       message: "",
       schema: "",
+      rec: false
      
         }},
     props: {
@@ -109,7 +121,25 @@ export default {
     
     
     },
+     mounted() {
+    this.rec=true
+     
+    },
     methods: {
+
+        verifyMethod(){
+       this.rec=false
+    },
+
+ 
+
+      async onEvent() {
+        // when you need a reCAPTCHA challenge
+
+        await this.$refs.recaptcha.execute();
+       
+      
+      },
             prevPage() {
             this.$emit('prev-page', {pageIndex: 4});
         },

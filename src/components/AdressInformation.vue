@@ -1,7 +1,7 @@
 <template>
 
     <div class="stepsdemo-content">
-        <Card>
+        <Card style=";margin:auto;margin-bottom: 3vw;">
             <template v-slot:title>
                 Address Information
             </template>
@@ -58,9 +58,9 @@
                 </div>
             </template>
             <template v-slot:footer>
-                <div class="grid grid-nogutter justify-content-between">
-                    <Button label="Back" @click="prevPage()" icon="pi pi-angle-left" />
-                    <Button label="Next" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" style="float:right;" />
+                <div class="grid grid-nogutter justify-content-between" >
+                    <Button label="Back" @click="prevPage()" icon="pi pi-angle-left" style="margin:auto" />
+                    <Button label="Next" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" style="float:right;margin: auto;margin-right: 1vw;" />
                 </div>
             </template>
         </Card>

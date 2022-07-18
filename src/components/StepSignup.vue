@@ -3,8 +3,8 @@
         
 
         <div class="content-section implementation">
-            <div class="card" style="margin-top:3vw;">
-                <Steps :model="items" :readonly="true" style="margin-top:2vw;margin-bottom:1vw;" />
+            <div class="card" style="margin:auto">
+                <Steps :model="items" :readonly="true" style="margin-top:1vw" />
             </div>
 
             <router-view v-slot="{Component}" :formData="formObject" @prev-page="prevPage($event)" @next-page="nextPage($event)" @complete="complete">
