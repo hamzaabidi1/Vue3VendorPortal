@@ -34,7 +34,7 @@ transform:scale(0.9);-webkit-transform-origin:0 0;transform-origin:0 0;" />
         <!--<Recaptcha /> -->
 
         <div class="form-group">
-          <button class="btn btn-primary btn-block" :disabled="isdisabled">
+          <button class="btn btn-primary btn-block" :disabled="loading">
             <span
               v-show="loading"
               class="spinner-border spinner-border-sm"
@@ -112,8 +112,8 @@ export default {
    mounted() {
      this.show=true
      this.delayCloseAlert();
-      this.isdisabled(true);
-     //document.selectElementByid('#btn').disabled = true;
+     this.loading=true
+    // this.isdisabled(true);
      
     },
   methods: {
@@ -125,7 +125,8 @@ export default {
       onEvent() {
         // when you need a reCAPTCHA challenge
         this.$refs.recaptcha.execute();
-        this.isdisabled(false);
+       // this.isdisabled(false);
+       this.loading=false
       },
     
      delayCloseAlert() {
@@ -152,25 +153,20 @@ export default {
       if (monobjet.roles == "ROLE_ADMIN")
       {
        window.location.href = "/";
-       // this.$router.push("/admin");
       }
       else{
           if (monobjet.status == "Draft") {
             window.location.href = "/register";
-           // this.$router.push("/register");
           }
           else if (monobjet.status == "Submitted") {
 
          window.location.href = "/submitted";
 
-          //  this.$router.push("/submitted");
           }
           else if (monobjet.status == "InProgress"){
-         // this.$router.push("/");
           window.location.href = "/";
           }
           else{
-            this.$router.push("/");
           window.location.href = "/";
 
           }
