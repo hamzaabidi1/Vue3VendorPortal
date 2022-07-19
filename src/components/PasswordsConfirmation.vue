@@ -107,7 +107,7 @@ else
 
     },
     handleConfirmPassword(){
-          if (this.password1 == this.password2){
+          if ((this.password1 == this.password2) && (this.password1.length >= 6)){
           this.userService.newpassword(this.$route.query.token,this.password1)
           this.$toast.add({severity:'success', summary: 'Success Message', detail:'Password changed succefully please connect with your new password', life: 6000})
           this.$router.push('/login');
