@@ -84,7 +84,7 @@
 
         
         <Toast />
-        <div class="card" style=" margin: auto;">
+        <div class="card" style=" margin: auto; margin-bottom: 5vw;">
             <h5>RFQ Line List</h5>
             <DataTable :value="rfq.rfqline" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" >
