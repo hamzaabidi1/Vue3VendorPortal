@@ -105,8 +105,8 @@ export default class VendorService {
 
         }
 
-        UploadFile(Invoiceline,id){
-          return axios.post(API_URL+'file/upload/'+id,Invoiceline,{ headers: authHeader()});
+        UploadFile(rfqfiles,id){
+          return axios.post(API_URL+'file/upload/'+id,rfqfiles,{ headers: authHeader()});
 
         }
 
