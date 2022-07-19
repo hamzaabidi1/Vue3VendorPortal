@@ -106,7 +106,7 @@ export default class VendorService {
         }
 
         UploadFile(rfqfiles,id){
-          return axios.post(API_URL+'file/upload/'+id,rfqfiles,{ headers: authHeader()});
+          return axios.post(API_URL+'file/upload/'+id,rfqfiles,{ headers: authHeader(),"Content-Type": "multipart/form-data"});
 
         }
 
