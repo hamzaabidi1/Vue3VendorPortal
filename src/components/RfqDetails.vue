@@ -184,6 +184,8 @@ export default {
   },
     data() {
         return {
+
+            idline:null,
             filedownload:{
                 name:"",
                 size:"",
@@ -292,17 +294,7 @@ export default {
        
         await this.rfqdetails();
       if (this.rfq.statusofSend == true){
-            const myTextNode = document.createTextNode(this.rfq.dateEnvoie)
-            
-            const dateEnvoieelement = document.getElementById("submitToMaximo");
-            dateEnvoieelement.appendChild(myTextNode)
-
-            const dateEnvoie = document.getElementById("date");
-             dateEnvoie.setAttribute(
-        'style',
-        'color:#4998DC;height: 2vw;margin-left: 0.5vw;',
-      );
-       this.statusupload= true;
+        this.addtomaximo();
       }
 
       this.listfiles();
@@ -324,6 +316,22 @@ export default {
      },
     methods: {
 
+        addtomaximo(){
+
+                const myTextNode = document.createTextNode(this.rfq.dateEnvoie)
+            
+            const dateEnvoieelement = document.getElementById("submitToMaximo");
+            dateEnvoieelement.appendChild(myTextNode)
+
+            const dateEnvoie = document.getElementById("date");
+             dateEnvoie.setAttribute(
+        'style',
+        'color:#4998DC;height: 2vw;margin-left: 0.5vw;',
+      );
+       this.statusupload= true;
+
+        },
+
         listfiles(){
 
               this.vendorservice. DownloadFile(this.idpath).then(data1 => this.filedownload = data1);
@@ -332,9 +340,8 @@ export default {
 
         rfqdetails(){
 
-             const route = useRoute();  
+         const route = useRoute();  
          this.idpath = route.params.idpath; 
-         
          this.vendorservice.findRfqDetails(this.idpath).then(data => this.rfq = data);
 
         },
@@ -343,15 +350,12 @@ export default {
 
         async deletefile(url){
 
-            console.log(url)
             let pos = url.lastIndexOf("/")
-            console.log(pos)
-            
             let idfile= url.substring(pos+1)
-            console.log(idfile)
             await this.vendorservice.DeleteFile(idfile)
-            //this.$router.go();
-             location.reload();
+            this.filedownload={}
+            this.listfiles();
+              
         },
 
 
@@ -366,7 +370,8 @@ export default {
                 }
             await this.vendorservice.UploadFile(formData,this.idpath)
             this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
-           this.$router.go();
+             this.filedownload={}
+            this.listfiles();
        
         },
 
@@ -384,7 +389,8 @@ export default {
             this.statusupload= true;
             await this.vendorservice.addRfqToMaximo(this.rfq.id);
              this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Rfq submitted Successfuly to maximo', life: 3000 });
-            this.$router.go();
+             this.addtomaximo();
+           
            
         },
        
@@ -392,9 +398,9 @@ export default {
            onRowSelect(event) {
              if ( this.rfq.statusofSend == false)
              {
-              const idline = event.data.id
+              this.idline = event.data.id
               this.rfqEdit= true;
-              this.vendorservice. findRfqLineById(idline).then(data1 => this.rfqline = data1);
+              this.vendorservice. findRfqLineById(this.idline).then(data1 => this.rfqline = data1);
              }
         },
         onRowUnselect(event) {
@@ -409,7 +415,9 @@ export default {
             await this.vendorservice. updateRfqLineById(this.rfqline);
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             this.rfqEdit= false;
-            this.$router.go();
+            this.rfq={}
+            this.vendorservice.findRfqDetails(this.rfqline.rfq.id).then(data => this.rfq = data);
+         
          
 
         }
