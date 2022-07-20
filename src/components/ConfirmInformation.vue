@@ -144,9 +144,9 @@ export default {
             this.$emit('prev-page', {pageIndex: 4});
         },
       
-      complete(formData) {
+      async complete(formData) {
 
-         this.userService.signupafterSteps(this.currentUser.username,formData)
+         await this.userService.signupafterSteps(this.currentUser.username,formData)
          this.$toast.add({severity:'success', summary: 'Success Message', detail:'User Informations registred', life: 3000});
          window.location.href = "/submitted";
         }
