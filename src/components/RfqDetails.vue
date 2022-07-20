@@ -19,13 +19,13 @@
                 <div class="col-md-6">
                     
                 <div class="row align-items-start">
-                    <div class="col-md-4"  style="margin-left:2vw">
+                    <div class="col-md-4"  style="margin:auto">
                 
                     <label for="class" style="font-size: small;color:#3f2de1;">RFQ : </label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.rfqnum ? rfq.rfqnum : ' - '}}</b>
                 
                 </div>
-                <div class="col-md-4 "  style="margin-left:2vw">
+                <div class="col-md-4 "  style="margin:auto">
                 
                     <label for="class" style="font-size: small;color:#3f2de1;">Description : </label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.description ? rfq.description : '-'}}</b>
@@ -34,25 +34,25 @@
               
                 </div>
 
-            <div class="row align-items-start">
-                  <div class="col-md-4"  style="margin-left:2vw">
+            <div class="row">
+                  <div class="col-md-4"  style="margin:auto">
                     <label for="class" style="font-size: small;color:#3f2de1;">Status :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.status ? rfq.status : '-'}}</b>
                 </div>
 
                   
-                <div class="col-md-4"   style="margin-left:2vw">
+                <div class="col-md-4"   style="margin:auto">
                     <label for="class" style="font-size: small;color:#3f2de1;">Require date :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.requireddate ? rfq.requireddate : '-'}}</b>
                 </div>
                 </div>
 
-              <div class="row align-items-start">
-                <div class="col-md-4"  style="margin-left:2vw">
+              <div class="row">
+                <div class="col-md-4"  style="margin:auto">
                     <label for="class" style="font-size: small;color:#3f2de1;">Purchase Agent :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
                 </div>
-                 <div class="col-md-4" style="margin-left:2vw">
+                 <div class="col-md-4" style="margin:auto">
                     <label for="class" style="font-size: small;color:#3f2de1;">Site :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.siteid ? rfq.siteid : '-'}}</b>
                 </div>
@@ -66,7 +66,7 @@
                     <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachments</span>
                     <tr v-for=" file in filedownload.data " :key="file.id">
 
-                    <a v-tooltip.top="'click to Download'" style="font-size: small;" :href="file.url"  download><span v-if="file.name.includes('.pdf')" style="color:red" class="pi pi-file-pdf"></span><span v-if="file.name.includes('.png','.jpg','.jpeg')" style="color:red" class="pi pi-image"></span>   {{file.name}}  </a> <i @click="deletefile(file.url)" class="pi pi-trash" style="margin-left:0.5vw ;color:blueviolet"></i>
+                    <a v-tooltip.top="'click to Download'" style="font-size: small;" :href="file.url"  download><span v-if="file.name.includes('.pdf')" style="color:red" class="pi pi-file-pdf"></span><span v-if="file.name.includes('.png','.jpg','.jpeg')" style="color:red" class="pi pi-image"></span>   {{file.name}}  </a> <i @click="deletefile(file.url)" class="pi pi-trash" style="margin-left:0.5vw ;color:#4998DC"></i>
                  
                     </tr>
                     </div>
