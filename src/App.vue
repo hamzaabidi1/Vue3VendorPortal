@@ -540,11 +540,13 @@ export default {
   },
   
    mounted() {
-      this.AdminService.getNumberOfRequest().then(data => this.number = data);
 
     if(localStorage.user){
       let jsonobject = localStorage.user
       let monobjet = JSON.parse(jsonobject)
+      if(monobjet.roles == 'ROLE_ADMIN'){
+      this.AdminService.getNumberOfRequest().then(data => this.number = data);
+      }
       if(monobjet.roles == 'ROLE_FOURNISSEUR')
       this.UserService.statusVendor(monobjet.email).then(data => this.statusVendor = data);
       }
