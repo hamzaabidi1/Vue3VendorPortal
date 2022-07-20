@@ -339,10 +339,8 @@ export default {
         },
 
 
-         onUpload(event) {
+          async onUpload(event) {
            
-            console.log(this.idpath)
-             console.log(event.files)
              this.files=event.files;
              let formData = new FormData();
              for( var i = 0; i < this.files.length; i++ ){
@@ -350,36 +348,36 @@ export default {
 
                 formData.append('file', file);
                 }
-            this.vendorservice.UploadFile(formData,this.idpath)
+            await this.vendorservice.UploadFile(formData,this.idpath)
             this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
-            this.$router.go();
+           // this.$router.go();
+           location.reload();
         },
 
         calcul(){
             let qty=document.getElementById("qty").value
             let unit =document.getElementById("unit").value
-            console.log(qty)
                 let line =document.getElementById("line").value 
                 line=qty*unit;
                 this.rfqline.linecost=line;
         },
 
-         async load(index) {
+          async load(index) {
             this.loading[index] = true;
             setTimeout(() => this.loading[index] = false, 2000);
             await this.vendorservice.addRfqToMaximo(this.rfq.id);
              this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Rfq submitted Successfuly to maximo', life: 3000 });
-             this.$router.go();
+            // this.$router.go();
+             location.reload();
         },
        
 
-         async  onRowSelect(event) {
+           onRowSelect(event) {
              if ( this.rfq.statusofSend == false)
              {
-            const idline = event.data.id
+              const idline = event.data.id
               this.rfqEdit= true;
-             await  this.vendorservice. findRfqLineById(idline).then(data1 => this.rfqline = data1);
-              console.log(this.rfqline)
+              this.vendorservice. findRfqLineById(idline).then(data1 => this.rfqline = data1);
              }
         },
         onRowUnselect(event) {
@@ -389,12 +387,13 @@ export default {
         closeBasic(){
             this.rfqEdit= false;
         },
-        saveEdit()
+        async saveEdit()
         {
-            this.vendorservice. updateRfqLineById(this.rfqline);
+            await this.vendorservice. updateRfqLineById(this.rfqline);
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             this.rfqEdit= false;
-            this.$router.go();
+            //this.$router.go();
+            location.reload();
 
         }
     }
