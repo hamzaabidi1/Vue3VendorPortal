@@ -10,7 +10,7 @@
             <template v-slot:content>
                 <div class="row align-items-start">
                       <div class="col-md-4">
-                <FileUpload name="demo[]" :customUpload="true" @uploader="onUpload" :multiple="true" accept=".pdf,.png,.jpeg,jpg" :maxFileSize="100000000">
+                <FileUpload :disabled="statusupload" name="demo[]" :customUpload="true" @uploader="onUpload" :multiple="true" accept=".pdf,.png,.jpeg,jpg" :maxFileSize="100000000">
                     <template #empty>
                         <p>Drag and drop files to here to upload.</p>
                     </template>
@@ -66,7 +66,7 @@
                     <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachments</span>
                     <tr v-for=" file in filedownload.data " :key="file.id">
 
-                    <a v-tooltip.top="'click to Download'" style="font-size: small;" :href="file.url"  download><span v-if="file.name.includes('.pdf')" style="color:red" class="pi pi-file-pdf"></span><span v-if="file.name.includes('.png','.jpg','.jpeg')" style="color:red" class="pi pi-image"></span>   {{file.name}}  </a> <i @click="deletefile(file.url)" class="pi pi-trash" style="margin-left:0.5vw ;color:#4998DC"></i>
+                    <a v-tooltip.top="'click to Download'" style="font-size: small;" :href="file.url"  download><span v-if="file.name.includes('.pdf')" style="color:red" class="pi pi-file-pdf"></span><span v-if="file.name.includes('.png','.jpg','.jpeg')" style="color:red" class="pi pi-image"></span>   {{file.name}}  </a> <i v-tooltip.top="'delete'" @click="deletefile(file.url)" class="pi pi-trash" style="margin-left:0.5vw ;color:#4998DC"></i>
                  
                     </tr>
                     </div>
@@ -193,6 +193,7 @@ export default {
             },
             files: '',
            idpath: null,
+           statusupload:false,
             loading: [false, false, false],
             rfqEdit: false,
              selectedProduct2: null,
@@ -304,6 +305,7 @@ export default {
         'style',
         'color:#4998DC;height: 2vw;margin-left: 0.5vw;',
       );
+       this.statusupload= true;
       }
 
        this.vendorservice. DownloadFile(this.idpath).then(data1 => this.filedownload = data1);
@@ -324,6 +326,8 @@ export default {
 
      },
     methods: {
+
+      
 
         deletefile(url){
 
@@ -365,6 +369,7 @@ export default {
           async load(index) {
             this.loading[index] = true;
             setTimeout(() => this.loading[index] = false, 2000);
+            this.statusupload= true;
             await this.vendorservice.addRfqToMaximo(this.rfq.id);
              this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Rfq submitted Successfuly to maximo', life: 3000 });
             // this.$router.go();
