@@ -289,11 +289,8 @@ export default {
 
     
     async mounted() {
-        const route = useRoute();  
-         this.idpath = route.params.idpath; 
-         
-        await this.vendorservice.findRfqDetails(this.idpath).then(data => this.rfq = data);
-
+       
+        await this.rfqdetails();
       if (this.rfq.statusofSend == true){
             const myTextNode = document.createTextNode(this.rfq.dateEnvoie)
             
@@ -308,7 +305,7 @@ export default {
        this.statusupload= true;
       }
 
-       this.vendorservice. DownloadFile(this.idpath).then(data1 => this.filedownload = data1);
+      this.listfiles();
   
     },
      computed: {
@@ -327,9 +324,24 @@ export default {
      },
     methods: {
 
+        listfiles(){
+
+              this.vendorservice. DownloadFile(this.idpath).then(data1 => this.filedownload = data1);
+
+        },
+
+        rfqdetails(){
+
+             const route = useRoute();  
+         this.idpath = route.params.idpath; 
+         
+         this.vendorservice.findRfqDetails(this.idpath).then(data => this.rfq = data);
+
+        },
+
       
 
-        deletefile(url){
+        async deletefile(url){
 
             console.log(url)
             let pos = url.lastIndexOf("/")
@@ -337,9 +349,9 @@ export default {
             
             let idfile= url.substring(pos+1)
             console.log(idfile)
-            this.vendorservice.DeleteFile(idfile)
-            this.$router.go();
-
+            await this.vendorservice.DeleteFile(idfile)
+            //this.$router.go();
+             location.reload();
         },
 
 
@@ -354,8 +366,8 @@ export default {
                 }
             await this.vendorservice.UploadFile(formData,this.idpath)
             this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
-           // this.$router.go();
-           location.reload();
+           this.$router.go();
+       
         },
 
         calcul(){
@@ -372,8 +384,8 @@ export default {
             this.statusupload= true;
             await this.vendorservice.addRfqToMaximo(this.rfq.id);
              this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Rfq submitted Successfuly to maximo', life: 3000 });
-            // this.$router.go();
-             location.reload();
+            this.$router.go();
+           
         },
        
 
@@ -397,8 +409,8 @@ export default {
             await this.vendorservice. updateRfqLineById(this.rfqline);
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             this.rfqEdit= false;
-            //this.$router.go();
-            location.reload();
+            this.$router.go();
+         
 
         }
     }
