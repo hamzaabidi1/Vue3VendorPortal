@@ -192,7 +192,7 @@ export default {
   },
     data() {
         return {
-
+            idrfq:null,
             idline:null,
             filedownload:{
                 name:"",
@@ -298,16 +298,16 @@ export default {
 
 
     
-    async mounted() {
-       
-        await this.rfqdetails();
-      if (this.rfq.statusofSend == true){
+     async mounted() {
+        let rf=  await this.rfqdetails();
+     if (rf.statusofSend == true){
         this.addtomaximo();
-      }
-
+    
+     }
       this.listfiles();
   
     },
+
      computed: {
 
          isDisabled() {
@@ -324,19 +324,14 @@ export default {
      },
     methods: {
 
-        addtomaximo(){
-
-                const myTextNode = document.createTextNode(this.rfq.dateEnvoie)
-            
+         addtomaximo(){
+       
+            const myTextNode = document.createTextNode(this.rfq.dateEnvoie)
             const dateEnvoieelement = document.getElementById("submitToMaximo");
             dateEnvoieelement.appendChild(myTextNode)
-
             const dateEnvoie = document.getElementById("date");
-             dateEnvoie.setAttribute(
-        'style',
-        'color:#4998DC;height: 2vw;margin-left: 0.5vw;',
-      );
-       this.statusupload= true;
+            dateEnvoie.setAttribute('style','color:#4998DC;height: 2vw;margin-left: 0.5vw;');
+            this.statusupload= true;
 
         },
 
@@ -350,7 +345,8 @@ export default {
 
          const route = useRoute();  
          this.idpath = route.params.idpath; 
-         this.vendorservice.findRfqDetails(this.idpath).then(data => this.rfq = data);
+        return this.vendorservice.findRfqDetails(this.idpath).then(data => this.rfq = data);     
+         
 
         },
 
@@ -378,7 +374,7 @@ export default {
                 }
             await this.vendorservice.UploadFile(formData,this.idpath)
             this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
-             this.filedownload={}
+            this.filedownload={}
             this.listfiles();
        
         },
@@ -396,8 +392,15 @@ export default {
             setTimeout(() => this.loading[index] = false, 2000);
             this.statusupload= true;
             await this.vendorservice.addRfqToMaximo(this.rfq.id);
-             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Rfq submitted Successfuly to maximo', life: 3000 });
-             this.addtomaximo();
+            this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Rfq submitted Successfuly to maximo', life: 3000 });
+            this.idrfq = this.rfq.id
+            this.rfq={}
+            await this.vendorservice.findRfqDetails(this.idrfq).then(data => this.rfq = data);
+            this.addtomaximo()
+
+                 
+           
+            
            
            
         },
