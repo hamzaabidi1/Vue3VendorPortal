@@ -10,22 +10,22 @@
             <template v-slot:content>
                 <div class="row align-items-start">
                       <div class="col-md-4">
-                <FileUpload :disabled="statusupload" name="demo[]" :customUpload="true" @uploader="onUpload" :multiple="true" accept=".pdf,.png,.jpeg,jpg" :maxFileSize="100000000">
+                <FileUpload :disabled="statusupload" name="demo[]" :customUpload="true" @uploader="onUpload" :multiple="true" accept=".pdf,.png,.jpeg,.jpg,.txt" :maxFileSize="100000000">
                     <template #empty>
                         <p>Drag and drop files to here to upload.</p>
                     </template>
                 </FileUpload>
             </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     
                 <div class="row align-items-start">
-                    <div class="col-md-4"  style="margin:auto">
+                    <div class="col-md-5"  style="margin:auto">
                 
                     <label for="class" style="font-size: small;color:#3f2de1;">RFQ : </label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.rfqnum ? rfq.rfqnum : ' - '}}</b>
                 
                 </div>
-                <div class="col-md-4 "  style="margin:auto">
+                <div class="col-md-5 "  style="margin:auto">
                 
                     <label for="class" style="font-size: small;color:#3f2de1;">Description : </label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.description ? rfq.description : '-'}}</b>
@@ -35,38 +35,46 @@
                 </div>
 
             <div class="row">
-                  <div class="col-md-4"  style="margin:auto">
+                  <div class="col-md-5"  style="margin:auto">
                     <label for="class" style="font-size: small;color:#3f2de1;">Status :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.status ? rfq.status : '-'}}</b>
                 </div>
 
                   
-                <div class="col-md-4"   style="margin:auto">
+                <div class="col-md-5"   style="margin:auto">
                     <label for="class" style="font-size: small;color:#3f2de1;">Require date :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.requireddate ? rfq.requireddate : '-'}}</b>
                 </div>
                 </div>
 
               <div class="row">
-                <div class="col-md-4"  style="margin:auto">
+                <div class="col-md-5"  style="margin:auto">
                     <label for="class" style="font-size: small;color:#3f2de1;">Purchase Agent :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
                 </div>
-                 <div class="col-md-4" style="margin:auto">
+                 <div class="col-md-5" style="margin:auto">
                     <label for="class" style="font-size: small;color:#3f2de1;">Site :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.siteid ? rfq.siteid : '-'}}</b>
                 </div>
                 </div>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-3">
 
                     <div  style="width:100%; height: 100%; margin: auto;">
 
                     <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachments</span>
+                    
                     <tr v-for=" file in filedownload.data " :key="file.id">
 
-                    <a v-tooltip.top="'click to Download'" style="font-size: small;" :href="file.url"  download><span v-if="file.name.includes('.pdf')" style="color:red" class="pi pi-file-pdf"></span><span v-if="file.name.includes('.png','.jpg','.jpeg')" style="color:red" class="pi pi-image"></span>   {{file.name}}  </a> <i v-tooltip.top="'delete'" @click="deletefile(file.url)" class="pi pi-trash" style="margin-left:0.5vw ;color:#4998DC"></i>
+                    <a v-tooltip.top="'click to Download'" style="font-size: small;" :href="file.url"  download>
+                    <span v-if="file.name.includes('.txt')" style="color:red" class="pi pi-file"></span>
+                    <span v-if="file.name.includes('.pdf')" style="color:red" class="pi pi-file-pdf"></span>
+                    <span v-if="file.name.includes('.png')" style="color:red" class="pi pi-image"></span>
+                    <span v-if="file.name.includes('.jpg')" style="color:red" class="pi pi-image"></span>
+                    <span v-if="file.name.includes('.jpeg')" style="color:red" class="pi pi-image"></span>
+                       {{file.name}}  </a>
+                    <i v-tooltip.top="'delete'" @click="deletefile(file.url)" class="pi pi-trash" style="margin-left:0.5vw ;color:#4998DC"></i>
                  
                     </tr>
                     </div>
