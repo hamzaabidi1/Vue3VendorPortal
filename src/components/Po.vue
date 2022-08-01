@@ -4,8 +4,16 @@
         <div class="card" style="max-width: 96% ;margin: auto;margin-top: 1vw;">
             <h5>PO List</h5>
             <DataTable :value="po" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
-                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="5"  :rowsPerPageOptions="[5,10,20]">
+                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="5"  :rowsPerPageOptions="[5,10,20]" :filters="filters" :loading="loading">
               
+               <template #header>
+                    <div class="table-header flex flex-column md:flex-row md:justiify-content-between" >
+						<span class="p-input-icon-left" >
+                            <i class="pi pi-search" />
+                            <InputText v-model="filters['global'].value" placeholder="Search..." style="height: 2vw;margin: auto;"/>
+                        </span>
+					</div>
+                </template>
 
             <Column field="ponum" header="PO" sortable></Column>
             <Column field="description" header="Description" sortable></Column>
@@ -29,6 +37,8 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';    
 import Row from 'primevue/row'; 
+import InputText from 'primevue/inputtext';
+import { FilterMatchMode } from 'primevue/api';
 
 export default {
 
@@ -37,19 +47,21 @@ export default {
     Column,
     ColumnGroup,
     Row,
+    InputText
   },
     data() {
         return {
             po: null,
-
+            filters: {},
             selectedProduct2: null,
+            loading: false,
            
         }
     },
     vendorservice: null,
   
     created() {
-
+        this.initFilters();
         this.vendorservice = new VendorService();
   
     },
@@ -57,7 +69,7 @@ export default {
         let jsonobject= localStorage.user;
             let monobjet = JSON.parse(jsonobject)
 
-        this.vendorservice. findPo(monobjet.email).then(data => this.po = data);
+        this.vendorservice. findPo(monobjet.email).then(data => this.po = data,this.loading = false);
     },
     methods: {
         onRowSelect(event) {
@@ -69,7 +81,26 @@ export default {
         },
         onRowUnselect(event) {
           
-        }
+        },
+         initFilters() {
+            this.filters = {
+                'global': {value: null, matchMode: FilterMatchMode.CONTAINS},
+            }}
     }
 }
 </script>
+
+
+<style lang="scss" scoped>
+.table-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    height: 2vw;
+ 
+
+    @media screen and (max-width: 960px) {
+        align-items: start;
+	}
+}
+</style>

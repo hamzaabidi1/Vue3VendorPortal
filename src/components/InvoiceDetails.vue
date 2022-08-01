@@ -67,7 +67,20 @@
         <div class="card" style=" margin-top: -2vw;">
             <h5>Invoice Line List</h5>
             <DataTable :value="invoice.invoiceLine" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
-                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll">
+                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :filters="filters">
+
+
+                
+                  <template #header>
+                    <div class="table-header flex flex-column md:flex-row md:justiify-content-between" >
+						<span class="p-input-icon-left"  >
+                            <i class="pi pi-search" />
+                            <InputText v-model="filters['global'].value" placeholder="Search..."   style="height: 2vw;margin: auto;"/>
+                        </span>
+					</div>
+                </template>
+
+
                 <Column field="invoicelinenum" header="Line" sortable/>
                 <Column field="itemnum" header="Item" sortable/>
                 <Column field="description" header="Description" sortable />
@@ -133,6 +146,8 @@ import Calendar from 'primevue/calendar';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 
+import { FilterMatchMode } from 'primevue/api';
+
 
 
 import ColumnGroup from 'primevue/columngroup';    
@@ -159,8 +174,8 @@ export default {
     data() {
         return {
             invoiceEdit: false,
-             selectedProduct2: null,
-
+            selectedProduct2: null,
+            filters: {},
             invoiceLine:{
             id: null,
             invoicelinenum: null,
@@ -233,7 +248,7 @@ export default {
       vendorservice: null,
 
     created() {
-
+        this.initFilters();
         this.vendorservice = new VendorService();
 
     
@@ -272,10 +287,27 @@ export default {
             this.invoiceEdit= false;
             this.$router.go();
 
-        }
+        },
+           initFilters() {
+            this.filters = {
+                'global': {value: null, matchMode: FilterMatchMode.CONTAINS},
+            }}
     }
 }
 </script>
 
 <style lang="scss" scoped>
+
+
+.table-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    height: 2vw;
+ 
+
+    @media screen and (max-width: 960px) {
+        align-items: start;
+	}
+}
 </style>
