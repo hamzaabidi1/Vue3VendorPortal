@@ -4,12 +4,12 @@
         <div class="card" style="max-width: 96% ;margin: auto;margin-top: 1vw;margin-bottom: 7vw;">
             <h5>RFQ List</h5>
             <DataTable :value="rfq" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
-                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="5"  :rowsPerPageOptions="[5,10,20]" :filters="filters">
+                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="5"  :rowsPerPageOptions="[5,10,20]" :filters="filters" :loading="loading">
           <template #header>
                     <div class="table-header flex flex-column md:flex-row md:justiify-content-between" >
-						<span class="p-input-icon-left"  >
+						<span class="p-input-icon-left" >
                             <i class="pi pi-search" />
-                            <InputText v-model="filters['global'].value" placeholder="Search..." />
+                            <InputText v-model="filters['global'].value" placeholder="Search..." style="height: 2vw;margin: auto;"/>
                         </span>
 					</div>
                 </template>
@@ -50,6 +50,7 @@ export default {
             rfq: null,
               filters: {},
             selectedProduct2: null,
+            loading: false,
            
         }
     },
@@ -64,8 +65,8 @@ export default {
     mounted() {
         let jsonobject= localStorage.user;
             let monobjet = JSON.parse(jsonobject)
-
-        this.vendorservice. findRfq(monobjet.email).then(data => this.rfq = data);
+        this.loading = true;
+        this.vendorservice. findRfq(monobjet.email).then(data => {this.rfq = data,this.loading = false;});
     },
     methods: {
         onRowSelect(event) {
@@ -92,6 +93,7 @@ export default {
     display: flex;
     align-items: end;
     justify-content: space-between;
+    height: 2vw;
  
 
     @media screen and (max-width: 960px) {

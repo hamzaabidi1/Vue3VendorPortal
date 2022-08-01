@@ -8,15 +8,21 @@
             </template>
 
             <template v-slot:content>
-                <div class="row align-items-start">
-                      <div class="col-md-4">
+                
+                      
+
+                        <Dialog  v-model:visible="filedialog" :style="{width: '40vw',height:'24vw'}" >
                 <FileUpload :disabled="statusupload" name="demo[]" :customUpload="true" @uploader="onUpload" :multiple="true" accept=".pdf,.png,.jpeg,.jpg,.txt" :maxFileSize="100000000">
                     <template #empty>
                         <p>Drag and drop files to here to upload.</p>
                     </template>
                 </FileUpload>
-            </div>
-                <div class="col-md-5">
+                
+                    <ProgressBar  v-if="progressstatus" mode="indeterminate" style="height: .5em"   />
+                   
+                </Dialog>
+            <div class="row align-items-start">
+                <div class="col-md-8">
                     
                 <div class="row align-items-start">
                     <div class="col-md-5"  style="margin:auto">
@@ -59,11 +65,11 @@
                 </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
 
                     <div  style="width:100%; height: 100%; margin: auto;">
 
-                    <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachments</span>
+                    <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachments <i @click="open" class="pi pi-paperclip"></i></span>
                     
                     <tr v-for=" file in filedownload.data " :key="file.id">
 
@@ -102,7 +108,7 @@
                     <div class="table-header flex flex-column md:flex-row md:justiify-content-between" >
 						<span class="p-input-icon-left"  >
                             <i class="pi pi-search" />
-                            <InputText v-model="filters['global'].value" placeholder="Search..." />
+                            <InputText v-model="filters['global'].value" placeholder="Search..."   style="height: 2vw;margin: auto;"/>
                         </span>
 					</div>
                 </template>
@@ -182,6 +188,8 @@ import Row from 'primevue/row';
 import { useRoute } from 'vue-router';
 import { FilterMatchMode } from 'primevue/api';
 
+import ProgressBar from 'primevue/progressbar';
+
 export default {
 
         components: {
@@ -195,12 +203,14 @@ export default {
     Button,
      ColumnGroup,
     Row,
-    Dialog
+    Dialog,
+    ProgressBar
 
 
   },
     data() {
         return {
+            progressstatus:false,
             filters: {},
             idrfq:null,
             idline:null,
@@ -213,6 +223,8 @@ export default {
             },
             files: '',
            idpath: null,
+           filedialog: false,
+           progress:false,
            statusupload:false,
             loading: [false, false, false],
             rfqEdit: false,
@@ -335,6 +347,10 @@ export default {
      },
     methods: {
 
+        open(){
+            this.filedialog=true;           
+        },
+
          addtomaximo(){
        
             const myTextNode = document.createTextNode(this.rfq.dateEnvoie)
@@ -375,7 +391,7 @@ export default {
 
 
           async onUpload(event) {
-           
+           this.progressstatus=true;
              this.files=event.files;
              let formData = new FormData();
              for( var i = 0; i < this.files.length; i++ ){
@@ -384,7 +400,9 @@ export default {
                 formData.append('file', file);
                 }
             await this.vendorservice.UploadFile(formData,this.idpath)
+            this.progressstatus=false;
             this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
+            this.filedialog=false
             this.filedownload={}
             this.listfiles();
        
@@ -457,6 +475,7 @@ export default {
     display: flex;
     align-items: end;
     justify-content: space-between;
+    height: 2vw;
  
 
     @media screen and (max-width: 960px) {
