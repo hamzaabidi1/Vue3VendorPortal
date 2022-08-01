@@ -1,11 +1,18 @@
 <template>
 	<div>
         <Toast />
-        <div class="card" style="max-width: 96% ;margin: auto;margin-top: 1vw;">
+        <div class="card" style="max-width: 96% ;margin: auto;margin-top: 1vw;margin-bottom: 7vw;">
             <h5>RFQ List</h5>
             <DataTable :value="rfq" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
-                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="5"  :rowsPerPageOptions="[5,10,20]">
-              
+                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="5"  :rowsPerPageOptions="[5,10,20]" :filters="filters">
+          <template #header>
+                    <div class="table-header flex flex-column md:flex-row md:justiify-content-between" >
+						<span class="p-input-icon-left"  >
+                            <i class="pi pi-search" />
+                            <InputText v-model="filters['global'].value" placeholder="Search..." />
+                        </span>
+					</div>
+                </template>
 
             <Column field="rfqnum" header="RFQ" sortable></Column>
             <Column field="siteid" header="Site" sortable></Column>
@@ -26,6 +33,8 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';    
 import Row from 'primevue/row'; 
+import { FilterMatchMode } from 'primevue/api';
+import InputText from 'primevue/inputtext';
 
 export default {
 
@@ -34,11 +43,12 @@ export default {
     Column,
     ColumnGroup,
     Row,
+    InputText
   },
     data() {
         return {
             rfq: null,
-
+              filters: {},
             selectedProduct2: null,
            
         }
@@ -47,6 +57,7 @@ export default {
   
     created() {
 
+        this.initFilters();
         this.vendorservice = new VendorService();
   
     },
@@ -67,6 +78,24 @@ export default {
         onRowUnselect(event) {
           
         }
+        ,
+         initFilters() {
+            this.filters = {
+                'global': {value: null, matchMode: FilterMatchMode.CONTAINS},
+            }}
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.table-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+ 
+
+    @media screen and (max-width: 960px) {
+        align-items: start;
+	}
+}
+</style>

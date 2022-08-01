@@ -1,5 +1,5 @@
 <template>
-  
+  <a href="/rfq" style="color:black"><b>return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
 
         <Card  class="card" style=" margin: auto;">
             <template v-slot:title>
@@ -95,7 +95,19 @@
         <div class="card" style=" margin: auto; margin-bottom: 5vw;">
             <h5>RFQ Line List</h5>
             <DataTable :value="rfq.rfqline" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
-                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" >
+                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :filters="filters" >
+
+
+                <template #header>
+                    <div class="table-header flex flex-column md:flex-row md:justiify-content-between" >
+						<span class="p-input-icon-left"  >
+                            <i class="pi pi-search" />
+                            <InputText v-model="filters['global'].value" placeholder="Search..." />
+                        </span>
+					</div>
+                </template>
+
+
                 <Column field="rfqlinenum" header="Line" sortable style="font-size:small;"/>
                 <Column field="itemnum" header="Item" sortable style="font-size:small;"/>
                 <Column field="description" header="Description" sortable style="font-size:small;"/>
@@ -165,13 +177,10 @@ import Calendar from 'primevue/calendar';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import FileUpload from 'primevue/fileupload';
-
-
-
 import ColumnGroup from 'primevue/columngroup';    
 import Row from 'primevue/row'; 
-
 import { useRoute } from 'vue-router';
+import { FilterMatchMode } from 'primevue/api';
 
 export default {
 
@@ -192,6 +201,7 @@ export default {
   },
     data() {
         return {
+            filters: {},
             idrfq:null,
             idline:null,
             filedownload:{
@@ -289,6 +299,7 @@ export default {
 
     created() {
 
+        this.initFilters();
         this.vendorservice = new VendorService();
 
     
@@ -431,10 +442,25 @@ export default {
          
          
 
-        }
+        },
+           initFilters() {
+            this.filters = {
+                'global': {value: null, matchMode: FilterMatchMode.CONTAINS},
+            }}
     }
 }
 </script>
 
 <style lang="scss" scoped>
+
+.table-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+ 
+
+    @media screen and (max-width: 960px) {
+        align-items: start;
+	}
+}
 </style>
