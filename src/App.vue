@@ -407,13 +407,13 @@
   </Button>
 
 
-  <Dialog :closable="false"  
+  <Dialog  
     style="bottom:50px;margin-right:5vw; position:fixed;max-height: 35vw;min-height: 20vw;opacity: 1;border-radius: 20%;background: #6495ED;" :draggable="false"
     v-model:visible="displayResponsive" :position="position" :breakpoints="{ '960px': '75vw', '640px': '90vw'}" :style="{width: '20vw'}">
 
 <template #header :style="{color:black }" style="background-color: black; color: aqua;">
 		<img alt="logo" src="./assets/assistant-intelligent.png" style="width: 2rem;height: 2rem;" />
-    <h6>Vendor Portal Assistant</h6>
+    <span style="font-size: small;"><b>Vendor Portal Assistant</b></span>
 	</template>
 
 	<div id="container" style="min-height: 15vw;min-width: 15vw" >

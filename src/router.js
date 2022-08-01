@@ -92,7 +92,8 @@ name: "AdminDashboard"
 
  { path: '/rfq',
   component: Rfq,
-  name: "rfq"
+  name: "rfq",
+
 },
 { path: '/rfqdetails/:idpath',
   component: RfqDetails,

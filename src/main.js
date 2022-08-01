@@ -6,6 +6,7 @@ import PrimeVue from "primevue/config";
 import Steps from 'primevue/steps';
 import Sidebar from 'primevue/sidebar';
 import Toast from 'primevue/toast';
+import ConfirmationService from 'primevue/confirmationservice';
 import BadgeDirective from 'primevue/badgedirective';
 import Tooltip from 'primevue/tooltip';
 import { FontAwesomeIcon } from './plugins/font-awesome'
@@ -21,7 +22,8 @@ app.use(PrimeVue)
 app.use(router)
 app.use(store)
 app.use(ToastService)
-app.directive('badge', BadgeDirective);
+app.use(ConfirmationService)
+app.directive('badge', BadgeDirective)
 app.component("font-awesome-icon", FontAwesomeIcon)
 app.component("Steps", Steps)
 app.component("Toast",Toast )

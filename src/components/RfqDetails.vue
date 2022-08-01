@@ -1,5 +1,5 @@
 <template>
-  <a href="/rfq" style="color:black"><b>return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
+  <a href="" @click="previous" style="color:#4998DC"><b>return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
 
         <Card  class="card" style=" margin: auto;">
             <template v-slot:title>
@@ -10,8 +10,9 @@
             <template v-slot:content>
                 
                       
-
-                        <Dialog  v-model:visible="filedialog" :style="{width: '40vw',height:'24vw'}" >
+ <Dialog header="Upload File Attachment" v-model:visible="filedialog" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '30vw'}">
+                       
+                        
                 <FileUpload :disabled="statusupload" name="demo[]" :customUpload="true" @uploader="onUpload" :multiple="true" accept=".pdf,.png,.jpeg,.jpg,.txt" :maxFileSize="100000000">
                     <template #empty>
                         <p>Drag and drop files to here to upload.</p>
@@ -69,7 +70,7 @@
 
                     <div  style="width:100%; height: 100%; margin: auto;">
 
-                    <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachments <i @click="open" class="pi pi-paperclip"></i></span>
+                    <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachments <i v-if="!this.rfq.statusofSend" @click="open" class="pi pi-paperclip"></i></span>
                     
                     <tr v-for=" file in filedownload.data " :key="file.id">
 
@@ -80,7 +81,7 @@
                     <span v-if="file.name.includes('.jpg')" style="color:red" class="pi pi-image"></span>
                     <span v-if="file.name.includes('.jpeg')" style="color:red" class="pi pi-image"></span>
                        {{file.name}}  </a>
-                    <i v-tooltip.top="'delete'" @click="deletefile(file.url)" class="pi pi-trash" style="margin-left:0.5vw ;color:#4998DC"></i>
+                    <i v-if="!this.rfq.statusofSend" v-tooltip.top="'delete'" @click="deletefile(file.url)" class="pi pi-trash" style="margin-left:0.5vw ;color:#4998DC"></i>
                  
                     </tr>
                     </div>
@@ -169,6 +170,9 @@
                     </template>
                 </Dialog>
 
+
+                <ConfirmDialog></ConfirmDialog>
+
               
 </template>
 
@@ -187,6 +191,8 @@ import ColumnGroup from 'primevue/columngroup';
 import Row from 'primevue/row'; 
 import { useRoute } from 'vue-router';
 import { FilterMatchMode } from 'primevue/api';
+import ConfirmDialog from 'primevue/confirmdialog';
+import { useConfirm } from "primevue/useconfirm";
 
 import ProgressBar from 'primevue/progressbar';
 
@@ -204,7 +210,8 @@ export default {
      ColumnGroup,
     Row,
     Dialog,
-    ProgressBar
+    ProgressBar,
+    ConfirmDialog
 
 
   },
@@ -346,7 +353,9 @@ export default {
 
      },
     methods: {
-
+        previous(){
+             this.$router.push('/rfq')
+        },
         open(){
             this.filedialog=true;           
         },
@@ -379,13 +388,25 @@ export default {
 
       
 
-        async deletefile(url){
+         deletefile(url){
 
-            let pos = url.lastIndexOf("/")
-            let idfile= url.substring(pos+1)
-            await this.vendorservice.DeleteFile(idfile)
-            this.filedownload={}
-            this.listfiles();
+                 this.$confirm.require({
+                message: 'Are you sure you want to proceed?',
+                header: 'Confirmation',
+                icon: 'pi pi-exclamation-triangle',
+                 accept: async() => {
+                    let pos = url.lastIndexOf("/")
+                     let idfile= url.substring(pos+1)
+                    await this.vendorservice.DeleteFile(idfile)
+                     this.filedownload={}
+                     this.listfiles();
+                    this.$toast.add({severity:'success', summary:'Success', detail:'File Deleted successfully', life: 3000});
+                },
+                reject: () => {
+                    this.$toast.add({severity:'error', summary:'Error', detail:'Error when Delete File', life: 3000});
+                }
+            });
+              
               
         },
 
