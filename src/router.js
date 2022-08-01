@@ -187,11 +187,7 @@ router.beforeEach((to, from, next) => {
   let decoded = jwt_decode(monobjet.accessToken);
   // trying to access a restricted page + not logged in
   // redirect to login page
-  if (authRequired && !loggedIn) {
-    next('/login');
-  }
-   else if ( decoded.exp <= (Math.floor(new Date().getTime() / 1000) ))
-  {
+  if (authRequired && !loggedIn || decoded.exp <= (Math.floor(new Date().getTime() / 1000) )) {
     next('/login');
   }
   else {
