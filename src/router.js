@@ -18,7 +18,7 @@ import NotFound from "./components/NotFound.vue";
 import Submitted from "./components/submitted.vue";
 import BoardFournisseur from "./components/BoardFournisseur.vue";
 import AdminDashboard from "./components/AdminDashboard.vue";
-
+import jwt_decode from "jwt-decode";
 // lazy-loaded
 const Profile = () => import("./components/Profile.vue")
 const BoardAdmin = () => import("./components/BoardAdmin.vue")
@@ -174,18 +174,29 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   const publicPages = ['/login', '/register', '/home'];
-//   const authRequired = !publicPages.includes(to.path);
-//   const loggedIn = localStorage.getItem('user');
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/login', '/register', '/home'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('user');
+  const tokenloggedIn = localStorage.getItem('user.accessToken');
 
-//   // trying to access a restricted page + not logged in
-//   // redirect to login page
-//   if (authRequired && !loggedIn) {
-//     next('/login');
-//   } else {
-//     next();
-//   }
-// });
+
+  let jsonobject= localStorage.user;
+  let monobjet = JSON.parse(jsonobject)
+   console.log(monobjet.accessToken)
+  let decoded = jwt_decode(monobjet.accessToken);
+  // trying to access a restricted page + not logged in
+  // redirect to login page
+  if (authRequired && !loggedIn) {
+    next('/login');
+  }
+   else if ( decoded.exp <= (Math.floor(new Date().getTime() / 1000) ))
+  {
+    next('/login');
+  }
+  else {
+    next();
+  }
+});
 
 export default router;

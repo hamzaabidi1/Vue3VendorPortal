@@ -36,6 +36,7 @@ import Row from 'primevue/row';
 import { FilterMatchMode } from 'primevue/api';
 import InputText from 'primevue/inputtext';
 
+
 export default {
 
         components: {
@@ -63,6 +64,7 @@ export default {
   
     },
     mounted() {
+       
         let jsonobject= localStorage.user;
         let monobjet = JSON.parse(jsonobject)
         this.loading = true;
