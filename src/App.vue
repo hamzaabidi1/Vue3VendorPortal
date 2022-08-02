@@ -47,17 +47,17 @@
 
       </div>
       <li class="nav-item" v-if="!currentUser">
-        <router-link to="/" class="navbar-brand" v-tooltip="'home'">
+        <router-link to="" @click.prevent="showhome" class="navbar-brand" v-tooltip="'home'">
           <font-awesome-icon icon="home" />Vendor Portal
         </router-link>
       </li>
         <li class="nav-item" v-if="currentUser && currentUser.roles == 'ROLE_FOURNISSEUR'">
-        <router-link to="/" class="navbar-brand" v-tooltip="'home'">
+        <router-link to="" @click.prevent="showhome" class="navbar-brand" v-tooltip="'home'">
           <font-awesome-icon icon="home" />Vendor Portal
         </router-link>
       </li>
        <li class="nav-item" v-if="currentUser && currentUser.roles == 'ROLE_ADMIN'">
-        <router-link to="/" class="navbar-brand" v-tooltip="'home'">
+        <router-link to="" @click.prevent="showhome" class="navbar-brand" v-tooltip="'home'">
           <font-awesome-icon icon="home" />Vendor Portal
         </router-link>
       </li>
@@ -760,6 +760,9 @@ else
       this.visibleLeft = false;
       this.number=0;
       this.$router.push('/requests');
+    },
+    showhome(){
+      this.$router.push('/');
     },
     requestUpdate() {
       this.requestDialog = true;

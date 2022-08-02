@@ -175,19 +175,24 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/register', '/home'];
-  const authRequired = !publicPages.includes(to.path);
+  const publicPages = ['/login', '/verifyemail', '/home'];
+  const authRequired =  !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
   const tokenloggedIn = localStorage.getItem('user.accessToken');
 
-
-  let jsonobject= localStorage.user;
+if (loggedIn){
+  var  jsonobject= localStorage.user;
   let monobjet = JSON.parse(jsonobject)
    console.log(monobjet.accessToken)
-  let decoded = jwt_decode(monobjet.accessToken);
+   let decoded = jwt_decode(monobjet.accessToken);
+
+   if ((decoded.exp <= (Math.floor(new Date().getTime() / 1000) )))
+   next('/login');
   // trying to access a restricted page + not logged in
   // redirect to login page
-  if (authRequired && !loggedIn || decoded.exp <= (Math.floor(new Date().getTime() / 1000) )) {
+
+}
+  if ((authRequired && !loggedIn) ) {
     next('/login');
   }
   else {
