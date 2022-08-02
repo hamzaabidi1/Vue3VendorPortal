@@ -2,9 +2,14 @@
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <div v-if="currentUser">
-        <Sidebar v-model:visible="visibleLeft" class="bg-dark">
-          <img src="./assets/logo-home.png" v-tooltip="'Vendor Portal'" style="margin-left:8vw;margin-bottom:1vw;"
-            width="60" height="60" class="sponsor_button">
+       <Sidebar v-model:visible="visibleLeft" class="bg-dark">
+          <tr> <a  v-if="showAdminBoard" href="/config" ><i class="pi pi-cog" style="float:left;font-size: 1.5rem"></i></a></tr>
+           <tr><img src="./assets/logo-home.png" v-tooltip="'Vendor Portal'" style="margin:auto;margin-left:8vw;margin-bottom:1vw;"
+            width="60" height="60" class="sponsor_button"></tr>
+
+         
+         
+       
           <li v-if="showAdminBoard">
             <router-link to="/admin" v-tooltip="'click to show table of list of vendor'" @click.prevent="showvendorlist"
               class="navbar-brand" style="color:white;">Vendors List</router-link>
@@ -42,6 +47,7 @@
               v-tooltip="'click to show list of requests to change information account'" class="navbar-brand"
               style="color:white;">Update Profile Requests</router-link>
           </li>
+         
         </Sidebar>
         <i class="pi pi-bars navbar-brand" @click="visibleLeft = true"></i>
 
