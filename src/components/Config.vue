@@ -53,6 +53,27 @@
 
             </div>
 
+
+                 <div class="row align-items-start">
+            
+                 <div class="col-md-6">
+                <div class="p-fluid">
+                    <label for="email" style="width: 90%;margin-left:2vw;"><strong>Maximo user</strong></label>
+                    <InputText style="width: 90%;margin-left:2vw;" id="email" v-model="configuration.usermaximo" />
+                </div>
+            </div>
+
+
+                 <div class="col-md-6">
+                <div class="p-fluid">
+              <label for="password" style="width: 90%;margin-left:2vw;"><strong>Maximo Password</strong></label>
+            <Password v-model="configuration.passwordmaximo" :feedback="false"  style="width: 90%;margin-left:2vw;" id="password" toggleMask/>
+                </div>
+                </div>
+                 
+
+            </div>
+
             <Button label="Apply" icon="pi pi-check" @click="apply()" style="margin: 2vw;float: right;"  />
 
             
@@ -87,6 +108,8 @@ export default {
             password: '',
             maximopath:'',
             logpath:'',
+            passwordmaximo:'',
+            usermaximo:''
         }
 
      
