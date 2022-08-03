@@ -65,10 +65,10 @@ export default {
         this.vendorservice = new VendorService();
   
     },
-    mounted() {
+   async mounted() {
         let jsonobject= localStorage.user;
-            let monobjet = JSON.parse(jsonobject)
-
+        let monobjet = JSON.parse(jsonobject)
+        await this.vendorservice.getallposfromMaximo(monobjet.username)
         this.vendorservice. findPo(monobjet.email).then(data => this.po = data,this.loading = false);
     },
     methods: {

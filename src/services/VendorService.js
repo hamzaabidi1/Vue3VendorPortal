@@ -79,6 +79,17 @@ export default class VendorService {
 
         }
 
+        
+        getallposfromMaximo(vendor){
+          return axios.get(API_URL+'fournisseur/po/'+vendor,{ headers: authHeader()}).then(d => d.data);
+
+        }
+
+        getallInvoicesfromMaximo(vendor){
+          return axios.get(API_URL+'fournisseur/invoices/'+vendor,{ headers: authHeader()}).then(d => d.data);
+
+        }
+
 
         
         findInvoice(email){
