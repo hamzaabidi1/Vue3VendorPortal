@@ -88,7 +88,7 @@
 					</div>
                 </template>
 
-                
+
                 <Column field="polinenum" header="Line" sortable />
                 <Column field="itemnum" header="Item" sortable />
                 <Column field="description" header="Description" sortable />
@@ -115,7 +115,7 @@
  
                      <template #footer>
                         <Button label="Cancel" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
-                        <Button label="Save" icon="pi pi-check" @click="saveEdit" autofocus />
+                        <Button label="Save" icon="pi pi-check" @click="saveEdit(poline)" autofocus />
                     </template>
                 </Dialog>
 
@@ -159,10 +159,11 @@ export default {
   },
     data() {
         return {
+            idpath:'',
             poEdit: false,
              selectedProduct2: null,
               filters: {},
-
+            
               poline:{
             id: null,
             polinenum: null,
@@ -172,7 +173,7 @@ export default {
             orderunit: null,
             unitcost: null,
             linecost: null,
-            vendeliverydate:null,
+            vendeliverydate:'',
             po: {
                 id:''
                 }
@@ -187,7 +188,8 @@ export default {
              totalcost: null,
             totaltax1: null,
             currencycode: null,
-            vendeliverydate:null ,
+            vendeliverydate:'' ,
+            poid:'',
             poline:{
                 id:null,
                 polinenum: null,
@@ -197,7 +199,7 @@ export default {
                 orderunit: null,
                 unitcost: null,
                 linecost: null,
-                vendeliverydate: null,
+                vendeliverydate: '',
                 },
             user:{
                 id:null,
@@ -250,22 +252,13 @@ export default {
     
     async mounted() {
         const route = useRoute();  
-         var id = route.params.idpath; 
-        await this.vendorservice.findPoDetails(id).then(data => this.po = data);
-      //  this.vendorservice. findRfqLines(this.rfq.id).then(data => this.rfqLine = data);
+         this.id = route.params.idpath; 
+        await this.vendorservice.findPoDetails(this.id).then(data => this.po = data);
         console.log(this.po)
   
     },
     methods: {
-        calcul(){
-            let qty=document.getElementById("qty").value
-            let unit =document.getElementById("unit").value
-            console.log(qty)
-                let line =document.getElementById("line").value 
-                line=qty*unit;
-                this.rfqline.linecost=line;
-        },
-
+       
          async  onRowSelect(event) {
             const idline = event.data.id
               this.poEdit= true;
@@ -279,12 +272,16 @@ export default {
         closeBasic(){
             this.poEdit= false;
         },
-        saveEdit()
+        async saveEdit(poline)
         {
-            this.vendorservice.updatePoLineById(this.poline);
+             console.log("*********************"+poline.vendeliverydate)
+            console.log("*********************"+this.poline.vendeliverydate)
+            await this.vendorservice.updatePoLineByIdMaximo(this.po.poid,poline)
+            await this.vendorservice.updatePoLineById(this.poline);
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             this.poEdit= false;
-            this.$router.go();
+            this.po={}
+            await this.vendorservice.findPoDetails(this.id).then(data => this.po = data);
 
         },
            initFilters() {

@@ -90,6 +90,11 @@ export default class VendorService {
 
         }
 
+        updatePoLineByIdMaximo(poid,Poline){
+          return axios.post(API_URL+'fournisseur/po/updateline/'+poid,Poline,{ headers: authHeader()});
+
+        }
+
 
         
         findInvoice(email){
