@@ -187,10 +187,12 @@ if (loggedIn){
    let decoded = jwt_decode(monobjet.accessToken);
 
    if ((decoded.exp <= (Math.floor(new Date().getTime() / 1000) )))
+   {
+   this.$store.dispatch('auth/logout');
    next('/login');
   // trying to access a restricted page + not logged in
   // redirect to login page
-
+}
 }
   if ((authRequired && !loggedIn) ) {
     next('/login');

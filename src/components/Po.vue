@@ -70,7 +70,7 @@ export default {
         let monobjet = JSON.parse(jsonobject)
         this.loading = true;
         await this.vendorservice.getallposfromMaximo(monobjet.username)
-        this.vendorservice. findPo(monobjet.email).then(data => this.po = data,this.loading = false);
+        await this.vendorservice. findPo(monobjet.email).then(data => this.po = data,this.loading = false);
     },
     methods: {
         onRowSelect(event) {
