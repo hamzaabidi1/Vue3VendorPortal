@@ -67,6 +67,7 @@ export default {
    async  mounted() {
         let jsonobject= localStorage.user;
             let monobjet = JSON.parse(jsonobject)
+            this.loading = true
         await this.vendorservice.getallInvoicesfromMaximo(monobjet.username)
         this.vendorservice.findInvoice(monobjet.email).then(data => this.invoice = data,this.loading = false);
     },

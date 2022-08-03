@@ -1,5 +1,6 @@
 <template>
-  
+    <a href="" @click="previous" style="color:#4998DC"><b>return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
+
 
         <Card  class="card" style=" margin-top: 0vw;">
             <template v-slot:title>
@@ -266,6 +267,10 @@ export default {
   
     },
     methods: {
+
+          previous(){
+             this.$router.push('/invoice')
+        },
         calcul(){
           
         },
