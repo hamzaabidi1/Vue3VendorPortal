@@ -67,7 +67,7 @@
         <Toast />
         <div class="card" style=" margin-top: -2vw;">
             <h5>Invoice Line List</h5>
-            <DataTable :value="invoice.invoiceLine" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
+            <DataTable :value="invoices" :paginator="true" :rows="10"  v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :filters="filters">
 
 
@@ -177,6 +177,7 @@ export default {
             invoiceEdit: false,
             selectedProduct2: null,
             filters: {},
+            invoices:null,
             invoiceLine:{
             id: null,
             invoicelinenum: null,
@@ -263,7 +264,9 @@ export default {
         const route = useRoute();  
          var id = route.params.idpath; 
         await this.vendorservice.findInvoiceDetails(id).then(data => this.invoice = data);
-        console.log(this.po)
+        console.log(this.invoice)
+        this.invoices=this.invoice.invoiceLine
+        console.log(this.invoices)
   
     },
     methods: {

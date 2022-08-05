@@ -101,7 +101,7 @@
         <Toast />
         <div class="card" style=" margin: auto; margin-bottom: 5vw;">
             <h5>RFQ Line List</h5>
-            <DataTable :value="rfq.rfqline" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
+            <DataTable :value="rfqs" :paginator="true" :rows="10"  v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :filters="filters" >
 
 
@@ -221,6 +221,7 @@ export default {
             filters: {},
             idrfq:null,
             idline:null,
+            rfqs:null,
             filedownload:{
                 name:"",
                 size:"",
@@ -335,6 +336,7 @@ export default {
     
      }
       this.listfiles();
+    this.rfqs=this.rfq.rfqline
   
     },
 

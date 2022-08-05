@@ -75,7 +75,7 @@
         <Toast />
         <div class="card" style=" margin-top: -2vw;">
             <h5>PO Line List</h5>
-            <DataTable :value="po.poline" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
+            <DataTable :value="polines" :paginator="true" :rows="10"  v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :filters="filters">
 
 
@@ -98,6 +98,18 @@
                 <Column field="unitcost" header="Unit Cost" sortable/>
                 <Column field="linecost" header="Line Cost" sortable/>
                 <Column field="vendeliverydate" header="Delivery Date" sortable/>
+            </DataTable>
+        </div>
+
+           <div class="card" style=" margin-top:-1.5vw;margin-bottom:7vw">
+            <h5>PO Term List</h5>
+            <DataTable :value="po.poterm" :paginator="true" :rows="3"   selectionMode="single" dataKey="id"
+               responsiveLayout="scroll" :filters="filters" >
+                <Column field="seqnum" header="Sequence" sortable />
+                <Column field="potermid" header="Term" sortable />
+                <Column field="description" header="Description" sortable />
+                <Column field="sendtovendor" header="Send To Vendor" sortable/>
+               <!--  <Column><Checkbox trueValue="sendtovendor" v-model="sendtovendor" :binary="true" /></Column>-->
             </DataTable>
         </div>
 
@@ -134,6 +146,8 @@ import Calendar from 'primevue/calendar';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import { FilterMatchMode } from 'primevue/api';
+import Checkbox from 'primevue/checkbox';
+
 
 
 
@@ -154,7 +168,8 @@ export default {
     Button,
      ColumnGroup,
     Row,
-    Dialog
+    Dialog,
+    Checkbox
 
 
   },
@@ -164,7 +179,7 @@ export default {
             poEdit: false,
              selectedProduct2: null,
               filters: {},
-            
+            polines:null,
               poline:{
             id: null,
             polinenum: null,
@@ -256,6 +271,8 @@ export default {
          this.id = route.params.idpath; 
         await this.vendorservice.findPoDetails(this.id).then(data => this.po = data);
         console.log(this.po)
+        this.polines=this.po.poline;
+        console.log(this.polines)
   
     },
     methods: {
