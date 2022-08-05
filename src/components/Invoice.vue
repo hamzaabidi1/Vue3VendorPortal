@@ -1,17 +1,23 @@
 <template>
 	<div>
         <Toast />
-        <div class="card" style="max-width: 96% ;margin: auto;margin-top: 1vw;">
+        <div class="card" style="max-width: 96% ;margin: auto;margin-top: 1vw;margin-bottom: 7vw;">
             <h5>Invoice List</h5>
             <DataTable :value="invoice" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
-                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="5"  :rowsPerPageOptions="[5,10,20]"  :filters="filters" :loading="loading">
+                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="9"  :rowsPerPageOptions="[9,20,50]"  :filters="filters" :loading="loading">
               
                <template #header>
                     <div class="table-header flex flex-column md:flex-row md:justiify-content-between" >
+
+
+                         <tr>
+                       
+                        <i class="pi  pi-sync" style="font-size: 1.5rem;margin:auto;margin-right: 1vw;" @click="refresh" v-tooltip="'refresh'"></i>
 						<span class="p-input-icon-left" >
                             <i class="pi pi-search" />
                             <InputText v-model="filters['global'].value" placeholder="Search..." style="height: 2vw;margin: auto;"/>
                         </span>
+                        </tr>
 					</div>
                 </template>
 
@@ -68,10 +74,25 @@ export default {
         let jsonobject= localStorage.user;
             let monobjet = JSON.parse(jsonobject)
             this.loading = true
+
+            if (this.vendorservice.findInvoice(monobjet.email) == null ){
         await this.vendorservice.getallInvoicesfromMaximo(monobjet.username)
         this.vendorservice.findInvoice(monobjet.email).then(data => this.invoice = data,this.loading = false);
+        }
+        else{
+            this.vendorservice.findInvoice(monobjet.email).then(data => this.invoice = data,this.loading = false);
+        }
     },
     methods: {
+
+        async refresh(){
+            let jsonobject= localStorage.user;
+            let monobjet = JSON.parse(jsonobject)
+            this.loading = true
+            await this.vendorservice.getallInvoicesfromMaximo(monobjet.username)
+            this.vendorservice.findInvoice(monobjet.email).then(data => this.invoice = data,this.loading = false);
+        },
+
         onRowSelect(event) {
             const idpath = event.data.id
             this.$router.push({ name: 'invoicedetails', params: { idpath } }) 

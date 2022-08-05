@@ -188,7 +188,8 @@ if (loggedIn){
 
    if ((decoded.exp <= (Math.floor(new Date().getTime() / 1000) )))
    {
-   this.$store.dispatch('auth/logout');
+  // this.$store.dispatch('auth/logout');
+   localStorage.removeItem('user');
    next('/login');
   // trying to access a restricted page + not logged in
   // redirect to login page
