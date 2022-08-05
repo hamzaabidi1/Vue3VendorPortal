@@ -458,12 +458,12 @@ export default {
         },
        
 
-           onRowSelect(event) {
+           async onRowSelect(event) {
              if ( this.rfq.statusofSend == false)
              {
               this.idline = event.data.id
+              await this.vendorservice. findRfqLineById(this.idline).then(data1 => this.rfqline = data1);
               this.rfqEdit= true;
-              this.vendorservice. findRfqLineById(this.idline).then(data1 => this.rfqline = data1);
              }
         },
         onRowUnselect(event) {
