@@ -108,8 +108,16 @@
                 <Column field="seqnum" header="Sequence" sortable />
                 <Column field="potermid" header="Term" sortable />
                 <Column field="description" header="Description" sortable />
-                <Column field="sendtovendor" header="Send To Vendor" sortable/>
-               <!--  <Column><Checkbox trueValue="sendtovendor" v-model="sendtovendor" :binary="true" /></Column>-->
+                <Column field="sendtovendor" header="Send To Vendor" sortable>
+                <template #body="slotProps">
+                        <span :class="' sendtovendor-' + (slotProps.data.sendtovendor ? slotProps.data.sendtovendor.toLowerCase() : '')">{{slotProps.data.sendtovendor}}</span>
+                    </template>
+                </Column>
+             <Column header="Send To Vendor" field="sendtovendor">
+                        <template  #body="slotProps" >
+                            <Checkbox v-model="slotProps.data.sendtovendor"  :binary="true"  :disabled="true"  />
+                        </template>
+                    </Column>
             </DataTable>
         </div>
 
@@ -315,7 +323,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.sendtovendor-true {
+  color: #006e09 !important;
+  background-color: #a5e6a8 ;
+}
 
+.sendtovendor-false {
+
+  background-color: #e68e8e;
+  color: #ff0000!important;
+}
 
 .table-header {
     display: flex;
