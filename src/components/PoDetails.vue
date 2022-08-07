@@ -108,16 +108,24 @@
                 <Column field="seqnum" header="Sequence" sortable />
                 <Column field="potermid" header="Term" sortable />
                 <Column field="description" header="Description" sortable />
-                <Column field="sendtovendor" header="Send To Vendor" sortable>
+           <!--      <Column field="sendtovendor" header="Send To Vendor" sortable>
                 <template #body="slotProps">
-                        <span :class="' sendtovendor-' + (slotProps.data.sendtovendor ? slotProps.data.sendtovendor.toLowerCase() : '')">{{slotProps.data.sendtovendor}}</span>
+                        <span style="float:center;margin:auto;margin-left: 3vw;" :class="' sendtovendor-' + (slotProps.data.sendtovendor ? slotProps.data.sendtovendor.toLowerCase() : '')">{{slotProps.data.sendtovendor}}</span>
                     </template>
-                </Column>
-             <Column header="Send To Vendor" field="sendtovendor">
+                </Column>-->
+
+            <!-- <Column header="Send To Vendor" field="sendtovendor">
                         <template  #body="slotProps" >
                             <Checkbox v-model="slotProps.data.sendtovendor"  :binary="true"  :disabled="true"  />
                         </template>
                     </Column>
+-->
+ <Column field="sendtovendor" header="Send To Vendor" sortable>
+                     <template #body="slotProps">
+                        <span v-if="slotProps.data.sendtovendor=='true'"><img src="../assets/checked.png" style="width:1.5rem;height: 1.5rem;margin-left: 3vw;" /></span>
+                        <span v-if="slotProps.data.sendtovendor=='false'"><img src="../assets/notchecked.png" style="width:1.5rem;height: 1.5rem;margin-left: 3vw;" /></span>
+                    </template>
+                </Column>
             </DataTable>
         </div>
 
