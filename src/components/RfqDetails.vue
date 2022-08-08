@@ -383,7 +383,8 @@ export default {
 
          const route = useRoute();  
          this.idpath = route.params.idpath; 
-        return this.vendorservice.findRfqDetails(this.idpath).then(data => this.rfq = data);     
+        return this.vendorservice.findRfqDetails(this.idpath).then(data => this.rfq = data);  
+
          
 
         },
@@ -476,10 +477,15 @@ export default {
         async saveEdit()
         {
             await this.vendorservice. updateRfqLineById(this.rfqline);
+            console.log(this.rfqline)
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             this.rfqEdit= false;
             this.rfq={}
-            this.vendorservice.findRfqDetails(this.rfqline.rfq.id).then(data => this.rfq = data);
+            await this.vendorservice.findRfqDetails(this.rfqline.rfq.id).then(data => this.rfq = data);
+            console.log(this.rfqline.rfq.id)
+            this.rfqs=this.rfq.rfqline
+            console.log( this.rfqs)
+
          
          
 
