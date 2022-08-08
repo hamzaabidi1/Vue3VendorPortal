@@ -71,6 +71,7 @@
                 </div>
 
                 <div class="col-md-4">
+                    
 
                     <div  style="width:100%; height: 100%; margin: auto;">
 
@@ -88,6 +89,7 @@
                     <i v-if="!this.rfq.statusofSend" v-tooltip.top="'delete'" @click="deletefile(file.url)" class="pi pi-trash" style="margin-left:0.5vw ;color:#4998DC"></i>
                  
                     </tr>
+                    <span v-show="loadingfiles" class="spinner-border spinner-border-sm" style="width: 50%vw;height: 50%;margin:auto"></span>
                     </div>
 
                 </div>
@@ -228,6 +230,7 @@ export default {
   },
     data() {
         return {
+            loadingfiles:false,
             loadingbutton:false,
             progressstatus:false,
             filters: {},
@@ -342,14 +345,16 @@ export default {
 
     
      async mounted() {
-        
+        this.loadingfiles=true;
         let rf=  await this.rfqdetails();
      if (rf.statusofSend == true){
         this.addtomaximo();
     
      }
-      this.listfiles();
-    this.rfqs=this.rfq.rfqline
+      this.rfqs=this.rfq.rfqline
+      await this.listfiles();
+      this.loadingfiles=false
+      
   
     },
 
@@ -411,12 +416,14 @@ export default {
                 header: 'Confirmation',
                 icon: 'pi pi-exclamation-triangle',
                  accept: async() => {
+                    this.loadingfiles=true
                     let pos = url.lastIndexOf("/")
                      let idfile= url.substring(pos+1)
                     await this.vendorservice.DeleteFile(idfile)
                      this.filedownload={}
                      this.listfiles();
                     this.$toast.add({severity:'success', summary:'Success', detail:'File Deleted successfully', life: 3000});
+                    this.loadingfiles=false
                 },
                 reject: () => {
                     this.$toast.add({severity:'error', summary:'Error', detail:'Error when Delete File', life: 3000});
