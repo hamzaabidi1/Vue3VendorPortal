@@ -134,30 +134,37 @@
 
       <Dialog  v-model:visible="rfqEdit" :style="{width: '50vw'}" :closable="false">
       <div class="row align-items-start">
-          <div class="col-md-6">
-                   <label style="width: 90%;margin-right:2vw;" ><strong>Qty</strong></label>
-                    <InputText id="qty" v-on:change="calcul" v-model="rfqline.quotationqty"  style="width: 95%;" /> 
-                    </div>
-                    <div class="col-md-6">
+
+         <div class="col-md-6">
                     <label style="width: 90%;margin-right:2vw;" ><strong>Unit Cost</strong></label>
                     <InputText id="unit" v-on:change="calcul" v-model="rfqline.unitcost"  style="width: 95%;" /> 
+                    </div>
+          
+
+                 
+                     <div class="col-md-6">
+                    <label style="width: 90%;margin-right:2vw;" ><strong>Start Date</strong></label>
+                    <Calendar v-model="rfqline.quoteStartDate" :showIcon="true" style="width: 95%;" />
                     </div>
 
         </div>
         <div class="row align-items-start">
-            <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Line Cost</strong></label>
-                    <InputText id="line" v-model="rfqline.linecost"  style="width: 95%;" disabled /> 
+
+              <div class="col-md-6">
+                   <label style="width: 90%;margin-right:2vw;" ><strong>Qty</strong></label>
+                    <InputText id="qty" v-on:change="calcul" v-model="rfqline.quotationqty"  style="width: 95%;" /> 
                     </div>
-                    <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Start Date</strong></label>
-                    <Calendar v-model="rfqline.quoteStartDate" :showIcon="true" style="width: 95%;" />
-                    </div>
-    </div>
-    <div class="row align-items-start">
-        <div class="col-md-6">
+               <div class="col-md-6">
                     <label style="width: 90%;margin-right:2vw;" ><strong>End Date</strong></label>
                     <Calendar  v-model="rfqline.quoteEndDate" :showIcon="true" style="width: 95%;" />
+                    </div>
+                  
+    </div>
+    <div class="row align-items-start">
+      
+                    <div class="col-md-6">
+                    <label style="width: 90%;margin-right:2vw;" ><strong>Line Cost</strong></label>
+                    <InputText id="line" v-model="rfqline.linecost"  style="width: 95%;" disabled /> 
                     </div>
                     <div class="col-md-6">
                     <label style="width: 90%;margin-right:2vw;" ><strong>Delivery Date</strong></label>

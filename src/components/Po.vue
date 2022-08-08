@@ -88,8 +88,8 @@ export default {
         let jsonobject= localStorage.user;
         let monobjet = JSON.parse(jsonobject)
         this.loading = true;
-        if (this.vendorservice.findPo(monobjet.email) == null){
-        
+        let res=await this.vendorservice.findPo(monobjet.email)
+        if (Object.keys(res).length === 0){      
         await this.vendorservice.getallposfromMaximo(monobjet.username)
         await this.vendorservice. findPo(monobjet.email).then(data => this.po = data,this.loading = false);
         

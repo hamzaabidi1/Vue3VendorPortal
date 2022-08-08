@@ -75,7 +75,8 @@ export default {
             let monobjet = JSON.parse(jsonobject)
             this.loading = true
 
-            if (this.vendorservice.findInvoice(monobjet.email) == null ){
+        let res=await this.vendorservice.findInvoice(monobjet.email)
+        if (Object.keys(res).length === 0){  
         await this.vendorservice.getallInvoicesfromMaximo(monobjet.username)
         this.vendorservice.findInvoice(monobjet.email).then(data => this.invoice = data,this.loading = false);
         }
