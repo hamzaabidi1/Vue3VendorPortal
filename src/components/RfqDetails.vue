@@ -4,7 +4,11 @@
         <Card  class="card" style=" margin: auto;">
             <template v-slot:title>
                 RFQ Details
-                <Button  v-tooltip.left="'click to send Rfq to Maximo'" id="submitToMaximo" :disabled='isDisabled' class="p-button-raised p-button-text" style="float:right;" :loading="loading[0]" @click="load(0)" ><b style="color:#4998DC;height: 2vw;margin-right: 0.5vw;">Submit </b><img src="../assets/ibmmaximo.png" style="max-width:3vw;max-height:1.5vw;"/><b style="color:#4998DC;height: 2vw;margin-left: 0.5vw;" id="date"></b></Button>
+                <Button  v-tooltip.left="'click to send Rfq to Maximo'" id="submitToMaximo" :disabled='isDisabled' class="p-button-raised p-button-text" style="float:right;" :loading="loading[0]" @click="load(0)" >
+                <b style="color:#4998DC;height: 2vw;margin-right: 0.5vw;">Submit </b>
+                <img src="../assets/ibmmaximo.png" style="max-width:3vw;max-height:1.5vw;"/>
+                <b style="color:#4998DC;height: 2vw;margin-left: 0.5vw;" id="date"></b>
+                <span v-show="loadingbutton" class="spinner-border spinner-border-sm" style="margin-left:0.5vw"></span></Button>
             </template>
 
             <template v-slot:content>
@@ -224,6 +228,7 @@ export default {
   },
     data() {
         return {
+            loadingbutton:false,
             progressstatus:false,
             filters: {},
             idrfq:null,
@@ -337,6 +342,7 @@ export default {
 
     
      async mounted() {
+        
         let rf=  await this.rfqdetails();
      if (rf.statusofSend == true){
         this.addtomaximo();
@@ -448,6 +454,7 @@ export default {
         },
 
           async load(index) {
+            this.loadingbutton=true
             this.loading[index] = true;
             setTimeout(() => this.loading[index] = false, 2000);
             this.statusupload= true;
@@ -455,8 +462,9 @@ export default {
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Rfq submitted Successfuly to maximo', life: 3000 });
             this.idrfq = this.rfq.id
             this.rfq={}
-            await this.vendorservice.findRfqDetails(this.idrfq).then(data => this.rfq = data);
+            await this.vendorservice.findRfqDetails(this.idrfq).then(data => this.rfq = data,this.loadingbutton=false);
             this.addtomaximo()
+
 
                  
            
