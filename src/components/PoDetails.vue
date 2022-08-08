@@ -136,15 +136,16 @@
       <div class="row align-items-start">
           
                      <label style="width: 90%;margin-right:2vw;" ><strong>Delivery Date</strong></label>
-                    <Calendar v-model="poline.vendeliverydate" :showIcon="true" style="width: 95%;" />
+                    <Calendar v-model="poline.vendeliverydate" :showIcon="true" style="width: 95%;" dateFormat="yy-mm-dd"  />
                     </div>
-                
-                   
-
- 
                      <template #footer>
                         <Button label="Cancel" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
-                        <Button label="Save" icon="pi pi-check" @click="saveEdit(poline)" autofocus />
+                        <Button label="Save" icon="pi pi-check" @click="saveEdit(poline)" autofocus >
+                        
+                        <i class="pi pi-check" style="margin-right:0.5vw"></i>
+                        <span> Save</span>
+                        <span v-show="loadingbutton" class="spinner-border spinner-border-sm" style="margin-left:0.5vw"></span>
+                        </Button>
                     </template>
                 </Dialog>
 
@@ -191,6 +192,8 @@ export default {
   },
     data() {
         return {
+            loadingbutton:false,
+            datedelivery:'',
             idpath:'',
             poEdit: false,
              selectedProduct2: null,
@@ -205,7 +208,7 @@ export default {
             orderunit: null,
             unitcost: null,
             linecost: null,
-            vendeliverydate:'',
+            vendeliverydate:' ',
             po: {
                 id:''
                 }
@@ -231,7 +234,7 @@ export default {
                 orderunit: null,
                 unitcost: null,
                 linecost: null,
-                vendeliverydate: '',
+                vendeliverydate: ' ',
                 },
             user:{
                 id:null,
@@ -312,8 +315,19 @@ export default {
         },
         async saveEdit(poline)
         {
+            this.loadingbutton=true
              console.log("*********************"+poline.vendeliverydate)
-            await this.vendorservice.updatePoLineByIdMaximo(this.po.poid,poline)
+                          console.log("**********"+typeof(poline.vendeliverydate))
+
+                         ;
+                         var moment = require('moment');
+                       var vendeliverydatestring = moment(poline.vendeliverydate).format("YYYY-MM-DD");
+                       poline.vendeliverydate = vendeliverydatestring
+                          console.log("****"+vendeliverydatestring)
+                                                    console.log("**"+poline.vendeliverydate)
+
+
+            await this.vendorservice.updatePoLineByIdMaximo(this.po.poid,poline,)
             await this.vendorservice.updatePoLineById(poline);
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             this.poEdit= false;
