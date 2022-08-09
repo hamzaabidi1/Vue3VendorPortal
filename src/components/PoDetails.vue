@@ -9,58 +9,112 @@
 
             <template v-slot:content>
                 <div class="row align-items-start">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
 
                     
             
-            
+                  <div class="row align-items-start">
+                <div class="col-md-6"  style="margin:auto">
                 
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">PO : </label>
+                    </div>
+                    <div class="col-md-6"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.ponum ? po.ponum : ' - '}}</b>
+                    </div>
+                    </div>
                 
                 </div>
-                <div class="col-md-4">
-                
+                <div class="col-md-5">
+                  <div class="row align-items-start">
+                <div class="col-md-3"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Description : </label>
+                    </div>
+                    <div class="col-md-9"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.description ? po.description : '-'}}</b>
+                    </div>
+                    </div>
                
                 </div>
                 <div class="col-md-4">
+                      <div class="row align-items-start">
+                <div class="col-md-4"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Status :</label>
+                    </div>
+                    <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.status ? po.status : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
                 </div>
 
                 <div class="row align-items-start">
-                <div class="col-md-4">
+                <div class="col-md-3">
+
+                     <div class="row align-items-start">
+                <div class="col-md-6"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Require date :</label>
+                    </div>
+                    <div class="col-md-6"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.requireddate ? po.requireddate : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
             
-                <div class="col-md-4">
+                <div class="col-md-5">
+                      <div class="row align-items-start">
+                <div class="col-md-4"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Total Cost :</label>
+                    </div>
+                    <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.totalcost ? po.totalcost : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
-                 <div class="col-md-4">
+                 <div class="col-md-3">
+                     <div class="row align-items-start">
+                <div class="col-md-6"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Total Tax :</label>
+                    </div>
+                    <div class="col-md-6"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.totaltax1 ? po.totaltax1 : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
                 </div>
 
                   <div class="row align-items-start">
                
                  
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <div class="row align-items-start">
+                <div class="col-md-6"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Currency :</label>
+                    </div>
+                     <div class="col-md-6"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.currencycode ? po.currencycode : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
-                  <div class="col-md-4">
+                  <div class="col-md-5">
+
+                     <div class="row align-items-start">
+                <div class="col-md-4"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Purchase Agent :</label>
+                    </div>
+                    <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.purchaseagent ? po.purchaseagent : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
                 <div class="col-md-4">
+                         <div class="row align-items-start">
+                <div class="col-md-4"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Delivery Date :</label>
+                    </div>
+                    <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.vendeliverydate ? po.vendeliverydate : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
 
                 </div>

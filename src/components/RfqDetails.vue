@@ -31,15 +31,25 @@
                     
                 <div class="row align-items-start">
                     <div class="col-md-5"  style="margin:auto">
-                
+                    <div class="row align-items-start">
+                <div class="col-md-6"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">RFQ : </label>
+                    </div>
+                    <div class="col-md-6"  style="margin:auto">
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.rfqnum ? rfq.rfqnum : ' - '}}</b>
+                    </div>
+                    </div>
                 
                 </div>
                 <div class="col-md-5 "  style="margin:auto">
-                
+                 <div class="row align-items-start">
+                <div class="col-md-6"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Description : </label>
+                    </div>
+                    <div class="col-md-6"  style="margin:auto">
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.description ? rfq.description : '-'}}</b>
+                    </div>
+                    </div>
                
                 </div>
               
@@ -47,25 +57,49 @@
 
             <div class="row">
                   <div class="col-md-5"  style="margin:auto">
+                  <div class="row align-items-start">
+                <div class="col-md-6"  style="margin:auto">
                     <label for="class"   style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Status :</label>
+                    </div>
+                    <div class="col-md-6"  style="margin:auto">
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.status ? rfq.status : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
 
                   
                 <div class="col-md-5"   style="margin:auto">
+                  <div class="row align-items-start">
+                <div class="col-md-6"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Require date :</label>
+                    </div>
+                    <div class="col-md-6"  style="margin:auto">
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.requireddate ? rfq.requireddate : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
                 </div>
 
               <div class="row">
                 <div class="col-md-5"  style="margin:auto">
+                  <div class="row align-items-start">
+                <div class="col-md-6"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Purchase Agent :</label>
+                    </div>
+                     <div class="col-md-6"  style="margin:auto">
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
                  <div class="col-md-5" style="margin:auto">
+                     <div class="row align-items-start">
+                <div class="col-md-6"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Site :</label>
+                    </div>
+                     <div class="col-md-6"  style="margin:auto">
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.siteid ? rfq.siteid : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
                 </div>
                 </div>

@@ -9,50 +9,96 @@
 
             <template v-slot:content>
                 <div class="row align-items-start">
-                    <div class="col-md-4">
-    
+                    <div class="col-md-3">
+          <div class="row align-items-start">
+                <div class="col-md-4"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Invoice : </label>
+                    </div>
+                     <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.invoicenum ? invoice.invoicenum : ' - '}}</b>
+                    </div>
+                    </div>
                 
                 </div>
-                <div class="col-md-4">
-                
+                <div class="col-md-6">
+                <div class="row align-items-start">
+                <div class="col-md-3"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Description : </label>
+                    </div>
+                     <div class="col-md-9"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.description ? invoice.description : '-'}}</b>
+                    </div>
+                    </div>
                
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <div class="row align-items-start">
+                <div class="col-md-4"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Status :</label>
+                    </div>
+                     <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.status ? invoice.status : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
                 </div>
 
                 <div class="row align-items-start">
-                         <div class="col-md-4">
+                         <div class="col-md-3">
+                            <div class="row align-items-start">
+                <div class="col-md-4"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Total Tax :</label>
+                    </div>
+                     <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.totaltax1 ? invoice.totaltax1 : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
+                    <div class="row align-items-start">
+                <div class="col-md-3"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Currency :</label>
+                    </div>
+                     <div class="col-md-9"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.currencycode ? invoice.currencycode : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
                
 
-                <div class="col-md-4">
+                <div class="col-md-3">
+                      <div class="row align-items-start">
+                <div class="col-md-5"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Total Cost :</label>
+                    </div>
+                     <div class="col-md-7"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.totalcost ? invoice.totalcost : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
                 </div>
 
                   <div class="row align-items-start">
            
-                       <div class="col-md-4">
+                       <div class="col-md-3">
+                          <div class="row align-items-start">
+                <div class="col-md-4"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Enter By :</label>
+                    </div>
+                    <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.enterby ? invoice.enterby : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
+                    <div class="row align-items-start">
+                <div class="col-md-3"  style="margin:auto">
                     <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Enter Date :</label>
+                    </div>
+                    <div class="col-md-9"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.enterdate ? invoice.enterdate : '-'}}</b>
+                    </div>
+                    </div>
                 </div>
 
                 </div>
@@ -98,6 +144,7 @@
       <Dialog  v-model:visible="invoiceEdit" :style="{width: '50vw'}" :closable="false">
       <div class="row align-items-start">
           <div class="col-md-6">
+            
                    <label style="width: 90%;margin-right:2vw;" ><strong>Qty</strong></label>
                     <InputText id="qty" v-on:change="calcul" v-model="rfqline.quotationqty"  style="width: 95%;" /> 
                     </div>
