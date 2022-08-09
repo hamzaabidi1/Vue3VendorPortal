@@ -489,7 +489,7 @@ export default {
              if ( this.rfq.statusofSend == false)
              {
               this.idline = event.data.id
-              await this.vendorservice. findRfqLineById(this.idline).then(data1 => this.rfqline = data1);
+              this.vendorservice. findRfqLineById(this.idline).then(data1 => this.rfqline = data1);
               this.rfqEdit= true;
              }
         },

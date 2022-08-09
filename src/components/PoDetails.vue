@@ -303,7 +303,7 @@ export default {
          async  onRowSelect(event) {
             const idline = event.data.id
               this.poEdit= true;
-             await  this.vendorservice. findPoLineById(idline).then(data1 => this.poline = data1);
+              this.vendorservice. findPoLineById(idline).then(data1 => this.poline = data1);
               console.log(this.poline)
         },
         onRowUnselect(event) {
