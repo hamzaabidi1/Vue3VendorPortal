@@ -1,5 +1,5 @@
 <template>
-    <a href="" @click="previous" style="color:#4998DC"><b>return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
+    <a href="" @click="previous" style="color:#4998DC"><b>Return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
 
 
         <Card  class="card" style=" margin-top: 0vw;">
@@ -11,35 +11,35 @@
                 <div class="row align-items-start">
                     <div class="col-md-4">
     
-                    <label for="class" style="color:#3f2de1;">Invoice : </label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Invoice : </label>
                     <b style="margin-left:0.5vw">{{invoice.invoicenum ? invoice.invoicenum : ' - '}}</b>
                 
                 </div>
                 <div class="col-md-4">
                 
-                    <label for="class" style="color:#3f2de1;">Description : </label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Description : </label>
                     <b style="margin-left:0.5vw">{{invoice.description ? invoice.description : '-'}}</b>
                
                 </div>
                 <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Status :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Status :</label>
                     <b style="margin-left:0.5vw">{{invoice.status ? invoice.status : '-'}}</b>
                 </div>
                 </div>
 
                 <div class="row align-items-start">
                          <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Total Tax :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Total Tax :</label>
                     <b style="margin-left:0.5vw">{{invoice.totaltax1 ? invoice.totaltax1 : '-'}}</b>
                 </div>
                 <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Currency :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Currency :</label>
                     <b style="margin-left:0.5vw">{{invoice.currencycode ? invoice.currencycode : '-'}}</b>
                 </div>
                
 
                 <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Total Cost :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Total Cost :</label>
                     <b style="margin-left:0.5vw">{{invoice.totalcost ? invoice.totalcost : '-'}}</b>
                 </div>
                 </div>
@@ -47,11 +47,11 @@
                   <div class="row align-items-start">
            
                        <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Enter By :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Enter By :</label>
                     <b style="margin-left:0.5vw">{{invoice.enterby ? invoice.enterby : '-'}}</b>
                 </div>
                 <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Enter Date :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Enter Date :</label>
                     <b style="margin-left:0.5vw">{{invoice.enterdate ? invoice.enterdate : '-'}}</b>
                 </div>
 

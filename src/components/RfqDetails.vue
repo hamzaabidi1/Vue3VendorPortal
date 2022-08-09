@@ -1,5 +1,5 @@
 <template>
-  <a href="" @click="previous" style="color:#4998DC"><b>return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
+  <a href="" @click="previous" style="color:#4998DC"><b>Return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
 
         <Card  class="card" style=" margin: auto;">
             <template v-slot:title>
@@ -32,13 +32,13 @@
                 <div class="row align-items-start">
                     <div class="col-md-5"  style="margin:auto">
                 
-                    <label for="class" style="font-size: small;color:#3f2de1;">RFQ : </label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">RFQ : </label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.rfqnum ? rfq.rfqnum : ' - '}}</b>
                 
                 </div>
                 <div class="col-md-5 "  style="margin:auto">
                 
-                    <label for="class" style="font-size: small;color:#3f2de1;">Description : </label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Description : </label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.description ? rfq.description : '-'}}</b>
                
                 </div>
@@ -47,24 +47,24 @@
 
             <div class="row">
                   <div class="col-md-5"  style="margin:auto">
-                    <label for="class" style="font-size: small;color:#3f2de1;">Status :</label>
+                    <label for="class"   style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Status :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.status ? rfq.status : '-'}}</b>
                 </div>
 
                   
                 <div class="col-md-5"   style="margin:auto">
-                    <label for="class" style="font-size: small;color:#3f2de1;">Require date :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Require date :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.requireddate ? rfq.requireddate : '-'}}</b>
                 </div>
                 </div>
 
               <div class="row">
                 <div class="col-md-5"  style="margin:auto">
-                    <label for="class" style="font-size: small;color:#3f2de1;">Purchase Agent :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Purchase Agent :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
                 </div>
                  <div class="col-md-5" style="margin:auto">
-                    <label for="class" style="font-size: small;color:#3f2de1;">Site :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Site :</label>
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.siteid ? rfq.siteid : '-'}}</b>
                 </div>
                 </div>
@@ -75,9 +75,9 @@
 
                     <div  style="width:100%; height: 100%; margin: auto;">
 
-                    <span style="font-size:100%;font-weight: bold;text-align: center; ">File Attachments <i v-if="!this.rfq.statusofSend" @click="open" class="pi pi-paperclip"></i></span>
-                    
-                    <tr v-for=" file in filedownload.data " :key="file.id">
+                    <span style="font-size:100%;font-weight: bold;text-align: center;margin :auto ;margin-left: 30%;">File Attachments <i v-if="!this.rfq.statusofSend" @click="open" class="pi pi-paperclip"></i></span>
+                    <div style="margin:auto;margin-left:30%" >
+                    <tr v-for=" file in filedownload.data " :key="file.id" >
 
                     <a v-tooltip.top="'click to Download'" style="font-size: small;" :href="file.url"  download>
                     <span v-if="file.name.includes('.txt')" style="color:red" class="pi pi-file"></span>
@@ -91,7 +91,7 @@
                     </tr>
                     <span v-show="loadingfiles" class="spinner-border spinner-border-sm" style="width: 50%vw;height: 50%;margin:auto"></span>
                     </div>
-
+                    </div>              
                 </div>
                 
 
@@ -150,7 +150,7 @@
                  
                      <div class="col-md-6">
                     <label style="width: 90%;margin-right:2vw;" ><strong>Start Date</strong></label>
-                    <Calendar v-model="rfqline.quoteStartDate" :showIcon="true" style="width: 95%;" />
+                    <Calendar v-model="rfqline.quoteStartDate" :showIcon="true" style="width: 95%;" dateFormat="yy-mm-dd" />
                     </div>
 
         </div>
@@ -162,7 +162,7 @@
                     </div>
                <div class="col-md-6">
                     <label style="width: 90%;margin-right:2vw;" ><strong>End Date</strong></label>
-                    <Calendar  v-model="rfqline.quoteEndDate" :showIcon="true" style="width: 95%;" />
+                    <Calendar  v-model="rfqline.quoteEndDate" :showIcon="true" style="width: 95%;" dateFormat="yy-mm-dd"/>
                     </div>
                   
     </div>
@@ -174,12 +174,15 @@
                     </div>
                     <div class="col-md-6">
                     <label style="width: 90%;margin-right:2vw;" ><strong>Delivery Date</strong></label>
-                    <Calendar  v-model="rfqline.delivryDate" :showIcon="true" style="width: 95%;" />
+                    <Calendar  v-model="rfqline.delivryDate" :showIcon="true" style="width: 95%;" dateFormat="yy-mm-dd" />
                     </div>
     </div>
                      <template #footer>
                         <Button label="Cancel" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
-                        <Button label="Save" icon="pi pi-check" @click="saveEdit" autofocus />
+                        <Button label="Save" icon="pi pi-check" @click="saveEdit" autofocus >
+                          <i class="pi pi-check" style="margin-right:0.5vw"></i>
+                        <span> Save</span>
+                        <span v-show="loadingbuttonsave" class="spinner-border spinner-border-sm" style="margin-left:0.5vw"></span></Button>
                     </template>
                 </Dialog>
 
@@ -230,6 +233,7 @@ export default {
   },
     data() {
         return {
+            loadingbuttonsave:false,
             loadingfiles:false,
             loadingbutton:false,
             progressstatus:false,
@@ -498,6 +502,10 @@ export default {
         },
         async saveEdit()
         {
+            if (this.rfqline.quoteEndDate<this.rfqline.quoteStartDate)
+            this.$toast.add({ severity: 'error', summary: 'Error Message', detail: 'End Date must be over Start date', life: 3000 });
+            else{
+            this.loadingbuttonsave=true
             await this.vendorservice. updateRfqLineById(this.rfqline);
             console.log(this.rfqline)
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
@@ -507,6 +515,8 @@ export default {
             console.log(this.rfqline.rfq.id)
             this.rfqs=this.rfq.rfqline
             console.log( this.rfqs)
+            this.loadingbuttonsave=false
+            }
 
          
          

@@ -1,6 +1,6 @@
 <template>
   
-  <a href="" @click="previous" style="color:#4998DC"><b>return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
+  <a href="" @click="previous" style="color:#4998DC"><b>Return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
 
         <Card  class="card" style=" margin-top: 0vw;">
             <template v-slot:title>
@@ -15,34 +15,34 @@
             
             
                 
-                    <label for="class" style="color:#3f2de1;">PO : </label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">PO : </label>
                     <b style="margin-left:0.5vw">{{po.ponum ? po.ponum : ' - '}}</b>
                 
                 </div>
                 <div class="col-md-4">
                 
-                    <label for="class" style="color:#3f2de1;">Description : </label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Description : </label>
                     <b style="margin-left:0.5vw">{{po.description ? po.description : '-'}}</b>
                
                 </div>
                 <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Status :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Status :</label>
                     <b style="margin-left:0.5vw">{{po.status ? po.status : '-'}}</b>
                 </div>
                 </div>
 
                 <div class="row align-items-start">
                 <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Require date :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Require date :</label>
                     <b style="margin-left:0.5vw">{{po.requireddate ? po.requireddate : '-'}}</b>
                 </div>
             
                 <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Total Cost :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Total Cost :</label>
                     <b style="margin-left:0.5vw">{{po.totalcost ? po.totalcost : '-'}}</b>
                 </div>
                  <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Total Tax :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Total Tax :</label>
                     <b style="margin-left:0.5vw">{{po.totaltax1 ? po.totaltax1 : '-'}}</b>
                 </div>
                 </div>
@@ -51,15 +51,15 @@
                
                  
                 <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Currency :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Currency :</label>
                     <b style="margin-left:0.5vw">{{po.currencycode ? po.currencycode : '-'}}</b>
                 </div>
                   <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Purchase Agent :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Purchase Agent :</label>
                     <b style="margin-left:0.5vw">{{po.purchaseagent ? po.purchaseagent : '-'}}</b>
                 </div>
                 <div class="col-md-4">
-                    <label for="class" style="color:#3f2de1;">Delivery Date :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Delivery Date :</label>
                     <b style="margin-left:0.5vw">{{po.vendeliverydate ? po.vendeliverydate : '-'}}</b>
                 </div>
 
