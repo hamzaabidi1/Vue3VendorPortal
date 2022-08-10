@@ -155,5 +155,64 @@
 
         }
     },
+
+    "adminpage":{
+        "vendorlist":"Vendors List",
+        "search":"Search ...",
+        "status":"Status",
+        "name":"Name",
+        "username":"User Name",
+        "email":"E-mail",
+        "phone":"Phone",
+        "address":"Address",
+        "edit":{
+            "userdetails":"User Details",
+            "save":"Save",
+            "cancel":"Cancel"
+
+        },
+        "history":{
+            "userhistory":"User History",
+            "status":"Status",
+            "statusdate":"Status Date",
+            "changedby":"Changed By"
+
+        },
+        "details":{
+            "updateinfodialog": "Vendor Informations",
+        "generalinformation": "General Informations",
+        "addressinformation": "Address Informations",
+        "legacyinformation": "Legacy Informations",
+        "fiscalinformation": "Fiscal Informations",
+
+
+        "name":"Name",
+        "subname":"SubName",
+        "phone":"Phone",
+
+        "country":"Country",
+        "city":"City",
+        "address":"Address",
+        "state":"State / Region",
+        "postalcode":"Postal Code",
+
+
+        "revenu":"Revenu",
+        "dateestablished":"Date Established",
+        "registration":"Tax Registration Number",
+        "classification":"Tax Classification Code",
+
+        "website":"Company Web Site",
+        
+        "delete":"Delete",
+
+        "confirm":"Confirm",
+        "yes":"Yes",
+        "no":"No"
+
+
+        }
+
+    },
     "message": "hello i18n !!"
   }
