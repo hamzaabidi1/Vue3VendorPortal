@@ -1,10 +1,10 @@
 <template>
   
-  <a href="" @click="previous" style="color:#4998DC"><b>Return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
+  <a href="" @click="previous" style="color:#4998DC"><b>{{$t("po.podetails.return")}}</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
 
         <Card  class="card" style=" margin-top: 0vw;">
             <template v-slot:title>
-                PO Details
+               {{$t("po.podetails.detail")}}
             </template>
 
             <template v-slot:content>
@@ -16,7 +16,7 @@
                   <div class="row align-items-start">
                 <div class="col-md-6"  style="margin:auto">
                 
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">PO : </label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('po.po')}}: </label>
                     </div>
                     <div class="col-md-6"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.ponum ? po.ponum : ' - '}}</b>
@@ -27,7 +27,7 @@
                 <div class="col-md-5">
                   <div class="row align-items-start">
                 <div class="col-md-3"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Description : </label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('po.description')}} </label>
                     </div>
                     <div class="col-md-9"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.description ? po.description : '-'}}</b>
@@ -38,7 +38,7 @@
                 <div class="col-md-4">
                       <div class="row align-items-start">
                 <div class="col-md-4"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Status :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('po.status')}} :</label>
                     </div>
                     <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.status ? po.status : '-'}}</b>
@@ -52,7 +52,7 @@
 
                      <div class="row align-items-start">
                 <div class="col-md-6"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Require date :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('po.requireddate')}}</label>
                     </div>
                     <div class="col-md-6"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.requireddate ? po.requireddate : '-'}}</b>
@@ -63,7 +63,7 @@
                 <div class="col-md-5">
                       <div class="row align-items-start">
                 <div class="col-md-4"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Total Cost :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('po.totalcost')}}</label>
                     </div>
                     <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.totalcost ? po.totalcost : '-'}}</b>
@@ -73,7 +73,7 @@
                  <div class="col-md-3">
                      <div class="row align-items-start">
                 <div class="col-md-6"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Total Tax :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('po.totaltax')}}</label>
                     </div>
                     <div class="col-md-6"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.totaltax1 ? po.totaltax1 : '-'}}</b>
@@ -88,7 +88,7 @@
                 <div class="col-md-3">
                     <div class="row align-items-start">
                 <div class="col-md-6"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Currency :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('po.currency')}}</label>
                     </div>
                      <div class="col-md-6"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.currencycode ? po.currencycode : '-'}}</b>
@@ -99,7 +99,7 @@
 
                      <div class="row align-items-start">
                 <div class="col-md-4"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Purchase Agent :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('po.purchaseagent')}}</label>
                     </div>
                     <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.purchaseagent ? po.purchaseagent : '-'}}</b>
@@ -109,7 +109,7 @@
                 <div class="col-md-4">
                          <div class="row align-items-start">
                 <div class="col-md-4"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Delivery Date :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('po.deliverydate')}}</label>
                     </div>
                     <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{po.vendeliverydate ? po.vendeliverydate : '-'}}</b>
@@ -128,7 +128,7 @@
         
         <Toast />
         <div class="card" style=" margin-top: -2vw;">
-            <h5>PO Line List</h5>
+            <h5>{{$t('po.podetails.polinelist')}}</h5>
             <DataTable :value="polines" :paginator="true" :rows="10"  v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :filters="filters">
 
@@ -138,43 +138,31 @@
                     <div class="table-header flex flex-column md:flex-row md:justiify-content-between" >
 						<span class="p-input-icon-left"  >
                             <i class="pi pi-search" />
-                            <InputText v-model="filters['global'].value" placeholder="Search..."   style="height: 2vw;margin: auto;"/>
+                            <InputText v-model="filters['global'].value" :placeholder="$t('po.search')"   style="height: 2vw;margin: auto;"/>
                         </span>
 					</div>
                 </template>
 
-
-                <Column field="polinenum" header="Line" sortable />
-                <Column field="itemnum" header="Item" sortable />
-                <Column field="description" header="Description" sortable />
-                <Column field="orderqty" header="Quantity" sortable/>
-                <Column field="orderunit" header="Unit" sortable/>
-                <Column field="unitcost" header="Unit Cost" sortable/>
-                <Column field="linecost" header="Line Cost" sortable/>
-                <Column field="vendeliverydate" header="Delivery Date" sortable/>
+                <Column field="polinenum" :header="$t('po.podetails.line')" sortable />
+                <Column field="itemnum" :header="$t('po.podetails.item')" sortable />
+                <Column field="description" :header="$t('po.podetails.description')" sortable />
+                <Column field="orderqty" :header="$t('po.podetails.qty')" sortable/>
+                <Column field="orderunit" :header="$t('po.podetails.unit')" sortable/>
+                <Column field="unitcost" :header="$t('po.podetails.unitcost')" sortable/>
+                <Column field="linecost" :header="$t('po.podetails.linecost')" sortable/>
+                <Column field="vendeliverydate" :header="$t('po.podetails.deliverydate')" sortable/>
             </DataTable>
         </div>
 
            <div class="card" style=" margin-top:-1.5vw;margin-bottom:7vw">
-            <h5>PO Term List</h5>
+            <h5>{{$t('po.poterms.potermslist')}}</h5>
             <DataTable :value="po.poterm" :paginator="true" :rows="3"   selectionMode="single" dataKey="id"
                responsiveLayout="scroll" :filters="filters" >
-                <Column field="seqnum" header="Sequence" sortable />
-                <Column field="potermid" header="Term" sortable />
-                <Column field="description" header="Description" sortable />
-           <!--      <Column field="sendtovendor" header="Send To Vendor" sortable>
-                <template #body="slotProps">
-                        <span style="float:center;margin:auto;margin-left: 3vw;" :class="' sendtovendor-' + (slotProps.data.sendtovendor ? slotProps.data.sendtovendor.toLowerCase() : '')">{{slotProps.data.sendtovendor}}</span>
-                    </template>
-                </Column>-->
-
-            <!-- <Column header="Send To Vendor" field="sendtovendor">
-                        <template  #body="slotProps" >
-                            <Checkbox v-model="slotProps.data.sendtovendor"  :binary="true"  :disabled="true"  />
-                        </template>
-                    </Column>
--->
- <Column field="sendtovendor" header="Send To Vendor" sortable>
+                <Column field="seqnum" :header="$t('po.poterms.sequence')" sortable />
+                <Column field="potermid" :header="$t('po.poterms.term')" sortable />
+                <Column field="description" :header="$t('po.poterms.description')" sortable />
+     
+ <Column field="sendtovendor" :header="$t('po.poterms.sendtovendor')" sortable>
                      <template #body="slotProps">
                         <span v-if="slotProps.data.sendtovendor=='true'"><img src="../assets/checked.png" style="width:1.5rem;height: 1.5rem;margin-left: 3vw;" /></span>
                         <span v-if="slotProps.data.sendtovendor=='false'"><img src="../assets/notchecked.png" style="width:1.5rem;height: 1.5rem;margin-left: 3vw;" /></span>
@@ -189,12 +177,12 @@
       <Dialog  v-model:visible="poEdit" :style="{width: '30vw'}" :closable="false">
       <div class="row align-items-start">
           
-                     <label style="width: 90%;margin-right:2vw;" ><strong>Delivery Date</strong></label>
+                     <label style="width: 90%;margin-right:2vw;" ><strong>{{$t('po.updateline.deliverydate')}}</strong></label>
                     <Calendar v-model="poline.vendeliverydate" :showIcon="true" style="width: 95%;" dateFormat="yy-mm-dd"  />
                     </div>
                      <template #footer>
-                        <Button label="Cancel" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
-                        <Button label="Save" icon="pi pi-check" @click="saveEdit(poline)" autofocus >
+                        <Button :label="$t('po.updateline.cancel')" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
+                        <Button :label="$t('po.updateline.save')" icon="pi pi-check" @click="saveEdit(poline)" autofocus >
                         
                         <i class="pi pi-check" style="margin-right:0.5vw"></i>
                         <span> Save</span>

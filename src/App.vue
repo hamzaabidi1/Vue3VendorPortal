@@ -14,7 +14,13 @@
        
           <li v-if="showAdminBoard">
             <router-link to="/admin" v-tooltip="'click to show table of list of vendor'" @click.prevent="showvendorlist"
-              class="navbar-brand" style="color:white;">Vendors List</router-link>
+              class="navbar-brand" style="color:white;">{{$t("app.vendorlist")}}</router-link>
+          </li>
+
+           <li v-if="showAdminBoard" >
+            <router-link to="" @click.prevent="showrequestsUpdate"
+              v-tooltip="'click to show list of requests to change information account'" class="navbar-brand"
+              style="color:white;">{{$t("app.vendorrequest")}}</router-link>
           </li>
       <!--    <li v-if="showFournisseurBoard && currentUser.status == 'Confirmed'">
             <router-link to="/fournisseur" v-tooltip="'click to show po list,rfq list and invoice list'"
@@ -24,38 +30,34 @@
           -->
           <li v-if="showFournisseurBoard && currentUser.status == 'Confirmed'">
             <router-link to="/rfq" v-tooltip="'click to show rfq list '"
-              @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">RFQ</router-link>
+              @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">{{$t("app.rfq")}}</router-link>
           </li>
           <li v-if="showFournisseurBoard && currentUser.status == 'Confirmed'">
             <router-link to="/po" v-tooltip="'click to show po list '"
-              @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">PO</router-link>
+              @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">{{$t("app.po")}}</router-link>
           </li>
           <li v-if="showFournisseurBoard && currentUser.status == 'Confirmed'">
             <router-link to="/invoice" v-tooltip="'click to show Invoice list '"
-              @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">Invoice</router-link>
+              @click.prevent="showvendorboard" class="navbar-brand" style="color:white;">{{$t("app.invoice")}}</router-link>
           </li>
           <li v-if="showFournisseurBoard && currentUser.status == 'Confirmed'">
             <router-link to="" @click.prevent="requestUpdate" v-tooltip="'click to update Information of account'"
-              class="navbar-brand" style="color:white;">Change Informations</router-link>
+              class="navbar-brand" style="color:white;">{{$t("app.updateinfo")}}</router-link>
           </li>
 
           <li v-if="showFournisseurBoard && currentUser.status == 'Confirmed'">
             <router-link to="" @click.prevent="changepassword" v-tooltip="'click to change password'"
-              class="navbar-brand" style="color:white;">Change Password</router-link>
+              class="navbar-brand" style="color:white;">{{$t("app.updatepass")}}</router-link>
           </li>
         
-          <li v-if="showFournisseurBoard">
+          
+        
+
+         
+
+        <li>
           <LocaleSwitcher />
           </li>
-        
-
-          <li v-if="showAdminBoard" >
-            <router-link to="" @click.prevent="showrequestsUpdate"
-              v-tooltip="'click to show list of requests to change information account'" class="navbar-brand"
-              style="color:white;">Update Profile Requests</router-link>
-          </li>
-
-        
          
         </Sidebar>
         <i class="pi pi-bars navbar-brand" @click="visibleLeft = true"></i>
@@ -63,17 +65,17 @@
       </div>
       <li class="nav-item" v-if="!currentUser">
         <router-link to="" @click.prevent="showhome" class="navbar-brand" v-tooltip="'home'">
-          <font-awesome-icon icon="home" />Vendor Portal
+          <font-awesome-icon icon="home" />{{$t("app.portal")}}
         </router-link>
       </li>
         <li class="nav-item" v-if="currentUser && currentUser.roles == 'ROLE_FOURNISSEUR'">
         <router-link to="" @click.prevent="showhome" class="navbar-brand" v-tooltip="'home'">
-          <font-awesome-icon icon="home" />Vendor Portal
+          <font-awesome-icon icon="home" />{{$t("app.portal")}}
         </router-link>
       </li>
        <li class="nav-item" v-if="currentUser && currentUser.roles == 'ROLE_ADMIN'">
         <router-link to="" @click.prevent="showhome" class="navbar-brand" v-tooltip="'home'">
-          <font-awesome-icon icon="home" />Vendor Portal
+          <font-awesome-icon icon="home" />{{$t("app.portal")}}
         </router-link>
       </li>
 
@@ -90,13 +92,13 @@
       />
       <Form @submit="handleConfirmPassword" :validation-schema="schema">
        <div class="form-group">
-          <label for="password1"><strong>Password</strong></label>
+          <label for="password1"><strong>{{$t("app.password")}}</strong></label>
           <Field name="password1" type="password" class="form-control" v-model="password1" v-on:change="verif" />
            <div id="container" ></div>
           <ErrorMessage name="password1" class="error-feedback" />
         </div>
         <div class="form-group">
-          <label for="password2"><strong>Confirm Password</strong></label>
+          <label for="password2"><strong>{{$t("app.confirmpassword")}}</strong></label>
           <Field name="password2" type="password" class="form-control" v-model="password2"/>
           <ErrorMessage name="password2" class="error-feedback" />
         </div>
@@ -106,7 +108,7 @@
               v-show="loading"
               class="spinner-border spinner-border-sm"
             ></span>
-            <span>Confirm</span>
+            <span>{{$t("app.confirm")}}</span>
           </button>
         </div>
 
@@ -127,30 +129,30 @@
 
 
       <Dialog :maximizable="true" v-model:visible="requestDialog" :dismissableMask="true" :breakpoints="{ '960px': '75vw' }"
-        :style="{ width: '90vw' }" header="Update Informations">
+        :style="{ width: '90vw' }" :header="$t('app.updateinfodialog')">
         <div class="flex">
           <div class="row align-items-start">
             <div class=col-md-6>
               <div class="card" style="margin:auto;width: 99%;height: 28vw;">
-                <h5 class="text-center" style="margin-top:1vw;"><strong>General Informations</strong></h5>
+                <h5 class="text-center" style="margin-top:1vw;"><strong>{{$t("app.generalinformation")}}</strong></h5>
                 <div class="p-fluid">
 
 
-                  <label for="firstname" style="width: 90%;margin-left:2vw;"><strong>Name</strong></label>
+                  <label for="firstname" style="width: 90%;margin-left:2vw;"><strong>{{$t("app.name")}}</strong></label>
                   <InputText style="width: 90%;margin-left:2vw;" id="firstname" v-model="posts.firstname"
                     :class="{ 'p-invalid': validationErrors.firstname && submitted }" />
                   <small style="width: 90%;margin-left:2vw;" v-show="validationErrors.firstname && submitted"
                     class="p-error">Vendor Name is required.</small>
 
 
-                  <label for="lastname" style="width: 90%;margin-left:2vw;"><strong>SubName</strong></label>
+                  <label for="lastname" style="width: 90%;margin-left:2vw;"><strong>{{$t("app.subname")}}</strong></label>
                   <InputText style="width: 90%;margin-left:2vw;" id="lastname" v-model="posts.lastname"
                     :class="{ 'p-invalid': validationErrors.lastname && submitted }" />
                   <small style="width: 90%;margin-left:2vw;" v-show="validationErrors.lastname && submitted"
                     class="p-error">Vendor Subname is required.</small>
 
 
-                  <label style="width: 90%;margin-left:2vw;" for="phone"><strong>Phone</strong></label>
+                  <label style="width: 90%;margin-left:2vw;" for="phone"><strong>{{$t("app.phone")}}</strong></label>
                   <InputNumber style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="phone" v-model="posts.phone"
                     :class="{ 'p-invalid': validationErrors.phone && submitted }" />
                   <small style="width: 90%;margin-left:2vw"
@@ -164,13 +166,13 @@
 
             <div class=col-md-6>
               <div class="card" style="margin:auto;width: 99%;height: 28vw;">
-                <h5 class="text-center" style="margin-top:1vw;"><strong>Address Informations</strong></h5>
+                <h5 class="text-center" style="margin-top:1vw;"><strong>{{$t("app.addressinformation")}}</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
 
                     <div class=col-md-6>
                       <div class="field">
-                        <label for="country" style="width: 90%;margin-left:2vw;"><strong>Country</strong></label>
+                        <label for="country" style="width: 90%;margin-left:2vw;"><strong>{{$t("app.country")}}</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="country" v-model="posts.country"
                           :class="{ 'p-invalid': validationErrors.country && submitted }" />
                         <small style="width: 90%;margin-left:2vw;" v-show="validationErrors.country && submitted"
@@ -180,7 +182,7 @@
 
                     <div class=col-md-6>
                       <div class="field">
-                        <label for="region" style="width: 90%;margin-right:2vw;"><strong>State / Region</strong></label>
+                        <label for="region" style="width: 90%;margin-right:2vw;"><strong>{{$t("app.state")}}</strong></label>
                         <InputText style="width: 90%;margin-right:2vw;" id="region" v-model="posts.region"
                           :class="{ 'p-invalid': validationErrors.region && submitted }" />
                         <small style="width: 90%;margin-right:2vw;" v-show="validationErrors.region && submitted"
@@ -191,7 +193,7 @@
                   <div class=row>
                     <div class=col-md-6>
                       <div class="field">
-                        <label style="width: 90%;margin-left:2vw;" for="city"><strong>City</strong></label>
+                        <label style="width: 90%;margin-left:2vw;" for="city"><strong>{{$t("app.city")}}</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="city" v-model="posts.city"
                           :class="{ 'p-invalid': validationErrors.city && submitted }" />
                         <small style="width: 90%;margin-left:2vw;" v-show="validationErrors.city && submitted"
@@ -201,7 +203,7 @@
 
                     <div class=col-md-6>
                       <div class="field">
-                        <label style="width: 90%;margin-right:2vw;" for="postalcode"><strong>Postal Code</strong></label>
+                        <label style="width: 90%;margin-right:2vw;" for="postalcode"><strong>{{$t("app.postalcode")}}</strong></label>
                         <InputText style="width: 90%;margin-right:2vw;" id="postalcode" v-model="posts.postalcode"
                           :class="{ 'p-invalid': validationErrors.postalcode && submitted }" />
                         <small style="width: 90%;margin-right:2vw;" v-show="validationErrors.postalcode && submitted"
@@ -212,7 +214,7 @@
                   <div class=row>
 
                     <div class=col-md-12>
-                      <label style="width: 90%;margin-left:2vw;" for="address"><strong>Address</strong></label>
+                      <label style="width: 90%;margin-left:2vw;" for="address"><strong>{{$t("app.address")}}</strong></label>
                       <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw" id="address"
                         v-model="posts.address" :class="{ 'p-invalid': validationErrors.address && submitted }" />
                       <small style="width: 90%;margin-left:2vw"
@@ -232,13 +234,13 @@
 
             <div class=col-md-6>
               <div class="card" style="margin:auto;margin-top: 1vw;width: 99%;height: 23vw;">
-                <h5 class="text-center" style="margin-top:1vw;"><strong>Fiscal Informations</strong></h5>
+                <h5 class="text-center" style="margin-top:1vw;"><strong>{{$t("app.fiscalinformation")}}</strong></h5>
 
                 <div class="p-fluid">
                   <div class=row>
                     <div class=col-md-6>
                       <div class="field">
-                        <label style="width: 90%;margin-left:2vw;" for="taxregistrationnumber"><strong>Tax Registration Number</strong></label>
+                        <label style="width: 90%;margin-left:2vw;" for="taxregistrationnumber"><strong>{{$t("app.registration")}}</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="taxregistrationnumber"
                           v-model="posts.taxregistrationnumber"
                           :class="{ 'p-invalid': validationErrors.taxregistrationnumber && submitted }" />
@@ -250,7 +252,7 @@
 
                     <div class=col-md-6>
                       <div class="field">
-                        <label style="width: 90%;margin-right:2vw;" for="taxclassificationcode"><strong>Tax Classification Code</strong></label>
+                        <label style="width: 90%;margin-right:2vw;" for="taxclassificationcode"><strong>{{$t("app.classification")}}</strong></label>
                         <InputText style="width: 90%;margin-right:2vw;" id="taxclassificationcode"
                           v-model="posts.taxclassificationcode"
                           :class="{ 'p-invalid': validationErrors.taxclassificationcode && submitted }" />
@@ -265,7 +267,7 @@
                     <div class=col-md-6>
 
                       <div class="field">
-                        <label style="width: 90%;margin-left:2vw;" for="revenu"><strong>Revenu</strong></label>
+                        <label style="width: 90%;margin-left:2vw;" for="revenu"><strong>{{$t("app.revenu")}}</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;margin-bottom:3vw;" id="revenu"
                           v-model="posts.revenu" :class="{ 'p-invalid': validationErrors.revenu && submitted }" />
                         <small style="width: 90%;margin-left:2vw;margin-bottom:3vw;"
@@ -275,7 +277,7 @@
 
                     <div class=col-md-6>
                       <div class="field">
-                        <label style="width: 90%;margin-right:2vw;" for="dateEstablished"><strong>Date Established</strong></label>
+                        <label style="width: 90%;margin-right:2vw;" for="dateEstablished"><strong>{{$t("app.dateestablished")}}</strong></label>
                         <Calendar style="width: 90%;margin-right:2vw;margin-bottom:3vw;" id="dateEstablished"
                           v-model="posts.dateEstablished" :showIcon="true" />
                         <small style="width: 90%;margin-right:2vw;margin-bottom:3vw;"
@@ -291,12 +293,12 @@
 
             <div class=col-md-6>
               <div class="card" style="margin:auto;margin-top: 1vw;width: 99%;height: 23vw;">
-                <h5 class="text-center" style="margin-top:1vw;"><strong>Legacy Informations</strong></h5>
+                <h5 class="text-center" style="margin-top:1vw;"><strong>{{$t("app.legacyinformation")}}</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
                     <div class=col-md-12>
                       <div class="field">
-                        <label style="width: 90%;margin-left:2vw;" for="companywebsite"><strong>Company Web Site</strong></label>
+                        <label style="width: 90%;margin-left:2vw;" for="companywebsite"><strong>{{$t("app.website")}}</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;margin-bottom:1vw;" id="companywebsite"
                           v-model="posts.companywebsite"
                           :class="{ 'p-invalid': validationErrors.companywebsite && submitted }" />
@@ -313,14 +315,13 @@
                       </div>
                     </div>
                     <div class=col-md-9>
-                      <label style="width: 100% ; margin-left:-6vw;" for="accept">I agree to the terms
-                        and conditions*</label>
+                      <label style="width: 100% ; margin-left:-6vw;" for="accept">{{$t("app.read")}}</label>
                       
                     </div>
                   </div>
                   <div class=row style="margin-top:1vw">
                     <div class=col-md-12>
-                      <p style="color:#6495ED;width: 80%;float:left;margin-bottom:2vw;margin-left: 2vw;" @click="terms()">read terms</p>
+                      <p style="color:#6495ED;width: 80%;float:left;margin-bottom:2vw;margin-left: 2vw;" @click="terms()"> {{$t("app.terms")}}</p>
                     </div>
                   </div>
                 </div>
@@ -329,7 +330,7 @@
             </div>
           </div>
         </div>
-        <Button :disabled='isDisabled' label="confirm" @click="confirm()"
+        <Button :disabled='isDisabled' :label="$t('app.confirm')" @click="confirm()"
           style="width: 20%;float:right;margin-right:2vw;margin-bottom:1vw;margin-top: 2vw;" />
       </Dialog>
 
@@ -368,7 +369,7 @@
         <div v-if="!currentUser" class="navbar-nav ml-auto">
           <li class="nav-item">
             <router-link to="/" class="nav-link">
-              <font-awesome-icon icon="home" /> Home
+              <font-awesome-icon icon="home" />{{$t("app.home")}}
             </router-link>
           </li>
         </div>
@@ -377,12 +378,12 @@
       <div v-if="!currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
           <router-link to="/verifyemail" class="nav-link">
-            <font-awesome-icon icon="user-plus" /> Sign Up
+            <font-awesome-icon icon="user-plus" /> {{$t("app.signup")}}
           </router-link>
         </li>
         <li class="nav-item">
           <router-link to="/login" class="nav-link">
-            <font-awesome-icon icon="sign-in-alt" /> Sign In
+            <font-awesome-icon icon="sign-in-alt" /> {{$t("app.signin")}}
           </router-link>
         </li>
       </div>
@@ -408,7 +409,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" @click.prevent="logOut">
-            <font-awesome-icon icon="sign-out-alt" /> LogOut
+            <font-awesome-icon icon="sign-out-alt" /> {{$t("app.logout")}}
           </a>
         </li>
       </div>

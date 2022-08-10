@@ -1,11 +1,11 @@
 <template>
-  <a href="" @click="previous" style="color:#4998DC"><b>Return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
+  <a href="" @click="previous" style="color:#4998DC"><b>{{$t("rfq.rfqdetails.return")}}</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
 
         <Card  class="card" style=" margin: auto;">
             <template v-slot:title>
-                RFQ Details
+                {{$t("rfq.rfqdetails.detail")}}
                 <Button  v-tooltip.left="'click to send Rfq to Maximo'" id="submitToMaximo" :disabled='isDisabled' class="p-button-raised p-button-text" style="float:right;" :loading="loading[0]" @click="load(0)" >
-                <b style="color:#4998DC;height: 2vw;margin-right: 0.5vw;">Submit </b>
+                <b style="color:#4998DC;height: 2vw;margin-right: 0.5vw;">{{$t('rfq.submit')}} </b>
                 <img src="../assets/ibmmaximo.png" style="max-width:3vw;max-height:1.5vw;"/>
                 <b style="color:#4998DC;height: 2vw;margin-left: 0.5vw;" id="date"></b>
                 <span v-show="loadingbutton" class="spinner-border spinner-border-sm" style="margin-left:0.5vw"></span></Button>
@@ -33,7 +33,7 @@
                     <div class="col-md-5"  style="margin:auto">
                     <div class="row align-items-start">
                 <div class="col-md-6"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">RFQ : </label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('rfq.rfq')}}: </label>
                     </div>
                     <div class="col-md-6"  style="margin:auto">
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.rfqnum ? rfq.rfqnum : ' - '}}</b>
@@ -44,7 +44,7 @@
                 <div class="col-md-5 "  style="margin:auto">
                  <div class="row align-items-start">
                 <div class="col-md-6"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Description : </label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('rfq.description')}}: </label>
                     </div>
                     <div class="col-md-6"  style="margin:auto">
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.description ? rfq.description : '-'}}</b>
@@ -59,7 +59,7 @@
                   <div class="col-md-5"  style="margin:auto">
                   <div class="row align-items-start">
                 <div class="col-md-6"  style="margin:auto">
-                    <label for="class"   style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Status :</label>
+                    <label for="class"   style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('rfq.status')}}:</label>
                     </div>
                     <div class="col-md-6"  style="margin:auto">
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.status ? rfq.status : '-'}}</b>
@@ -71,7 +71,7 @@
                 <div class="col-md-5"   style="margin:auto">
                   <div class="row align-items-start">
                 <div class="col-md-6"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Require date :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('rfq.requireddate')}}:</label>
                     </div>
                     <div class="col-md-6"  style="margin:auto">
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.requireddate ? rfq.requireddate : '-'}}</b>
@@ -84,7 +84,7 @@
                 <div class="col-md-5"  style="margin:auto">
                   <div class="row align-items-start">
                 <div class="col-md-6"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Purchase Agent :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('rfq.purchaseagent')}}:</label>
                     </div>
                      <div class="col-md-6"  style="margin:auto">
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.purchaseagent ? rfq.purchaseagent : '-'}}</b>
@@ -94,7 +94,7 @@
                  <div class="col-md-5" style="margin:auto">
                      <div class="row align-items-start">
                 <div class="col-md-6"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Site :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('rfq.site')}}:</label>
                     </div>
                      <div class="col-md-6"  style="margin:auto">
                     <b style="font-size: small;margin-left:0.5vw">{{rfq.siteid ? rfq.siteid : '-'}}</b>
@@ -109,7 +109,7 @@
 
                     <div  style="width:100%; height: 100%; margin: auto;">
 
-                    <span style="font-size:100%;font-weight: bold;text-align: center;margin :auto ;margin-left: 30%;">File Attachments <i v-if="!this.rfq.statusofSend" @click="open" class="pi pi-paperclip"></i></span>
+                    <span style="font-size:100%;font-weight: bold;text-align: center;margin :auto ;margin-left: 30%;">{{$t("rfq.rfqdetails.attachment")}} <i v-if="!this.rfq.statusofSend" @click="open" class="pi pi-paperclip"></i></span>
                     <div style="margin:auto;margin-left:30%" >
                     <tr v-for=" file in filedownload.data " :key="file.id" >
 
@@ -140,7 +140,7 @@
         
         <Toast />
         <div class="card" style=" margin: auto; margin-bottom: 5vw;">
-            <h5>RFQ Line List</h5>
+            <h5>{{$t('rfq.rfqdetails.rfqlinelist')}}</h5>
             <DataTable :value="rfqs" :paginator="true" :rows="10"  v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :filters="filters" >
 
@@ -149,23 +149,24 @@
                     <div class="table-header flex flex-column md:flex-row md:justiify-content-between" >
 						<span class="p-input-icon-left"  >
                             <i class="pi pi-search" />
-                            <InputText v-model="filters['global'].value" placeholder="Search..."   style="height: 2vw;margin: auto;"/>
+                            <InputText v-model="filters['global'].value" :placeholder="$t('rfq.search')"   style="height: 2vw;margin: auto;"/>
                         </span>
 					</div>
                 </template>
 
 
-                <Column field="rfqlinenum" header="Line" sortable style="font-size:small;"/>
-                <Column field="itemnum" header="Item" sortable style="font-size:small;"/>
-                <Column field="description" header="Description" sortable style="font-size:small;"/>
-                <Column field="orderqty" header="Qty Requested" sortable style="font-size:small;"/>
-                <Column field="orderunit" header="Unit" sortable style="font-size:small;"/>
-                <Column field="quoteStartDate" header="Start Date" sortable style="font-size:small;" />
-                <Column field="quoteEndDate" header="End Date" sortable style="font-size:small;"/>
-                <Column field="delivryDate" header="Delivery Date" sortable style="font-size:small;"/>
-                <Column field="quotationqty" header="Qty" sortable style="font-size:small;"/>
-                <Column field="unitcost" header="Unit Cost" sortable style="font-size:small;"/>
-                <Column field="linecost" header="Line Cost" sortable style="font-size:small;" />
+                <Column field="rfqlinenum" :header="$t('rfq.rfqdetails.line')" sortable style="font-size:small;"/>
+                <Column field="itemnum" :header="$t('rfq.rfqdetails.item')" sortable style="font-size:small;"/>
+                <Column field="description" :header="$t('rfq.rfqdetails.description')" sortable style="font-size:small;"/>
+                <Column field="orderqty" :header="$t('rfq.rfqdetails.qtyrequested')" sortable style="font-size:small;"/>
+                <Column field="orderunit" :header="$t('rfq.rfqdetails.unit')" sortable style="font-size:small;"/>
+                <Column field="quoteStartDate" :header="$t('rfq.rfqdetails.startdate')" sortable style="font-size:small;" />
+                <Column field="quoteEndDate" :header="$t('rfq.rfqdetails.enddate')" sortable style="font-size:small;"/>
+                <Column field="delivryDate" :header="$t('rfq.rfqdetails.deliverydate')" sortable style="font-size:small;"/>
+                <Column field="quotationqty" :header="$t('rfq.rfqdetails.qty')" sortable style="font-size:small;"/>
+                <Column field="unitcost" :header="$t('rfq.rfqdetails.unitcost')" sortable style="font-size:small;"/>
+                <Column field="linecost" :header="$t('rfq.rfqdetails.linecost')" sortable style="font-size:small;" />
+
             </DataTable>
         </div>
 
@@ -176,14 +177,14 @@
       <div class="row align-items-start">
 
          <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Unit Cost</strong></label>
+                    <label style="width: 90%;margin-right:2vw;" ><strong>{{$t('rfq.rfqdetails.unitcost')}}</strong></label>
                     <InputText id="unit" v-on:change="calcul" v-model="rfqline.unitcost"  style="width: 95%;" /> 
                     </div>
           
 
                  
                      <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Start Date</strong></label>
+                    <label style="width: 90%;margin-right:2vw;" ><strong>{{$t('rfq.rfqdetails.startdate')}}</strong></label>
                     <Calendar v-model="rfqline.quoteStartDate" :showIcon="true" style="width: 95%;" dateFormat="yy-mm-dd" />
                     </div>
 
@@ -191,11 +192,11 @@
         <div class="row align-items-start">
 
               <div class="col-md-6">
-                   <label style="width: 90%;margin-right:2vw;" ><strong>Qty</strong></label>
+                   <label style="width: 90%;margin-right:2vw;" ><strong>{{$t('rfq.rfqdetails.qty')}}</strong></label>
                     <InputText id="qty" v-on:change="calcul" v-model="rfqline.quotationqty"  style="width: 95%;" /> 
                     </div>
                <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>End Date</strong></label>
+                    <label style="width: 90%;margin-right:2vw;" ><strong>{{$t('rfq.rfqdetails.enddate')}}</strong></label>
                     <Calendar  v-model="rfqline.quoteEndDate" :showIcon="true" style="width: 95%;" dateFormat="yy-mm-dd"/>
                     </div>
                   
@@ -203,17 +204,17 @@
     <div class="row align-items-start">
       
                     <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Line Cost</strong></label>
+                    <label style="width: 90%;margin-right:2vw;" ><strong>{{$t('rfq.rfqdetails.linecost')}}</strong></label>
                     <InputText id="line" v-model="rfqline.linecost"  style="width: 95%;" disabled /> 
                     </div>
                     <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Delivery Date</strong></label>
+                    <label style="width: 90%;margin-right:2vw;" ><strong>{{$t('rfq.rfqdetails.deliverydate')}}</strong></label>
                     <Calendar  v-model="rfqline.delivryDate" :showIcon="true" style="width: 95%;" dateFormat="yy-mm-dd" />
                     </div>
     </div>
                      <template #footer>
-                        <Button label="Cancel" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
-                        <Button label="Save" icon="pi pi-check" @click="saveEdit" autofocus >
+                        <Button :label="$t('rfq.rfqdetails.cancel')" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
+                        <Button :label="$t('rfq.rfqdetails.save')" icon="pi pi-check" @click="saveEdit" autofocus >
                           <i class="pi pi-check" style="margin-right:0.5vw"></i>
                         <span> Save</span>
                         <span v-show="loadingbuttonsave" class="spinner-border spinner-border-sm" style="margin-left:0.5vw"></span></Button>

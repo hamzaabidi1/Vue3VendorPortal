@@ -2,7 +2,7 @@
 	<div>
         <Toast />
         <div class="card" style="max-width: 96% ;margin: auto;margin-top: 1vw;margin-bottom: 7vw;">
-            <h5>PO List</h5>
+            <h5>{{$t("po.polist")}}</h5>
             <DataTable :value="po" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="9"  :rowsPerPageOptions="[9,20,50]" :filters="filters" :loading="loading">
               
@@ -18,7 +18,7 @@
                         
 						<span class="p-input-icon-left" >
                             <i class="pi pi-search" />
-                            <InputText v-model="filters['global'].value" placeholder="Search..." style="height: 2vw"/>
+                            <InputText v-model="filters['global'].value" :placeholder="$t('po.search')" style="height: 2vw"/>
                         </span>
                      </tr>   
 					</div>
@@ -28,15 +28,16 @@
 
                 </template>
 
-            <Column field="ponum" header="PO" sortable></Column>
-            <Column field="description" header="Description" sortable></Column>
-            <Column field="status" header="Status" sortable></Column>
-            <Column field="requireddate" header="Require date" sortable></Column>
-            <Column field="totalcost" header="Total Cost" sortable></Column>
-            <Column field="totaltax1" header="Total Tax" sortable></Column>
-            <Column field="currencycode" header="Currency" sortable></Column>
-            <Column field="purchaseagent" header="Purchase Agent" sortable></Column>
-            <Column field="vendeliverydate" header="Delivery Date" sortable></Column>
+
+            <Column field="ponum" :header="$t('po.po')" sortable></Column>
+            <Column field="description" :header="$t('po.description')" sortable></Column>
+            <Column field="status" :header="$t('po.status')" sortable></Column>
+            <Column field="requireddate" :header="$t('po.requireddate')" sortable></Column>
+            <Column field="totalcost" :header="$t('po.totalcost')" sortable></Column>
+            <Column field="totaltax1" :header="$t('po.totaltax')" sortable></Column>
+            <Column field="currencycode" :header="$t('po.currency')" sortable></Column>
+            <Column field="purchaseagent" :header="$t('po.purchaseagent')" sortable></Column>
+            <Column field="vendeliverydate" :header="$t('po.deliverydate')" sortable></Column>
             </DataTable>
         </div>
 

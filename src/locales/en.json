@@ -1,3 +1,159 @@
 {
+    "login":{
+        "username": "Username",
+        "password": "Password",
+        "forgotpassword": "Forget Password ?",
+        "login": "Login"
+    },
+    "app":{
+        "password": "Password",
+        "confirmpassword": "Confirm Password",
+        "confirm": "Confirm",
+        "portal":"Vendor Portal",
+        "signin": "Sign In",
+        "signup": "Sign Up",
+        "home": "Home",
+        "logout": "LogOut",
+        "vendorlist": "Vendors List",
+        "vendorrequest": "Update Profile Requests",
+        "rfq": "RFQ",
+        "po": "PO",
+        "invoice": "Invoice",
+        "updateinfo": "Change Informations",
+        "updatepass": "Change Password",
+        "updateinfodialog": "Update Informations",
+        "generalinformation": "General Informations",
+        "addressinformation": "Address Informations",
+        "legacyinformation": "Legacy Informations",
+        "fiscalinformation": "Fiscal Informations",
+
+
+        "name":"Name",
+        "subname":"SubName",
+        "phone":"Phone",
+
+        "country":"Country",
+        "city":"City",
+        "address":"Address",
+        "state":"State / Region",
+        "postalcode":"Postal Code",
+
+
+        "revenu":"Revenu",
+        "dateestablished":"Date Established",
+        "registration":"Tax Registration Number",
+        "classification":"Tax Classification Code",
+
+        "website":"Company Web Site",
+        
+        "read":"I agree to the terms and conditions*",
+
+        "terms":"read terms"
+
+
+        
+    },
+    
+    "rfq":{
+        "submit":"Submit",
+        "rfqlist": "RFQ List",
+        "rfq": "RFQ",
+        "site": "Site",
+        "description": "Description",
+        "status": "Status",
+        "requireddate": "Require Date",
+        "purchaseagent": "Purchase Agent",
+        "search":"Search ...",
+        "rfqdetails":{
+            "rfqlinelist":"RFQ Line List",
+            "detail":"RFQ Details",
+            "return":"Return",
+            "attachment":"File Attachments",
+            "line":"Line",
+            "item":"Item",
+            "description": "Description",
+            "qtyrequested": "Qty Requested",
+            "unit": "Unit",
+            "startdate": "Start Date",
+            "enddate": "End Date",
+            "deliverydate": "Delivery Date",
+            "qty": "Qty",
+            "unitcost": "Unit Cost",
+            "linecost": "Line Cost",
+            "cancel": "Cancel",
+            "save": "Save"
+
+        }
+    },
+    "po":{
+        
+        "polist": "PO List",
+        "po": "PO",
+        "description": "Description",
+        "status": "Status",
+        "requireddate": "Require Date",
+        "totalcost": "Total Cost",
+        "totaltax": "Total Tax",
+        "currency": "Currency",
+        "purchaseagent": "Purchase Agent",
+        "deliverydate": "Delivery Date",
+        "search":"Search ...",
+        
+        "updateline":{
+            "deliverydate": "Delivery Date",
+            "cancel": "Cancel",
+            "save": "Save"
+        },
+
+
+        "podetails":{
+            "polinelist":"PO Line List",
+            "detail":"PO Details",
+            "return":"Return",
+            "line":"Line",
+            "item":"Item",
+            "description": "Description",
+            "qty": "Quantity",
+            "unit": "Unit",
+            "deliverydate": "Delivery Date",
+            "unitcost": "Unit Cost",
+            "linecost": "Line Cost"
+
+        },
+        "poterms":{
+            "potermslist":"PO Terms List",
+            "sequence": "Sequence",
+            "term": "Term",
+            "description": "Description",
+            "sendtovendor": "Send to Vendor"
+
+        }
+    },
+    "invoice":{
+        "invoicelist": "Invoice List",
+        "invoice": "Invoice",
+        "description": "Description",
+        "status": "Status",
+        "totalcost": "Total Cost",
+        "totaltax": "Total Tax",
+        "currency": "Currency",
+        "enterBy": "Enter By",
+        "enterdate": "Enter Date",
+        "search":"Search ...",
+        "invoicedetails":{
+            "invoicelinelist":"Invoice Line List",
+            "detail":"Invoice Details",
+            "return":"Return",
+         
+            "line":"Line",
+            "item":"Item",
+            "description": "Description",
+            "unit": "Unit",
+            "qty": "Quantity",
+            "unitcost": "Unit Cost",
+            "linecost": "Line Cost"
+
+        }
+    },
     "message": "hello i18n !!"
   }

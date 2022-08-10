@@ -1,10 +1,10 @@
 <template>
-    <a href="" @click="previous" style="color:#4998DC"><b>Return</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
+    <a href="" @click="previous" style="color:#4998DC"><b>{{$t("invoice.invoicedetails.return")}}</b> <img src="../assets/back.png"  style="height: 20px;width: 20px;"></a>
 
 
         <Card  class="card" style=" margin-top: 0vw;">
             <template v-slot:title>
-                Invoice Details
+               {{$t("invoice.invoicedetails.detail")}}
             </template>
 
             <template v-slot:content>
@@ -12,7 +12,7 @@
                     <div class="col-md-3">
           <div class="row align-items-start">
                 <div class="col-md-4"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Invoice : </label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('invoice.invoice')}}: </label>
                     </div>
                      <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.invoicenum ? invoice.invoicenum : ' - '}}</b>
@@ -23,7 +23,7 @@
                 <div class="col-md-6">
                 <div class="row align-items-start">
                 <div class="col-md-3"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Description : </label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('invoice.description')}}: </label>
                     </div>
                      <div class="col-md-9"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.description ? invoice.description : '-'}}</b>
@@ -34,7 +34,7 @@
                 <div class="col-md-3">
                     <div class="row align-items-start">
                 <div class="col-md-4"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Status :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('invoice.status')}}:</label>
                     </div>
                      <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.status ? invoice.status : '-'}}</b>
@@ -47,7 +47,7 @@
                          <div class="col-md-3">
                             <div class="row align-items-start">
                 <div class="col-md-4"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Total Tax :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('invoice.totaltax')}}:</label>
                     </div>
                      <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.totaltax1 ? invoice.totaltax1 : '-'}}</b>
@@ -57,7 +57,7 @@
                 <div class="col-md-6">
                     <div class="row align-items-start">
                 <div class="col-md-3"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Currency :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('invoice.currency')}}:</label>
                     </div>
                      <div class="col-md-9"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.currencycode ? invoice.currencycode : '-'}}</b>
@@ -69,7 +69,7 @@
                 <div class="col-md-3">
                       <div class="row align-items-start">
                 <div class="col-md-5"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Total Cost :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('invoice.totalcost')}}:</label>
                     </div>
                      <div class="col-md-7"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.totalcost ? invoice.totalcost : '-'}}</b>
@@ -83,7 +83,7 @@
                        <div class="col-md-3">
                           <div class="row align-items-start">
                 <div class="col-md-4"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Enter By :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('invoice.enterBy')}}:</label>
                     </div>
                     <div class="col-md-8"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.enterby ? invoice.enterby : '-'}}</b>
@@ -93,7 +93,7 @@
                 <div class="col-md-6">
                     <div class="row align-items-start">
                 <div class="col-md-3"  style="margin:auto">
-                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">Enter Date :</label>
+                    <label for="class" style="font-size:100%;font-weight: bold;text-align: center;color:#3f2de1;">{{$t('invoice.enterdate')}}:</label>
                     </div>
                     <div class="col-md-9"  style="margin:auto">
                     <b style="margin-left:0.5vw">{{invoice.enterdate ? invoice.enterdate : '-'}}</b>
@@ -127,14 +127,13 @@
 					</div>
                 </template>
 
-
-                <Column field="invoicelinenum" header="Line" sortable/>
-                <Column field="itemnum" header="Item" sortable/>
-                <Column field="description" header="Description" sortable />
-                <Column field="unitcost" header="Unit Cost" sortable/>
-                <Column field="linecost" header="Line Cost" sortable/>
-                <Column field="qtyforui" header="Quantity" sortable/>
-                <Column field="invoiceunit" header="Unit" sortable/>
+                <Column field="invoicelinenum" :header="$t('invoice.invoicedetails.line')" sortable/>
+                <Column field="itemnum" :header="$t('invoice.invoicedetails.item')"  sortable/>
+                <Column field="description" :header="$t('invoice.invoicedetails.description')"  sortable />
+                <Column field="unitcost" :header="$t('invoice.invoicedetails.unitcost')"   sortable/>
+                <Column field="linecost" :header="$t('invoice.invoicedetails.linecost')"  sortable/>
+                <Column field="qtyforui" :header="$t('invoice.invoicedetails.qty')"   sortable/>
+                <Column field="invoiceunit" :header="$t('invoice.invoicedetails.unit')"  sortable/>
             </DataTable>
         </div>
 

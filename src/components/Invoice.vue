@@ -2,7 +2,7 @@
 	<div>
         <Toast />
         <div class="card" style="max-width: 96% ;margin: auto;margin-top: 1vw;margin-bottom: 7vw;">
-            <h5>Invoice List</h5>
+            <h5>{{$t("invoice.invoicelist")}}</h5>
             <DataTable :value="invoice" v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="9"  :rowsPerPageOptions="[9,20,50]"  :filters="filters" :loading="loading">
               
@@ -15,20 +15,20 @@
                         <i class="pi  pi-sync" style="font-size: 1.5rem;margin:auto;margin-right: 1vw;" @click="refresh" v-tooltip="'refresh'"></i>
 						<span class="p-input-icon-left" >
                             <i class="pi pi-search" />
-                            <InputText v-model="filters['global'].value" placeholder="Search..." style="height: 2vw;margin: auto;"/>
+                            <InputText v-model="filters['global'].value" :placeholder="$t('invoice.search')" style="height: 2vw;margin: auto;"/>
                         </span>
                         </tr>
 					</div>
                 </template>
 
-            <Column field="invoicenum" header="Invoice" sortable></Column>
-            <Column field="description" header="Description" sortable></Column>
-            <Column field="status" header="Status" sortable></Column>
-            <Column field="totalcost" header="Total Cost" sortable></Column>
-            <Column field="totaltax1" header="Total Tax" sortable></Column>
-            <Column field="currencycode" header="Currency" sortable></Column>
-            <Column field="enterby" header="Enter By" sortable></Column>
-            <Column field="enterdate" header="Enter Date" sortable></Column>
+            <Column field="invoicenum" :header="$t('invoice.invoice')" sortable></Column>
+            <Column field="description" :header="$t('invoice.description')" sortable></Column>
+            <Column field="status" :header="$t('invoice.status')" sortable></Column>
+            <Column field="totalcost" :header="$t('invoice.totalcost')" sortable></Column>
+            <Column field="totaltax1" :header="$t('invoice.totaltax')" sortable></Column>
+            <Column field="currencycode" :header="$t('invoice.currency')" sortable></Column>
+            <Column field="enterby" :header="$t('invoice.enterBy')" sortable></Column>
+            <Column field="enterdate" :header="$t('invoice.enterdate')" sortable></Column>
             </DataTable>
         </div>
 

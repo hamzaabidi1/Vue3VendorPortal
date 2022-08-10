@@ -1,3 +1,52 @@
 {
+
+    "login":{
+        "username": "nom utilisateur",
+        "password": "mot de passe",
+        "forgotpassword": "mot de passe oublié ?",
+        "login": "s'authentifier"
+    },
+    "app":{
+        "portal":"Portail des fournisseurs",
+        "signin": "Se connecter",
+        "signup": "S'inscrire",
+        "home": "Acceuil",
+        "logout": "Se déconnecter",
+        "vendorlist": "Liste des fournisseurs",
+        "vendorrequest": "Liste des demandes",
+        "rfq": "Les appels d'offre",
+        "po": "Les bons de commande",
+        "invoice": "Les factures d'achat",
+        "updateinfo": "Modifier mes informations",
+        "updatepass": "Modifier mon mot de passe"
+    },
+    "rfq":{
+        "rfqlist": "Liste des appels d'offre",
+        "rfq": "Appel d'offre",
+        "site": "Lieu",
+        "description": "Description",
+        "status": "Statut",
+        "requireddate": "Date Requise",
+        "purchaseagent": "Agent d'achat",
+        "search":"Recherche ...",
+        "rfqdetails":{
+            "detail":"Les details d'appel d'offre ",
+            "return":"Retour",
+            "attachment":"Piéces joint",
+            "line":"Ligne",
+            "item":"Article",
+            "description": "Description",
+            "qtyrequested": "Quantity Demandé",
+            "unit": "Unité",
+            "startdate": "Date de debut",
+            "enddate": "Date de fin",
+            "deliverydate": "Date de livraison",
+            "qty": "quantité",
+            "unitcost": "Prix d'unité",
+            "linecost": "Prix de Ligne"
+            
+
+        }
+    },
     "message": "bienvenue !!"
   }

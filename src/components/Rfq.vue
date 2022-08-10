@@ -2,24 +2,24 @@
 	<div>
         <Toast />
         <div class="card" style="max-width: 96% ;margin: auto;margin-top: 1vw;margin-bottom: 7vw;">
-            <h5>RFQ List</h5>
+            <h5>{{$t("rfq.rfqlist")}}</h5>
             <DataTable :value="rfq"  v-model:selection="selectedProduct2" selectionMode="single" dataKey="id"
                 @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" responsiveLayout="scroll" :paginator="true" :rows="9"  :rowsPerPageOptions="[9,20,50]" :filters="filters" :loading="loading">
           <template #header>
                     <div class="table-header flex flex-column md:flex-row md:justiify-content-between" >
 						<span class="p-input-icon-left" >
                             <i class="pi pi-search" />
-                            <InputText v-model="filters['global'].value" placeholder="Search..." style="height: 2vw;margin: auto;"/>
+                            <InputText v-model="filters['global'].value" :placeholder="$t('rfq.search')" style="height: 2vw;margin: auto;"/>
                         </span>
 					</div>
                 </template>
 
-            <Column field="rfqnum" header="RFQ" sortable></Column>
-            <Column field="siteid" header="Site" sortable></Column>
-            <Column field="description" header="Description" sortable></Column>
-            <Column field="status" header="Status" sortable></Column>
-            <Column field="requireddate" header="Require date" sortable></Column>
-            <Column field="purchaseagent" header="Purchase Agent" sortable></Column>
+            <Column field="rfqnum" :header="$t('rfq.rfq')" sortable></Column>
+            <Column field="siteid" :header="$t('rfq.site')" sortable></Column>
+            <Column field="description" :header="$t('rfq.description')" sortable></Column>
+            <Column field="status" :header="$t('rfq.status')" sortable></Column>
+            <Column field="requireddate" :header="$t('rfq.requireddate')" sortable></Column>
+            <Column field="purchaseagent" :header="$t('rfq.purchaseagent')" sortable></Column>
             </DataTable>
         </div>
 

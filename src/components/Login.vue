@@ -14,12 +14,12 @@
       />
       <Form @submit="handleLogin" :validation-schema="schema">
         <div class="form-group">
-          <label for="username"><strong>Username</strong></label>
+          <label for="username"><strong>{{$t("login.username")}}</strong></label>
           <Field name="username" type="text" class="form-control" />
           <ErrorMessage name="username" class="error-feedback" />
         </div>
         <div class="form-group">
-          <label for="password"><strong>Password</strong></label>
+          <label for="password"><strong>{{$t("login.password")}}</strong></label>
           <Field name="password"  type="password" class="form-control"/>
           <ErrorMessage name="password" class="error-feedback" /> 
         </div>
@@ -39,7 +39,7 @@ transform:scale(0.88);-webkit-transform-origin:0 0;transform-origin:0 0;" />
               v-show="loading"
               class="spinner-border spinner-border-sm"
             ></span>
-            <span>Login</span>
+            <span>{{$t("login.login")}}</span>
           </button>
         </div>
 
@@ -48,7 +48,7 @@ transform:scale(0.88);-webkit-transform-origin:0 0;transform-origin:0 0;" />
             {{ message }}
           </div>
         </div>
-        <a href="/ForgotPassword">Forgot Password?</a>
+        <a href="/ForgotPassword">{{$t("login.forgotpassword")}}</a>
       </Form>
     </div>
     
