@@ -1,4 +1,6 @@
 <template>
+ 
+<div>{{$t("message")}}</div>
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <div v-if="currentUser">
@@ -41,12 +43,19 @@
             <router-link to="" @click.prevent="changepassword" v-tooltip="'click to change password'"
               class="navbar-brand" style="color:white;">Change Password</router-link>
           </li>
+        
+          <li v-if="showFournisseurBoard">
+          <LocaleSwitcher />
+          </li>
+        
 
-          <li v-if="showAdminBoard">
+          <li v-if="showAdminBoard" >
             <router-link to="" @click.prevent="showrequestsUpdate"
               v-tooltip="'click to show list of requests to change information account'" class="navbar-brand"
               style="color:white;">Update Profile Requests</router-link>
           </li>
+
+        
          
         </Sidebar>
         <i class="pi pi-bars navbar-brand" @click="visibleLeft = true"></i>
@@ -476,6 +485,7 @@ import Checkbox from 'primevue/checkbox';
 import InputNumber from 'primevue/inputnumber';
 import Calendar from 'primevue/calendar';
 import Divider from 'primevue/divider';
+import LocaleSwitcher from "./components/LocaleSwitcher.vue";
 import * as yup from "yup";
 export default {
   components: {
@@ -489,7 +499,8 @@ export default {
     Checkbox,
     InputNumber,
     Calendar,
-    Divider
+    Divider,
+    LocaleSwitcher
 
   },
 
@@ -546,6 +557,7 @@ export default {
   },
   
    mounted() {
+    console.log(this.$i18n.locale)
 
     if(localStorage.user){
       let jsonobject = localStorage.user

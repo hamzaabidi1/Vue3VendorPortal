@@ -102,6 +102,7 @@ export default {
   },
   computed: {
     loggedIn() {
+
       return this.$store.state.auth.status.loggedIn;
     },
   },
@@ -153,24 +154,31 @@ export default {
         () => {
       let jsonobject= localStorage.user;
       let monobjet = JSON.parse(jsonobject)
+      console.log(monobjet.langue)
+      this.$i18n.locale=monobjet.langue;
+      
+      
       if (monobjet.roles == "ROLE_ADMIN")
       {
        window.location.href = "/";
       }
       else{
           if (monobjet.status == "Draft") {
-            window.location.href = "/register";
+           // window.location.href = "/register";
+            location.replace('/register')
           }
           else if (monobjet.status == "Submitted") {
-
-         window.location.href = "/submitted";
+                location.replace('/submitted')
+         //window.location.href = "/submitted";
 
           }
           else if (monobjet.status == "InProgress"){
-          window.location.href = "/";
+            location.replace('/')
+         // window.location.href = "/";
           }
           else{
-          window.location.href = "/";
+            location.replace('/')
+         // window.location.href = "/";
 
           }
       }

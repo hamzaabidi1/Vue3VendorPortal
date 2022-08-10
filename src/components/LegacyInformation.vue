@@ -9,8 +9,11 @@
                 Enter your legacy information
             </template>
             <template v-slot:content>
+                <div class="field">
+                        <label for="companywebsite">Company Web Site</label>
+                         </div>
                 <div class="p-fluid formgrid grid">
-                   
+                   <Dropdown v-model="langue" :options="langues" optionLabel="name" optionValue="code" placeholder="Select a Langue" />
                    <div class="field">
                         <label for="companywebsite">Company Web Site</label>
                         <InputText id="companywebsite" v-model="companywebsite" :class="{'p-invalid': validationErrors.companywebsite && submitted}" />
@@ -51,6 +54,11 @@ export default {
     data () {
         return {
            companywebsite: '',
+           langue: null,
+		langues: [
+			{name: 'Francais', code: 'fr'},
+			{name: 'Englais', code: 'en'},
+		],
             submitted: false,
             validationErrors: {}
         }
@@ -59,7 +67,7 @@ export default {
         nextPage() {
             this.submitted = true;
             if (this.validateForm() ) {
-            this.$emit('next-page', {formData: {companywebsite: this.companywebsite}, pageIndex: 3 });
+            this.$emit('next-page', {formData: {companywebsite: this.companywebsite,langue:this.langue}, pageIndex: 3 });
             }
         },
         prevPage() {

@@ -123,6 +123,7 @@ export default {
     },
      mounted() {
     this.rec=true
+    console.log(this.formData)
      
     },
     methods: {
