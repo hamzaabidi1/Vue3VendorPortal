@@ -214,5 +214,75 @@
         }
 
     },
+     "requests":{
+        "requestslist":"Requests Update Profile",
+        "search":"Search ...",
+        "name":"Name",
+        "phone":"Phone",
+        "address":"Address",
+        "country":"Country",
+        "city":"City",
+        "postalcode":"Postal Code",
+        "confirm":"Confirm",
+        "yes":"Yes",
+        "no":"No",
+       
+        
+        "edit":{
+            "userdetails":"User Details",
+            "save":"Save",
+            "cancel":"Cancel"
+
+        },
+
+        "details":{
+        "requestsdetail": "Requests Details",
+        "generalinformation": "General Informations",
+        "addressinformation": "Address Informations",
+        "legacyinformation": "Legacy Informations",
+        "fiscalinformation": "Fiscal Informations",
+
+
+        "name":"Name",
+        "oldname":"Old Name",
+        "subname":"SubName",
+        "oldsubname":"Old SubName",
+        "phone":"Phone",
+        "oldphone":"Old Phone",
+
+        "country":"Country",
+        "oldcountry":"Old Country",
+        "city":"City",
+        "oldcity":"Old City",
+        "address":"Address",
+        "oldaddress":"Old Address",
+        "state":"State / Region",
+        "oldstate":"Old State / Region",
+        "postalcode":"Postal Code",
+        "oldpostalcode":"Old Postal Code",
+
+
+        "revenu":"Revenu",
+        "oldrevenu":"Old Revenu",
+        "dateestablished":"Date Established",
+        "olddateestablished":"Old Date Established",
+        "registration":"Tax Registration Number",
+        "oldregistration":"Old Tax Registration Number",
+        "classification":"Tax Classification Code",
+        "oldclassification":"Old Tax Classification Code",
+
+        "website":"Company Web Site",
+        "oldwebsite":"Old Company Web Site",
+        
+        "delete":"Delete",
+
+        "confirm":"Confirm",
+        "yes":"Yes",
+        "no":"No"
+
+
+        }
+
+    },
     "message": "hello i18n !!"
   }

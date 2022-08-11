@@ -7,19 +7,19 @@
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} vendors" responsiveLayout="scroll">
                 <template #header>
                     <div class="table-header flex flex-column md:flex-row md:justiify-content-between">
-						<h5 class="mb-2 md:m-0 p-as-md-center">Requests Update Profile</h5>
+						<h5 class="mb-2 md:m-0 p-as-md-center">{{$t("requests.requestslist")}}</h5>
 						<span class="p-input-icon-left">
                             <i class="pi pi-search" />
-                            <InputText v-model="filters['global'].value" placeholder="Search..." />
+                            <InputText v-model="filters['global'].value" :placeholder="$t('requests.search')" />
                         </span>
 					</div>
                 </template> 
-                <Column field="firstname" header="Name" :sortable="true" style="max-width:8rem"></Column>
-                <Column field="phone" header="Phone" :sortable="true" style="max-width:8rem"></Column>
-                <Column field="address" header="Address" :sortable="true" style="max-width:10rem"></Column>
-                <Column field="country" header="Country" :sortable="true" style="max-width:8rem"></Column>
-                <Column field="city" header="City" :sortable="true" style="max-width:8rem"></Column>
-                <Column field="postalcode" header="Postal Code" :sortable="true" style="max-width:8rem"></Column>
+                <Column field="firstname" :header="$t('requests.name')" :sortable="true" style="max-width:8rem"></Column>
+                <Column field="phone" :header="$t('requests.phone')" :sortable="true" style="max-width:8rem"></Column>
+                <Column field="address" :header="$t('requests.address')" :sortable="true" style="max-width:10rem"></Column>
+                <Column field="country" :header="$t('requests.country')" :sortable="true" style="max-width:8rem"></Column>
+                <Column field="city" :header="$t('requests.city')" :sortable="true" style="max-width:8rem"></Column>
+                <Column field="postalcode" :header="$t('requests.postalcode')" :sortable="true" style="max-width:8rem"></Column>
                 <Column :exportable="false" style="min-width:8rem">
                     <template #body="slotProps">
                         <Button icon="pi pi-bookmark" class="p-button-rounded p-button-secondary  mr-2" @click="userdetails(slotProps.data)"  v-tooltip="'More Details'" />
@@ -31,31 +31,31 @@
         </div>
 
 
-        <Dialog v-model:visible="deleteProductDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
+        <Dialog v-model:visible="deleteProductDialog" :style="{width: '450px'}" :header="$t('requests.confirm')" :modal="true">
             <div class="confirmation-content">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
                 <span v-if="user">Are you sure you want to delete <b>{{user.firstname}}</b>?</span>
             </div>
             <template #footer>
-                <Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteProductDialog = false"/>
-                <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteProduct" />
+                <Button :label="$t('requests.no')" icon="pi pi-times" class="p-button-text" @click="deleteProductDialog = false"/>
+                <Button :label="$t('requests.yes')" icon="pi pi-check" class="p-button-text" @click="deleteProduct" />
             </template>
         </Dialog>
 
-        <Dialog v-model:visible="confirmProductDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
+        <Dialog v-model:visible="confirmProductDialog" :style="{width: '450px'}" :header="$t('requests.confirm')" :modal="true">
             <div class="confirmation-content">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
                 <span v-if="user">Are you sure you want to confirm <b>{{user.firstname}}</b>?</span>
             </div>
             <template #footer>
-                <Button label="No" icon="pi pi-times" class="p-button-text" @click="confirmProductDialog = false"/>
-                <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="confirmstatusProduct" />
+                <Button :label="$t('requests.no')" icon="pi pi-times" class="p-button-text" @click="confirmProductDialog = false"/>
+                <Button :label="$t('requests.yes')" icon="pi pi-check" class="p-button-text" @click="confirmstatusProduct" />
             </template>
         </Dialog>
 
 
          <Dialog  :maximizable="true" v-model:visible="vendordetailsDialog" :dismissableMask="true" :breakpoints="{ '960px': '75vw' }"
-        :style="{ width: '90vw' }" header="Requests Details">
+        :style="{ width: '90vw' }" :header="$t('requests.details.requestsdetail')">
 
 
 
@@ -65,24 +65,24 @@
           <div class="row align-items-start">
             <div class=col-md-6>
               <div class="card" style="margin:auto;width: 99%;height: 35vw;">
-                <h5 class="text-center" style="margin-top:1vw;"><strong>General Informations</strong></h5>
+                <h5 class="text-center" style="margin-top:1vw;"><strong>{{$t('requests.details.generalinformation')}}</strong></h5>
                 <div class="p-fluid">
 
 
-                  <label for="firstname" style="width: 90%;margin-left:2vw;"><strong>Name</strong></label>
+                  <label for="firstname" style="width: 90%;margin-left:2vw;"><strong>{{$t('requests.details.name')}}</strong></label>
                   <InputText style="width: 90%;margin-left:2vw;" id="firstname" v-model="posts.firstname" disabled  />
-                  <p style="width: 90%;margin-left:2vw;color:#3f2de1;">Old Name : {{old.firstname}}</p>
+                  <p style="width: 90%;margin-left:2vw;color:#3f2de1;">{{$t('requests.details.oldname')}}: {{old.firstname}}</p>
                  
 
-                  <label for="lastname" style="width: 90%;margin-left:2vw;"><strong>SubName</strong></label>
+                  <label for="lastname" style="width: 90%;margin-left:2vw;"><strong>{{$t('requests.details.subname')}}</strong></label>
                   <InputText style="width: 90%;margin-left:2vw;" id="lastname" v-model="posts.lastname" disabled  />
-                  <p style="width: 90%;margin-left:2vw;color:#3f2de1;">Old SubName : {{old.lastname}}</p>
+                  <p style="width: 90%;margin-left:2vw;color:#3f2de1;">{{$t('requests.details.oldsubname')}}: {{old.lastname}}</p>
                  
 
 
-                  <label style="width: 90%;margin-left:2vw;" for="phone"><strong>Phone</strong></label>
+                  <label style="width: 90%;margin-left:2vw;" for="phone"><strong>{{$t('requests.details.phone')}}</strong></label>
                   <InputNumber style="width: 90%;margin-left:2vw;" id="phone" v-model="posts.phone" disabled  />
-                  <p style="width: 90%;margin-left:2vw;color:#3f2de1;">Old Phone : {{old.phone}}</p>
+                  <p style="width: 90%;margin-left:2vw;color:#3f2de1;">{{$t('requests.details.oldphone')}}: {{old.phone}}</p>
                  
 
                 </div>
@@ -93,50 +93,50 @@
 
             <div class=col-md-6>
               <div class="card" style="margin:auto;width: 99%;height: 35vw;">
-                <h5 class="text-center" style="margin-top:1vw;"><strong>Address Informations</strong></h5>
+                <h5 class="text-center" style="margin-top:1vw;"><strong>{{$t('requests.details.addressinformation')}}</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
 
                     <div class=col-md-6>
                       <div class="field">
-                        <label for="country" style="width: 90%;margin-left:2vw;"><strong>Country</strong></label>
+                        <label for="country" style="width: 90%;margin-left:2vw;"><strong>{{$t('requests.details.country')}}</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="country" v-model="posts.country" disabled  />
-                        <p style="width: 90%;margin-left:2vw;color: #3f2de1;">Old Country : {{old.country}}</p>
+                        <p style="width: 90%;margin-left:2vw;color: #3f2de1;">{{$t('requests.details.oldcountry')}}: {{old.country}}</p>
                        
                       </div>
                     </div>
 
                     <div class=col-md-6>
                       <div class="field">
-                        <label for="region" style="width: 90%;margin-right:2vw;"><strong>State / Region</strong></label>
+                        <label for="region" style="width: 90%;margin-right:2vw;"><strong>{{$t('requests.details.state')}}</strong></label>
                         <InputText style="width: 90%;margin-right:2vw;" id="region" v-model="posts.region" disabled  />
-                        <p style="width: 90%;color:#3f2de1;">Old State / Region : {{old.region}}</p>
+                        <p style="width: 90%;color:#3f2de1;">{{$t('requests.details.oldstate')}}: {{old.region}}</p>
                       </div>
                     </div>
                   </div>
                   <div class=row>
                     <div class=col-md-6>
                       <div class="field">
-                        <label style="width: 90%;margin-left:2vw;" for="city"><strong>City</strong></label>
+                        <label style="width: 90%;margin-left:2vw;" for="city"><strong>{{$t('requests.details.city')}}</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="city" v-model="posts.city"  disabled />
-                        <p style="width: 90%;margin-left:2vw;color: #3f2de1;">Old City : {{old.city}}</p>
+                        <p style="width: 90%;margin-left:2vw;color: #3f2de1;">{{$t('requests.details.oldcity')}}: {{old.city}}</p>
                       </div>
                     </div>
 
                     <div class=col-md-6>
                       <div class="field">
-                        <label style="width: 90%;margin-right:2vw;" for="postalcode"><strong>Postal Code</strong></label>
+                        <label style="width: 90%;margin-right:2vw;" for="postalcode"><strong>{{$t('requests.details.postalcode')}}</strong></label>
                         <InputText style="width: 90%;margin-right:2vw;" id="postalcode" v-model="posts.postalcode" disabled />  
-                        <p style="width: 90%;color:#3f2de1;">Old Postal Code : {{old.postalcode}}</p>
+                        <p style="width: 90%;color:#3f2de1;">{{$t('requests.details.oldpostalcode')}}: {{old.postalcode}}</p>
                       </div>
                     </div>
                   </div>
                   <div class=row>
 
                     <div class=col-md-12>
-                      <label style="width: 90%;margin-left:2vw;" for="address"><strong>Address</strong></label>
+                      <label style="width: 90%;margin-left:2vw;" for="address"><strong>{{$t('requests.details.address')}}</strong></label>
                       <InputText style="width: 90%;margin-left:2vw;" id="address" v-model="posts.address" disabled />
-                      <p style="width: 90%;margin-left:2vw;color:#3f2de1;">Old Address : {{old.address}}</p>
+                      <p style="width: 90%;margin-left:2vw;color:#3f2de1;">{{$t('requests.details.oldaddress')}}: {{old.address}}</p>
                       
                     </div>
                   </div>
@@ -153,26 +153,26 @@
 
             <div class=col-md-6>
               <div class="card" style="margin:auto;margin-top: 1vw;width: 99%;height: 28vw;">
-                <h5 class="text-center" style="margin-top:1vw;"><strong>Fiscal Informations</strong></h5>
+                <h5 class="text-center" style="margin-top:1vw;"><strong>{{$t('requests.details.fiscalinformation')}}</strong></h5>
 
                 <div class="p-fluid">
                   <div class=row>
                     <div class=col-md-6>
                       <div class="field">
-                        <label style="width: 90%;margin-left:2vw;" for="taxregistrationnumber"><strong>Tax Registration Number</strong></label>
+                        <label style="width: 90%;margin-left:2vw;" for="taxregistrationnumber"><strong>{{$t('requests.details.registration')}}</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="taxregistrationnumber"
                           v-model="posts.taxregistrationnumber" disabled />
-                          <p style="width: 90%;margin-left:2vw;color:#3f2de1;">Old Tax Registration Number : {{old.taxregistrationnumber}}</p>
+                          <p style="width: 90%;margin-left:2vw;color:#3f2de1;">{{$t('requests.details.oldregistration')}}: {{old.taxregistrationnumber}}</p>
                       
                       </div>
                     </div>
 
                     <div class=col-md-6>
                       <div class="field">
-                        <label style="width: 90%;margin-right:2vw;" for="taxclassificationcode"><strong>Tax Classification Code</strong></label>
+                        <label style="width: 90%;margin-right:2vw;" for="taxclassificationcode"><strong>{{$t('requests.details.classification')}}</strong></label>
                         <InputText style="width: 90%;margin-right:2vw;" id="taxclassificationcode"
                           v-model="posts.taxclassificationcode" disabled  />
-                          <p style="width: 90%;color:#3f2de1;">Old Tax Classification Code : {{old.taxclassificationcode}}</p>
+                          <p style="width: 90%;color:#3f2de1;">{{$t('requests.details.oldclassification')}}: {{old.taxclassificationcode}}</p>
                  
                       </div>
                     </div>
@@ -182,19 +182,19 @@
                     <div class=col-md-6>
 
                       <div class="field">
-                        <label style="width: 90%;margin-left:2vw;" for="revenu"><strong>Revenu</strong></label>
+                        <label style="width: 90%;margin-left:2vw;" for="revenu"><strong>{{$t('requests.details.revenu')}}</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="revenu"
                           v-model="posts.revenu" disabled   />
-                          <p style="width: 90%;margin-left:2vw;color: #3f2de1;">Old Revenu : {{old.revenu}}</p>
+                          <p style="width: 90%;margin-left:2vw;color: #3f2de1;">{{$t('requests.details.oldrevenu')}}: {{old.revenu}}</p>
                       </div>
                     </div>
 
                     <div class=col-md-6>
                       <div class="field">
-                        <label style="width: 90%;margin-right:2vw;" for="dateEstablished"><strong>Date Established</strong></label>
+                        <label style="width: 90%;margin-right:2vw;" for="dateEstablished"><strong>{{$t('requests.details.dateestablished')}}</strong></label>
                         <Calendar style="width: 90%;margin-right:2vw;" id="dateEstablished"
                           v-model="posts.dateEstablished" :showIcon="true" disabled  />
-                          <p style="width: 90%;color: #3f2de1;">Old Date Established : {{old.dateEstablished}}</p>
+                          <p style="width: 90%;color: #3f2de1;">{{$t('requests.details.olddateestablished')}}: {{old.dateEstablished}}</p>
                       </div>
                     </div>
                   </div>
@@ -205,15 +205,15 @@
 
             <div class=col-md-6>
               <div class="card" style="margin:auto;margin-top: 1vw;width: 99%;height: 28vw;">
-                <h5 class="text-center" style="margin-top:1vw;margin-bottom: 2vw;"><strong>Legacy Informations</strong></h5>
+                <h5 class="text-center" style="margin-top:1vw;margin-bottom: 2vw;"><strong>{{$t('requests.details.legacyinformation')}}</strong></h5>
                 <div class="p-fluid">
                   <div class=row>
                     <div class=col-md-12>
                       <div class="field">
-                        <label style="width: 90%;margin-left:2vw;" for="companywebsite"><strong>Company Web Site</strong></label>
+                        <label style="width: 90%;margin-left:2vw;" for="companywebsite"><strong>{{$t('requests.details.website')}}</strong></label>
                         <InputText style="width: 90%;margin-left:2vw;" id="companywebsite"
                           v-model="posts.companywebsite" disabled />
-                          <p style="width: 90%;color:#3f2de1;margin-bottom:2vw;margin-left: 2vw;">Old Company Web Site : {{old.companywebsite}}</p>
+                          <p style="width: 90%;color:#3f2de1;margin-bottom:2vw;margin-left: 2vw;">{{$t('requests.details.oldwebsite')}}: {{old.companywebsite}}</p>
                           
                     
                       </div>
@@ -223,8 +223,8 @@
                   <div class=row>
                     <div class=col-md-12 style="margin-bottom: 3vw;margin-top: 4vw;">
                 
-                   <Button label="Confirm" icon="pi pi-check" class="p-button-success mr-4"  @click="confirmProduct(posts)" style="float:right;max-width: 9vw;" />
-                        <Button label="Delete" icon="pi pi-trash" class="p-button-danger mr-2"  @click="confirmDeleteProduct(posts)" style="float:right;max-width: 9vw;"/>
+                   <Button :label="$t('requests.details.confirm')" icon="pi pi-check" class="p-button-success mr-4"  @click="confirmProduct(posts)" style="float:right;max-width: 9vw;" />
+                        <Button :label="$t('requests.details.delete')" icon="pi pi-trash" class="p-button-danger mr-2"  @click="confirmDeleteProduct(posts)" style="float:right;max-width: 9vw;"/>
                 
                     </div>
                   </div>
