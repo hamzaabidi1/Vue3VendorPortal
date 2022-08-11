@@ -8,14 +8,14 @@
         class="profile-img-card"/>
      
            <div >
-                        <label for="username"><strong>Username</strong></label>
+                        <label for="username"><strong>{{$t("signup.username")}}</strong></label>
                     <Field name="username" class="form-control" id="username" v-model="res.username" :class="{'p-invalid': validationErrors.username && submitted}" />    
                      <small v-show="validationErrors.username && submitted" class="p-error">Username is required.</small>
                      <small v-show="validationErrors.usernamelength && submitted" class="p-error">Maximum length of username is 12 caracter.</small>
                     </div>
 
                     <div>
-                    <label for="password"><strong>Password</strong></label>
+                    <label for="password"><strong>{{$t("signup.password")}}</strong></label>
                     <Password name="password" toggleMask v-on:change="verif"  v-model="res.password" id="password" :class="{'p-invalid': validationErrors.password && submitted}" />  
                    <div id="container" ></div>
                    <small v-show="validationErrors.password && submitted" class="p-error">password is required.</small>
@@ -23,12 +23,12 @@
 
 
                  <div class="form-group ">
-                    <label for="confirmPassword"><strong>Confirm Password</strong></label>
+                    <label for="confirmPassword"><strong>{{$t("signup.confirmpassword")}}</strong></label>
                     <Password  toggleMask name="confirmPassword"  v-model="confirmPassword" id="confirmPassword" :class="{'p-invalid': validationErrors.confirmPassword && submitted}" />  
                     <small v-show="validationErrors.confirmPassword && submitted" class="p-error">Confirm password is required.</small>
                 </div>
         <div class="form-group">
-          <Button class="btn btn-primary btn-block" label="SignUp" @click="signup()"  />
+          <Button class="btn btn-primary btn-block" :label="$t('signup.signup')" @click="signup()"  />
         </div>
         <div class="form-group">
           <div v-if="message" class="alert alert-success" role="alert">

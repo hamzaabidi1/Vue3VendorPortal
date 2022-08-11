@@ -1,6 +1,4 @@
 <template>
- 
-<div>{{$t("message")}}</div>
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <div v-if="currentUser">
@@ -558,11 +556,12 @@ export default {
   },
   
    mounted() {
-    console.log(this.$i18n.locale)
-
     if(localStorage.user){
       let jsonobject = localStorage.user
       let monobjet = JSON.parse(jsonobject)
+      onsole.log(monobjet.langue)
+      this.$i18n.locale=monobjet.langue;
+      console.log(this.$i18n.locale)
       if(monobjet.roles == 'ROLE_ADMIN'){
       this.AdminService.getNumberOfRequest().then(data => this.number = data);
       }

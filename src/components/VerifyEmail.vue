@@ -9,7 +9,7 @@
       <Form @submit="handleVerifyEmail" :validation-schema="schema">
           <div v-if="!successful">
         <div class="form-group">
-          <label for="email"><strong>Email</strong></label>
+          <label for="email"><strong>{{$t("verifyemail.email")}}</strong></label>
           <Field id="email" name="email" type="text" class="form-control"/>
           <ErrorMessage name="email" class="error-feedback" />
         </div>
@@ -20,7 +20,7 @@
               v-show="loading"
               class="spinner-border spinner-border-sm"
             ></span>
-            <span>Verify Email</span>
+            <span>{{$t("verifyemail.verifyemail")}}</span>
           </button>
         </div>
         </div>

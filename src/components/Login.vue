@@ -48,7 +48,15 @@ transform:scale(0.88);-webkit-transform-origin:0 0;transform-origin:0 0;" />
             {{ message }}
           </div>
         </div>
+        <div class="row align-items-start">
+          <div class="col-md-8" >
         <a href="/ForgotPassword">{{$t("login.forgotpassword")}}</a>
+        </div>
+        <div class="col-md-4" >
+        <LocaleSwitcher style="width:90%"/>
+        </div>
+        </div>
+
       </Form>
     </div>
     
@@ -69,6 +77,7 @@ import Button from 'primevue/button';
 import Password from 'primevue/password';
 import Recaptcha from './Recaptcha.vue'
 import { VueRecaptcha } from 'vue-recaptcha';
+import LocaleSwitcher from "./LocaleSwitcher.vue";
 
 
 
@@ -82,7 +91,8 @@ export default {
     Button,
     Recaptcha,
     VueRecaptcha,
-    loading
+    loading,
+    LocaleSwitcher
   },
   data() {
     const schema = yup.object().shape({

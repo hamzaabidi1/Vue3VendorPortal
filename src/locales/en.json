@@ -284,5 +284,18 @@
         }
 
     },
+    "verifyemail":{
+        "email":"Email",
+        "verifyemail":"Verify Email"
+
+
+    },
+    "signup":{
+        "username": "Username",
+        "password": "Password",
+        "confirmpassword": "Confirm Password",
+        "signup": "SignUp"
+    }
+,
     "message": "hello i18n !!"
   }
