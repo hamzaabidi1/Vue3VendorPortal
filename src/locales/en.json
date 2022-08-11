@@ -157,6 +157,9 @@
     },
 
     "adminpage":{
+        "msg1":"Are you sure you want to delete",
+        "msg2":"Are you sure you want to confirm",
+        "msg3":"Are you sure you want to delete the selected vendors?",
         "vendorlist":"Vendors List",
         "search":"Search ...",
         "status":"Status",
@@ -378,7 +381,7 @@
 },
 "submittedpage":{
 
-    
+
     "title1":"Welcome To Vendor Portal",
     "title2":"your application for registration on the portal is being processed",
     "info":"we will inform you by email when the request has been processed",
@@ -399,6 +402,33 @@
 
 
 
+},
+
+"demandeencourspage":{
+
+    "title1":"your application for registration on the portal is being processed",
+    "title2":"we will inform you by email when the request has been processed"
+},
+
+"forgotpassword":{
+
+    "email":"E-mail",
+    "confirm":"Confirm"
+},
+
+"home":{
+
+    "title1":"Welcome To the Vendor Portal",
+    "tiltle2":"Better user experience and confidentiality"
+}
+
+,
+
+"confirmpasswordpage":{
+
+    "password":"Password",
+    "confirmpassword":"Confirm Password",
+    "confirm":"Confirm"
 }
     
   }

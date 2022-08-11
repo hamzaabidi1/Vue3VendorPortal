@@ -78,7 +78,7 @@
         <Dialog v-model:visible="deleteProductDialog" :style="{width: '450px'}" :header="$t('adminpage.details.confirm')" :modal="true">
             <div class="confirmation-content">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-                <span v-if="user">Are you sure you want to delete <b>{{user.firstname}}</b>?</span>
+                <span v-if="user">{{$t('adminpage.msg1')}} <b>{{user.firstname}}</b>?</span>
             </div>
             <template #footer>
                 <Button :label="$t('adminpage.details.no')" icon="pi pi-times" class="p-button-text" @click="deleteProductDialog = false"/>
@@ -89,7 +89,7 @@
         <Dialog v-model:visible="confirmProductDialog" :style="{width: '450px'}" :header="$t('adminpage.details.confirm')" :modal="true">
             <div class="confirmation-content">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-                <span v-if="user">Are you sure you want to confirm <b>{{user.firstname}}</b>?</span>
+                <span v-if="user">{{$t('adminpage.msg2')}} <b>{{user.firstname}}</b>?</span>
             </div>
             <template #footer>
                 <Button :label="$t('adminpage.details.no')" icon="pi pi-times" class="p-button-text" @click="confirmProductDialog = false"/>
@@ -100,7 +100,7 @@
         <Dialog v-model:visible="deleteProductsDialog" :style="{width: '450px'}" header="$t('adminpage.details.confirm')" :modal="true">
             <div class="confirmation-content">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-                <span v-if="user">Are you sure you want to delete the selected vendors?</span>
+                <span v-if="user">{{$t('adminpage.msg3')}}</span>
             </div>
             <template #footer>
                 <Button :label="$t('adminpage.details.no')" icon="pi pi-times" class="p-button-text" @click="deleteProductsDialog = false"/>

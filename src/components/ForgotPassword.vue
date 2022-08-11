@@ -8,7 +8,7 @@
       />
       <Form @submit="handleForgotPassword" :validation-schema="schema">
       <div class="form-group" style="margin-bottom: 2vw;">
-            <label for="email"><strong>Email</strong></label>
+            <label for="email"><strong>{{$t('forgotpassword.email')}}</strong></label>
             <Field name="email" type="email" class="form-control" />
             <ErrorMessage name="email" class="error-feedback" />
           </div>
@@ -19,7 +19,7 @@
               v-show="loading"
               class="spinner-border spinner-border-sm"
             ></span>
-            <span>Confirm</span>
+            <span>{{$t('forgotpassword.confirm')}}</span>
           </button>
         </div>
 
