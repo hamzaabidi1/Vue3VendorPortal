@@ -1,52 +1,463 @@
 {
-
     "login":{
-        "username": "nom utilisateur",
-        "password": "mot de passe",
-        "forgotpassword": "mot de passe oublié ?",
-        "login": "s'authentifier"
+        "username": "Nom d'utilisateur",
+        "password": "Mot de passe",
+        "forgotpassword": "Mot de passe oublié ?",
+        "login": "Connexion"
     },
     "app":{
-        "portal":"Portail des fournisseurs",
+        "password": "Mot de passe",
+        "confirmpassword": "Confirmer le mot de passe",
+        "confirm": "Confirmer",
+        "portal":"Portail Fournisseur",
         "signin": "Se connecter",
-        "signup": "S'inscrire",
-        "home": "Acceuil",
-        "logout": "Se déconnecter",
-        "vendorlist": "Liste des fournisseurs",
-        "vendorrequest": "Liste des demandes",
-        "rfq": "Les appels d'offre",
-        "po": "Les bons de commande",
-        "invoice": "Les factures d'achat",
-        "updateinfo": "Modifier mes informations",
-        "updatepass": "Modifier mon mot de passe"
+        "signup": "Inscrivez-vous",
+        "home": "Page d'accueil",
+        "logout": "Se deconnecter",
+        "vendorlist": " liste des fournisseurs",
+        "vendorrequest": "Mise à jour du profil",
+        "rfq": "Demande de devis",
+        "po": "Bons de commande",
+        "invoice": "Factures",
+        "updateinfo": "Modifier les informations",
+        "updatepass": "Changer le mot de passe",
+        "updateinfodialog": "Mettre à jour les informations",
+        "generalinformation": "Informations générales",
+        "addressinformation": "Informations d'adresse",
+        "legacyinformation": " Informations sur la législation",
+        "fiscalinformation": "Informations fiscales",
+
+
+        "name":"Nom",
+        "subname":"Prénom",
+        "phone":"Téléphone",
+
+        "country":"Pays",
+        "city":"Ville",
+        "address":"Adresse",
+        "state":"État / Région",
+        "postalcode":"code postal",
+
+
+        "revenu":"Revenu",
+        "dateestablished":"Date établie",
+        "registration":"Numéro d'enregistrement fiscal",
+        "classification":"Code de classification fiscale",
+
+        "website":"Site Web de l'entreprise",
+        
+        "read":"J'accepte les termes et conditions*",
+
+        "terms":"lire les termes"
+
+
+        
     },
+    
     "rfq":{
-        "rfqlist": "Liste des appels d'offre",
-        "rfq": "Appel d'offre",
-        "site": "Lieu",
+        "submit":"Envoyer",
+        "rfqlist": "Liste de DD",
+        "rfq": "DD",
+        "site": "Site",
         "description": "Description",
         "status": "Statut",
-        "requireddate": "Date Requise",
-        "purchaseagent": "Agent d'achat",
-        "search":"Recherche ...",
+        "requireddate": "Date requise",
+        "purchaseagent": "Acheteur",
+        "search":"Recherche...",
         "rfqdetails":{
-            "detail":"Les details d'appel d'offre ",
-            "return":"Retour",
-            "attachment":"Piéces joint",
+            "rfqlinelist":"Liste des lignes de DD",
+            "detail":"Détails de DD",
+            "return":"Retourner",
+            "attachment":"Pièces jointes",
             "line":"Ligne",
             "item":"Article",
             "description": "Description",
-            "qtyrequested": "Quantity Demandé",
-            "unit": "Unité",
-            "startdate": "Date de debut",
-            "enddate": "Date de fin",
+            "qtyrequested": "Quantité demandée",
+            "unit": "Unité ",
+            "startdate": "Date de début du devis",
+            "enddate": "Date de fin du devis",
             "deliverydate": "Date de livraison",
-            "qty": "quantité",
-            "unitcost": "Prix d'unité",
-            "linecost": "Prix de Ligne"
-            
+            "qty": "Quantité",
+            "unitcost": "Coût unitaire",
+            "linecost": "Coût ligne",
+            "cancel": "Enregistrer",
+            "save": "Annuler"
 
         }
     },
-    "message": "bienvenue !!"
+    "po":{
+        
+        "polist": "Liste de BC",
+        "po": "BC",
+        "description": "Description",
+        "status": "Statut",
+        "requireddate": "Date requise",
+        "totalcost": "Coût total",
+        "totaltax": "Total taxe",
+        "currency": "Devise",
+        "purchaseagent": "Acheteur",
+        "deliverydate": "Date Fournisseur",
+        "search":"Recherche ...",
+        
+        "updateline":{
+            "deliverydate": "Date Fournisseur",
+            "cancel": "Annuler",
+            "save": "Enregistrer"
+        },
+
+
+        "podetails":{
+            "polinelist":"Liste des lignes de BC",
+            "detail":"Détails de BC",
+            "return":"Retourner",
+            "line":"Ligne",
+            "item":"Article",
+            "description": "Description",
+            "qty": "Quantité",
+            "unit": "Unité",
+            "deliverydate": "Date Fournisseur",
+            "unitcost": "Coût unitaire",
+            "linecost": "Coût ligne"
+
+        },
+        "poterms":{
+            "potermslist":"Liste des Conditions générales des BC",
+            "sequence": "Séquence",
+            "term": "Terme",
+            "description": "Description",
+            "sendtovendor": "Envoyer au fournisseur"
+
+        }
+    },
+    "invoice":{
+        "invoicelist": "Liste des factures",
+        "invoice": "Facture",
+        "description": "Description",
+        "status": "Statut",
+        "totalcost": "Total de la facture",
+        "totaltax": "Total taxe:",
+        "currency": "Devise",
+        "enterBy": "Saisi par",
+        "enterdate": "Saisi le",
+        "search":"Rechercher ...",
+        "invoicedetails":{
+            "invoicelinelist":"Liste des lignes des factures",
+            "detail":"Détails de la facture",
+            "return":"Retourner",
+         
+            "line":"Ligne",
+            "item":"Article",
+            "description": "Description",
+            "unit": "Unité",
+            "qty": "Quantité:",
+            "unitcost": "Coût unitaire",
+            "linecost": "Coût ligne"
+
+        }
+    },
+
+    "adminpage":{
+        "msg1":"Voulez-vous vraiment supprimer ",
+        "msg2":"Voulez-vous vraiment confirmer ",
+        "msg3":"Voulez-vous vraiment supprimer les vendeurs sélectionnés?",
+        "vendorlist":"Liste des fournisseurs",
+        "search":"Recherche ...",
+        "status":"Statut",
+        "name":"Nom",
+        "username":"Nom de l'utilisateur",
+        "email":"Courrier électronique",
+        "phone":"Téléphone",
+        "address":"Addresse",
+        "edit":{
+            "userdetails":"Détails de l'utilisateur",
+            "save":"Enregistrer",
+            "cancel":"Annuler"
+
+        },
+        "history":{
+            "userhistory":"Historique de l'utilisateur",
+            "status":"Statut",
+            "statusdate":"Statut Date",
+            "changedby":"Changé par"
+
+        },
+        "details":{
+            "updateinfodialog": "Informations Fournisseur",
+        "generalinformation": "Informations Générales",
+        "addressinformation": "Informations Adresse",
+        "legacyinformation": "Informations sur la législation",
+        "fiscalinformation": "Informations fiscales",
+
+
+        "name":"Nom",
+        "subname":"Prénom",
+        "phone":"Téléphone",
+
+        "country":"Pays",
+        "city":"Ville",
+        "address":"Adresse",
+        "state":"État / Région",
+        "postalcode":"Code postal",
+
+
+        "revenu":"Revenu",
+        "dateestablished":"Date établie",
+        "registration":"Numéro d'enregistrement fiscal",
+        "classification":"Code de classification fiscale",
+
+        "website":"Site Web d'entreprise",
+        
+        "delete":"Effacer",
+
+        "confirm":"Confirmer",
+        "yes":"Oui",
+        "no":"Non"
+
+
+        }
+
+    },
+     "requests":{
+        "requestslist":"Demandes Mise à jour du profil",
+        "search":"Recherche...",
+        "name":"Nom",
+        "phone":"Téléphone",
+        "address":"Adresse",
+        "country":"Pays",
+        "city":"Ville",
+        "postalcode":"Code postal",
+        "confirm":"Confirmer",
+        "yes":"Oui",
+        "no":"Non",
+       
+        
+        "edit":{
+            "userdetails":"Détails de l'utilisateur",
+            "save":"Enregistrer",
+            "cancel":"Annuler"
+
+        },
+
+        "details":{
+        "requestsdetail": "Détails des demandes",
+        "generalinformation": "Informations Générales",
+        "addressinformation": "Informations Adresse",
+        "legacyinformation": "Informations sur la législation",
+        "fiscalinformation": "Informations fiscales",
+
+
+        "name":"Nom",
+        "oldname":"Ancien Nom",
+        "subname":"Prénom",
+        "oldsubname":"Ancien Prénom",
+        "phone":"Téléphone",
+        "oldphone":"Ancien téléphone",
+
+        "country":"Pays",
+        "oldcountry":"Ancien Pays",
+        "city":"Ville",
+        "oldcity":"Ancienne ville",
+        "address":"Adresse",
+        "oldaddress":"Ancienne adresse",
+        "state":"État / Région",
+        "oldstate":"Ancien État / Région",
+        "postalcode":"Code Postal",
+        "oldpostalcode":"Ancien Code postal",
+
+
+        "revenu":"Revenu",
+        "oldrevenu":"Ancien Revenu",
+        "dateestablished":"Date établie",
+        "olddateestablished":"Ancienne Date établie",
+        "registration":"Numéro d'enregistrement fiscal",
+        "oldregistration":"Ancien Numéro d'enregistrement fiscal",
+        "classification":"Code de classification fiscale",
+        "oldclassification":"Ancien code de classification fiscale",
+
+        "website":"Site Web d'entreprise",
+        "oldwebsite":"Ancien Site Web d'entreprise",
+        
+        "delete":"Supprimer",
+
+        "confirm":"Confirmer",
+        "yes":"Oui",
+        "no":"Non"
+
+
+        }
+
+    },
+    "verifyemail":{
+        "email":"courrier électronique",
+        "verifyemail":"Vérifier courrier électronique"
+
+
+    },
+    "signup":{
+        "username": "Nom d'utilisateur",
+        "password": "Mot de passe",
+        "confirmpassword": "Confirmer le mot de passe",
+        "signup": "S'inscrire"
+    }
+,
+
+
+"register":{
+
+
+"generalinformation": "Informations générales",
+"addressinformation": "Informations sur l'adresse",
+"legacyinformation": "Informations sur la législation",
+"fiscalinformation": "Informations fiscales",
+"confirmation": "Confirmation",
+"next": "Suivant",
+"back": "Revenir",
+"complete": "Compléter",
+"general":{
+
+
+"generalinformation": "Informations générales",
+"msggeneral":"Saisissez vos informations générales",
+"name":"Nom du fournisseur",
+"nameerror":"Le nom du fournisseur est obligatoire.",
+"phone":"Numéro de téléphone",
+"phoneerror":"Le numéro de téléphone est obligatoire.",
+"subname":"Prénom du fournisseur",
+"subnameerror":"Le Prénom du fournisseur est obligatoire."
+},
+
+"address":{
+
+
+    "addressinformation": "Informations sur l'adresse",
+    
+    "msgaddress":"Saisissez vos informations d'adresse",
+    "country":"Pays",
+    "countryerror":"Le pays est obligatoire.",
+    "cityerror":"La Ville est obligatoire.",
+    "city":"Ville",
+    "address":"Adresse",
+    "addresserror":"L'adresse est obligatoire.",
+    "state":"État / Région",
+    "stateerror":"L'État / la région est obligatoire.",
+    "postalcode":"Le code postal",
+    "postalcodeerror":"Le code postal est obligatoire."
+    },
+    "fiscal":{
+
+
+        "fiscalinformation": "Informations fiscales",
+        "msgfiscal":"Entrez vos informations fiscales",
+        "revenu":"Revenu",
+        "revenuerror":"Le revenu est obligatoire.",
+        "dateestablished":"Date d'établissement",
+        "dateestablishederror":"La date d'établissement est obligatoire.",
+        "registration":"Numéro d'enregistrement fiscal",
+        "registrationerror":"Le numéro d'enregistrement fiscal est requis.",
+        "classification":"Le code de classification des taxes",
+        "classificationerror":"Le code de classification des taxes est requis."
+        }
+,
+        "legacy":{
+
+
+            "legacyinformation": "Information sur la législation",
+            "msgfiscal":"Saisissez vos informations sur la législation",
+            
+        "website":"Site Web de l'entreprise",
+        "websiteerror":"Site Web de l'entreprise est obligatoire.",
+        
+        "langue":"Langue",
+        "langueerror":"Langue is required"
+            },
+
+            "confirmationpage":{
+                "confirmation": "Confirmation",
+                "name":"Nom du fournisseur",
+                "phone":"Numéro de téléphone",
+                "subname":"Prénom du fournisseur",
+
+
+                "country":"Pays",
+                "city":"Ville",
+                "address":"Adresse",
+                "state":"État / Région",
+                "postalcode":"Code Postal",
+
+                "revenu":"Revenu de l'année dernière",
+                "dateestablished":"Date d'établissement",
+                "registration":"Numéro d'enregistrement fiscal",
+                "classification":"Code de classification des taxes",
+                
+            "website":"Site Web de l'entreprise"
+            
+          
+                }
+},
+"submittedpage":{
+
+
+    "title1":"Bienvenue au portail des fournisseurs",
+    "title2":"Votre demande d'inscription sur le portail est en cours de traitement",
+    "info":"Nous vous informerons par e-mail du traitement de votre demande",
+    "name":" Nom",
+    "phone":"Numéro de téléphone",
+   
+    "address":"Adresse",
+    
+    "state":"État / Région",
+    "postalcode":"Code Postal",
+
+    "revenu":"Revenu de l'année dernière",
+    "dateestablished":"Date d'établissement",
+    "registration":"Numéro d'enregistrement fiscal",
+    "classification":"Code de classification des taxes",
+    
+    "website":"Site Web de l'entreprise"
+
+
+
+},
+
+"demandeencourspage":{
+
+    "title1":"votre demande d'inscription sur le portail est en cours de traitement",
+    "title2":"Nous vous informerons par e-mail du traitement de votre demande."
+},
+
+"forgotpassword":{
+
+    "email":"Courrier électronique",
+    "confirm":"Confirmer"
+},
+
+"home":{
+
+    "title1":"Bienvenue au portail des fournisseurs",
+    "title2":"Meilleure expérience utilisateur et confidentialité"
+}
+
+,
+
+"confirmpasswordpage":{
+
+    "password":"Le mot de passe",
+    "confirmpassword":"Confirmer le mot de passe",
+    "confirm":"Confirmer"
+}
+,
+
+"configpage":{
+
+    "title":"Configuration",
+    "email":"Courrier électronique",
+    "emailpassword":"Courriel Mot de passe",
+    "maximopath":"Chemin d'accès Maximo",
+    "logpath":"Chemin d'accès",
+    "maximouser":"Utilisateur de Maximo ",
+    "maximopassword":"Mot de passe de Maximo ",
+    "organisation":"Organisation",
+    "apply":"Appliquer"
+}
+    
   }
