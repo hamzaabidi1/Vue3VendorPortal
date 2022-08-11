@@ -122,7 +122,7 @@
                     <div class="table-header flex flex-column md:flex-row md:justiify-content-between" >
 						<span class="p-input-icon-left"  >
                             <i class="pi pi-search" />
-                            <InputText v-model="filters['global'].value" placeholder="Search..."   style="height: 2vw;margin: auto;"/>
+                            <InputText v-model="filters['global'].value" :placeholder="$t('invoice.search')"   style="height: 2vw;margin: auto;"/>
                         </span>
 					</div>
                 </template>
@@ -138,46 +138,7 @@
         </div>
 
       
-	
 
-      <Dialog  v-model:visible="invoiceEdit" :style="{width: '50vw'}" :closable="false">
-      <div class="row align-items-start">
-          <div class="col-md-6">
-            
-                   <label style="width: 90%;margin-right:2vw;" ><strong>Qty</strong></label>
-                    <InputText id="qty" v-on:change="calcul" v-model="rfqline.quotationqty"  style="width: 95%;" /> 
-                    </div>
-                    <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Unit Cost</strong></label>
-                    <InputText id="unit" v-on:change="calcul" v-model="rfqline.unitcost"  style="width: 95%;" /> 
-                    </div>
-
-        </div>
-        <div class="row align-items-start">
-            <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Line Cost</strong></label>
-                    <InputText id="line" v-model="rfqline.linecost"  style="width: 95%;" disabled /> 
-                    </div>
-                    <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Start Date</strong></label>
-                    <Calendar v-model="rfqline.quoteStartDate" :showIcon="true" style="width: 95%;" />
-                    </div>
-    </div>
-    <div class="row align-items-start">
-        <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>End Date</strong></label>
-                    <Calendar  v-model="rfqline.quoteEndDate" :showIcon="true" style="width: 95%;" />
-                    </div>
-                    <div class="col-md-6">
-                    <label style="width: 90%;margin-right:2vw;" ><strong>Delivery Date</strong></label>
-                    <Calendar  v-model="rfqline.delivryDate" :showIcon="true" style="width: 95%;" />
-                    </div>
-    </div>
-                     <template #footer>
-                        <Button label="Cancel" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
-                        <Button label="Save" icon="pi pi-check" @click="saveEdit" autofocus />
-                    </template>
-                </Dialog>
 
               
 </template>
@@ -220,7 +181,7 @@ export default {
   },
     data() {
         return {
-            invoiceEdit: false,
+    
             selectedProduct2: null,
             filters: {},
             invoices:null,
@@ -332,16 +293,9 @@ export default {
         },
 
         closeBasic(){
-            this.invoiceEdit= false;
+            
         },
-        saveEdit()
-        {
-            this.vendorservice. updateRfqLineById(this.rfqline);
-            this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
-            this.invoiceEdit= false;
-            this.$router.go();
-
-        },
+    
            initFilters() {
             this.filters = {
                 'global': {value: null, matchMode: FilterMatchMode.CONTAINS},
