@@ -14,7 +14,7 @@
                     <b>{{formData.phone ? formData.phone : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="class">{{$t("register.confirmationpage.country")}}</label>
+                    <label for="class">{{$t("register.confirmationpage.address")}}</label>
                     <b>{{formData.country ? formData.country : '-'}} {{formData.city ? formData.city : '-'}} {{formData.region ? formData.region : '-'}}</b>
                 </div>
                 <div class="field col-12">

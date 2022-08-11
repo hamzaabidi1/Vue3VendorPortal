@@ -375,6 +375,30 @@
             
           
                 }
+},
+"submittedpage":{
+
+    
+    "title1":"Welcome To Vendor Portal",
+    "title2":"your application for registration on the portal is being processed",
+    "info":"we will inform you by email when the request has been processed",
+    "name":" Name",
+    "phone":"Phone Number",
+   
+    "address":"Address",
+    
+    "state":"State / Region",
+    "postalcode":"Postal Code",
+
+    "revenu":"Revenu of The Last Year",
+    "dateestablished":"Date Established",
+    "registration":"Tax Registration Number",
+    "classification":"Tax Classification Code",
+    
+    "website":"Company Web Site"
+
+
+
 }
     
   }
