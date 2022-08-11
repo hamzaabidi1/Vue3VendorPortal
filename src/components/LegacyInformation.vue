@@ -9,15 +9,18 @@
                 {{$t("register.legacy.msgfiscal")}}
             </template>
             <template v-slot:content>
-                <div class="field">
-                        <label for="companywebsite">{{$t("register.legacy.langue")}}</label>
-                         </div>
+                
+                         
                 <div class="p-fluid formgrid grid">
-                   <Dropdown v-model="langue" :options="langues" optionLabel="name" optionValue="code" placeholder="Select a Langue" />
+                    <div class="field">
+                        <label for="langue">{{$t("register.legacy.langue")}}</label>
+                   <Dropdown id="langue" v-model="langue" :options="langues" optionLabel="name" optionValue="code" placeholder="Select a Langue" :class="{'p-invalid': validationErrors.langue && submitted}"/>
+                   <small v-show="validationErrors.langue && submitted" class="p-error">{{$t("register.legacy.langueerror")}}</small>
+                   </div>
                    <div class="field">
                         <label for="companywebsite">{{$t("register.legacy.website")}}</label>
                         <InputText id="companywebsite" v-model="companywebsite" :class="{'p-invalid': validationErrors.companywebsite && submitted}" />
-                        <small v-show="validationErrors.companywebsite && submitted" class="p-error">company web site is required.</small>
+                        <small v-show="validationErrors.companywebsite && submitted" class="p-error">{{$t("register.legacy.websiteerror")}}</small>
                     </div>
                 </div>
             </template>
@@ -65,6 +68,7 @@ export default {
     },
     methods: {
         nextPage() {
+            console.log(this.langue)
             this.submitted = true;
             if (this.validateForm() ) {
             this.$emit('next-page', {formData: {companywebsite: this.companywebsite,langue:this.langue}, pageIndex: 3 });
@@ -78,6 +82,10 @@ export default {
                 this.validationErrors['companywebsite'] = true;
             else
                 delete this.validationErrors['companywebsite'];
+                 if (!this.langue == null )
+                this.validationErrors['langue'] = true;
+            else
+                delete this.validationErrors['langue'];
            
             return !Object.keys(this.validationErrors).length;
         }

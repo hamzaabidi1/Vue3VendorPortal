@@ -8,7 +8,7 @@
           
           <div class="row align-items-start">
                 <div class=col-md-12>
-                <h5 class="text-center" style="margin-right: auto;margin-left: auto;"><strong>Configuration</strong></h5>
+                <h5 class="text-center" style="margin-right: auto;margin-left: auto;"><strong>{{$t("configpage.title")}}</strong></h5>
                 </div>
                 </div>
 
@@ -16,7 +16,7 @@
          
                  <div class="col-md-6">
                 <div class="p-fluid">
-                    <label for="email" style="width: 90%;margin-left:2vw;"><strong>Email</strong></label>
+                    <label for="email" style="width: 90%;margin-left:2vw;"><strong>{{$t("configpage.email")}}</strong></label>
                     <InputText style="width: 90%;margin-left:2vw;" id="email" v-model="configuration.email" />
                 </div>
             </div>
@@ -24,8 +24,8 @@
 
                  <div class="col-md-6">
                 <div class="p-fluid">
-              <label for="password" style="width: 90%;margin-left:2vw;"><strong>Email Password</strong></label>
-            <Password v-model="configuration.password" :feedback="false"  style="width: 90%;margin-left:2vw;" id="password" toggleMask/>
+              <label for="passwordemail" style="width: 90%;margin-left:2vw;"><strong>{{$t("configpage.emailpassword")}}</strong></label>
+            <Password v-model="configuration.password" :feedback="false"  style="width: 90%;margin-left:2vw;" id="passwordemail" toggleMask/>
                 </div>
                 </div>
                  
@@ -37,7 +37,7 @@
          
                  <div class="col-md-6">
                 <div class="p-fluid">
-                    <label for="maximopath" style="width: 90%;margin-left:2vw;"><strong>Maximo Path</strong></label>
+                    <label for="maximopath" style="width: 90%;margin-left:2vw;"><strong>{{$t("configpage.maximopath")}}</strong></label>
                     <InputText style="width: 90%;margin-left:2vw;" id="maximopath" v-model="configuration.maximopath" />
                 </div>
             </div>
@@ -45,7 +45,7 @@
 
                    <div class="col-md-6">
                 <div class="p-fluid">
-                    <label for="logpath" style="width: 90%;margin-left:2vw;"><strong>Log Path</strong></label>
+                    <label for="logpath" style="width: 90%;margin-left:2vw;"><strong>{{$t("configpage.logpath")}}</strong></label>
                     <InputText style="width: 90%;margin-left:2vw;" id="logpath" v-model="configuration.logpath" />
                 </div>
             </div>
@@ -58,16 +58,16 @@
             
                  <div class="col-md-6">
                 <div class="p-fluid">
-                    <label for="email" style="width: 90%;margin-left:2vw;"><strong>Maximo user</strong></label>
-                    <InputText style="width: 90%;margin-left:2vw;" id="email" v-model="configuration.usermaximo" />
+                    <label for="maximouser" style="width: 90%;margin-left:2vw;"><strong>{{$t("configpage.maximouser")}}</strong></label>
+                    <InputText style="width: 90%;margin-left:2vw;" id="maximouser" v-model="configuration.usermaximo" />
                 </div>
             </div>
 
 
                  <div class="col-md-6">
                 <div class="p-fluid">
-              <label for="password" style="width: 90%;margin-left:2vw;"><strong>Maximo Password</strong></label>
-            <Password v-model="configuration.passwordmaximo" :feedback="false"  style="width: 90%;margin-left:2vw;" id="password" toggleMask/>
+              <label for="maximopassword" style="width: 90%;margin-left:2vw;"><strong>{{$t("configpage.maximopassword")}}</strong></label>
+            <Password v-model="configuration.passwordmaximo" :feedback="false"  style="width: 90%;margin-left:2vw;" id="maximopassword" toggleMask/>
                 </div>
                 </div>
                  
@@ -78,14 +78,14 @@
             
        <div class="col-md-6">
                 <div class="p-fluid">
-                    <label for="email" style="width: 90%;margin-left:2vw;"><strong>Organization</strong></label>
-                    <InputText style="width: 90%;margin-left:2vw;" id="email" v-model="configuration.organization" />
+                    <label for="organisation" style="width: 90%;margin-left:2vw;"><strong>{{$t("configpage.organisation")}}</strong></label>
+                    <InputText style="width: 90%;margin-left:2vw;" id="organisation" v-model="configuration.organization" />
                 </div>
             </div>
                
             </div>
 
-            <Button label="Apply" icon="pi pi-check" @click="apply()" style="margin: 2vw;float: right;"  />
+            <Button :label="$t('configpage.apply')" icon="pi pi-check" @click="apply()" style="margin: 2vw;float: right;"  />
 
             
             

@@ -15,14 +15,14 @@
                     <div class="field">
                         <label for="firstname">{{$t("register.general.name")}}</label>
                         <InputText id="firstname" v-model="firstname" :class="{'p-invalid': validationErrors.firstname && submitted}" />
-                        <small v-show="validationErrors.firstname && submitted" class="p-error">Vendor Name  is required.</small>
+                        <small v-show="validationErrors.firstname && submitted" class="p-error">{{$t("register.general.nameerror")}}</small>
                     </div>
                     </div>
                     <div class="col-md-6">
                     <div class="field">
                         <label for="lastname">{{$t("register.general.subname")}}</label>
                         <InputText id="lastname" v-model="lastname" :class="{'p-invalid': validationErrors.lastname && submitted}" />
-                        <small v-show="validationErrors.lastname && submitted" class="p-error">Vendor Subname is required.</small>
+                        <small v-show="validationErrors.lastname && submitted" class="p-error">{{$t("register.general.subnameerror")}}</small>
                     </div>
                     </div>
                     </div>
@@ -32,7 +32,7 @@
                     <div class="field">
                         <label for="phone">{{$t("register.general.phone")}}</label>
                         <InputNumber id="phone" v-model="phone" :class="{'p-invalid': validationErrors.phone && submitted}" />
-                        <small v-show="validationErrors.phone && submitted" class="p-error">Phone Number is required.</small>
+                        <small v-show="validationErrors.phone && submitted" class="p-error">{{$t("register.general.phoneerror")}}</small>
                     </div>
                 </div>
 

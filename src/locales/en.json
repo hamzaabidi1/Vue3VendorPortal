@@ -319,20 +319,29 @@
 "generalinformation": "General Informations",
 "msggeneral":"Enter your general information",
 "name":"Vendor Name",
+"nameerror":"Vendor Name  is required.",
 "phone":"Phone Number",
-"subname":"Vendor Subname"
+"phoneerror":"Phone Number is required.",
+"subname":"Vendor Subname",
+"subnameerror":"Vendor Subname is required."
 },
 
 "address":{
 
 
     "addressinformation": "Address Information",
+    
     "msgaddress":"Enter your Address information",
     "country":"Country",
+    "countryerror":"Country is required.",
+    "cityerror":"City is required.",
     "city":"City",
     "address":"Address",
+    "addresserror":"address is required.",
     "state":"State / Region",
-    "postalcode":"Postal Code"
+    "stateerror":"region / state is required.",
+    "postalcode":"Postal Code",
+    "postalcodeerror":"Postal Code is required."
     },
     "fiscal":{
 
@@ -340,9 +349,13 @@
         "fiscalinformation": "Fiscal Information",
         "msgfiscal":"Enter your fiscal information",
         "revenu":"Revenu",
+        "revenuerror":"Revenu is required.",
         "dateestablished":"Date Established",
+        "dateestablishederror":"Date Established is required.",
         "registration":"Tax Registration Number",
-        "classification":"Tax Classification Code"
+        "registrationerror":"tax registration number is required.",
+        "classification":"Tax Classification Code",
+        "classificationerror":"tax classification code is required."
         }
 ,
         "legacy":{
@@ -352,8 +365,10 @@
             "msgfiscal":"Enter your legacy information",
             
         "website":"Company Web Site",
+        "websiteerror":"company web site is required.",
         
-        "langue":"Langue"
+        "langue":"Langue",
+        "langueerror":"Langue is required"
             },
 
             "confirmationpage":{
@@ -429,6 +444,20 @@
     "password":"Password",
     "confirmpassword":"Confirm Password",
     "confirm":"Confirm"
+}
+,
+
+"configpage":{
+
+    "title":"Configuration",
+    "email":"Email",
+    "emailpassword":"Email Password",
+    "maximopath":"Maximo Path",
+    "logpath":"Log Path",
+    "maximouser":"Maximo User",
+    "maximopassword":"Maximo Password",
+    "organisation":"Organization",
+    "apply":"Apply"
 }
     
   }

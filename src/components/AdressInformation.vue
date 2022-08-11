@@ -17,14 +17,14 @@
                       <div class="field">
                         <label for="country"> {{$t("register.address.country")}}</label>
                         <InputText id="country" v-model="country" :class="{'p-invalid': validationErrors.country && submitted}" />
-                        <small v-show="validationErrors.country && submitted" class="p-error">Country is required.</small>
+                        <small v-show="validationErrors.country && submitted" class="p-error">{{$t("register.address.countryerror")}}</small>
                     </div>
                     </div>
                       <div class="col-md-6">
                         <div class="field">
                         <label for="region"> {{$t("register.address.state")}}</label>
                         <InputText id="region" v-model="region" :class="{'p-invalid': validationErrors.region && submitted}" />
-                        <small v-show="validationErrors.region && submitted" class="p-error">region is required.</small>
+                        <small v-show="validationErrors.region && submitted" class="p-error">{{$t("register.address.stateerror")}}</small>
                     </div>
                     </div>
                     </div>
@@ -34,7 +34,7 @@
                         <div class="field">
                         <label for="city"> {{$t("register.address.city")}}</label>
                         <InputText id="city" v-model="city" :class="{'p-invalid': validationErrors.city && submitted}" />
-                        <small v-show="validationErrors.city && submitted" class="p-error">City is required.</small>
+                        <small v-show="validationErrors.city && submitted" class="p-error">{{$t("register.address.cityerror")}}</small>
                     </div>
                     </div>
                      <div class="col-md-6">
@@ -42,7 +42,7 @@
                           <div class="field">
                         <label for="postalcode"> {{$t("register.address.postalcode")}}</label>
                         <InputText id="postalcode" v-model="postalcode" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
-                        <small v-show="validationErrors.postalcode && submitted" class="p-error">Postal Code is required.</small>
+                        <small v-show="validationErrors.postalcode && submitted" class="p-error">{{$t("register.address.postalcodeerror")}}</small>
                     </div>
                        
                     </div>
@@ -52,7 +52,7 @@
                     <div class="field">
                         <label for="address">{{$t("register.address.address")}}</label>
                         <InputText id="address" v-model="address" :class="{'p-invalid': validationErrors.address && submitted}" />
-                        <small v-show="validationErrors.address && submitted" class="p-error">address is required.</small>
+                        <small v-show="validationErrors.address && submitted" class="p-error">{{$t("register.address.addresserror")}}</small>
                     </div>
 
                 </div>
