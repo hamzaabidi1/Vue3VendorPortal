@@ -54,7 +54,7 @@
          
 
         <li>
-          <LocaleSwitcher />
+          <LocaleSwitcher style="width:3vw;background-color:grey ;" />
           </li>
          
         </Sidebar>
