@@ -2,47 +2,47 @@
     <div class="stepsdemo-content">
         <Card style="margin-bottom: 3vw;">
             <template v-slot:title>
-                Confirmation
+                {{$t("register.confirmationpage.confirmation")}}
             </template>
             <template v-slot:content>
                 <div class="field col-12">
-                    <label for="class">Name </label>
+                    <label for="class"> {{$t("register.confirmationpage.name")}} </label>
                     <b>{{formData.firstname ? formData.firstname : '-'}} {{formData.lastname ? formData.lastname : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="phone">Phone Number </label>
+                    <label for="phone"> {{$t("register.confirmationpage.phone")}}</label>
                     <b>{{formData.phone ? formData.phone : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="class">Address </label>
+                    <label for="class">{{$t("register.confirmationpage.country")}}</label>
                     <b>{{formData.country ? formData.country : '-'}} {{formData.city ? formData.city : '-'}} {{formData.region ? formData.region : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="address">Address </label>
+                    <label for="address">{{$t("register.confirmationpage.address")}}</label>
                     <b>{{formData.address ? formData.address : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="codepostal">Code Postal </label>
+                    <label for="codepostal">{{$t("register.confirmationpage.postalcode")}}</label>
                     <b>{{formData.postalcode ? formData.postalcode : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="taxregistrationnumber">Tax Registraion Number </label>
+                    <label for="taxregistrationnumber">{{$t("register.confirmationpage.registration")}}</label>
                     <b>{{formData.taxregistrationnumber ? formData.taxregistrationnumber : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="taxclassificationcode">Tax Classification Code </label>
+                    <label for="taxclassificationcode">{{$t("register.confirmationpage.classification")}}</label>
                     <b>{{formData.taxclassificationcode ? formData.taxclassificationcode : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="revenu">Revenue For Last Year </label>
+                    <label for="revenu">{{$t("register.confirmationpage.revenu")}}</label>
                     <b>{{formData.revenu ? formData.revenu : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="date">Date Established </label>
+                    <label for="date">{{$t("register.confirmationpage.dateestablished")}}</label>
                     <b>{{formData.dateestablished ? formData.dateestablished : '-'}}</b>
                 </div>
                 <div class="field col-12">
-                    <label for="companywebsite">Company Web Site </label>
+                    <label for="companywebsite">{{$t("register.confirmationpage.website")}}</label>
                     <b>{{formData.companywebsite ? formData.companywebsite : '-'}}</b>
                 </div>
 
@@ -57,8 +57,8 @@ transform:scale(0.88);-webkit-transform-origin:0 0;transform-origin:0 0;" />
             </template>
             <template v-slot:footer>
                 <div class="grid grid-nogutter justify-content-between">
-                    <Button label="Back" @click="prevPage()" icon="pi pi-angle-left" style="margin-left: 1vw;"/>
-                    <Button :disabled="rec" label="Complete" @click="complete(formData)" icon="pi pi-check" iconPos="right" class="p-button-success" style="float:right;margin-right: 1vw;"/>
+                    <Button :label="$t('register.back')" @click="prevPage()" icon="pi pi-angle-left" style="margin-left: 1vw;"/>
+                    <Button :disabled="rec" :label="$t('register.complete')" @click="complete(formData)" icon="pi pi-check" iconPos="right" class="p-button-success" style="float:right;margin-right: 1vw;"/>
                 </div>
             </template>
         </Card>

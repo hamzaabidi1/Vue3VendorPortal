@@ -3,10 +3,10 @@
     <div class="stepsdemo-content">
         <Card style=";margin:auto;margin-bottom: 3vw;">
             <template v-slot:title>
-                Address Information
+                {{$t("register.address.addressinformation")}}
             </template>
             <template v-slot:subtitle>
-                Enter your Address information
+                {{$t("register.address.msgaddress")}}
             </template>
             <template v-slot:content>
                 <div class="p-fluid formgrid grid">
@@ -15,14 +15,14 @@
                     <div class="col-md-6">
                     
                       <div class="field">
-                        <label for="country">Country</label>
+                        <label for="country"> {{$t("register.address.country")}}</label>
                         <InputText id="country" v-model="country" :class="{'p-invalid': validationErrors.country && submitted}" />
                         <small v-show="validationErrors.country && submitted" class="p-error">Country is required.</small>
                     </div>
                     </div>
                       <div class="col-md-6">
                         <div class="field">
-                        <label for="region">State / Region</label>
+                        <label for="region"> {{$t("register.address.state")}}</label>
                         <InputText id="region" v-model="region" :class="{'p-invalid': validationErrors.region && submitted}" />
                         <small v-show="validationErrors.region && submitted" class="p-error">region is required.</small>
                     </div>
@@ -32,7 +32,7 @@
                     <div class="row align-items-start">
                     <div class="col-md-6">
                         <div class="field">
-                        <label for="city">City</label>
+                        <label for="city"> {{$t("register.address.city")}}</label>
                         <InputText id="city" v-model="city" :class="{'p-invalid': validationErrors.city && submitted}" />
                         <small v-show="validationErrors.city && submitted" class="p-error">City is required.</small>
                     </div>
@@ -40,7 +40,7 @@
                      <div class="col-md-6">
 
                           <div class="field">
-                        <label for="postalcode">Postal Code</label>
+                        <label for="postalcode"> {{$t("register.address.postalcode")}}</label>
                         <InputText id="postalcode" v-model="postalcode" :class="{'p-invalid': validationErrors.postalcode && submitted}" />
                         <small v-show="validationErrors.postalcode && submitted" class="p-error">Postal Code is required.</small>
                     </div>
@@ -50,7 +50,7 @@
                       
 
                     <div class="field">
-                        <label for="address">Address</label>
+                        <label for="address">{{$t("register.address.address")}}</label>
                         <InputText id="address" v-model="address" :class="{'p-invalid': validationErrors.address && submitted}" />
                         <small v-show="validationErrors.address && submitted" class="p-error">address is required.</small>
                     </div>
@@ -59,8 +59,8 @@
             </template>
             <template v-slot:footer>
                 <div class="grid grid-nogutter justify-content-between" >
-                    <Button label="Back" @click="prevPage()" icon="pi pi-angle-left" style="margin:auto" />
-                    <Button label="Next" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" style="float:right;margin: auto;margin-right: 1vw;" />
+                    <Button :label="$t('register.back')" @click="prevPage()" icon="pi pi-angle-left" style="margin:auto" />
+                    <Button :label="$t('register.next')" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" style="float:right;margin: auto;margin-right: 1vw;" />
                 </div>
             </template>
         </Card>

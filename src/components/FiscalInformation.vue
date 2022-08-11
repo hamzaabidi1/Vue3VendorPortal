@@ -3,10 +3,10 @@
     <div class="stepsdemo-content">
         <Card>
             <template v-slot:title>
-                Fiscal Information
+                {{$t("register.fiscal.fiscalinformation")}}
             </template>
             <template v-slot:subtitle>
-                Enter your fiscal information
+                {{$t("register.fiscal.msgfiscal")}}
             </template>
             <template v-slot:content>
                 <div class="p-fluid formgrid grid">
@@ -15,14 +15,14 @@
                     <div class="col-md-6">
 
                      <div class="field">
-                        <label for="taxregistrationnumber">Tax Registration Number</label>
+                        <label for="taxregistrationnumber">{{$t("register.fiscal.registration")}}</label>
                         <InputText id="taxregistrationnumber" v-model="taxregistrationnumber" :class="{'p-invalid': validationErrors.taxregistrationnumber && submitted}" />
                         <small v-show="validationErrors.taxregistrationnumber && submitted" class="p-error">tax registration number is required.</small>
                     </div>
                     </div>
                     <div class="col-md-6">
                      <div class="field">
-                        <label for="taxclassificationcode">Tax Classification Code</label>
+                        <label for="taxclassificationcode">{{$t("register.fiscal.classification")}}</label>
                         <InputText id="taxclassificationcode" v-model="taxclassificationcode" :class="{'p-invalid': validationErrors.taxclassificationcode && submitted}" />
                         <small v-show="validationErrors.taxclassificationcode && submitted" class="p-error">tax classification code is required.</small>
                     </div>
@@ -32,14 +32,14 @@
                     <div class="row align-items-start">
                     <div class="col-md-6">
                     <div class="field">
-                        <label for="revenu">Revenu</label>
+                        <label for="revenu">{{$t("register.fiscal.revenu")}}</label>
                         <InputText id="revenu" v-model="revenu" :class="{'p-invalid': validationErrors.revenu && submitted}" />
                         <small v-show="validationErrors.revenu && submitted" class="p-error">Revenu is required.</small>
                     </div>
                    </div>
                    <div class="col-md-6">
                     <div class="field">
-                        <label for="dateestablished">Date Established</label>
+                        <label for="dateestablished">{{$t("register.fiscal.dateestablished")}}</label>
                         <Calendar id="dateestablished" v-model="dateestablished" :showIcon="true" />
                         <small v-show="validationErrors.dateestablished && submitted" class="p-error">dateestablished is required.</small>
 
@@ -50,8 +50,8 @@
             </template>
             <template v-slot:footer>
                 <div class="grid grid-nogutter justify-content-between">
-                    <Button label="Back" @click="prevPage()" icon="pi pi-angle-left" />
-                    <Button label="Next" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" style="float:right;margin-right: 2vw;" />
+                    <Button :label="$t('register.back')" @click="prevPage()" icon="pi pi-angle-left" />
+                    <Button :label="$t('register.next')" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" style="float:right;" />
                 </div>
             </template>
         </Card>

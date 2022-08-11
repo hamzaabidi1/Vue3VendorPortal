@@ -297,5 +297,84 @@
         "signup": "SignUp"
     }
 ,
-    "message": "hello i18n !!"
+
+
+"register":{
+
+
+"generalinformation": "General Informations",
+"addressinformation": "Address Informations",
+"legacyinformation": "Legacy Informations",
+"fiscalinformation": "Fiscal Informations",
+"confirmation": "Confirmation",
+"next": "Next",
+"back": "Back",
+"complete": "Complete",
+"general":{
+
+
+"generalinformation": "General Informations",
+"msggeneral":"Enter your general information",
+"name":"Vendor Name",
+"phone":"Phone Number",
+"subname":"Vendor Subname"
+},
+
+"address":{
+
+
+    "addressinformation": "Address Information",
+    "msgaddress":"Enter your Address information",
+    "country":"Country",
+    "city":"City",
+    "address":"Address",
+    "state":"State / Region",
+    "postalcode":"Postal Code"
+    },
+    "fiscal":{
+
+
+        "fiscalinformation": "Fiscal Information",
+        "msgfiscal":"Enter your fiscal information",
+        "revenu":"Revenu",
+        "dateestablished":"Date Established",
+        "registration":"Tax Registration Number",
+        "classification":"Tax Classification Code"
+        }
+,
+        "legacy":{
+
+
+            "legacyinformation": "Legacy Information",
+            "msgfiscal":"Enter your legacy information",
+            
+        "website":"Company Web Site",
+        
+        "langue":"Langue"
+            },
+
+            "confirmationpage":{
+                "confirmation": "Confirmation",
+                "name":"Vendor Name",
+                "phone":"Phone Number",
+                "subname":"Vendor Subname",
+
+
+                "country":"Country",
+                "city":"City",
+                "address":"Address",
+                "state":"State / Region",
+                "postalcode":"Postal Code",
+
+                "revenu":"Revenu of The Last Year",
+                "dateestablished":"Date Established",
+                "registration":"Tax Registration Number",
+                "classification":"Tax Classification Code",
+                
+            "website":"Company Web Site"
+            
+          
+                }
+}
+    
   }

@@ -3,19 +3,19 @@
     <div class="stepsdemo-content">
         <Card>
             <template v-slot:title>
-                Legacy Information
+                 {{$t("register.legacy.legacyinformation")}}
             </template>
             <template v-slot:subtitle>
-                Enter your legacy information
+                {{$t("register.legacy.msgfiscal")}}
             </template>
             <template v-slot:content>
                 <div class="field">
-                        <label for="companywebsite">Company Web Site</label>
+                        <label for="companywebsite">{{$t("register.legacy.langue")}}</label>
                          </div>
                 <div class="p-fluid formgrid grid">
                    <Dropdown v-model="langue" :options="langues" optionLabel="name" optionValue="code" placeholder="Select a Langue" />
                    <div class="field">
-                        <label for="companywebsite">Company Web Site</label>
+                        <label for="companywebsite">{{$t("register.legacy.website")}}</label>
                         <InputText id="companywebsite" v-model="companywebsite" :class="{'p-invalid': validationErrors.companywebsite && submitted}" />
                         <small v-show="validationErrors.companywebsite && submitted" class="p-error">company web site is required.</small>
                     </div>
@@ -23,8 +23,8 @@
             </template>
             <template v-slot:footer>
                 <div class="grid grid-nogutter justify-content-between">
-                    <Button label="Back" @click="prevPage()" icon="pi pi-angle-left" />
-                    <Button label="Next" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" style="float:right;" />
+                    <Button :label="$t('register.back')" @click="prevPage()" icon="pi pi-angle-left" />
+                    <Button :label="$t('register.next')" @click="nextPage()" icon="pi pi-angle-right" iconPos="right" style="float:right;" />
                 </div>
             </template>
         </Card>
@@ -57,7 +57,7 @@ export default {
            langue: null,
 		langues: [
 			{name: 'Francais', code: 'fr'},
-			{name: 'Englais', code: 'en'},
+			{name: 'Anglais', code: 'en'},
 		],
             submitted: false,
             validationErrors: {}
