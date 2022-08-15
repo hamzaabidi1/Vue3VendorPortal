@@ -559,9 +559,7 @@ export default {
     if(localStorage.user){
       let jsonobject = localStorage.user
       let monobjet = JSON.parse(jsonobject)
-      console.log(monobjet.langue)
       this.$i18n.locale=monobjet.langue;
-      console.log(this.$i18n.locale)
       if(monobjet.roles == 'ROLE_ADMIN'){
       this.AdminService.getNumberOfRequest().then(data => this.number = data);
       }

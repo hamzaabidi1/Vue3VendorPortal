@@ -183,7 +183,6 @@ router.beforeEach((to, from, next) => {
 if (loggedIn){
   var  jsonobject= localStorage.user;
   let monobjet = JSON.parse(jsonobject)
-   console.log(monobjet.accessToken)
    let decoded = jwt_decode(monobjet.accessToken);
 
    if ((decoded.exp <= (Math.floor(new Date().getTime() / 1000) )))
@@ -191,15 +190,11 @@ if (loggedIn){
   
    localStorage.removeItem('user');
    location.replace('/login')
-  // next('/login');
-  // trying to access a restricted page + not logged in
-  // redirect to login page
 }
 }
   if ((authRequired && !loggedIn) ) {
- 
+
     location.replace('/login')
-    //next('/login');
   }
   else {
     next();

@@ -68,7 +68,7 @@ export default {
         let jsonobject= localStorage.user;
         let monobjet = JSON.parse(jsonobject)
         this.loading = true;
-        this.vendorservice. findRfq(monobjet.email).then(data => {this.rfq = data,this.loading = false;console.log(this.rfq)});
+        this.vendorservice. findRfq(monobjet.email).then(data => {this.rfq = data,this.loading = false});
     },
     methods: {
         onRowSelect(event) {
