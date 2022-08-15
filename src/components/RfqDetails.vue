@@ -541,13 +541,11 @@ export default {
             this.$toast.add({ severity: 'error', summary: 'Error Message', detail: 'End Date must be over Start date', life: 3000 });
             else{
             this.loadingbuttonsave=true
-            await this.vendorservice. updateRfqLineById(this.rfqline);
-            console.log(this.rfqline)
+            await this.vendorservice.updateRfqLineById(this.rfqline);
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             this.rfqEdit= false;
             this.rfq={}
             await this.vendorservice.findRfqDetails(this.rfqline.rfq.id).then(data => this.rfq = data);
-            console.log(this.rfqline.rfq.id)
             this.rfqs=this.rfq.rfqline
             console.log( this.rfqs)
             this.loadingbuttonsave=false

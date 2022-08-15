@@ -80,8 +80,8 @@
             "qty": "Quantité",
             "unitcost": "Coût unitaire",
             "linecost": "Coût ligne",
-            "cancel": "Enregistrer",
-            "save": "Annuler"
+            "cancel": "Annuler",
+            "save": "Enregistrer"
 
         }
     },
