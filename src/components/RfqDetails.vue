@@ -214,7 +214,7 @@
     </div>
                      <template #footer>
                         <Button :label="$t('rfq.rfqdetails.cancel')" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
-                        <Button :label="$t('rfq.rfqdetails.save')" icon="pi pi-check" @click="saveEdit" autofocus >
+                        <Button :label="$t('rfq.rfqdetails.save')" icon="pi pi-check" @click="saveEdit(rfqline)" autofocus >
                           <i class="pi pi-check" style="margin-right:0.5vw"></i>
                         <span> Save</span>
                         <span v-show="loadingbuttonsave" class="spinner-border spinner-border-sm" style="margin-left:0.5vw"></span></Button>
@@ -535,25 +535,26 @@ export default {
         closeBasic(){
             this.rfqEdit= false;
         },
-        async saveEdit()
+        async saveEdit(rfqline)
         {
-            if (this.rfqline.quoteEndDate<this.rfqline.quoteStartDate)
+            
+            if (rfqline.quoteEndDate<rfqline.quoteStartDate)
             this.$toast.add({ severity: 'error', summary: 'Error Message', detail: 'End Date must be over Start date', life: 3000 });
             else{
             this.loadingbuttonsave=true
             var moment = require('moment');
-            var quoteEndDate = moment(this.rfqline.quoteEndDate).format("YYYY-MM-DD");
-            this.rfqline.quoteEndDate = quoteEndDate
-            var quoteStartDate = moment(this.rfqline.quoteStartDate).format("YYYY-MM-DD");
-            this.rfqline.quoteStartDate = quoteStartDate
-            var delivryDate = moment(this.rfqline.delivryDate).format("YYYY-MM-DD");
-            this.rfqline.delivryDate = delivryDate
+            var quoteEndDate = moment(rfqline.quoteEndDate).format("YYYY-MM-DD");
+            rfqline.quoteEndDate = quoteEndDate
+            var quoteStartDate = moment(rfqline.quoteStartDate).format("YYYY-MM-DD");
+            rfqline.quoteStartDate = quoteStartDate
+            var delivryDate = moment(rfqline.delivryDate).format("YYYY-MM-DD");
+            rfqline.delivryDate = delivryDate
 
-            await this.vendorservice.updateRfqLineById(this.rfqline).then(this.rfqEdit= false,this.rfq={});
+            await this.vendorservice.updateRfqLineById(rfqline).then(this.rfqEdit= false,this.rfq={});
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             
             
-            await this.vendorservice.findRfqDetails(this.rfqline.rfq.id).then(data => this.rfq = data,this.loadingbuttonsave=false);
+            await this.vendorservice.findRfqDetails(rfqline.rfq.id).then(data => this.rfq = data,this.loadingbuttonsave=false);
             this.rfqs=this.rfq.rfqline
             
            
