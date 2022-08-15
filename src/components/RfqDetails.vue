@@ -541,6 +541,14 @@ export default {
             this.$toast.add({ severity: 'error', summary: 'Error Message', detail: 'End Date must be over Start date', life: 3000 });
             else{
             this.loadingbuttonsave=true
+            var moment = require('moment');
+            var quoteEndDate = moment(this.rfqline.quoteEndDate).format("YYYY-MM-DD");
+            this.rfqline.quoteEndDate = quoteEndDate
+            var quoteStartDate = moment(this.rfqline.quoteStartDate).format("YYYY-MM-DD");
+            this.rfqline.quoteStartDate = quoteStartDate
+            var delivryDate = moment(this.rfqline.delivryDate).format("YYYY-MM-DD");
+            this.rfqline.delivryDate = delivryDate
+
             await this.vendorservice.updateRfqLineById(this.rfqline).then(this.rfqEdit= false,this.rfq={});
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             

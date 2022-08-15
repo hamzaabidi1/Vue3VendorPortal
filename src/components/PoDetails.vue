@@ -358,18 +358,10 @@ export default {
         async saveEdit(poline)
         {
             this.loadingbutton=true
-             console.log("*********************"+poline.vendeliverydate)
-                          console.log("**********"+typeof(poline.vendeliverydate))
-
-                         ;
-                         var moment = require('moment');
-                       var vendeliverydatestring = moment(poline.vendeliverydate).format("YYYY-MM-DD");
-                       poline.vendeliverydate = vendeliverydatestring
-                          console.log("****"+vendeliverydatestring)
-                                                    console.log("**"+poline.vendeliverydate)
-
-
-            await this.vendorservice.updatePoLineByIdMaximo(this.po.poid,poline,)
+            var moment = require('moment');
+            var vendeliverydatestring = moment(poline.vendeliverydate).format("YYYY-MM-DD");
+            poline.vendeliverydate = vendeliverydatestring
+            await this.vendorservice.updatePoLineByIdMaximo(this.po.poid,poline)
             await this.vendorservice.updatePoLineById(poline);
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             this.poEdit= false;
