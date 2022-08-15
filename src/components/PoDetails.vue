@@ -371,6 +371,7 @@ export default {
             this.polines=this.po.poline;
 
         },
+        
            initFilters() {
             this.filters = {
                 'global': {value: null, matchMode: FilterMatchMode.CONTAINS},

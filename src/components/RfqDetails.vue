@@ -535,6 +535,7 @@ export default {
         closeBasic(){
             this.rfqEdit= false;
         },
+        
         async saveEdit(rfqline)
         {
             
@@ -550,11 +551,14 @@ export default {
             var delivryDate = moment(rfqline.delivryDate).format("YYYY-MM-DD");
             rfqline.delivryDate = delivryDate
 
-            await this.vendorservice.updateRfqLineById(rfqline).then(this.rfqEdit= false,this.rfq={});
+            await this.vendorservice.updateRfqLineById(rfqline);
+            this.rfqEdit= false
+            this.rfq={}
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             
             
             await this.vendorservice.findRfqDetails(rfqline.rfq.id).then(data => this.rfq = data,this.loadingbuttonsave=false);
+            this.rfqs={}
             this.rfqs=this.rfq.rfqline
             
            
