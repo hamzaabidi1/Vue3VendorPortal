@@ -524,8 +524,8 @@ export default {
              if ( this.rfq.statusofSend == false)
              {
               this.idline = event.data.id
-              this.vendorservice. findRfqLineById(this.idline).then(data1 => this.rfqline = data1);
               this.rfqEdit= true;
+              await this.vendorservice. findRfqLineById(this.idline).then(data1 => this.rfqline = data1);
              }
         },
         onRowUnselect(event) {
