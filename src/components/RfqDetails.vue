@@ -547,13 +547,10 @@ export default {
             rfqline.quoteStartDate = quoteStartDate
             var delivryDate = moment(rfqline.delivryDate).format("YYYY-MM-DD");
             rfqline.delivryDate = delivryDate
-
             await this.vendorservice.updateRfqLineById(rfqline);
             this.rfqEdit= false
             this.rfq={}
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
-            
-           console.log( this.idpath)
             await this.vendorservice.findRfqDetails(this.idpath).then(data => this.rfq = data,this.loadingbuttonsave=false);
             this.rfqs={}
             this.rfqs=this.rfq.rfqline
