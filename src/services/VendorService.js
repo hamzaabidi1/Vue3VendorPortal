@@ -48,7 +48,7 @@ export default class VendorService {
         }
 
         updateRfqLineById(rfqline){
-          return axios.put(API_URL+'Rfq/updateRfqLine',rfqline,{ headers: authHeader()});
+          return axios.post(API_URL+'Rfq/updateRfqLine',rfqline,{ headers: authHeader()});
         }
 
         addRfqToMaximo(id){
