@@ -251,9 +251,6 @@ export default {
             unitcost: null,
             linecost: null,
             vendeliverydate:' ',
-            po: {
-                id:''
-                }
                 },
         po: {
             id:null,
@@ -364,6 +361,7 @@ export default {
             await this.vendorservice.updatePoLineByIdMaximo(this.po.poid,poline)
             await this.vendorservice.updatePoLineById(poline);
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
+            this.loadingbutton=false;
             this.poEdit= false;
             this.po={}
             await this.vendorservice.findPoDetails(this.id).then(data => this.po = data);
@@ -371,7 +369,7 @@ export default {
             this.polines=this.po.poline;
 
         },
-        
+
            initFilters() {
             this.filters = {
                 'global': {value: null, matchMode: FilterMatchMode.CONTAINS},

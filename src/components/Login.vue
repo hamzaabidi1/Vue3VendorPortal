@@ -124,7 +124,7 @@ export default {
    mounted() {
      this.show=true
      this.delayCloseAlert();
-     this.rec=true
+    // this.rec=true
      
     },
   methods: {

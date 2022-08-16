@@ -305,9 +305,6 @@ export default {
                 quoteStartDate:null,
                 quoteEndDate:null,
                 delivryDate:null,
-                rfq: {
-                    id:''
-                }
                 },
         rfq: {
             id:'',
@@ -556,8 +553,8 @@ export default {
             this.rfq={}
             this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Line updated Successfuly', life: 3000 });
             
-            
-            await this.vendorservice.findRfqDetails(rfqline.rfq.id).then(data => this.rfq = data,this.loadingbuttonsave=false);
+           console.log( this.idpath)
+            await this.vendorservice.findRfqDetails(this.idpath).then(data => this.rfq = data,this.loadingbuttonsave=false);
             this.rfqs={}
             this.rfqs=this.rfq.rfqline
             
